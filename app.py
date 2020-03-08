@@ -105,3 +105,9 @@ def Home():
     result.close()
     print("HELLLLLLLLLLLOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
     return fetchdata
+
+
+app.run()
+
+# if __name__ == '__main__':
+
