@@ -3,8 +3,10 @@
 def write_basic_SELECT_FROM_WHERE(tables_cols, conditions={}, left_outer_join=None):
     """ This function expects the following format:
             tables_cols = dictionary of tables and columns to query
-                key = table (string)
-                value = columns/attributes (list of strings), if this list is empty assume all columns '*'
+                key = table variable name (string)
+                value = list where
+                    1) first entry is the original table name but can also be a subquery (if subquery be sure to surround with parentheses)
+                    2) second entry is the columns/attributes (list of strings and/or tuples), if this list is empty assume all columns '*'
             conditions = dictionary of conditions to filter by in the WHERE clause
                 key = integer keys ranging 0-n; conditions with different keys have OR relationship
                 value = list of tuples in format (table, column, operator, value); conditions in the list have AND relationship b/w each other
@@ -32,24 +34,21 @@ def write_basic_SELECT_FROM_WHERE(tables_cols, conditions={}, left_outer_join=No
 
 
 def build_column_names(items):
-    """ items are in one of the following formats:
-            list of tuples - (table, column) - where table/column are strings or tuples of strings
-                                            - table name (string) can be a subquery (if subquery be sure to surround with parentheses
-                                            - table/column can also be a tuple for renaming (i.e. "Fruits.Apples AS A1")
-                                            - enter '' for table if only wanting column name (i.e. "Apples AS A1")
+    """ items are in the following format:
+        list of tuples - (table, column) - where table/column are strings
+                                        - table name (string) can be a subquery (if subquery be sure to surround with parentheses within string
+                                        - column can also be a tuple for renaming (i.e. "Fruits.Apples AS A1")
+                                        - enter '' for table if only wanting column name (i.e. "Apples AS A1")
     """
     query_str = ''
     for i in range(0, len(items)):
-        if isinstance(items[0], tuple):
-            if items[i][0] != '':
-                query_str += items[i][0] + "."
+        if items[i][0] != '':
+            query_str += items[i][0] + "."
 
-            if isinstance(items[i][1], tuple):
-                query_str += items[i][1][0] + " AS " + items[i][1][1]
-            if isinstance(items[i][1], str):
-                query_str += items[i][1]
-        if isinstance(items[0], str):
-            query_str += items[i]
+        if isinstance(items[i][1], tuple):
+            query_str += items[i][1][0] + " AS " + items[i][1][1]
+        if isinstance(items[i][1], str):
+            query_str += items[i][1]
 
         if i < len(items) - 1:
             query_str += ', '
@@ -58,10 +57,10 @@ def build_column_names(items):
 
 
 def build_table_names(items):
-    """ items are in one of the following formats:
-            list of tuples - where table/column are strings or tuples of strings
-                            - table name (string) can be a subquery (if subquery be sure to surround with parentheses
-                            - list of tuples for renaming (i.e. ('Fruits', 'F1') gives "Fruits AS F1")
+    """ items are in the following format:
+            list of tuples of strings - table name (string) can be a subquery (if subquery be sure to surround with parentheses)
+                                      - list of tuples for renaming (i.e. ('Fruits', 'F1') gives "Fruits AS F1")
+                                      - if both entries are same then renaming is ignored (i.e. ('Fruits', 'Fruits') gives "Fruits")
     """
     query_str = ''
     for i in range(0, len(items)):
@@ -104,8 +103,11 @@ def build_condition(conditions):
             if cond_count > 0:
                 query += "\n\t AND "
 
-            query += build_column_names([(cond[0], cond[1])])
-            query += " " + cond[2] + " " + cond[3]
+            if isinstance(cond, str):
+                query += cond
+            else:
+                query += build_column_names([(cond[0], cond[1])])
+                query += " " + cond[2] + " " + cond[3]
 
             cond_count += 1
         if len(conditions[cond_set_index]) > 1 and parentheses:
@@ -116,7 +118,7 @@ def build_condition(conditions):
 
 def build_date_range_filter_query(query, col, val):
     '''val is a tuple of lower and upper range'''
-
+    # this function is not working or currently being used, just keeping it for reference
     # can also be written as 'Table.Column <= Datetime("%s") '
     return "(%s >= '%s 00:00:00' AND %s <= '%s 23:59:59')" % (col, val[0], col, val[1])
 
@@ -125,8 +127,9 @@ def run_test(select_dict, cond_dict, num):
     print("\nTest %d Selection Dictionary:\n%s" % (num, repr(select_dict)))
     print("Test %d Conditions:\n%s" % (num, repr(cond_dict)))
     print("Test %d Query:" % num)
-    print(write_basic_SELECT_FROM_WHERE(select_dict, cond_dict))
-
+    test_query = write_basic_SELECT_FROM_WHERE(select_dict, cond_dict)
+    print(test_query)
+    return test_query
 
 if __name__ == '__main__':
     # ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -161,5 +164,10 @@ if __name__ == '__main__':
                    'Veggies': ['Veggies', []]}
     cond = {0: [('', 'A1', '=', '6'), ('', 'B1', '>', '20')]
             }
-    run_test(select_from, cond, 5)
+    test_5 = run_test(select_from, cond, 5)
+    # ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    cond = {0: ['A1 = 6', 'B1 > 20']
+            }
+    test_6 = run_test(select_from, cond, 6)
+    print(test_5 == test_6)
     # ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
