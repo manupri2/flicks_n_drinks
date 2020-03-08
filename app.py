@@ -83,7 +83,7 @@ app = Flask(__name__)
 # app.config['MYSQL_USER'] = 'cs411ccsquad_admin'
 # app.config['MYSQL_PASSWORD'] = 'password;uiuc'
 # app.config['MYSQL_DB'] = 'cs411ccsquad_FlicksNDrinks'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql + pymysql://cs411ccsquad_admin:password;uiuc@localhost:3306/cs411ccsquad_FlicksNDrinks'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql + pymysql://cs411ccsquad_admin:password;uiuc@localhost/cs411ccsquad_FlicksNDrinks'
 # engine = create_engine('mysql+pymysql://cs411ccsquad_admin:password;uiuc@localhost/cs411ccsquad_FlicksNDrinks', echo=True)
 db = SQLAlchemy(app)
 engine = db.engine
