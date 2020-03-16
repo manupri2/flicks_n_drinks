@@ -51,16 +51,16 @@ def Home(table_name, id_num):
 @app.route('/API_SQL/<query>', methods=['GET', 'PUSH'])
 def api_sql(self, query):
     conn = eng.connect()
-    if request.method == 'GET':
+    # if request.method == 'GET':
         # query = request.values.get('query')
         # query_data = conn.execute(urllib.parse.unquote(query))
         # result = {'data': [dict(zip(tuple(query_data.keys()), i)) for i in query_data.cursor]}
         # return jsonify(result)
-        cur = conn.execute(urllib.parse.unquote(query))
-        message2 = ''
-        for i in cur:
-            message2 += repr(i) + "\n"
-        return message2.encode()
+    cur = conn.execute(urllib.parse.unquote(query))
+    message2 = ''
+    for i in cur:
+        message2 += repr(i) + "\n"
+    return message2.encode()
 
 
 
