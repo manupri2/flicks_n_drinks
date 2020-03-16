@@ -24,6 +24,13 @@ eng = db.engine
 #         return jsonify(result)
 
 
+@app.route('/login')
+def login():
+    return """<h1>To query database, enter "CocktailName", "CocktailRecipe", or "Ingredient" for {table_name} and 
+              an integer between 0-683 for {id_num} in the route:    
+              http://cs411ccsquad.web.illinois.edu/{table_name}/{id_num}</h1>"""
+
+
 @app.route('/')
 def stanford_page():
     return """<h1>To query database, enter "CocktailName", "CocktailRecipe", or "Ingredient" for {table_name} and 
@@ -42,7 +49,7 @@ def Home(table_name, id_num):
     return message2.encode()
 
 
-@app.route('/API_SQL/<query>', methods=['GET'])
+@app.route('/API_SQL/<query>', methods=['GET', 'PUSH'])
 def api_sql(self, query):
     conn = eng.connect()
     if request.method == 'GET':
@@ -50,6 +57,7 @@ def api_sql(self, query):
         query_data = conn.execute(urllib.parse.unquote(query))
         result = {'data': [dict(zip(tuple(query_data.keys()), i)) for i in query_data.cursor]}
         return jsonify(result)
+
 
 # api.add_resource(Access_FlicksNDrinks, '/SQL_QUERY/<query>')
     # import urllib.parse
