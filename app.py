@@ -43,7 +43,6 @@ def Home(table_name, id_num):
     message2 = ''
     with eng.connect() as con:
         cur = con.execute('SELECT * FROM %s WHERE %s = %s' % (table_name, id_dict[table_name], id_num))
-        # cur = con.execute('SELECT * FROM CocktailName')
         for i in cur:
             message2 += repr(i) + "\n"
     return message2.encode()
@@ -54,9 +53,15 @@ def api_sql(self, query):
     conn = eng.connect()
     if request.method == 'GET':
         # query = request.values.get('query')
-        query_data = conn.execute(urllib.parse.unquote(query))
-        result = {'data': [dict(zip(tuple(query_data.keys()), i)) for i in query_data.cursor]}
-        return jsonify(result)
+        # query_data = conn.execute(urllib.parse.unquote(query))
+        # result = {'data': [dict(zip(tuple(query_data.keys()), i)) for i in query_data.cursor]}
+        # return jsonify(result)
+        cur = conn.execute(urllib.parse.unquote(query))
+        message2 = ''
+        for i in cur:
+            message2 += repr(i) + "\n"
+        return message2.encode()
+
 
 
 # api.add_resource(Access_FlicksNDrinks, '/SQL_QUERY/<query>')
