@@ -18,4 +18,7 @@ print(parse.unquote(encoded_query))
 route = "http://cs411ccsquad.web.illinois.edu/api/%s" % encoded_query
 print(route)
 response = requests.get(route)
-print(response)
+queried_data_json = response.json()
+print(queried_data_json)
+queried_data_df = pd.read_json(repr(queried_data_json), orient='records')
+print(queried_data_df)

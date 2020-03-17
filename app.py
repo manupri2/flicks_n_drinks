@@ -54,7 +54,7 @@ def api_sql(query):
     if request.method == 'GET':
         # query = request.values.get('query')
         query_data = conn.execute(urllib.parse.unquote(query))
-        result = {'data': [dict(zip(tuple(query_data.keys()), i)) for i in query_data.cursor]}
+        result = [dict(zip(tuple(query_data.keys()), i)) for i in query_data.cursor]
         return jsonify(result)
     # message2 = ''
     # with eng.connect() as con:
