@@ -48,20 +48,20 @@ def basic_api(table_name, id_num):
     return message2.encode()
 
 
-@app.route('/api/<query>')
+@app.route('/api/<query>', methods=['GET'])
 def api_sql(query):
-    message2 = ''
-    # conn = eng.connect()
-    # if request.method == 'GET':
+    conn = eng.connect()
+    if request.method == 'GET':
         # query = request.values.get('query')
-        # query_data = conn.execute(urllib.parse.unquote(query))
-        # result = {'data': [dict(zip(tuple(query_data.keys()), i)) for i in query_data.cursor]}
-        # return jsonify(result)
-    with eng.connect() as con:
-        cur = con.execute(urllib.parse.unquote(query))
-        for i in cur:
-            message2 += repr(i) + "\n"
-    return message2.encode()
+        query_data = conn.execute(urllib.parse.unquote(query))
+        result = {'data': [dict(zip(tuple(query_data.keys()), i)) for i in query_data.cursor]}
+        return jsonify(result)
+    # message2 = ''
+    # with eng.connect() as con:
+    #     cur = con.execute(urllib.parse.unquote(query))
+    #     for i in cur:
+    #         message2 += repr(i) + "\n"
+    # return message2.encode()
 
 
 

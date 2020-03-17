@@ -15,7 +15,7 @@ test_query = "SELECT * FROM CocktailName"
 encoded_query = parse.quote(test_query)
 print(encoded_query)
 print(parse.unquote(encoded_query))
-route = "http://cs411ccsquad.web.illinois.edu/API_SQL/%s" % encoded_query
+route = "http://cs411ccsquad.web.illinois.edu/api/%s" % encoded_query
 print(route)
 response = requests.get(route)
 print(response)
