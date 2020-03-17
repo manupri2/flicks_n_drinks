@@ -48,7 +48,7 @@ def basic_api(table_name, id_num):
     return message2.encode()
 
 
-@app.route('/API')
+@app.route('/api')
 def api_sql(self):
     message2 = 'HELLLLLOOOOOOOOOOOOOOOOOO'
     # conn = eng.connect()
