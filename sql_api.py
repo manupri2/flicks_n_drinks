@@ -3,7 +3,10 @@ from urllib import parse
 import requests
 
 
-# if there is an error in SQL query it will return error code 500
+# Status Code 500 - Error in SQL query or error in connecting to database
+# Status Code 404 - Error connecting to URL
+# Status Code 200 - Successful connection and query
+
 def api_query(query_str):
     encoded_query = parse.quote(query_str)
     # print(encoded_query)
@@ -21,7 +24,7 @@ def api_query(query_str):
     return queried_data_df, response.status_code
 
 
-def test_df(tables):
+def test_database_tables(tables):
     for table in tables:
         test_query = "SELECT * FROM %s" % table
         test_df, code = api_query(test_query)
@@ -53,12 +56,12 @@ if __name__ == "__main__":
     'People',
     'Role',
     'User']
-    test_df(table_list)
+    test_database_tables(table_list)
 
     query = 'SELECT * FROM Composition WHERE compositionId > 5 AND compositionId < 100'
     print("\nQuery:\n%s" % query)
     df, code = api_query(query)
-    print("Status Code:%d" % code)
+    print("Status Code: %d" % code)
     print(df)
 
     query = 'SELECT * FROM People WHERE name LIKE "%%Ast%%" LIMIT 10'
