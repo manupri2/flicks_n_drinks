@@ -32,14 +32,14 @@ def login():
 
 
 @app.route('/')
-def stanford_page():
+def home():
     return """<h1>To query database, enter "CocktailName", "CocktailRecipe", or "Ingredient" for {table_name} and 
               an integer between 0-683 for {id_num} in the route:    
               http://cs411ccsquad.web.illinois.edu/{table_name}/{id_num}</h1>"""
 
 
 @app.route('/<table_name>/<id_num>')
-def Home(table_name, id_num):
+def basic_api(table_name, id_num):
     message2 = ''
     with eng.connect() as con:
         cur = con.execute('SELECT * FROM %s WHERE %s = %s' % (table_name, id_dict[table_name], id_num))
@@ -48,7 +48,7 @@ def Home(table_name, id_num):
     return message2.encode()
 
 
-@app.route('/API_SQL/<query>', methods=['GET', 'PUSH'])
+@app.route('/API_SQL/<query>')
 def api_sql(self, query):
     conn = eng.connect()
     # if request.method == 'GET':
