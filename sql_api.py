@@ -3,6 +3,7 @@ from urllib import parse
 import requests
 
 
+# if there is an error in SQL query it will return error code 500
 def api_query(query_str):
     encoded_query = parse.quote(query_str)
     # print(encoded_query)
@@ -53,6 +54,18 @@ if __name__ == "__main__":
     'Role',
     'User']
     test_df(table_list)
+
+    query = 'SELECT * FROM Composition WHERE compositionId > 5 AND compositionId < 100'
+    print("\nQuery:\n%s" % query)
+    df, code = api_query(query)
+    print("Status Code:%d" % code)
+    print(df)
+
+    query = 'SELECT * FROM People WHERE name LIKE "%%Ast%%" LIMIT 10'
+    print("\nQuery:\n%s" % query)
+    df, code = api_query(query)
+    print("Status Code: %d" % code)
+    print(df)
 
 
 
