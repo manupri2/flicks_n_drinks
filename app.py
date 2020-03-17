@@ -50,16 +50,17 @@ def basic_api(table_name, id_num):
 
 @app.route('/API_SQL/<query>')
 def api_sql(self, query):
-    conn = eng.connect()
+    message2 = ''
+    # conn = eng.connect()
     # if request.method == 'GET':
         # query = request.values.get('query')
         # query_data = conn.execute(urllib.parse.unquote(query))
         # result = {'data': [dict(zip(tuple(query_data.keys()), i)) for i in query_data.cursor]}
         # return jsonify(result)
-    cur = conn.execute(urllib.parse.unquote(query))
-    message2 = ''
-    for i in cur:
-        message2 += repr(i) + "\n"
+    with eng.connect() as con:
+        cur = con.execute('SELECT * FROM %s WHERE %s = %s' % ('CocktailName', id_dict['CocktailName'], query))
+        for i in cur:
+            message2 += repr(i) + "\n"
     return message2.encode()
 
 

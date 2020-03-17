@@ -11,8 +11,11 @@ movie_trait_matrix = pd.read_csv('./static/MovieTraitMatrix.csv')
 # categorized_ing.set_index('word', inplace=True)
 
 
-test_query = '/API_SQL/' + "SELECT * FROM CocktailName"
+test_query = "SELECT * FROM CocktailName"
 encoded_query = parse.quote(test_query)
 print(encoded_query)
-response = requests.get("http://cs411ccsquad.web.illinois.edu/API_SQL/%s" % encoded_query)
+print(parse.unquote(encoded_query))
+route = "http://cs411ccsquad.web.illinois.edu/API_SQL/%s" % encoded_query
+print(route)
+response = requests.get(route)
 print(response)
