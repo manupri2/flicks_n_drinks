@@ -1,9 +1,8 @@
-from flask import Flask, request
-from flask_sqlalchemy import SQLAlchemy
-from flask_restful import Resource, Api
-from json import dumps
-from flask_jsonpify import jsonify
 import urllib.parse
+
+from flask import Flask, request
+from flask_jsonpify import jsonify
+from flask_sqlalchemy import SQLAlchemy
 
 id_dict = {'CocktailName': 'cocktailId',
             'CocktailRecipe': 'recipeId',
