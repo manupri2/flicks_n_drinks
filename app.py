@@ -62,6 +62,21 @@ def api_sql(query):
     #         message2 += repr(i) + "\n"
     # return message2.encode()
 
+@app.route('/spiderChart_test', methods=['GET'])
+def api_sql(query):
+    conn = eng.connect()
+    if request.method == 'GET':
+	query_str = "SELECT \'trOpen\',\'trCon\',\'trEx\',\'trAg\', \'trNe\' FROM User WHERE userId =%d" % userId
+	encoded_query = parse.quote(query_str)
+	#route = "http://cs411ccsquad.web.illinois.edu/spiderChart/%s" % encoded_query
+	#response = requests.get(route)
+	#queried_data_df = pd.DataFrame()
+	#print(queried_data_df)
+        # query = request.values.get('query')
+        query_data = conn.execute(query_str)
+        result = [dict(zip(tuple(query_data.keys()), i)) for i in query_data.cursor]
+        return jsonify(result)
+
 
 
 # api.add_resource(Access_FlicksNDrinks, '/SQL_QUERY/<query>')
@@ -69,6 +84,10 @@ def api_sql(query):
     # query = 'Hellö Wörld@Python'
     # urllib.parse.quote(query) # encodes query into URL format, returns encoded string
     # urllib.parse.unquote(encodedStr) # decodes query from URL format, returns decoded string
+
+
+
+
 
 
 if __name__ == '__main__':
