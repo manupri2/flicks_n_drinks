@@ -9,11 +9,16 @@ import requests
 
 def api_query(query_str):
     encoded_query = parse.quote(query_str)
-    # print(encoded_query)
-    # print(parse.unquote(encoded_query))
+    #print("Encoded Query: %s\n" % encoded_query)
+    #print("Uncoded Query: %s\n" % parse.unquote(encoded_query))
     route = "http://cs411ccsquad.web.illinois.edu/api/%s" % encoded_query
-    # print(route)
+    #print("Route: %s\n" % route)
+    
+
+
+
     response = requests.get(route)
+
 
     queried_data_df = pd.DataFrame()
     if response.status_code == 200:
@@ -21,6 +26,7 @@ def api_query(query_str):
         # print(queried_data_json)
         queried_data_df = pd.DataFrame(queried_data_json)
         # print(queried_data_df)
+
     return queried_data_df, response.status_code
 
 
@@ -35,7 +41,9 @@ def test_database_tables(tables):
 
 
 if __name__ == "__main__":
-    table_list = ['CocktailDecoration',
+
+    table_list = [
+    'CocktailDecoration',
     'CocktailName',
     'CocktailRecipe',
     'Composition',
@@ -58,17 +66,11 @@ if __name__ == "__main__":
     'User']
     test_database_tables(table_list)
 
-    query = 'SELECT * FROM Composition WHERE compositionId > 5 AND compositionId < 100'
-    print("\nQuery:\n%s" % query)
-    df, code = api_query(query)
-    print("Status Code: %d" % code)
-    print(df)
-
-    query = 'SELECT * FROM People WHERE name LIKE "%%Ast%%" LIMIT 10'
+    query = 'select * from Movie limit 10'
     print("\nQuery:\n%s" % query)
     df, code = api_query(query)
     print("Status Code: %d" % code)
     print(df)
 
 
-
+#tConst	title	year	rating	votes
