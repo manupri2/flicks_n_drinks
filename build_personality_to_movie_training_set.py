@@ -17,8 +17,3 @@ df, code = api_query(query)
 print(code)
 print(df)
 
-
-query = 'SELECT * FROM People WHERE name LIKE "%%Ast%%" LIMIT 10'
-df, code = api_query(query)
-print(code)
-print(df)

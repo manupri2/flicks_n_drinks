@@ -7,6 +7,7 @@ import requests
 # Status Code 404 - Error connecting to URL
 # Status Code 200 - Successful connection and query
 
+
 def api_query(query_str):
     encoded_query = parse.quote(query_str)
     # print(encoded_query)
@@ -26,7 +27,7 @@ def api_query(query_str):
 
 def test_database_tables(tables):
     for table in tables:
-        test_query = "SELECT * FROM %s" % table
+        test_query = "SELECT * FROM %s LIMIT 10000" % table
         test_df, code = api_query(test_query)
         if code == 200:
             print('Table %s was a success!' % table)
@@ -64,7 +65,7 @@ if __name__ == "__main__":
     print("Status Code: %d" % code)
     print(df)
 
-    query = 'SELECT * FROM People WHERE name LIKE "%%Ast%%" LIMIT 10'
+    query = 'SELECT * FROM Movie LIMIT 10'
     print("\nQuery:\n%s" % query)
     df, code = api_query(query)
     print("Status Code: %d" % code)
