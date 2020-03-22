@@ -31,9 +31,9 @@ print(user_array.shape)
 print(user_array[:, 0])
 # training_set = pd.DataFrame
 
-for i in user_ids:
-for j in np.arange(num_movies):
-ri_movie = np.random.randint(0, total_num_movies)
+# for i in user_ids:
+#     for j in np.arange(num_movies):
+# ri_movie = np.random.randint(0, total_num_movies)
 
 # print(user_ids)
 # print(opennness)
