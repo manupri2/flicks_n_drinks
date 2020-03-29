@@ -1,7 +1,7 @@
 const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const getFilesFromDir = require("./config/files");
-const PAGE_DIR = path.join("src", "pages", path.sep);
+const PAGE_DIR = path.join("./src", "pages", path.sep);
 
 const htmlPlugins = getFilesFromDir(PAGE_DIR, [".html"]).map(filePath => {
     const fileName = filePath.replace(PAGE_DIR, "");
@@ -25,8 +25,8 @@ module.exports = {
     ],
     resolve: {
         alias: {
-            src: path.resolve(__dirname, "src"),
-            components: path.resolve(__dirname, "src", "components")
+            src: path.resolve(__dirname, "./src"),
+            components: path.resolve(__dirname, "./src", "components")
         }
     },
     module: {

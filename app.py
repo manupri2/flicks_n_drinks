@@ -1,8 +1,11 @@
 import urllib.parse
+import os
 from flask import Flask, request
 from flask_jsonpify import jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask import render_template
+
+template_dir = os.path.abspath('../../dist')
 
 id_dict = {'CocktailName': 'cocktailId',
             'CocktailRecipe': 'recipeId',
