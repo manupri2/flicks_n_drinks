@@ -4,8 +4,8 @@
   "description": "Flicks_N_Drinks",
   "main": "index.js",
   "scripts": {
-      "build": "webpack — mode production",
-      "start": "webpack-dev-server — mode development — hot — open — port 3100"
+      "build": "webpack --mode production",
+      "start": "webpack-dev-server --mode development --hot --open --port 3100"
    },
   "repository": {
     "type": "git",
