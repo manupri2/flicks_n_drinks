@@ -16,7 +16,7 @@ new_traits[0::2] = new_traits[0::2] + 'H'
 new_traits[1::2] = new_traits[1::2] + 'L'
 movie_trait_matrix['trait_name'] = pd.Series(new_traits)
 movie_trait_matrix.set_index('trait_name', inplace=True)
-# print(movie_trait_matrix)
+print(movie_trait_matrix)
 
 query = 'SELECT Movie.tConst FROM Movie'
 movie_ids, code = api_query(query)
@@ -47,13 +47,14 @@ user_ids = np.array(sorted(list(range(0, num_users))*num_movies)).reshape((num_m
 ri_movies = np.random.randint(0, high=total_num_movies, size=(num_movies*num_users, 1))
 training_set = np.concatenate([user_ids, ri_movies], axis=1)
 training_set = pd.DataFrame(training_set, columns=cols)
+print(training_set)
 # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 training_set['tConst'] = training_set.loc[:, 'movie_i'].apply(lambda x: movie_ids['tConst'][x])
 training_set = training_set.join(movie_cat, on='tConst', how='inner')
 training_set = training_set.join(user_traits, on='user_id', how='inner')
 training_set.sort_values('user_id', inplace=True)
 training_set.reset_index(drop=True, inplace=True)
-# print(training_set)
+print(training_set)
 # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 genre_df = movie_trait_matrix.T
 training_set = training_set.join(genre_df, on='genreName', how='inner')
@@ -90,7 +91,7 @@ final_df['z_score'] = (final_df['prob'] - avg) / std
 
 # adjusted distribution to fit the parameters below
 target_avg = 0.50
-target_std = 0.18
+target_std = 0.23
 final_df['new_prob'] = final_df['z_score'] * target_std + target_avg
 print('Avg: %s' % repr(final_df['new_prob'].mean()))
 print('Std: %s' % repr(final_df['new_prob'].std()))
