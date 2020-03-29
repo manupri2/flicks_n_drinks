@@ -25,7 +25,7 @@ eng = db.engine
 
 @app.route('/login')
 def login():
-    return render_template("./dist/index.html")
+    return render_template("dist/index.html")
 
 
 @app.route('/')
