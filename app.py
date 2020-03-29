@@ -1,8 +1,8 @@
 import urllib.parse
-
 from flask import Flask, request
 from flask_jsonpify import jsonify
 from flask_sqlalchemy import SQLAlchemy
+from flask import render_template
 
 id_dict = {'CocktailName': 'cocktailId',
             'CocktailRecipe': 'recipeId',
@@ -25,9 +25,7 @@ eng = db.engine
 
 @app.route('/login')
 def login():
-    return """<h1>To query database, enter "CocktailName", "CocktailRecipe", or "Ingredient" for {table_name} and 
-              an integer between 0-683 for {id_num} in the route:    
-              http://cs411ccsquad.web.illinois.edu/{table_name}/{id_num}</h1>"""
+    return render_template("/dist/index.html")
 
 
 @app.route('/')
