@@ -5,7 +5,6 @@ from flask_jsonpify import jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask import render_template
 
-template_dir = os.path.abspath('../../dist')
 
 id_dict = {'CocktailName': 'cocktailId',
             'CocktailRecipe': 'recipeId',
@@ -28,7 +27,7 @@ eng = db.engine
 
 @app.route('/login')
 def login():
-    return render_template("index1.html")
+    return render_template("index.html")
 
 
 @app.route('/')
