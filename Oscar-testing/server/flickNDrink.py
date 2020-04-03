@@ -8,10 +8,10 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 
-app = Flask(__name__)
+#app = Flask(__name__)
 
-# Location of the js (bundled) files and the html files
-# app = Flask(__name__, static_folder = "../static/dist", template_folder = "../static")
+#Location of the js (bundled) files and the html files
+app = Flask(__name__, static_folder = "../static/dist", template_folder = "../static")
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://cs411ccsquad_admin:password;uiuc@localhost/cs411ccsquad_FlicksNDrinks'
 
@@ -55,6 +55,7 @@ def api_sql(query):
 @app.route("/indexPage")
 def index():
 	return render_template("indexPage.html")
+    
 
 
 if __name__ == '__main__':

@@ -1,9 +1,11 @@
 const webpack = require('webpack');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 
 const config = {
 	entry: {
 		"indexPage":__dirname + '/js/indexPage.jsx',
-		"aboutPage":__dirname + '/js/aboutPage.jsx'
+		"aboutPage":__dirname + '/js/aboutPage.jsx',
 	},
 	output:{
 		path: __dirname + '/dist',
@@ -17,9 +19,56 @@ const config = {
 		{
 			test:/\.jsx?/,
 			exclude: /node_mocules/,
-			use: 'babel-loader'
-		}]
-	}
-};
+			use:'babel-loader'
+			// loader: 'babel-loader',
+			// options:{
+			// 	presets:[
+			// 		"@babel/preset-env",
+			// 		"@babel/preset-react"
+			// 	],
+			// 	plugins:[
+			// 		"@babel/plugin-syntax-dynamic-import",
+			// 		"@babel/transform-runtime",
+			// 		"@babel/plugin-proposal-class-properties"
+			// 	]
+			// }
+
+
+		},
+
+		{
+			test: /\.css$/,
+			use:  ExtractTextPlugin.extract({
+				fallback: "style-loader",
+				use:"css-loader"
+			})
+		},
+		
+		// {
+		// 	test:/\.js/,
+		// 	loader: "babel-loader",
+		// 	options:{
+		// 		presets:[
+		// 			"@babel/preset-env",
+		// 			"@babel/preset-react"
+		// 		],
+		// 		plugins:[
+		// 			"@babel/plugin-syntax-dynamic-import",
+		// 			"@babel/transform-runtime",
+		// 			"@babel/plugin-proposal-class-properties"
+		// 		]
+		// 	}
+		// },	
+		]
+	},
+
+	plugins: [
+		new ExtractTextPlugin('styles.css')
+	]
+
+}
+
+
+
 
 module.exports = config;
