@@ -12,14 +12,6 @@ eng = db.engine
 
 @app.route("/")
 def index():
-	# query = 'SELECT * FROM Composition WHERE compositionId > 5 AND compositionId < 100'
-	# encoded_query = parse.quote(query)
-	# route = "http://cs411ccsquad.web.illinois.edu/api/%s" % encoded_query
-	# response = requests.get(route)
-	#
-	# queried_data_json = response.json()
-	# print(queried_data_json)
-	# return render_template("indexPage.html", resp=response.text)
 	return render_template("indexPage.html")
 
 
