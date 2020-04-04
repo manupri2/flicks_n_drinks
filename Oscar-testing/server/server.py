@@ -42,12 +42,13 @@ def basic_api(table_name, id_num):
 
 @app.route('/api/<query>', methods=['GET'])
 def api_sql(query):
-    conn = eng.connect()
-    if request.method == 'GET':
-        # query = request.values.get('query')
-        query_data = conn.execute(parse.unquote(query))
-        result = [dict(zip(tuple(query_data.keys()), i)) for i in query_data.cursor]
-        return jsonify(result)
+    # conn = eng.connect()
+    # if request.method == 'GET':
+    #     # query = request.values.get('query')
+    #     query_data = conn.execute(parse.unquote(query))
+    #     result = [dict(zip(tuple(query_data.keys()), i)) for i in query_data.cursor]
+        # return jsonify(result)
+    return {'compositionId': 6, 'ingredientId': 1025, 'quantity': '.5', 'recipeId': 1, 'unit': 'oz'}
 
 
 if __name__ == "__main__":

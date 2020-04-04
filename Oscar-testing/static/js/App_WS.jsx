@@ -42,13 +42,13 @@ class App extends Component{
 			return <div>Loading...</div>;
 		} else{
 			return(
-				<ul>
+				<div>
 					{items.map(item =>(
-						<li>
-							Cocktail: {item}
-						</li>
+							<li key={item.compositionId}>
+							Cocktail: {item.unit}
+						    </li>
 					))}
-				</ul>
+				</div>
 			);
 		}
 	}

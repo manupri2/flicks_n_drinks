@@ -19,7 +19,7 @@ def api_query(query_str):
     queried_data_df = pd.DataFrame()
     if response.status_code == 200:
         queried_data_json = response.json()
-        # print(queried_data_json)
+        print(queried_data_json)
         queried_data_df = pd.DataFrame(queried_data_json)
         # print(queried_data_df)
     return queried_data_df, response.status_code
@@ -57,7 +57,7 @@ if __name__ == "__main__":
     'People',
     'Role',
     'User']
-    test_database_tables(table_list)
+    # test_database_tables(table_list)
 
     query = 'SELECT * FROM Composition WHERE compositionId > 5 AND compositionId < 100'
     print("\nQuery:\n%s" % query)
