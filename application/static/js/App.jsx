@@ -39,7 +39,7 @@ class App extends Component{
 		if(error){
 			return <div>Error: {error.message} </div>;
 		} else if(!isLoaded){
-			return <div>Loading here 1...</div>;
+			return <div>Loading...</div>;
 		} else{
 			return(
 				<ul>

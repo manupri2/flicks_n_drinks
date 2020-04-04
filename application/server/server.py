@@ -9,27 +9,29 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://cs411ccsquad_admin:password;uiu
 db = SQLAlchemy(app)
 eng = db.engine
 
-@app.route("/")
+
+@app.route("/about")
 def index():
 	return render_template("aboutPage.html")
+
 
 @app.route("/index")
 def index():
 	return render_template("indexPage.html")
 
 
-@app.route('/home')
+@app.route('/')
 def home():
 	return """<h1>To query database, enter "CocktailName", "CocktailRecipe", or "Ingredient" for {table_name} and 
 			  an integer between 0-683 for {id_num} in the route: 
               http://cs411ccsquad.web.illinois.edu/{table_name}/{id_num}</h1>"""
 
 
-@app.route('/<table_name>/<id_num>')
-def basic_api(table_name, id_num):
+@app.route('/<table_name>')
+def basic_api(table_name):
     message2 = ''
     with eng.connect() as con:
-        cur = con.execute('SELECT * FROM %s WHERE %s = %s' % (table_name, id_dict[table_name], id_num))
+        cur = con.execute('SELECT * FROM %s' % table_name)
         for i in cur:
             message2 += repr(i) + "\n"
     return message2.encode()
