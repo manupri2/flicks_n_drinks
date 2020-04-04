@@ -42,13 +42,14 @@ class App extends Component{
 			return <div>Loading here...</div>;
 		} else{
 			return(
-				<div>Results baby yeah!!
-				{items.map(item =>(
-						<li >
-						item: {item}
+				<div>Results baby yeah!!</div>
+				<ul>
+					{items.map(item =>(
+						<li>
+							{item}
 						</li>
 					))}
-				</div>
+				</ul>
 			);
 		}
 	}
