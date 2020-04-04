@@ -45,7 +45,7 @@ class App extends Component{
 				<ul>
 					{items.map(item =>(
 						<li>
-							{item}
+							{item.cocktailName}
 						</li>
 					))}
 				</ul>
