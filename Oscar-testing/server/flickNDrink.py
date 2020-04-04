@@ -3,12 +3,9 @@ import os
 
 # Import Flask
 from flask import Flask, request, render_template
-from flask_jsonpify import jasonify
+from flask_jsonpify import jsonify
 from flask_sqlalchemy import SQLAlchemy
 
-
-
-#app = Flask(__name__)
 
 #Location of the js (bundled) files and the html files
 app = Flask(__name__, static_folder = "../static/dist", template_folder = "../static")
@@ -17,7 +14,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://cs411ccsquad_admin:password;uiu
 
 db = SQLAlchemy(app)
 eng = db.engine
-
 
 
 @app.route('/login')
