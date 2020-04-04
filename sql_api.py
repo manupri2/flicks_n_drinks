@@ -65,7 +65,7 @@ if __name__ == "__main__":
     print("Status Code: %d" % code)
     print(df)
 
-    query = 'SELECT * FROM Movie LIMIT 10'
+    query = 'SELECT * FROM CocktailName'
     print("\nQuery:\n%s" % query)
     df, code = api_query(query)
     print("Status Code: %d" % code)

@@ -4,7 +4,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const config = {
 	entry: {
-		"indexPage":__dirname + '/js/indexPage.jsx',
+		"indexPage":__dirname + '/js/indexPage_WS.jsx',
 		"aboutPage":__dirname + '/js/aboutPage.jsx',
 	},
 	output:{
@@ -18,8 +18,8 @@ const config = {
 		rules:[
 		{
 			test:/\.jsx?/,
-			exclude: /node_mocules/,
-			use:'babel-loader'
+			exclude: /node_modules/,
+			loader:'babel-loader'
 			// loader: 'babel-loader',
 			// options:{
 			// 	presets:[
@@ -38,7 +38,7 @@ const config = {
 
 		{
 			test: /\.css$/,
-			use:  ExtractTextPlugin.extract({
+			loader:  ExtractTextPlugin.extract({
 				fallback: "style-loader",
 				use:"css-loader"
 			})
