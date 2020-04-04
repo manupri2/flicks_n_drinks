@@ -42,9 +42,13 @@ class App extends Component{
 			return <div>Loading here 1...</div>;
 		} else{
 			return(
-				<div>
-					{items}
-				</div>
+				<ul>
+					{items.map(item =>(
+						<li>
+							{item}
+						</li>
+					))}
+				</ul>
 			);
 		}
 	}

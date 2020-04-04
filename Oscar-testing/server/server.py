@@ -46,7 +46,7 @@ def api_sql(query):
     if request.method == 'GET':
         query_data = conn.execute(parse.unquote(query))
         result = [dict(zip(tuple(query_data.keys()), i)) for i in query_data.cursor]
-        return jsonify(result)
+        return jsonify({'data': result})
 
 
 if __name__ == "__main__":
