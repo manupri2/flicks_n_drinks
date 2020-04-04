@@ -9,8 +9,11 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://cs411ccsquad_admin:password;uiu
 db = SQLAlchemy(app)
 eng = db.engine
 
-
 @app.route("/")
+def index():
+	return render_template("aboutPage.html")
+
+@app.route("/index")
 def index():
 	return render_template("indexPage.html")
 
