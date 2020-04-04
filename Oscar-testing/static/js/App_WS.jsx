@@ -44,10 +44,8 @@ class App extends Component{
 			return(
 				<div>Results baby yeah!!
 				{items.map(item =>(
-						<li key={item.cocktailId}>
-							Bar: {item.cocktailName}
-							{/* <span style="margin-left:2em">Address: {item.address}</span> */}
-							{/* <span style="margin-left:2em">Address: {item.owner}</span> */}
+						<li >
+						item: {item}
 						</li>
 					))}
 				</div>
