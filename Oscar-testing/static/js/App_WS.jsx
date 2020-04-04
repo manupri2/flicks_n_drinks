@@ -42,7 +42,7 @@ class App extends Component{
 			return <div>Loading here...</div>;
 		} else{
 			return(
-				<div>Results!!</div>
+				<div>Results baby!!</div>
 			);
 		}
 	}
