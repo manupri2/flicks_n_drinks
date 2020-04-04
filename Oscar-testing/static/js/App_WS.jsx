@@ -44,8 +44,8 @@ class App extends Component{
 			return(
 				<ul>
 					{items.map(item =>(
-						<li key={item.cocktailId}>
-							Cocktail: {item.cocktailName}
+						<li>
+							Cocktail: {item}
 						</li>
 					))}
 				</ul>
