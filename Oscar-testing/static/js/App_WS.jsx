@@ -42,7 +42,7 @@ class App extends Component{
 			return <div>Loading here...</div>;
 		} else{
 			return(
-				<div>Results baby yeah!!</div>
+				<div>Results baby yeah!!
 				<ul>
 					{items.map(item =>(
 						<li>
@@ -50,6 +50,7 @@ class App extends Component{
 						</li>
 					))}
 				</ul>
+				</div>
 			);
 		}
 	}
