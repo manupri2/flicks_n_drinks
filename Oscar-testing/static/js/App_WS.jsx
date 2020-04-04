@@ -39,17 +39,11 @@ class App extends Component{
 		if(error){
 			return <div>Error: {error.message} </div>;
 		} else if(!isLoaded){
-			return <div>Loading here...</div>;
+			return <div>Loading here 1...</div>;
 		} else{
 			return(
-				<div>Results baby yeah!!
-				<ul>
-					{items.map(item =>(
-						<li>
-							{item}
-						</li>
-					))}
-				</ul>
+				<div>
+					{items}
 				</div>
 			);
 		}
