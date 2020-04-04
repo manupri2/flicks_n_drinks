@@ -11,7 +11,7 @@ eng = db.engine
 
 
 @app.route("/about")
-def index():
+def about():
 	return render_template("aboutPage.html")
 
 
