@@ -39,10 +39,10 @@ class App extends Component{
 		if(error){
 			return <div>Error: {error.message} </div>;
 		} else if(!isLoaded){
-			return <div>Loading...</div>;
+			return <div>Loading here...</div>;
 		} else{
 			return(
-				<div>
+				<div>Results:
 					{items.map(item =>(
 							<li key={item.compositionId}>
 							Cocktail: {item.unit}
