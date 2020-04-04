@@ -20,7 +20,7 @@ def index():
 	# queried_data_json = response.json()
 	# print(queried_data_json)
 	# return render_template("indexPage.html", resp=response.text)
-	return render_template("indexPage.html")
+	return render_template("indexPage_WS.html")
 
 
 @app.route('/home')

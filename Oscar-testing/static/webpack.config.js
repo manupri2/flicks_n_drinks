@@ -4,7 +4,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const config = {
 	entry: {
-		"indexPage":__dirname + '/js/indexPage_WS.jsx',
+		"indexPage_WS":__dirname + '/js/indexPage_WS.jsx',
 		"aboutPage":__dirname + '/js/aboutPage.jsx',
 	},
 	output:{
