@@ -2,7 +2,7 @@
   "name": "FullStackTemplate",
   "version": "1.0.0",
   "description": "Fullstack Template",
-  "main": "indexPage.jsx",
+  "main": "indexPage_WS.jsx",
   "scripts": {
     "watch": "webpack-cli --progress -d --config webpack.config.js -w"
   },

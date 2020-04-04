@@ -19,7 +19,7 @@ const config = {
 		{
 			test:/\.jsx?/,
 			exclude: /node_modules/,
-			loader:'babel-loader'
+			use:'babel-loader'
 			// loader: 'babel-loader',
 			// options:{
 			// 	presets:[
@@ -38,7 +38,7 @@ const config = {
 
 		{
 			test: /\.css$/,
-			loader:  ExtractTextPlugin.extract({
+			use:  ExtractTextPlugin.extract({
 				fallback: "style-loader",
 				use:"css-loader"
 			})
