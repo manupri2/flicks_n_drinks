@@ -1,0 +1,51 @@
+{
+  "name": "FullStackTemplate",
+  "version": "1.0.0",
+  "description": "Fullstack Template",
+  "main": "indexPage.jsx",
+  "scripts": {
+    "watch": "webpack-cli --progress -d --config webpack.config.js -w"
+  },
+  "keywords": [
+    "python",
+    "react",
+    "npm",
+    "webpack"
+  ],
+  "author": "Oscar Huang",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-react": "^7.9.4",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.1.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "build": "^0.1.4",
+    "cors": "^2.8.5",
+    "css-loader": "^3.4.2",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "i": "^0.3.6",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "^3.4.1",
+    "style-loader": "^1.1.3",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  },
+  "babel": {
+    "presets": [
+      "@babel/env",
+      "@babel/react"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  }
+}
