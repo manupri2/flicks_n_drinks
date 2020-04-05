@@ -4,30 +4,14 @@ require('../css/fullstack.css');
 
 
 function TestRender(props){
-		var error1 = props.elems.error;
+		var error = props.elems.error;
 		var isLoaded = props.elems.isLoaded;
 		var items = props.elems.items;
 		var table = props.elems.table;
 		var base_query = props.elems.base_query;
 
 
-
-        fetch(base_query + table)
-            .then(res => res.json())
-            .then(
-                    (result) => {
-                            isLoaded = true;
-                            items = result.data;
-                    },
-                    (error) => {
-                            isLoaded = true;
-                            error1 = error;
-                    }
-            )
-
-
-
-		if(error1){
+		if(error){
 			return <div>Error, bad query: {base_query + table} </div>;
 		} else if(!isLoaded){
 			return <div>Loading...</div>;
@@ -70,6 +54,29 @@ class QueryApp extends React.Component {
           isLoaded: false,
           error: null
         }));
+
+        this.test_Query();
+    }
+
+
+    test_Query() {
+
+        fetch(this.state.base_query + this.state.table)
+            .then(res => res.json())
+            .then(
+                    (result) => {
+                        this.setState({
+                            isLoaded: true,
+                            items: result.data
+                        });
+                    },
+                    (error) => {
+                        this.setState({
+                            isLoaded: true,
+                            error
+                        });
+                    }
+            )
     }
 
 
