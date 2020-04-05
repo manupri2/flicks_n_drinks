@@ -11,12 +11,12 @@ class App extends Component{
 			error: null,
 			isLoaded: false,
 			items:[],
-			query: ""
+			query: 'http://cs411ccsquad.web.illinois.edu/api/SELECT%20%2A%20FROM%20CocktailName'
 		};
 	}
 	
 	componentDidMount(){
-		fetch('http://cs411ccsquad.web.illinois.edu/api/SELECT%20%2A%20FROM%20' + document.getElementById("table").value)
+		fetch(state.query)
 			.then(res => res.json())
 			.then(
 				(result) => {
