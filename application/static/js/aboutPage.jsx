@@ -4,7 +4,19 @@ import App from "./App";
 require('../css/fullstack.css');
 
 
-function validateForm() {
-  document.getElementById('my_button').value += "1";
-  ReactDOM.render(<App />, document.getElementById("content"));
+class LoggingButton extends React.Component {
+  handleClick() {
+    this.value += "1";
+  }
+
+  render() {
+    // This syntax ensures `this` is bound within handleClick
+    return (
+      <button onClick={() => this.handleClick()}>
+        Click me query!
+      </button>
+    );
+  }
 }
+
+ReactDOM.render(<LoggingButton />, document.getElementById("my_button"));
