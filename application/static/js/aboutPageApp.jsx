@@ -21,7 +21,14 @@ function QueryResults(props){
             <ul>
                 {items.map(item =>(
                     <li>
-                        {item}
+                        {(item) => {
+                                item_str = 'Item: ';
+                                for (attr in item) {
+                                    item_str += attr + ', ';
+                                }
+                                return item_str;
+                            }
+                        }
                     </li>
                 ))}
             </ul>
