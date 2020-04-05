@@ -49,7 +49,9 @@ class QueryApp extends React.Component {
 
         this.setState(state => ({
           nameVal: state.nameVal + text_val,
-          table: text_val
+          table: text_val,
+          isLoaded: false,
+          error: null
         }));
 
         this.test_Query();
@@ -57,10 +59,6 @@ class QueryApp extends React.Component {
 
 
     test_Query() {
-        this.setState(state => ({
-          isLoaded: false,
-          error: null
-        }));
 
         fetch(this.state.base_query + this.state.table)
             .then(res => res.json())
