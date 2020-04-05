@@ -10,12 +10,13 @@ class App extends Component{
 		this.state = {
 			error: null,
 			isLoaded: false,
-			items:[]
+			items:[],
+			query: ""
 		};
 	}
 	
 	componentDidMount(){
-		fetch('http://cs411ccsquad.web.illinois.edu/api/SELECT%20%2A%20FROM%20CocktailName')
+		fetch('http://cs411ccsquad.web.illinois.edu/api/SELECT%20%2A%20FROM%20' + document.getElementById("table").value)
 			.then(res => res.json())
 			.then(
 				(result) => {
