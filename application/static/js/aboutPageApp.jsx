@@ -70,29 +70,6 @@ class QueryApp extends React.Component {
           isLoaded: false,
           error: null
         }));
-
-        this.test_Query();
-    }
-
-
-    test_Query() {
-
-        fetch(this.state.base_query + this.state.table)
-            .then(res => res.json())
-            .then(
-                    (result) => {
-                        this.setState({
-                            isLoaded: true,
-                            items: result.data
-                        });
-                    },
-                    (error) => {
-                        this.setState({
-                            isLoaded: true,
-                            error
-                        });
-                    }
-            )
     }
 
 
