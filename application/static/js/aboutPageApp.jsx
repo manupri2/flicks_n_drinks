@@ -4,13 +4,30 @@ require('../css/fullstack.css');
 
 
 function TestRender(props){
-		var error = props.elems.error;
+		var error1 = props.elems.error;
 		var isLoaded = props.elems.isLoaded;
 		var items = props.elems.items;
 		var table = props.elems.table;
 		var base_query = props.elems.base_query;
 
-		if(error){
+
+
+        fetch(base_query + table)
+            .then(res => res.json())
+            .then(
+                    (result) => {
+                            isLoaded = true;
+                            items = result.data;
+                    },
+                    (error) => {
+                            isLoaded = true;
+                            error1 = error;
+                    }
+            )
+
+
+
+		if(error1){
 			return <div>Error, bad query: {base_query + table} </div>;
 		} else if(!isLoaded){
 			return <div>Loading...</div>;
