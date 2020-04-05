@@ -16,7 +16,7 @@ class LoggingButton extends React.Component {
     this.setState(state => ({
       nameVal: state.nameVal + document.getElementById("table").value
     }));
-    ReactDOM.render(<App />, document.getElementById("content"));
+    document.getElementById("content").componentDidMount();
   }
 
   render() {
@@ -30,3 +30,4 @@ class LoggingButton extends React.Component {
 }
 
 ReactDOM.render(<LoggingButton />, document.getElementById("my_button"));
+ReactDOM.render(<App />, document.getElementById("content"));
