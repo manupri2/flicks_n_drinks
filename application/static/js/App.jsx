@@ -6,12 +6,12 @@ class App extends Component{
 	
 	constructor(props) {
 		super(props);
-		
+		var q_str = 'http://cs411ccsquad.web.illinois.edu/api/SELECT%20%2A%20FROM%20CocktailName';
 		this.state = {
 			error: null,
 			isLoaded: false,
 			items:[],
-			query: 'http://cs411ccsquad.web.illinois.edu/api/SELECT%20%2A%20FROM%20' + document.getElementById("table").value
+			query: q_str
 		};
 	}
 	
