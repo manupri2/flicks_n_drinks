@@ -17,6 +17,7 @@ class App extends Component{
 	componentDidMount(){
 		var q_str = 'http://cs411ccsquad.web.illinois.edu/api/SELECT%20%2A%20FROM%20';
 		q_str += document.getElementById("table").value;
+		this.setState(state => ({query: q_str}));
 
 		fetch(this.state.query)
 			.then(res => res.json())
