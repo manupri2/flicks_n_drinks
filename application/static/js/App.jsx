@@ -16,7 +16,7 @@ class App extends Component{
 	}
 	
 	componentDidMount(){
-		fetch(state.query)
+		fetch('http://cs411ccsquad.web.illinois.edu/api/SELECT%20%2A%20FROM%20CocktailName')
 			.then(res => res.json())
 			.then(
 				(result) => {
