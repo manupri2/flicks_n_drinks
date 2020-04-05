@@ -34,7 +34,7 @@ class TestApp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-                nameVal: "Submit",
+                nameVal: "Submit Query",
                 table: '',
                 error: null,
                 isLoaded: false,
@@ -50,7 +50,6 @@ class TestApp extends React.Component {
     handleClick() {
         var text_val = document.getElementById("table").value;
         this.setState(state => ({
-          nameVal: state.nameVal + text_val,
           table: text_val,
           error: null,
           isLoaded: false,
