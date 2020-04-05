@@ -27,14 +27,14 @@ def home():
               http://cs411ccsquad.web.illinois.edu/{table_name}/{id_num}</h1>"""
 
 
-@app.route('/<table_name>')
+@app.route('/<table_name>', methods=['GET'])
 def basic_api(table_name):
-    message2 = ''
-    with eng.connect() as con:
-        cur = con.execute('SELECT * FROM %s' % table_name)
-        for i in cur:
-            message2 += repr(i) + "\n"
-    return message2.encode()
+    query = 'SELECT * FROM %s' % table_name
+    conn = eng.connect()
+    if request.method == 'GET':
+        query_data = conn.execute(parse.unquote(query))
+        result = [dict(zip(tuple(query_data.keys()), i)) for i in query_data.cursor]
+        return jsonify({'data': result})
 
 
 @app.route('/api/<query>', methods=['GET'])
