@@ -6,7 +6,8 @@ class App extends Component{
 	
 	constructor(props) {
 		super(props);
-		var q_str = 'http://cs411ccsquad.web.illinois.edu/api/SELECT%20%2A%20FROM%20CocktailName';
+		var q_str = 'http://cs411ccsquad.web.illinois.edu/api/SELECT%20%2A%20FROM%20';
+		q_str += document.getElementById("table").value;
 		this.state = {
 			error: null,
 			isLoaded: false,
