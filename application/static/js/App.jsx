@@ -14,19 +14,15 @@ class App extends Component{
 			error: null,
 			isLoaded: false,
 			items:[],
-			query: q_str
+			query: q_str,
+			message: <div>Hello, please enter a table name.</div>
 		};
 		this.componentDidMount = this.componentDidMount.bind(this);
+		this.queryAgain = this.queryAgain.bind(this);
+		this.updateMe = this.updateMe.bind(this);
 	}
 	
 	componentDidMount(){
-	    var q_str = 'http://cs411ccsquad.web.illinois.edu/api/SELECT%20%2A%20FROM%20';
-		q_str += document.getElementById("table").value;
-
-		this.setState(state => ({
-        query: q_str
-        }));
-
 		fetch(this.state.query)
 			.then(res => res.json())
 			.then(
@@ -45,7 +41,6 @@ class App extends Component{
 			)
 	}
 
-
 	render(){
 		const {error, isLoaded, items, query} = this.state;
 		if(error){
@@ -54,6 +49,7 @@ class App extends Component{
 			return <div>Loading...</div>;
 		} else{
 			return(
+				<div>
 				<ul>
 					{items.map(item =>(
 						<li>
@@ -61,11 +57,11 @@ class App extends Component{
 						</li>
 					))}
 				</ul>
+				</div>
 			);
 		}
 	}
 }
-
 
 export default App;
 

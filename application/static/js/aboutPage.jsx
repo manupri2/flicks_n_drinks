@@ -4,19 +4,31 @@ import App from "./App";
 require('../css/fullstack.css');
 
 
+function queryMeTimbers(table){
+    	var q_str = 'http://cs411ccsquad.web.illinois.edu/api/SELECT%20%2A%20FROM%20';
+		q_str += table;
+
+        var dstuff = fetch(q_str).then(res => res.json()).then((result) => {result.data;});
+
+        return q_str;
+    }
+
+
 class LoggingButton extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {nameVal: "Click me"};
+    this.state = {nameVal: "Click mee"};
     // This binding is necessary to make `this` work in the callback
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {
+    var text_val = document.getElementById("table").value;
+
     this.setState(state => ({
-      nameVal: state.nameVal + document.getElementById("table").value
+      nameVal: state.nameVal + text_val
     }));
-    document.getElementById("content").componentDidMount();
+    document.getElementById("content").innerHTML = queryMeTimbers(text_val);
   }
 
   render() {
@@ -30,4 +42,3 @@ class LoggingButton extends React.Component {
 }
 
 ReactDOM.render(<LoggingButton />, document.getElementById("my_button"));
-ReactDOM.render(<App />, document.getElementById("content"));
