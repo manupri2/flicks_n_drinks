@@ -6,17 +6,18 @@ class App extends Component{
 	
 	constructor(props) {
 		super(props);
-		var q_str = 'http://cs411ccsquad.web.illinois.edu/api/SELECT%20%2A%20FROM%20';
-		q_str += document.getElementById("table").value;
 		this.state = {
 			error: null,
 			isLoaded: false,
 			items:[],
-			query: q_str
+			query: ''
 		};
 	}
 	
 	componentDidMount(){
+		var q_str = 'http://cs411ccsquad.web.illinois.edu/api/SELECT%20%2A%20FROM%20';
+		q_str += document.getElementById("table").value;
+
 		fetch(this.state.query)
 			.then(res => res.json())
 			.then(
@@ -37,6 +38,7 @@ class App extends Component{
 
 
 	render(){
+		this.componentDidMount();
 		const {error, isLoaded, items, query} = this.state;
 		if(error){
 			return <div>Error, bad query: {query} </div>;
