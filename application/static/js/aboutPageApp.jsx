@@ -21,7 +21,7 @@ function QueryResults(props){
             <ul>
                 {items.map(item =>(
                     <li>
-                        {item.cocktailName}
+                        {item}
                     </li>
                 ))}
             </ul>
