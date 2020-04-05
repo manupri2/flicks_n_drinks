@@ -1,17 +1,69 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
 require('../css/fullstack.css');
 
 
-function queryMeTimbers(table){
-    	var q_str = 'http://cs411ccsquad.web.illinois.edu/api/SELECT%20%2A%20FROM%20';
-		q_str += table;
+class Query extends React.Component {
 
-        var dstuff = fetch(q_str).then(res => res.json()).then((result) => {result.data;});
+	constructor(props) {
+		super(props);
 
-        return q_str;
+		this.state = {
+			error: null,
+			isLoaded: false,
+			items:[],
+			table: '',
+			base_query: 'http://cs411ccsquad.web.illinois.edu/api/SELECT%20%2A%20FROM%20',
+		};
+		this.test_Query = this.test_Query.bind(this);
+	}
+
+    test_Query(){
+        this.setState({
+						table: document.getElementById("table").value,
+					});
+        fetch(this.state.base_query + this.state.table)
+			.then(res => res.json())
+			.then(
+				(result) => {
+					this.setState({
+						isLoaded: true,
+						items: result.data
+					});
+				},
+				(error) => {
+					this.setState({
+						isLoaded: true,
+						error
+					});
+				}
+			)
     }
+
+	componentDidMount(){
+	this.timerID = setInterval(() => this.test_Query(), 5000);
+	}
+
+
+	render(){
+		const {error, isLoaded, items, table, base_query} = this.state;
+		if(error){
+			return <div>Error, bad query: {base_query + table} </div>;
+		} else if(!isLoaded){
+			return <div>Loading...</div>;
+		} else{
+			return(
+				<ul>
+					{items.map(item =>(
+						<li>
+							{item.cocktailName}
+						</li>
+					))}
+				</ul>
+			);
+		}
+	}
+}
 
 
 class LoggingButton extends React.Component {
@@ -28,7 +80,7 @@ class LoggingButton extends React.Component {
     this.setState(state => ({
       nameVal: state.nameVal + text_val
     }));
-    document.getElementById("content").innerHTML = queryMeTimbers(text_val);
+
   }
 
   render() {
@@ -42,3 +94,4 @@ class LoggingButton extends React.Component {
 }
 
 ReactDOM.render(<LoggingButton />, document.getElementById("my_button"));
+ReactDOM.render(<Query />, document.getElementById("content"));

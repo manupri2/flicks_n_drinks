@@ -17,9 +17,6 @@ class App extends Component{
 			query: q_str,
 			message: <div>Hello, please enter a table name.</div>
 		};
-		this.componentDidMount = this.componentDidMount.bind(this);
-		this.queryAgain = this.queryAgain.bind(this);
-		this.updateMe = this.updateMe.bind(this);
 	}
 	
 	componentDidMount(){
