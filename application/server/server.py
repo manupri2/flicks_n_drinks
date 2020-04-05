@@ -10,7 +10,7 @@ db = SQLAlchemy(app)
 eng = db.engine
 
 
-@app.route("/about")
+@app.route("/")
 def about():
 	return render_template("aboutPage.html")
 
@@ -20,7 +20,7 @@ def index():
 	return render_template("indexPage.html")
 
 
-@app.route('/')
+@app.route('/xxx')
 def home():
 	return """<h1>To query database, enter "CocktailName", "CocktailRecipe", or "Ingredient" for {table_name} and 
 			  an integer between 0-683 for {id_num} in the route: 
