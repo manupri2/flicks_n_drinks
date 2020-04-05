@@ -14,7 +14,7 @@ class LoggingButton extends React.Component {
 
   handleClick() {
     this.setState(state => ({
-      nameVal: state.nameVal + "1"
+      nameVal: state.nameVal + document.getElementById("table").value
     }));
     ReactDOM.render(<App />, document.getElementById("content"));
   }

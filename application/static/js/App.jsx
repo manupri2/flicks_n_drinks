@@ -37,9 +37,9 @@ class App extends Component{
 
 
 	render(){
-		const {error, isLoaded, items} = this.state;
+		const {error, isLoaded, items, query} = this.state;
 		if(error){
-			return <div>Error: {error.message} </div>;
+			return <div>Error, bad query: {query} </div>;
 		} else if(!isLoaded){
 			return <div>Loading...</div>;
 		} else{
