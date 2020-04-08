@@ -1,6 +1,8 @@
 from urllib import parse
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, render_template
 from flask_sqlalchemy import SQLAlchemy
+import json
+from handle import *
 
 
 id_dict = {'CocktailName': 'cocktailId', 'CocktailRecipe': 'recipeId', 'Ingredient': 'ingredientId'}
@@ -29,21 +31,27 @@ def home():
 
 @app.route('/<table_name>', methods=['GET'])
 def basic_api(table_name):
-    query = 'SELECT * FROM %s' % table_name
     conn = eng.connect()
     if request.method == 'GET':
-        query_data = conn.execute(parse.unquote(query))
-        result = [dict(zip(tuple(query_data.keys()), i)) for i in query_data.cursor]
-        return jsonify({'data': result})
+        query = 'SELECT * FROM %s' % table_name
+        return query_data(query, conn)
 
 
-@app.route('/api/<query>', methods=['GET'])
-def api_sql(query):
+@app.route('/api/<query_uri>', methods=['GET'])
+def api_sql(query_uri):
     conn = eng.connect()
     if request.method == 'GET':
-        query_data = conn.execute(parse.unquote(query))
-        result = [dict(zip(tuple(query_data.keys()), i)) for i in query_data.cursor]
-        return jsonify({'data': result})
+        query = parse.unquote(query_uri)
+        return query_data(query, conn)
+
+
+@app.route('/json/<json_uri>', methods=['GET'])
+def json_query(json_uri):
+    conn = eng.connect()
+    if request.method == 'GET':
+        json_dict = json.loads(parse.unquote(json_uri))
+        query = build_query(json_dict)
+        return query_data(query, conn)
 
 
 if __name__ == "__main__":

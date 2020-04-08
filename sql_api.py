@@ -19,8 +19,8 @@ def api_query(query_str):
     queried_data_df = pd.DataFrame()
     if response.status_code == 200:
         queried_data_json = response.json()
-        print(queried_data_json)
-        queried_data_df = pd.DataFrame(queried_data_json)
+        print(queried_data_json['data'])
+        queried_data_df = pd.DataFrame(queried_data_json['data'])
         # print(queried_data_df)
     return queried_data_df, response.status_code
 
@@ -65,11 +65,17 @@ if __name__ == "__main__":
     print("Status Code: %d" % code)
     print(df)
 
-    query = 'SELECT * FROM CocktailName'
-    print("\nQuery:\n%s" % query)
-    df, code = api_query(query)
-    print("Status Code: %d" % code)
-    print(df)
+    # query = "SELECT TABLE_NAME, COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'cs411ccsquad_FlicksNDrinks'"
+    # print("\nQuery:\n%s" % query)
+    # df, code = api_query(query)
+    # print("Status Code: %d" % code)
+    #
+    # table_schema = {}
+    #
+    # print(df)
+
+
+
 
 
 
