@@ -56,6 +56,7 @@ class TestApp extends React.Component {
         }));
     }
 
+
     test_Query(){
             if(!this.state.isLoaded){
                 fetch(this.state.base_query + this.state.table)
