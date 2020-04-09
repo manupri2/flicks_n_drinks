@@ -64,16 +64,26 @@ if __name__ == "__main__":
     df, code = api_query(query)
     print("Status Code: %d" % code)
     print(df)
-
+    #
     # query = "SELECT TABLE_NAME, COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'cs411ccsquad_FlicksNDrinks'"
     # print("\nQuery:\n%s" % query)
     # df, code = api_query(query)
     # print("Status Code: %d" % code)
-    #
     # table_schema = {}
-    #
     # print(df)
 
+
+    query = "SELECT Movie.title, Movie.year, Movie.rating, GROUP_CONCAT(Genre.genreName) AS Genres" \
+            " FROM Movie" \
+            " INNER JOIN MovieCategory ON Movie.tconst = MovieCategory.tconst" \
+            " INNER JOIN Genre ON MovieCategory.genreId = Genre.genreId" \
+            " GROUP BY Movie.title" \
+            " LIMIT 100"
+    print("\nQuery:\n%s" % query)
+    df, code = api_query(query)
+    print("Status Code: %d" % code)
+    table_schema = {}
+    print(df)
 
 
 

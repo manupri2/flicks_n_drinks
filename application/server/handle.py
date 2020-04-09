@@ -6,7 +6,10 @@ from flask import jsonify
 
 
 
-def build_query(json_dict):
+def build_movie_query(json_dict):
+    query = "SELECT title, year, rating, "
+
+
     return
 
 
