@@ -1,6 +1,7 @@
 import pandas as pd
 from urllib import parse
 import requests
+from application.server.handle import *
 
 
 # Status Code 500 - Error in SQL query or error in connecting to database
@@ -59,11 +60,11 @@ if __name__ == "__main__":
     'User']
     # test_database_tables(table_list)
 
-    query = 'SELECT * FROM Composition WHERE compositionId > 5 AND compositionId < 100'
-    print("\nQuery:\n%s" % query)
-    df, code = api_query(query)
-    print("Status Code: %d" % code)
-    print(df)
+    # query = 'SELECT * FROM Movie WHERE title LIKE "%%ca%%"'
+    # print("\nQuery:\n%s" % query)
+    # df, code = api_query(query)
+    # print("Status Code: %d" % code)
+    # print(df)
     #
     # query = "SELECT TABLE_NAME, COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'cs411ccsquad_FlicksNDrinks'"
     # print("\nQuery:\n%s" % query)
@@ -72,18 +73,26 @@ if __name__ == "__main__":
     # table_schema = {}
     # print(df)
 
+    json_dict = {'year': "2017", 'rating': "5", "title": "ca"}
+    # json_dict = {'year': "", 'rating': "", "title": ""}
+    # query = "SELECT Movie.title, Movie.year, Movie.rating,\n" \
+    #         " GROUP_CONCAT(DISTINCT Genre.genreName ORDER BY Genre.genreName DESC) AS Genres,\n" \
+    #         " GROUP_CONCAT(DISTINCT People.name ORDER BY People.name DESC) AS Crew\n" \
+    #         " FROM Movie\n" \
+    #         " INNER JOIN MovieCategory ON Movie.tconst = MovieCategory.tconst\n" \
+    #         " INNER JOIN Genre ON MovieCategory.genreId = Genre.genreId\n" \
+    #         " INNER JOIN Crew ON Movie.tconst = Crew.tconst\n" \
+    #         " INNER JOIN People ON Crew.nconst = People.nconst\n" \
+    #         " GROUP BY Movie.title\n" \
+    #         " LIMIT 100"
 
-    query = "SELECT Movie.title, Movie.year, Movie.rating, GROUP_CONCAT(Genre.genreName) AS Genres" \
-            " FROM Movie" \
-            " INNER JOIN MovieCategory ON Movie.tconst = MovieCategory.tconst" \
-            " INNER JOIN Genre ON MovieCategory.genreId = Genre.genreId" \
-            " GROUP BY Movie.title" \
-            " LIMIT 100"
+    query = build_movie_query(json_dict)
     print("\nQuery:\n%s" % query)
     df, code = api_query(query)
     print("Status Code: %d" % code)
     table_schema = {}
     print(df)
+    print(df['title'])
 
 
 
