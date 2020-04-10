@@ -9,7 +9,7 @@ class MovieList extends React.Component {
       movies: [],
       response: {},
       api_url: 'http://cs411ccsquad.web.illinois.edu/Movie/',
-      filters: {}
+      filters: {title: "", year: "2015", rating: ""}
     }
   }
 
@@ -70,7 +70,7 @@ class MovieList extends React.Component {
       )
     } else if(!isLoaded){
         return <div>Loading...</div>;
-    else {
+    } else {
       return(
         <div>
           <h2>Movie List</h2>

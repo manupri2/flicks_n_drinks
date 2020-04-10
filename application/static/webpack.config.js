@@ -6,6 +6,7 @@ const config = {
 	entry: {
 		"indexPage":__dirname + '/js/indexPage.jsx',
 		"aboutPage":__dirname + '/js/aboutPage.jsx',
+		"CRUDPage":__dirname + '/js/CRUDPage.jsx',
 	},
 	output:{
 		path: __dirname + '/dist',
@@ -19,22 +20,23 @@ const config = {
 		{
 			test:/\.jsx?/,
 			exclude: /node_modules/,
-			use:'babel-loader'
-			// loader: 'babel-loader',
-			// options:{
-			// 	presets:[
-			// 		"@babel/preset-env",
-			// 		"@babel/preset-react"
-			// 	],
-			// 	plugins:[
-			// 		"@babel/plugin-syntax-dynamic-import",
-			// 		"@babel/transform-runtime",
-			// 		"@babel/plugin-proposal-class-properties"
-			// 	]
-			// }
+			loader:'babel-loader',
+			options:{
+			 	presets:[
+			 		"@babel/preset-env",
+			 		"@babel/preset-react"
+			 	],
+			 	plugins:[
+//			 		"@babel/plugin-syntax-dynamic-import",
+//			 		"@babel/transform-runtime",
+			 		"@babel/plugin-proposal-class-properties"
+			 	]
+			 }
 
 
 		},
+
+
 
 		{
 			test: /\.css$/,
