@@ -15,11 +15,7 @@ class MovieList extends React.Component {
 
   componentDidMount() {
     var apiUrl = this.state.api_url;
-    var filters = encodeURI(JSON.stringify({
-                                            title: this.state.title,
-                                            year: this.state.year,
-                                            rating: this.state.rating
-                                            }));
+    var filters = encodeURI(JSON.stringify(this.state.filters));
     apiUrl += filters;
 
     fetch(apiUrl)
@@ -72,7 +68,9 @@ class MovieList extends React.Component {
       return (
         <div>Error: {error.message}</div>
       )
-    } else {
+    } else if(!isLoaded){
+        return <div>Loading...</div>;
+    else {
       return(
         <div>
           <h2>Movie List</h2>
@@ -97,7 +95,7 @@ class MovieList extends React.Component {
                   <td>{movie.crew}</td>
                   <td>{movie.genres}</td>
                   <td>
-                    <Button variant="info" onClick={() => this.props.editProduct(product.id)}>Edit</Button>
+                    <Button variant="info" onClick={() => this.props.editProduct(movie.tconst)}>Edit</Button>
                     &nbsp;<Button variant="danger">Delete</Button>
                   </td>
                 </tr>
