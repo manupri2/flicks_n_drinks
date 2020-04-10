@@ -45,7 +45,7 @@ def api_sql(query_uri):
         return query_data(query, conn)
 
 
-@app.route('/json/<json_uri>', methods=['GET'])
+@app.route('/Movie/<json_uri>', methods=['GET'])
 def json_query(json_uri):
     conn = eng.connect()
     if request.method == 'GET':

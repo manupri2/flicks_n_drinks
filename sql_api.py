@@ -73,19 +73,7 @@ if __name__ == "__main__":
     # table_schema = {}
     # print(df)
 
-    json_dict = {'year': "2017", 'rating': "5", "title": "ca"}
-    # json_dict = {'year': "", 'rating': "", "title": ""}
-    # query = "SELECT Movie.title, Movie.year, Movie.rating,\n" \
-    #         " GROUP_CONCAT(DISTINCT Genre.genreName ORDER BY Genre.genreName DESC) AS Genres,\n" \
-    #         " GROUP_CONCAT(DISTINCT People.name ORDER BY People.name DESC) AS Crew\n" \
-    #         " FROM Movie\n" \
-    #         " INNER JOIN MovieCategory ON Movie.tconst = MovieCategory.tconst\n" \
-    #         " INNER JOIN Genre ON MovieCategory.genreId = Genre.genreId\n" \
-    #         " INNER JOIN Crew ON Movie.tconst = Crew.tconst\n" \
-    #         " INNER JOIN People ON Crew.nconst = People.nconst\n" \
-    #         " GROUP BY Movie.title\n" \
-    #         " LIMIT 100"
-
+    json_dict = {'year': "", 'rating': "", "title": "dude"}
     query = build_movie_query(json_dict)
     print("\nQuery:\n%s" % query)
     df, code = api_query(query)

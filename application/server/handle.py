@@ -1,20 +1,15 @@
 from flask import jsonify
 
 
-
-
-
-
-
 def build_movie_query(json_dict):
-    query = "SELECT Movie.title, Movie.year, Movie.rating,\n" \
-            " GROUP_CONCAT(DISTINCT Genre.genreName ORDER BY Genre.genreName DESC) AS Genres,\n" \
-            " GROUP_CONCAT(DISTINCT People.name ORDER BY People.name DESC) AS Crew\n" \
+    query = "SELECT Movie.tconst, Movie.title, Movie.year, Movie.rating,\n" \
+            " GROUP_CONCAT(DISTINCT Genre.genreName ORDER BY Genre.genreName DESC) AS genres,\n" \
+            " GROUP_CONCAT(DISTINCT People.name ORDER BY People.name DESC) AS crew\n" \
             " FROM Movie\n" \
             " INNER JOIN MovieCategory ON Movie.tconst = MovieCategory.tconst\n" \
             " INNER JOIN Genre ON MovieCategory.genreId = Genre.genreId\n" \
             " INNER JOIN Crew ON Movie.tconst = Crew.tconst\n" \
-            " INNER JOIN People ON Crew.nconst = People.nconst\n" \
+            " INNER JOIN People ON Crew.nconst = People.nconst\n"
 
     year = json_dict['year']
     rating = json_dict['rating']
@@ -40,7 +35,6 @@ def build_movie_query(json_dict):
     query += filter_q
     query += "\n GROUP BY Movie.title\n" \
              " LIMIT 100\n"
-
     return query
 
 
