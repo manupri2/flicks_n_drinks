@@ -4,7 +4,7 @@ import { Container, Button, Alert } from 'react-bootstrap';
 import MovieList from './MovieList';
 
 
-class SearchPage extends Component {
+class CRUDApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -103,4 +103,4 @@ class SearchPage extends Component {
   }
 }
 
-export default SearchPage;
+export default CRUDApp;
