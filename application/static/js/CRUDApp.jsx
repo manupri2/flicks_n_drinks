@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Container, Button, Alert, Form, ButtonGroup } from 'react-bootstrap';
+import { PlusCircle } from 'react-bootstrap-icons';
 import MovieList from './MovieList';
 import MovieQueryForm from './MovieQueryForm';
 import CocktailList from './CocktailList';
@@ -11,17 +12,20 @@ class CRUDApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isAddMovie: false,
-      error: null,
-      isLoaded: true,
-      response: {},
-      database: "Movies",
-      items: [],
-      movie: {},
-      filters: {},
-      isEditMovie: false,
-      query: ""
-    }
+          isAddMovie: false,
+          error: null,
+          isLoaded: true,
+          response: {},
+          database: "Movies",
+          items: [],
+          movie: {},
+          filters: {},
+          isEditMovie: false,
+          query: ""
+        }
+
+
+
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.updateFilters = this.updateFilters.bind(this);
     this.searchMovie = this.searchMovie.bind(this);
@@ -163,14 +167,13 @@ class CRUDApp extends Component {
           <Button variant="secondary" onClick={() => this.changeDB("Movies")}>Movies</Button>
           <Button variant="secondary" onClick={() => this.changeDB("Cocktails")}>Cocktails</Button>
         </ButtonGroup>
-        {!this.state.isAddMovie && <Button variant="primary" onClick={() => this.onCreate()}>Add Movie</Button>}
 
         <Container>
           {this.state.response.status === 'success' && <div><br /><Alert variant="info">{this.state.response.message}</Alert></div>}
-
-          {this.state.database == "Movies" && <MovieQueryForm updateFilters={this.updateFilters}/>}
+          {!this.state.isAddMovie && <div class="text-right pr-0"><Button variant="primary" onClick={() => this.onCreate()}>Add {this.state.database.slice(0, -1)} <PlusCircle /></Button><br /><br /></div>}
+          {!this.state.isAddMovie && this.state.database == "Movies" && <MovieQueryForm updateFilters={this.updateFilters}/>}
           {!this.state.isAddMovie && this.state.database == "Movies" && <MovieList editMovie={this.editMovie} info={this.state}/>}
-          {this.state.database == "Cocktails" && <CocktailQueryForm updateFilters={this.updateFilters}/>}
+          {!this.state.isAddMovie && this.state.database == "Cocktails" && <CocktailQueryForm updateFilters={this.updateFilters}/>}
           {!this.state.isAddMovie && this.state.database == "Cocktails" && <CocktailList editItem={this.editMovie} info={this.state}/>}
 
           {movieForm}

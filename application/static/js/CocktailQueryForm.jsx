@@ -10,7 +10,7 @@ class CocktailQueryForm extends React.Component {
           cocktailName: {value: '', operator: 'LIKE', label: "Cocktail Name"} ,
           ingredients: {value: '', operator: 'LIKE', label: "Ingedients"},
           bartender: {value: '', operator: 'LIKE', label: "Bartender"},
-          location: {value: '', operator: 'LIKE', label: "Locationzzz"},
+          location: {value: '', operator: 'LIKE', label: "Location"},
           rating: {value: '', operator: '>=', label: "Rating"}
         }
 
@@ -54,7 +54,7 @@ class CocktailQueryForm extends React.Component {
                                 ))}
                           </Form.Row>
                       </Col>
-                       <Button className="h-25" variant="success" type="submit">Submit</Button>
+                      <Button className="h-25" variant="success" type="submit">Query Cocktails</Button>
                   </Row>
               </Form>
           )
