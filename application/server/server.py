@@ -19,7 +19,7 @@ eng = db.engine
 
 @app.route("/")
 def about():
-	return render_template("aboutPage.html")
+	return render_template("CRUDPage.html")
 
 
 @app.route("/index")
@@ -28,8 +28,9 @@ def index():
 
 
 @app.route("/stageFour")
-def index():
+def stage4():
 	return render_template("stage4Page.html")
+
 
 @app.route('/xxx')
 def home():
@@ -45,27 +46,22 @@ def basic_api(table_name):
         query = 'SELECT * FROM %s' % table_name
         return query_data(query, conn)
 
+
 @app.route('/api/<query_uri>', methods=['GET'])
 def api_sql(query_uri):
     conn = eng.connect()
     if request.method == 'GET':
         query = parse.unquote(query_uri)
         return query_data(query, conn)
-    
 
 
-@app.route('/json/<json_uri>', methods=['GET'])
-def json_query(json_uri):
+@app.route('/Movie/<json_uri>', methods=['GET'])
+def movie_query(json_uri):
     conn = eng.connect()
     if request.method == 'GET':
         json_dict = json.loads(parse.unquote(json_uri))
         query = build_query(json_dict)
         return query_data(query, conn)
-
-
-
-
-
 
 
 @app.route('/delete', methods = ['POST'])
