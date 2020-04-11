@@ -1,63 +1,12 @@
 import React from 'react';
-import { Table, Button, Alert } from 'react-bootstrap';
+import { Table, Button, Alert, Spinner } from 'react-bootstrap';
 
 class MovieList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: null,
-      movies: [],
-      isLoaded: false,
-      response: {},
-      api_url: 'http://cs411ccsquad.web.illinois.edu/Movie/'
+      response: {}
     }
-    this.queryMovie = this.queryMovie.bind(this);
-  }
-
-  componentDidMount() {
-       if(this.props.search) {
-        var apiUrl = this.state.api_url;
-        var filters = encodeURI(JSON.stringify(this.props.filters));
-        apiUrl += filters;
-
-        fetch(apiUrl)
-          .then(res => res.json())
-          .then(
-            (result) => {
-              this.setState({
-                    movies: result.data,
-                    isLoaded: true,
-                    error: null
-              });
-            },
-            (error) => {
-              this.setState({isLoaded: true, error });
-            }
-          )
-     }
-  }
-
-  queryMovie(){
-      if(this.props.search) {
-        var apiUrl = this.state.api_url;
-        var filters = encodeURI(JSON.stringify(this.props.filters));
-        apiUrl += filters;
-
-        fetch(apiUrl)
-          .then(res => res.json())
-          .then(
-            (result) => {
-              this.setState({
-                    movies: result.data,
-                    isLoaded: true,
-                    error: null
-              });
-            },
-            (error) => {
-              this.setState({isLoaded: true, error });
-            }
-          )
-     }
   }
 
   deleteProduct(tconst) {
@@ -88,12 +37,18 @@ class MovieList extends React.Component {
   }
 
   render() {
-    const {error, movies, isLoaded} = this.state;
+    const error = this.props.info.error;
+    const movies = this.props.info.items;
+    const isLoaded = this.props.info.isLoaded;
+    const query = this.props.info.query;
 
     if(error) {
       return (
-        <div>Error: {error.message}</div>
+        <div>Error: {error.message}
+        Query: {query}</div>
       )
+    } else if(!isLoaded) {
+      return (<div><Spinner animation="grow" /></div>)
     } else {
       return(
         <div>

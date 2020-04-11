@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import { Container, Button, Alert } from 'react-bootstrap';
+import { Container, Button, Alert, Form } from 'react-bootstrap';
 import MovieList from './MovieList';
+import MovieQueryForm from './MovieQueryForm';
 import AddMovie from './AddMovie';
 
 
@@ -10,22 +11,29 @@ class CRUDApp extends Component {
     this.state = {
       isAddMovie: false,
       error: null,
+      isLoaded: true,
       response: {},
+      items: [],
       movie: {},
-      search: false,
       filters: {title: "", year: "2017", rating: ""},
-      isEditMovie: false
+      isEditMovie: false,
+      query: ""
     }
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.updateFilters = this.updateFilters.bind(this);
+    this.searchMovie = this.searchMovie.bind(this);
   }
 
   onCreate() {
     this.setState({ isAddMovie: true });
   }
 
-  updateFilters() {
-    this.setState({ filters: {title: "", year: "2015", rating: ""}, search: true });
+  updateFilters(new_filters) {
+    this.setState(state => ({
+                        filters: new_filters,
+                        error: null,
+                        isLoaded: false
+                        }));
   }
 
   onFormSubmit(data) {
@@ -83,26 +91,54 @@ class CRUDApp extends Component {
           });
         },
         (error) => {
-          this.setState({ error });
+          this.setState({error});
         }
       )
   }
 
-  render() {
+  searchMovie() {
+            var api_url = 'http://cs411ccsquad.web.illinois.edu/Movie/';
+            var filters = encodeURI(JSON.stringify(this.state.filters));
+            api_url += filters;
 
+            if(!this.state.isLoaded){
+                fetch(api_url)
+                    .then(res => res.json())
+                    .then(
+                        (result) => {
+                            this.setState({
+                                isLoaded: true,
+                                items: result.data,
+                                error: null,
+                                query: api_url
+                            });
+                        },
+                        (error) => {
+                            this.setState({
+                                isLoaded: true,
+                                query: api_url,
+                                error
+                            });
+                        }
+                    )
+            }
+  }
+
+  render() {
     let movieForm;
     if(this.state.isAddMovie || this.state.isEditMovie) {
       movieForm = <AddMovie onFormSubmit={this.onFormSubmit} movie={this.state.movie} />
     }
 
+    this.searchMovie();
+
     return (
       <div>
+        {!this.state.isAddMovie && <Button variant="primary" onClick={() => this.onCreate()}>Add Movie</Button>}
         <Container>
-          <h1 style={{textAlign:'center'}}>React Tutorial</h1>
-          {!this.state.isAddMovie && <Button variant="primary" onClick={() => this.onCreate()}>Add Movie</Button>}
+          <MovieQueryForm updateFilters={this.updateFilters}/>
           {this.state.response.status === 'success' && <div><br /><Alert variant="info">{this.state.response.message}</Alert></div>}
-          {!this.state.isAddMovie && <Button variant="secondary" onClick={() => this.updateFilters()}>Search Movies</Button>}
-          {!this.state.isAddMovie && <MovieList editMovie={this.editMovie} filters={this.state.filters} search={this.state.search}/>}
+          {!this.state.isAddMovie && <MovieList editMovie={this.editMovie} info={this.state}/>}
           {movieForm}
           {this.state.error && <div>Error: {this.state.error.message}</div>}
         </Container>
