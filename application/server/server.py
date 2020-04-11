@@ -28,7 +28,7 @@ def index():
 
 
 @app.route("/stageFour")
-def stage4():
+def stageFour():
 	return render_template("stage4Page.html")
 
 
@@ -73,14 +73,14 @@ def cocktail_query(json_uri):
         return query_data(query, conn)
 
 
-@app.route('/delete', methods=['POST'])
+@app.route('/delete', methods = ['POST'])
 def delete():
     if request.method =='POST':
         conn = eng.connect()
         data = request.get_json()
         productId = data['product_id']
-        # query = 'DELETE FROM CocktailName WHERE cocktailId = %s' %productId
-        # query_data = conn.execute(query)
+        query = 'DELETE FROM CocktailName WHERE cocktailId = %s' %productId
+        query_data = conn.execute(query)
         return 'Data id %s is deleted' %productId
 
 
@@ -88,7 +88,6 @@ def delete():
 def getProduct():
     conn = eng.connect()
     data = request.get_json()
-    print(data)
     productId = data['product_id']
     query = 'SELECT * FROM CocktailName where cocktailId = %s' %productId
     query_data = conn.execute(query)
@@ -98,38 +97,57 @@ def getProduct():
 
     return row_as_dict
 
-
-@app.route('/editProduct')
+@app.route('/editProduct', methods = ['POST'])
 def editProduct():
-    conn = eng.connect()
+    
     data = request.get_json()
-    productId = data['product_id']
-    productName = data['product_name']
-    query = 'DELETE FROM CocktailName WHERE cocktailId = %s' %productId
-    query_data = conn.execute(query)
+    if(data!=None):
+        conn = eng.connect()    
+        productId = data['cocktailId']
+        productNewName = data['cocktailName']
+        print(productId)
+        print(productNewName)
+
+        query = f"UPDATE `CocktailName` SET `cocktailName` = '{productNewName}' WHERE (`cocktailId` = '{productId}')"
+        
+        print(query)
+        print("UPDATE `CocktailName` SET `cocktailName` = 'Mauritius Sour2' WHERE (`cocktailId` = '0')")
+        conn.execute(query)   
+
+        response={'status':'success', 'message':'Product updated successfully'}
+    else:
+        response = {'status':'error'}
+
+    return response
 
     return 'Data id %s is deleted' %productId
 
 
-@app.route('/createProduct', methods = ['GET','POST','OPTIONS','DELETE','PUT'])
+@app.route('/createProduct', methods = ['POST'])
 def createProduct():
     data = request.get_json()
-    print('enter createProduct')
-    print(data)   
+    if(data!=None):
+        
+        inputName  = data['cocktailName']
+        conn = eng.connect()
+        maxId_query = 'SELECT MAX(cocktailId) as max FROM CocktailName'
 
-    # conn = eng.connect()
-    # data = request.get_json()
-    # productId = data['product_id']
-    # query = 'DELETE FROM CocktailName WHERE cocktailId = %s' %productId
-    # query_data = conn.execute(query)
+        maxIdQueryResult = conn.execute(maxId_query)
+        for row in maxIdQueryResult:
+            maxDic = dict(row)
+        maxId = maxDic['max']+1
+        
+        query = f"INSERT INTO CocktailName(`cocktailId`, `cocktailName`) VALUES ('{maxId}' , '{inputName}')"
 
-    # return 'Data id %s is deleted' %productId
-    return '123'
+        conn.execute(query)
+        response = {'status':'success', 'message':'Product added successfully'}
+    
+    else:
+        response = {'status':'error'}
+    
+    return response
 
 if __name__ == "__main__":
 	app.run()
 
 
-
-
-# 0	Mauritius Sour
