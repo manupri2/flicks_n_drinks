@@ -44,8 +44,7 @@ class MovieList extends React.Component {
 
     if(error) {
       return (
-        <div>Error: {error.message}
-        Query: {query}</div>
+        <div>Request: {query}</div>
       )
     } else if(!isLoaded) {
       return (<div><Spinner animation="grow" /></div>)

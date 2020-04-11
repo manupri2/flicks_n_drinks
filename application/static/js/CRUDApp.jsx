@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import { Container, Button, Alert, Form } from 'react-bootstrap';
+import { Container, Button, Alert, Form, ButtonGroup } from 'react-bootstrap';
 import MovieList from './MovieList';
 import MovieQueryForm from './MovieQueryForm';
+import CocktailList from './CocktailList';
+import CocktailQueryForm from './CocktailQueryForm';
 import AddMovie from './AddMovie';
 
 
@@ -13,15 +15,17 @@ class CRUDApp extends Component {
       error: null,
       isLoaded: true,
       response: {},
+      database: "Movies",
       items: [],
       movie: {},
-      filters: {title: "", year: "2017", rating: ""},
+      filters: {},
       isEditMovie: false,
       query: ""
     }
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.updateFilters = this.updateFilters.bind(this);
     this.searchMovie = this.searchMovie.bind(this);
+    this.changeDB = this.changeDB.bind(this);
   }
 
   onCreate() {
@@ -71,35 +75,56 @@ class CRUDApp extends Component {
 
   editMovie = tconst => {
 
-    const apiUrl = 'http://localhost/dev/tcxapp/reactapi/getProduct';
-    const formData = new FormData();
-    formData.append('tconst', tconst);
+        const apiUrl = 'http://localhost/dev/tcxapp/reactapi/getProduct';
+        const formData = new FormData();
+        formData.append('tconst', tconst);
 
-    const options = {
-      method: 'POST',
-      body: formData
-    }
-
-    fetch(apiUrl, options)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            movie: result.data,
-            isEditMovie: true,
-            isAddMovie: true
-          });
-        },
-        (error) => {
-          this.setState({error});
+        const options = {
+          method: 'POST',
+          body: formData
         }
-      )
+
+        fetch(apiUrl, options)
+          .then(res => res.json())
+          .then(
+            (result) => {
+              this.setState({
+                movie: result.data,
+                isEditMovie: true,
+                isAddMovie: true
+              });
+            },
+            (error) => {
+              this.setState({error});
+            }
+          )
+      }
+
+
+  changeDB(new_db){
+
+        console.log(new_db);
+
+        this.setState(state => ({
+                                  isAddMovie: false,
+                                  error: null,
+                                  isLoaded: true,
+                                  response: {},
+                                  database: new_db,
+                                  items: [],
+                                  movie: {},
+                                  filters: {},
+                                  isEditMovie: false,
+                                  query: ""
+                            }));
   }
 
+
   searchMovie() {
-            var api_url = 'http://cs411ccsquad.web.illinois.edu/Movie/';
+            var api_url = 'http://cs411ccsquad.web.illinois.edu/';
+            var db = this.state.database
             var filters = encodeURI(JSON.stringify(this.state.filters));
-            api_url += filters;
+            api_url += db + "/" + filters;
 
             if(!this.state.isLoaded){
                 fetch(api_url)
@@ -134,11 +159,20 @@ class CRUDApp extends Component {
 
     return (
       <div>
+        <ButtonGroup aria-label="Select database">
+          <Button variant="secondary" onClick={() => this.changeDB("Movies")}>Movies</Button>
+          <Button variant="secondary" onClick={() => this.changeDB("Cocktails")}>Cocktails</Button>
+        </ButtonGroup>
         {!this.state.isAddMovie && <Button variant="primary" onClick={() => this.onCreate()}>Add Movie</Button>}
+
         <Container>
-          <MovieQueryForm updateFilters={this.updateFilters}/>
           {this.state.response.status === 'success' && <div><br /><Alert variant="info">{this.state.response.message}</Alert></div>}
-          {!this.state.isAddMovie && <MovieList editMovie={this.editMovie} info={this.state}/>}
+
+          {this.state.database == "Movies" && <MovieQueryForm updateFilters={this.updateFilters}/>}
+          {!this.state.isAddMovie && this.state.database == "Movies" && <MovieList editMovie={this.editMovie} info={this.state}/>}
+          {this.state.database == "Cocktails" && <CocktailQueryForm updateFilters={this.updateFilters}/>}
+          {!this.state.isAddMovie && this.state.database == "Cocktails" && <CocktailList editItem={this.editMovie} info={this.state}/>}
+
           {movieForm}
           {this.state.error && <div>Error: {this.state.error.message}</div>}
         </Container>

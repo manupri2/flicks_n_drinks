@@ -44,10 +44,7 @@ class CocktailList extends React.Component {
 
     if(error) {
       return (
-        <div>
-            Error: {error.message}<br />
-            Query: {query}
-        </div>
+        <div>Request: {query}</div>
       )
     } else if(!isLoaded) {
       return (<div><Spinner animation="grow" /></div>)

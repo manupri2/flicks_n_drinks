@@ -65,7 +65,7 @@ def movie_query(json_uri):
 
 
 @app.route('/Cocktail/<json_uri>', methods=['GET'])
-def movie_query(json_uri):
+def cocktail_query(json_uri):
     conn = eng.connect()
     if request.method == 'GET':
         json_dict = json.loads(parse.unquote(json_uri))
