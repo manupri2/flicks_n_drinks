@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Flicks n Drinks</title>
+  <link rel="stylesheet" href="../css/signup-page.css">
+</head>
+<body>
+  <div class="hero">
+    <div class="form-box">
+      <div class="button-box">
+        <div id="btn"></div>
+        <button type="button" class="toggle-btn" onclick="register()">Register</button>
+        <button type="button" class="toggle-btn" onclick="login()">Login</button>
+      </div>
+      <form id="register" class="input-group">
+        <input type="text" class="input-field" placeholder="Username" required>
+        <input type="email" class="input-field" placeholder="Email" required>
+        <input type="password" class="input-field" placeholder="Password" required>
+        <input type="checkbox" class="check-box"><span>I Agree to the terms & conditions</span>
+        <button type="submit" class="submit-btn">Register</button>
+      </form>
+      <form id="login" class="input-group">
+        <input type="text" class="input-field" placeholder="Username" required>
+        <input type="password" class="input-field" placeholder="Password" required>
+        <input type="checkbox" class="check-box"><span>Remember Password</span>
+        <button type="submit" class="submit-btn">Login</button>
+      </form>
+      <script src="../js/signupPage.js"></script>
+    </div>
+  </div>
+
+</body>
+
+</html>
+
