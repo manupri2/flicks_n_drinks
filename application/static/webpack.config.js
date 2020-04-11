@@ -1,12 +1,14 @@
 const webpack = require('webpack');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const config = {
 	entry: {
 		"indexPage":__dirname + '/js/indexPage.jsx',
 		"aboutPage":__dirname + '/js/aboutPage.jsx',
 		"CRUDPage":__dirname + '/js/CRUDPage.jsx',
+		"stage4Page":__dirname + '/js/stage4Page.jsx',
+
 	},
 	output:{
 		path: __dirname + '/dist',
@@ -19,24 +21,30 @@ const config = {
 		rules:[
 		{
 			test:/\.jsx?/,
-			exclude: /node_modules/,
+			exclude: /node_mocules/,
 			loader:'babel-loader',
 			options:{
-			 	presets:[
-			 		"@babel/preset-env",
-			 		"@babel/preset-react"
-			 	],
-			 	plugins:[
-//			 		"@babel/plugin-syntax-dynamic-import",
-//			 		"@babel/transform-runtime",
-			 		"@babel/plugin-proposal-class-properties"
-			 	]
-			 }
+				presets:[
+					'@babel/preset-env',
+                    '@babel/react',{
+                    'plugins': ['@babel/plugin-proposal-class-properties']}
+				]
+			}
+			// loader: 'babel-loader',
+			// options:{
+			// 	presets:[
+			// 		"@babel/preset-env",
+			// 		"@babel/preset-react"
+			// 	],
+			// 	plugins:[
+			// // 		"@babel/plugin-syntax-dynamic-import",
+			// // 		"@babel/transform-runtime",
+			// 		"@babel/plugin-proposal-class-properties"
+			// 	]
+			// }
 
 
 		},
-
-
 
 		{
 			test: /\.css$/,
@@ -65,7 +73,9 @@ const config = {
 	},
 
 	plugins: [
-		new ExtractTextPlugin('styles.css')
+		new ExtractTextPlugin('styles.css'),
+		
+		
 	]
 
 }
