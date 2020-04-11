@@ -1,37 +1,12 @@
 import React from 'react';
-import { Table, Button, Alert } from 'react-bootstrap';
+import { Table, Button, Alert, Spinner } from 'react-bootstrap';
 
 class MovieList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: null,
-      movies: [],
-      response: {},
-      api_url: 'http://cs411ccsquad.web.illinois.edu/Movie/',
-      filters: {title: "", year: "2015", rating: ""}
+      response: {}
     }
-  }
-
-  componentDidMount() {
-    var apiUrl = this.state.api_url;
-    var filters = encodeURI(JSON.stringify(this.state.filters));
-    apiUrl += filters;
-
-    fetch(apiUrl)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-                movies: result.data,
-                isLoaded: true,
-                error: null
-          });
-        },
-        (error) => {
-          this.setState({isLoaded: true, error });
-        }
-      )
   }
 
   deleteProduct(tconst) {
@@ -62,14 +37,17 @@ class MovieList extends React.Component {
   }
 
   render() {
-    const { error, movies} = this.state;
+    const error = this.props.info.error;
+    const movies = this.props.info.items;
+    const isLoaded = this.props.info.isLoaded;
+    const query = this.props.info.query;
 
     if(error) {
       return (
-        <div>Error: {error.message}</div>
+        <div>Request: {query}</div>
       )
-    } else if(!isLoaded){
-        return <div>Loading...</div>;
+    } else if(!isLoaded) {
+      return (<div><Spinner animation="grow" /></div>)
     } else {
       return(
         <div>
@@ -95,7 +73,7 @@ class MovieList extends React.Component {
                   <td>{movie.crew}</td>
                   <td>{movie.genres}</td>
                   <td>
-                    <Button variant="info" onClick={() => this.props.editProduct(movie.tconst)}>Edit</Button>
+                    <Button variant="info" onClick={() => this.props.editMovie(movie.tconst)}>Edit</Button>
                     &nbsp;<Button variant="danger">Delete</Button>
                   </td>
                 </tr>

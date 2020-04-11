@@ -1,24 +1,47 @@
-import React, { Component } from 'react';
-require('../css/fullstack.css');
-import { Container, Button, Alert } from 'react-bootstrap';
+import React, {Component} from 'react';
+import { Container, Button, Alert, Form, ButtonGroup } from 'react-bootstrap';
+import { PlusCircle } from 'react-bootstrap-icons';
 import MovieList from './MovieList';
+import MovieQueryForm from './MovieQueryForm';
+import CocktailList from './CocktailList';
+import CocktailQueryForm from './CocktailQueryForm';
+import AddMovie from './AddMovie';
 
 
 class CRUDApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isAddMovie: false,
-      error: null,
-      response: {},
-      movie: {},
-      isEditMovie: false
-    }
+          isAddMovie: false,
+          error: null,
+          isLoaded: true,
+          response: {},
+          database: "Movies",
+          items: [],
+          movie: {},
+          filters: {},
+          isEditMovie: false,
+          query: ""
+        }
+
+
+
     this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.updateFilters = this.updateFilters.bind(this);
+    this.searchMovie = this.searchMovie.bind(this);
+    this.changeDB = this.changeDB.bind(this);
   }
 
   onCreate() {
     this.setState({ isAddMovie: true });
+  }
+
+  updateFilters(new_filters) {
+    this.setState(state => ({
+                        filters: new_filters,
+                        error: null,
+                        isLoaded: false
+                        }));
   }
 
   onFormSubmit(data) {
@@ -56,45 +79,103 @@ class CRUDApp extends Component {
 
   editMovie = tconst => {
 
-    const apiUrl = 'http://localhost/dev/tcxapp/reactapi/getProduct';
-    const formData = new FormData();
-    formData.append('tconst', tconst);
+        const apiUrl = 'http://localhost/dev/tcxapp/reactapi/getProduct';
+        const formData = new FormData();
+        formData.append('tconst', tconst);
 
-    const options = {
-      method: 'POST',
-      body: formData
-    }
-
-    fetch(apiUrl, options)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            movie: result.data,
-            isEditMovie: true,
-            isAddMovie: true
-          });
-        },
-        (error) => {
-          this.setState({ error });
+        const options = {
+          method: 'POST',
+          body: formData
         }
-      )
+
+        fetch(apiUrl, options)
+          .then(res => res.json())
+          .then(
+            (result) => {
+              this.setState({
+                movie: result.data,
+                isEditMovie: true,
+                isAddMovie: true
+              });
+            },
+            (error) => {
+              this.setState({error});
+            }
+          )
+      }
+
+
+  changeDB(new_db){
+
+        console.log(new_db);
+
+        this.setState(state => ({
+                                  isAddMovie: false,
+                                  error: null,
+                                  isLoaded: true,
+                                  response: {},
+                                  database: new_db,
+                                  items: [],
+                                  movie: {},
+                                  filters: {},
+                                  isEditMovie: false,
+                                  query: ""
+                            }));
+  }
+
+
+  searchMovie() {
+            var api_url = 'http://cs411ccsquad.web.illinois.edu/';
+            var db = this.state.database
+            var filters = encodeURI(JSON.stringify(this.state.filters));
+            api_url += db + "/" + filters;
+
+            if(!this.state.isLoaded){
+                fetch(api_url)
+                    .then(res => res.json())
+                    .then(
+                        (result) => {
+                            this.setState({
+                                isLoaded: true,
+                                items: result.data,
+                                error: null,
+                                query: api_url
+                            });
+                        },
+                        (error) => {
+                            this.setState({
+                                isLoaded: true,
+                                query: api_url,
+                                error
+                            });
+                        }
+                    )
+            }
   }
 
   render() {
-
     let movieForm;
     if(this.state.isAddMovie || this.state.isEditMovie) {
       movieForm = <AddMovie onFormSubmit={this.onFormSubmit} movie={this.state.movie} />
     }
 
+    this.searchMovie();
+
     return (
-      <div className="App">
+      <div>
+        <ButtonGroup aria-label="Select database">
+          <Button variant="secondary" onClick={() => this.changeDB("Movies")}>Movies</Button>
+          <Button variant="secondary" onClick={() => this.changeDB("Cocktails")}>Cocktails</Button>
+        </ButtonGroup>
+
         <Container>
-          <h1 style={{textAlign:'center'}}>React Tutorial</h1>
-          {!this.state.isAddMovie && <Button variant="primary" onClick={() => this.onCreate()}>Add Movie</Button>}
           {this.state.response.status === 'success' && <div><br /><Alert variant="info">{this.state.response.message}</Alert></div>}
-          {!this.state.isAddMovie && <MovieList editMovie={this.editMovie}/>}
+          {!this.state.isAddMovie && <div class="text-right pr-0"><Button variant="primary" onClick={() => this.onCreate()}>Add {this.state.database.slice(0, -1)} <PlusCircle /></Button><br /><br /></div>}
+          {!this.state.isAddMovie && this.state.database == "Movies" && <MovieQueryForm updateFilters={this.updateFilters}/>}
+          {!this.state.isAddMovie && this.state.database == "Movies" && <MovieList editMovie={this.editMovie} info={this.state}/>}
+          {!this.state.isAddMovie && this.state.database == "Cocktails" && <CocktailQueryForm updateFilters={this.updateFilters}/>}
+          {!this.state.isAddMovie && this.state.database == "Cocktails" && <CocktailList editItem={this.editMovie} info={this.state}/>}
+
           {movieForm}
           {this.state.error && <div>Error: {this.state.error.message}</div>}
         </Container>
