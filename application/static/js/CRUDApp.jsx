@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-require('../css/fullstack.css');
+import React, {Component} from 'react';
 import { Container, Button, Alert } from 'react-bootstrap';
 import MovieList from './MovieList';
+import AddMovie from './AddMovie';
 
 
 class CRUDApp extends Component {
@@ -89,7 +89,7 @@ class CRUDApp extends Component {
     }
 
     return (
-      <div className="App">
+      <div>
         <Container>
           <h1 style={{textAlign:'center'}}>React Tutorial</h1>
           {!this.state.isAddMovie && <Button variant="primary" onClick={() => this.onCreate()}>Add Movie</Button>}

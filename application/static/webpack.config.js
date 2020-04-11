@@ -7,6 +7,7 @@ const config = {
 		"indexPage":__dirname + '/js/indexPage.jsx',
 		"aboutPage":__dirname + '/js/aboutPage.jsx',
 		"CRUDPage":__dirname + '/js/CRUDPage.jsx',
+		"index":__dirname + '/js/index.js',
 	},
 	output:{
 		path: __dirname + '/dist',

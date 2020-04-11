@@ -14,7 +14,7 @@ eng = db.engine
 
 @app.route("/")
 def about():
-	return render_template("aboutPage.html")
+	return render_template("CRUDPage.html")
 
 
 @app.route("/index")

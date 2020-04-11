@@ -7,6 +7,7 @@ class MovieList extends React.Component {
     this.state = {
       error: null,
       movies: [],
+      isLoaded: false,
       response: {},
       api_url: 'http://cs411ccsquad.web.illinois.edu/Movie/',
       filters: {title: "", year: "2015", rating: ""}
@@ -62,14 +63,12 @@ class MovieList extends React.Component {
   }
 
   render() {
-    const { error, movies} = this.state;
+    const {error, movies, isLoaded} = this.state;
 
     if(error) {
       return (
         <div>Error: {error.message}</div>
       )
-    } else if(!isLoaded){
-        return <div>Loading...</div>;
     } else {
       return(
         <div>
@@ -95,7 +94,7 @@ class MovieList extends React.Component {
                   <td>{movie.crew}</td>
                   <td>{movie.genres}</td>
                   <td>
-                    <Button variant="info" onClick={() => this.props.editProduct(movie.tconst)}>Edit</Button>
+                    <Button variant="info" onClick={() => this.props.editMovie(movie.tconst)}>Edit</Button>
                     &nbsp;<Button variant="danger">Delete</Button>
                   </td>
                 </tr>
