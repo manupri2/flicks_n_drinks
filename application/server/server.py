@@ -60,11 +60,20 @@ def movie_query(json_uri):
     conn = eng.connect()
     if request.method == 'GET':
         json_dict = json.loads(parse.unquote(json_uri))
-        query = build_query(json_dict)
+        query = build_movie_query(json_dict)
         return query_data(query, conn)
 
 
-@app.route('/delete', methods = ['POST'])
+@app.route('/Cocktail/<json_uri>', methods=['GET'])
+def movie_query(json_uri):
+    conn = eng.connect()
+    if request.method == 'GET':
+        json_dict = json.loads(parse.unquote(json_uri))
+        query = build_cocktail_query(json_dict)
+        return query_data(query, conn)
+
+
+@app.route('/delete', methods=['POST'])
 def delete():
     if request.method =='POST':
         conn = eng.connect()
@@ -100,7 +109,8 @@ def editProduct():
     query_data = conn.execute(query)
 
     return 'Data id %s is deleted' %productId
-        
+
+
 @app.route('/createProduct', methods = ['GET','POST','OPTIONS','DELETE','PUT'])
 def createProduct():
     data = request.get_json()
