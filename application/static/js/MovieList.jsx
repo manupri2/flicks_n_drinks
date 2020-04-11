@@ -9,30 +9,55 @@ class MovieList extends React.Component {
       movies: [],
       isLoaded: false,
       response: {},
-      api_url: 'http://cs411ccsquad.web.illinois.edu/Movie/',
-      filters: {title: "", year: "2015", rating: ""}
+      api_url: 'http://cs411ccsquad.web.illinois.edu/Movie/'
     }
+    this.queryMovie = this.queryMovie.bind(this);
   }
 
   componentDidMount() {
-    var apiUrl = this.state.api_url;
-    var filters = encodeURI(JSON.stringify(this.state.filters));
-    apiUrl += filters;
+       if(this.props.search) {
+        var apiUrl = this.state.api_url;
+        var filters = encodeURI(JSON.stringify(this.props.filters));
+        apiUrl += filters;
 
-    fetch(apiUrl)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-                movies: result.data,
-                isLoaded: true,
-                error: null
-          });
-        },
-        (error) => {
-          this.setState({isLoaded: true, error });
-        }
-      )
+        fetch(apiUrl)
+          .then(res => res.json())
+          .then(
+            (result) => {
+              this.setState({
+                    movies: result.data,
+                    isLoaded: true,
+                    error: null
+              });
+            },
+            (error) => {
+              this.setState({isLoaded: true, error });
+            }
+          )
+     }
+  }
+
+  queryMovie(){
+      if(this.props.search) {
+        var apiUrl = this.state.api_url;
+        var filters = encodeURI(JSON.stringify(this.props.filters));
+        apiUrl += filters;
+
+        fetch(apiUrl)
+          .then(res => res.json())
+          .then(
+            (result) => {
+              this.setState({
+                    movies: result.data,
+                    isLoaded: true,
+                    error: null
+              });
+            },
+            (error) => {
+              this.setState({isLoaded: true, error });
+            }
+          )
+     }
   }
 
   deleteProduct(tconst) {

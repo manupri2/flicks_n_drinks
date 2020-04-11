@@ -12,13 +12,20 @@ class CRUDApp extends Component {
       error: null,
       response: {},
       movie: {},
+      search: false,
+      filters: {title: "", year: "2017", rating: ""},
       isEditMovie: false
     }
     this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.updateFilters = this.updateFilters.bind(this);
   }
 
   onCreate() {
     this.setState({ isAddMovie: true });
+  }
+
+  updateFilters() {
+    this.setState({ filters: {title: "", year: "2015", rating: ""}, search: true });
   }
 
   onFormSubmit(data) {
@@ -94,7 +101,8 @@ class CRUDApp extends Component {
           <h1 style={{textAlign:'center'}}>React Tutorial</h1>
           {!this.state.isAddMovie && <Button variant="primary" onClick={() => this.onCreate()}>Add Movie</Button>}
           {this.state.response.status === 'success' && <div><br /><Alert variant="info">{this.state.response.message}</Alert></div>}
-          {!this.state.isAddMovie && <MovieList editMovie={this.editMovie}/>}
+          {!this.state.isAddMovie && <Button variant="secondary" onClick={() => this.updateFilters()}>Search Movies</Button>}
+          {!this.state.isAddMovie && <MovieList editMovie={this.editMovie} filters={this.state.filters} search={this.state.search}/>}
           {movieForm}
           {this.state.error && <div>Error: {this.state.error.message}</div>}
         </Container>
