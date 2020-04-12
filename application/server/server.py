@@ -3,7 +3,8 @@ from flask import Flask, request, render_template
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 import json
-from application.server.handle import *
+# from application.server.handle import *
+from handle import *
 from flask import jsonify
 
 
@@ -71,15 +72,24 @@ def cocktail_query(json_uri):
         return query_data(query, conn)
 
 
-@app.route('/delete', methods = ['POST'])
-def delete():
-    if request.method == 'POST':
+@app.route('/delete/<database>/<id>', methods = ['GET'])
+def delete(database, id):
+    if request.method == 'GET':
         conn = eng.connect()
-        data = request.get_json()
-        productId = data['product_id']
-        query = 'DELETE FROM CocktailName WHERE cocktailId = %s' %productId
+        # data = request.get_json()
+        # productId = data['product_id']
+        # database = data['database']
+        # if database == 'Movies':
+
+        if database == 'Movie':
+            query = 'DELETE FROM {} WHERE tConst = {}'.format(database,id)
+        else:
+            query = 'DELETE FROM {} WHERE cocktailId = {}'.format(database,id)
+        # else:
+        #     query = 'DELETE FROM CocktailName WHERE cocktailId = %s' %productId
+        # print(query)
         query_data = conn.execute(query)
-        return 'Data id %s is deleted' %productId
+        return 'Data id {} in database {} is deleted'.format(id,database)
 
 
 @app.route('/getProduct', methods = ['POST'])

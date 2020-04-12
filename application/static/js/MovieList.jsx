@@ -5,44 +5,11 @@ class MovieList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      response: {}
+      response: {},
+      movies:[]
     }
   }
 
-  deleteProduct(tconst) {
-    const {movies} = this.state;
-
-
-    const arrayCopy = this.state.products.filter((row) => row.tconst != tconst);
-    this.setState({products:arrayCopy});
-
-
-    // const apiUrl = 'http://localhost:5000/delete';
-    const apiUrl = 'http://cs411ccsquad.web.illinois.edu/CocktailName/delete';
-    const formData = new FormData();
-    formData.append('tconst', tconst);
-
-    const options = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({database:this.state.database, product_id:tconst})
-    }
-
-    fetch(apiUrl,options)
-    // fetch(apiUrl, options)
-    //   .then(res => res.json())
-    //   .then(
-    //     (result) => {
-    //       this.setState({
-    //         response: result,
-    //         movies: movies.filter(movie => movie.tconst !== tconst)
-    //       });
-    //     },
-    //     (error) => {
-    //       this.setState({ error });
-    //     }
-    //   )
-  }
 
   render() {
     const error = this.props.info.error;
@@ -82,7 +49,7 @@ class MovieList extends React.Component {
                   <td>{movie.genres}</td>
                   <td>
                     <Button variant="info" onClick={() => this.props.editMovie(movie.tconst)}>Edit</Button>
-                    &nbsp;<Button variant="danger" onClick={() => this.deleteMovie(mocie.tconst)}>Delete</Button>
+                    &nbsp;<Button variant="danger" onClick={() => this.props.deleteMovie(movie.tconst)}>Delete</Button>
                   </td>
                 </tr>
               ))}
