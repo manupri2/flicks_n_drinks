@@ -70,7 +70,7 @@ def build_movie_query(json_dict):
     filter_str = build_filters(json_dict)
     where_clause_str = build_where_and(filter_str)
     query += where_clause_str
-    query += "GROUP BY Movie.title\n" \
+    query += "GROUP BY Movie.tconst\n" \
              " LIMIT 100\n"
     return query
 

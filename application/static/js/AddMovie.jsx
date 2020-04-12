@@ -5,10 +5,8 @@ class AddMovie extends React.Component {
   constructor(props) {
     super(props);
     this.initialState = {
-      id: '',
-      productName: '',
-      price: '',
-      sku: ''
+      tconst: '',
+      title: '',
     }
 
     if(props.movie){
@@ -24,10 +22,11 @@ class AddMovie extends React.Component {
   handleChange(event) {
     const name = event.target.name;
     const value = event.target.value;
-
+    
     this.setState({
       [name]: value
     })
+
   }
 
   handleSubmit(event) {
@@ -39,7 +38,7 @@ class AddMovie extends React.Component {
   render() {
 
     let pageTitle;
-    if(this.state.id) {
+    if(this.state.tconst>=0) {
       pageTitle = <h2>Edit Product</h2>
     } else {
       pageTitle = <h2>Add Product</h2>
@@ -51,35 +50,17 @@ class AddMovie extends React.Component {
         <Row>
           <Col sm={6}>
             <Form onSubmit={this.handleSubmit}>
-              <Form.Group controlId="productName">
-                <Form.Label>Product Name</Form.Label>
+              <Form.Group controlId="title">
+                <Form.Label>Movie Name</Form.Label>
                 <Form.Control
                   type="text"
-                  name="productName"
-                  value={this.state.productName}
+                  name="title"
+                  value={this.state.title}
                   onChange={this.handleChange}
-                  placeholder="Product Name"/>
-              </Form.Group>
-              <Form.Group controlId="sku">
-                <Form.Label>SKU</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="sku"
-                  value={this.state.sku}
-                  onChange={this.handleChange}
-                  placeholder="SKU" />
-              </Form.Group>
-              <Form.Group controlId="price">
-                <Form.Label>Price</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="price"
-                  value={this.state.price}
-                  onChange={this.handleChange}
-                  placeholder="Price" />
+                  placeholder=""/>
               </Form.Group>
               <Form.Group>
-                <Form.Control type="hidden" name="id" value={this.state.id} />
+                <Form.Control type="hidden" name="tconst" value={this.state.tconst} />
                 <Button variant="success" type="submit">Save</Button>
               </Form.Group>
             </Form>

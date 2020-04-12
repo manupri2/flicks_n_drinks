@@ -4,10 +4,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const config = {
 	entry: {
-		"indexPage":__dirname + '/js/indexPage.jsx',
-		"aboutPage":__dirname + '/js/aboutPage.jsx',
 		"CRUDPage":__dirname + '/js/CRUDPage.jsx',
-		"stage4Page":__dirname + '/js/stage4Page.jsx',
 		"navigation":__dirname + '/js/navigation.jsx',
 		"login_signup":__dirname + '/js/login-page.jsx',
 		"home":__dirname + '/js/home.jsx',
