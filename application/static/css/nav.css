@@ -6,99 +6,25 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
 }
-.ul {
-  display: flex;
-  align-items: center;
-  margin: 0;
-  padding: 0;
+.topnav {
+  overflow: hidden;
+  background-color: #333;
 }
 
-.left-ui li, .right-ui li {
-  display: inline-block;
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
   text-decoration: none;
-  color: #b2bbbd;
-  font-size: 18px;
+  font-size: 17px;
 }
-li:hover {
-    cursor: pointer;
-    color: #eee;
-  }
-.navbar {
-  height: 70px;
-  background-color: #3e474f;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 0 125px;
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
 }
-.left-ui li + li {
-  padding-left: 25px;
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
 }
 
-.right-ui li {
-  padding-left: 20px;
-}
-.home {
-  border-right: 1px solid #b2bbbd;
-  padding-right: 30px;
-}
-.profile {
-  padding-left: 20px;
-  color: #b2bbbd;
-}
-i:hover {
-  cursor: pointer;
-}
-
-.background {
-  width: 36px;
-  height: 36px;
-  background: linear-gradient(to right, darkblue 40%, red 10%, orange 60%);
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 100%;
-  z-index: 2;
-  position: relative;
-  margin-right: 10px;
-}
-
-.arrow:hover {
-  color: #eee;
-}
-
-.dropdown {
-  list-style: none;
-  background-color: #b2bbbd;;
-  position: relative;
-  left: 1100px;
-  bottom: 5px;
-  width: 180px;
-  height: 100%;
-  display: grid;
-  border-radius: 10px;
-  border: 1px solid;
-}
-li:first-child {
-  background-color:#3e474f;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-li:last-child {
-background-color: white;
-border-bottom-left-radius: 10px;
-border-bottom-right-radius: 10px;
-}
-
-.dropdown li {
-  font-size: 15px;
-  color: #3e474f;
-  border-bottom: 1px solid #b2bbbd;
-  padding: 15px 20px 15px 15px;
-  transition: .5s;
-}
-i:hover{
-    cursor: pointer;
-    background-color: white;
-    transition: background-color .5s;
-  }
