@@ -9,6 +9,23 @@ from application.server.handle import *
 # Status Code 200 - Successful connection and query
 
 
+def json_api_query(query_str):
+    encoded_query = parse.quote(query_str)
+    # print(encoded_query)
+    # print(parse.unquote(encoded_query))
+    route = "http://cs411ccsquad.web.illinois.edu/Movies/%s" % encoded_query
+    # print(route)
+    response = requests.get(route)
+
+    queried_data_df = pd.DataFrame()
+    if response.status_code == 200:
+        queried_data_json = response.json()
+        print(queried_data_json['data'])
+        queried_data_df = pd.DataFrame(queried_data_json['data'])
+        # print(queried_data_df)
+    return queried_data_df, response.status_code
+
+
 def api_query(query_str):
     encoded_query = parse.quote(query_str)
     # print(encoded_query)

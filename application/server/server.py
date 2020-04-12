@@ -55,7 +55,7 @@ def api_sql(query_uri):
         return query_data(query, conn)
 
 
-@app.route('/Movie/<json_uri>', methods=['GET'])
+@app.route('/Movies/<json_uri>', methods=['GET'])
 def movie_query(json_uri):
     conn = eng.connect()
     if request.method == 'GET':
@@ -64,7 +64,7 @@ def movie_query(json_uri):
         return query_data(query, conn)
 
 
-@app.route('/Cocktail/<json_uri>', methods=['GET'])
+@app.route('/Cocktails/<json_uri>', methods=['GET'])
 def cocktail_query(json_uri):
     conn = eng.connect()
     if request.method == 'GET':
