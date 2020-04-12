@@ -165,24 +165,12 @@ class CRUDApp extends Component {
     //   body: JSON.stringify({product_id:tconst})
     // }
 
-    fetch(apiUrl)
-      .then(res => res.json())
-      .then(
-          (result) => {
-              this.setState({
-                  isLoaded: false,
-                  deleted_item: result.data,
-                  error: null
-              });
-          },
-          (error) => {
-              this.setState({
-                  isLoaded: true,
-                  error
-              });
-          }
-      )
+    fetch(apiUrl);
 
+    this.setState({
+          isLoaded: false,
+          error: null
+    });
     // const arrayCopy = this.props.info.items.filter((row) => row.tconst != tconst);
     // this.setState({movies:arrayCopy});
 
