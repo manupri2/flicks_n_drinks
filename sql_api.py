@@ -83,21 +83,34 @@ if __name__ == "__main__":
     # print("Status Code: %d" % code)
     # print(df)
     #
-    # query = "SELECT TABLE_NAME, COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'cs411ccsquad_FlicksNDrinks'"
-    # print("\nQuery:\n%s" % query)
-    # df, code = api_query(query)
-    # print("Status Code: %d" % code)
-    # table_schema = {}
-    # print(df)
 
-    json_dict = {'year': "", 'rating': "", "title": "dude"}
-    query = build_movie_query(json_dict)
+    query = """SELECT CocktailRecipe.recipeId, CocktailRecipe.bartender, CocktailRecipe.location,
+                 CocktailRecipe.rating, CocktailName.cocktailName,
+                 GROUP_CONCAT(DISTINCT Ingredient.ingredientName ORDER BY Ingredient.ingredientName DESC) AS ingredients
+                FROM CocktailRecipe
+                 INNER JOIN Composition ON CocktailRecipe.recipeId = Composition.recipeId
+                 INNER JOIN Ingredient ON Composition.ingredientId = Ingredient.ingredientId
+                 INNER JOIN CocktailName ON CocktailRecipe.cocktailId = CocktailName.cocktailId
+                WHERE cocktailName LIKE '%%a%%'
+                GROUP BY CocktailRecipe.recipeId
+                LIMIT 100"""
     print("\nQuery:\n%s" % query)
     df, code = api_query(query)
     print("Status Code: %d" % code)
     table_schema = {}
     print(df)
-    print(df['title'])
+
+
+
+
+    # json_dict = {'year': "", 'rating': "", "title": "dude"}
+    # query = build_movie_query(json_dict)
+    # print("\nQuery:\n%s" % query)
+    # df, code = api_query(query)
+    # print("Status Code: %d" % code)
+    # table_schema = {}
+    # print(df)
+    # print(df['title'])
 
 
 

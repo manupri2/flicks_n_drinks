@@ -15,7 +15,7 @@ def build_filters(filter_dict):
 
         if filter_val:
             if operator == 'LIKE':
-                filter_val = "%%" + filter_val + "%%"
+                filter_val = "'%%" + filter_val + "%%'"
             filter_strs.append(filterX + " " + operator + " " + filter_val)
 
     return filter_strs
@@ -99,35 +99,35 @@ def query_data(query, conn):
 
 if __name__ == '__main__':
 
-    json_dict = {'title': 'ca', 'year': '2005', 'rating': ''}
-    print(build_movie_query(json_dict))
+    # json_dict = {'title': 'ca', 'year': '2005', 'rating': ''}
+    # print(build_movie_query(json_dict))
 
 
-    # json_dict = {
-    #               'cocktailName': {'value': 'Manhattan', 'operator': 'LIKE'},
-    #               'ingredients': {'value': 'cherry', 'operator': 'LIKE'},
-    #               'bartender': {'value': 'Johnny Rocket', 'operator': 'LIKE'},
-    #               'location': {'value': 'Los Angeles', 'operator': 'LIKE'},
-    #               'rating': {'value': '5', 'operator': '>='}
-    #             }
-    # print(build_cocktail_query(json_dict))
-    #
-    # json_dict = {
-    #               'cocktailName': {'value': '', 'operator': 'LIKE'},
-    #               'ingredients': {'value': '', 'operator': 'LIKE'},
-    #               'bartender': {'value': '', 'operator': 'LIKE'},
-    #               'location': {'value': '', 'operator': 'LIKE'},
-    #               'rating': {'value': '', 'operator': '>='}
-    #             }
-    # print(build_cocktail_query(json_dict))
-    #
-    # json_dict = {
-    #               'cocktailName': {'value': '', 'operator': 'LIKE'},
-    #               'ingredients': {'value': '', 'operator': 'LIKE'},
-    #               'bartender': {'value': '', 'operator': 'LIKE'},
-    #               'location': {'value': '', 'operator': 'LIKE'},
-    #               'rating': {'value': '5', 'operator': '>='}
-    #             }
-    # print(build_cocktail_query(json_dict))
+    json_dict = {
+                  'cocktailName': {'value': 'Manhattan', 'operator': 'LIKE'},
+                  'ingredients': {'value': 'cherry', 'operator': 'LIKE'},
+                  'bartender': {'value': 'Johnny Rocket', 'operator': 'LIKE'},
+                  'location': {'value': 'Los Angeles', 'operator': 'LIKE'},
+                  'rating': {'value': '5', 'operator': '>='}
+                }
+    print(build_cocktail_query(json_dict))
+
+    json_dict = {
+                  'cocktailName': {'value': '', 'operator': 'LIKE'},
+                  'ingredients': {'value': '', 'operator': 'LIKE'},
+                  'bartender': {'value': '', 'operator': 'LIKE'},
+                  'location': {'value': '', 'operator': 'LIKE'},
+                  'rating': {'value': '', 'operator': '>='}
+                }
+    print(build_cocktail_query(json_dict))
+
+    json_dict = {
+                  'cocktailName': {'value': 'a', 'operator': 'LIKE'},
+                  'ingredients': {'value': '', 'operator': 'LIKE'},
+                  'bartender': {'value': '', 'operator': 'LIKE'},
+                  'location': {'value': '', 'operator': 'LIKE'},
+                  'rating': {'value': '', 'operator': '>='}
+                }
+    print(build_cocktail_query(json_dict))
     #
     # api_q = "http://cs411ccsquad.web.illinois.edu/Movies/%7B%22title%22:%22da%22,%22year%22:%22%22,%22rating%22:%22%22%7D"
