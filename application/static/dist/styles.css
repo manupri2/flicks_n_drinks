@@ -1,71 +1,73 @@
-
 body {
-    background-color: #333333;
-    color: #FFFFFF;
-    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-    font-weight: 300;
-    overflow-x: hidden;
+  background: #000;
+  color: #030303;
+  font-family: sans-serif;
+  background-image: url(https://res.cloudinary.com/dqdwxivsq/image/upload/v1585974698/wang-john-CZ6PG4ozU9c-unsplash_rwrw66.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-weight: 300;
+.nav {
+  padding: 2%;
+  cursor: pointer;
+  color: black;
 }
-
-
-h3 {
-    font-size: 1.3rem;
+.logo {
+  font-size: 1.5em;
+  display: inline;
+  font-weight: bold;
 }
-
-
-
-.tm-site-header {
-    padding-top: 45px;
-    padding-bottom: 45px;
-    margin-bottom: 0;
+.nav ul {
+  list-style: none;
+  float: right;
+  font-size: 0.8em;
+  margin: 0;
+  text-transform: uppercase;
+  margin-top: 5px;
+  color: black;
 }
-
-*, ::after, ::before {
-    box-sizing: border-box;
+.nav ul a{
+    display: inline;
+    padding: 0 30px;
+    color: black;
+    letter-spacing: 1px;
 }
-
-.text-center {
-    text-align: center !important;
+.hero {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  padding: 100px 0;
+  flex-wrap: wrap;
 }
-
-.tm-site-title {
-    display: inline-block;
-    vertical-align: middle;
-    margin-bottom: 0;
+.title {
+  font-size: 7em;
+  text-align: center;
+  width: 100%;
+  font-family: serif;
+  font-weight: bold;
 }
-
-
-.tm-site-logo {
-    width: 40px;
-    height: 40px;
-    border: 7px solid white;
-    transform: rotate(45deg);
-    display: inline-block;
-    vertical-align: middle;
+.title::before {
+  content: "Movies and Cocktail Recommendation";
+  font-size: 15px;
+  letter-spacing: 1.8px;
+  font-weight: bold;
+  text-align: center;
+  color: black;
+  display: block;
+  text-transform: uppercase;
+  margin-bottom: -5px;
 }
-
-.h1, h1 {
-    font-size: 2.5rem;
-}
-.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-    margin-bottom: .5rem;
-    font-family: inherit;
-    font-weight: 500;
-    line-height: 1.2;
-    color: inherit;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    margin-top: 0;
-    margin-bottom: .5rem;
+.main {
+  position: absolute;
+  bottom: 0;
+  margin: 0 2%;
+  width: 95%;
+  background: white;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 1.4% 0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 

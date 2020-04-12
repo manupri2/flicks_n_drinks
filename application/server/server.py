@@ -23,6 +23,9 @@ eng = db.engine
 def home():
 	return render_template("./pages/home.html")
 
+@app.route("/login_signup.html")
+def login():
+	return render_template("./pages/login_signup.html")
 
 @app.route("/index")
 def crud():
