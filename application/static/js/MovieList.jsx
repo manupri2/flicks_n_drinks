@@ -5,20 +5,21 @@ class MovieList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      response: {}
+      response: {},
+      movies:[]
     }
   }
 
-  deleteProduct(tconst) {
+  deleteMovie(tconst) {
     const {movies} = this.state;
 
 
-    const arrayCopy = this.state.products.filter((row) => row.tconst != tconst);
-    this.setState({products:arrayCopy});
+    const arrayCopy = this.state.movies.filter((row) => row.tconst != tconst);
+    this.setState({movies:arrayCopy});
 
 
     // const apiUrl = 'http://localhost:5000/delete';
-    const apiUrl = 'http://cs411ccsquad.web.illinois.edu/CocktailName/delete';
+    const apiUrl = 'http://cs411ccsquad.web.illinois.edu/delete';
     const formData = new FormData();
     formData.append('tconst', tconst);
 
@@ -82,7 +83,7 @@ class MovieList extends React.Component {
                   <td>{movie.genres}</td>
                   <td>
                     <Button variant="info" onClick={() => this.props.editMovie(movie.tconst)}>Edit</Button>
-                    &nbsp;<Button variant="danger" onClick={() => this.deleteMovie(mocie.tconst)}>Delete</Button>
+                    &nbsp;<Button variant="danger" onClick={() => this.deleteMovie(movie.tconst)}>Delete</Button>
                   </td>
                 </tr>
               ))}
