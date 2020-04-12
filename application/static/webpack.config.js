@@ -8,7 +8,6 @@ const config = {
 		"aboutPage":__dirname + '/js/aboutPage.jsx',
 		"CRUDPage":__dirname + '/js/CRUDPage.jsx',
 		"stage4Page":__dirname + '/js/stage4Page.jsx',
-
 	},
 	output:{
 		path: __dirname + '/dist',
@@ -30,20 +29,6 @@ const config = {
                     'plugins': ['@babel/plugin-proposal-class-properties']}
 				]
 			}
-			// loader: 'babel-loader',
-			// options:{
-			// 	presets:[
-			// 		"@babel/preset-env",
-			// 		"@babel/preset-react"
-			// 	],
-			// 	plugins:[
-			// // 		"@babel/plugin-syntax-dynamic-import",
-			// // 		"@babel/transform-runtime",
-			// 		"@babel/plugin-proposal-class-properties"
-			// 	]
-			// }
-
-
 		},
 
 		{
@@ -53,29 +38,11 @@ const config = {
 				use:"css-loader"
 			})
 		},
-		
-		// {
-		// 	test:/\.js/,
-		// 	loader: "babel-loader",
-		// 	options:{
-		// 		presets:[
-		// 			"@babel/preset-env",
-		// 			"@babel/preset-react"
-		// 		],
-		// 		plugins:[
-		// 			"@babel/plugin-syntax-dynamic-import",
-		// 			"@babel/transform-runtime",
-		// 			"@babel/plugin-proposal-class-properties"
-		// 		]
-		// 	}
-		// },	
 		]
 	},
 
 	plugins: [
 		new ExtractTextPlugin('styles.css'),
-		
-		
 	]
 
 }

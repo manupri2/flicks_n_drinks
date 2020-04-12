@@ -16,27 +16,25 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://cs411ccsquad_admin:password;uiu
 db = SQLAlchemy(app)
 eng = db.engine
 
+# ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# page routes
 
 @app.route("/")
-def about():
-	return render_template("CRUDPage.html")
+def home():
+	return render_template("./pages/home.html")
 
 
 @app.route("/index")
-def index():
-	return render_template("indexPage.html")
+def crud():
+	return render_template("./pages/CRUDPage.html")
 
 
 @app.route("/stageFour")
 def stageFour():
 	return render_template("stage4Page.html")
 
-
-@app.route('/xxx')
-def home():
-	return """<h1>To query database, enter "CocktailName", "CocktailRecipe", or "Ingredient" for {table_name} and 
-			  an integer between 0-683 for {id_num} in the route: 
-              http://cs411ccsquad.web.illinois.edu/{table_name}/{id_num}</h1>"""
+# ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# API routes
 
 
 @app.route('/<table_name>', methods=['GET'])
@@ -64,7 +62,7 @@ def movie_query(json_uri):
         return query_data(query, conn)
 
 
-@app.route('/Cocktails/<json_uri>', methods=['GET'])
+@app.route('/Cocktails/<json_uri>', methods=['GET', 'POST'])
 def cocktail_query(json_uri):
     conn = eng.connect()
     if request.method == 'GET':
@@ -75,7 +73,7 @@ def cocktail_query(json_uri):
 
 @app.route('/delete', methods = ['POST'])
 def delete():
-    if request.method =='POST':
+    if request.method == 'POST':
         conn = eng.connect()
         data = request.get_json()
         productId = data['product_id']
@@ -96,6 +94,7 @@ def getProduct():
         row_as_dict = dict(row)
 
     return row_as_dict
+
 
 @app.route('/editProduct', methods = ['POST'])
 def editProduct():
@@ -119,8 +118,6 @@ def editProduct():
         response = {'status':'error'}
 
     return response
-
-    return 'Data id %s is deleted' %productId
 
 
 @app.route('/createProduct', methods = ['POST'])
@@ -146,6 +143,7 @@ def createProduct():
         response = {'status':'error'}
     
     return response
+
 
 if __name__ == "__main__":
 	app.run()

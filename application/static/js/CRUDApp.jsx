@@ -20,11 +20,8 @@ class CRUDApp extends Component {
           items: [],
           movie: {},
           filters: {},
-          isEditMovie: false,
-          query: ""
+          isEditMovie: false
         }
-
-
 
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.updateFilters = this.updateFilters.bind(this);
@@ -118,8 +115,7 @@ class CRUDApp extends Component {
                                   items: [],
                                   movie: {},
                                   filters: {},
-                                  isEditMovie: false,
-                                  query: ""
+                                  isEditMovie: false
                             }));
   }
 
@@ -138,20 +134,19 @@ class CRUDApp extends Component {
                             this.setState({
                                 isLoaded: true,
                                 items: result.data,
-                                error: null,
-                                query: api_url
+                                error: null
                             });
                         },
                         (error) => {
                             this.setState({
                                 isLoaded: true,
-                                query: api_url,
                                 error
                             });
                         }
                     )
             }
   }
+
 
   render() {
     let movieForm;
