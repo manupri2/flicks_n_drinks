@@ -7,9 +7,9 @@ class MovieQueryForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          title: '',
-          year: '',
-          rating: ''
+          title: {value: '', operator: 'LIKE', label: "Titels"},
+          year: {value: '', operator: '=', label: "Years"},
+          rating: {value: '', operator: '>=', label: "Rating"}
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -24,10 +24,12 @@ class MovieQueryForm extends React.Component {
 
   handleChange(event) {
     const name = event.target.name;
-    const value = event.target.value;
+    const new_value = event.target.value;
+    const old_operator = this.state[name].operator;
+    const old_label = this.state[name].label;
 
     this.setState({
-      [name]: value
+      [name]: {value: new_value, operator: old_operator, label: old_label}
     });
   }
 
@@ -39,35 +41,17 @@ class MovieQueryForm extends React.Component {
                   <Row>
                       <Col>
                           <Form.Row>
-                                <Form.Group controlId="Title">
-                                  <Form.Label>Title:</Form.Label>
-                                  <Form.Control
-                                        type="text"
-                                        name="title"
-                                        value={this.state.title}
-                                        onChange={this.handleChange}
-                                        placeholder="Enter title" />
-                                </Form.Group>
-
-                                <Form.Group controlId="Year">
-                                  <Form.Label>Year:</Form.Label>
-                                  <Form.Control
-                                        type="text"
-                                        name="year"
-                                        value={this.state.year}
-                                        onChange={this.handleChange}
-                                        placeholder="YYYY" />
-                                </Form.Group>
-
-                                <Form.Group controlId="Rating">
-                                  <Form.Label>Rating:</Form.Label>
-                                  <Form.Control
-                                        type="text"
-                                        name="rating"
-                                        value={this.state.rating}
-                                        onChange={this.handleChange}
-                                        placeholder="1-10" />
-                                </Form.Group>
+                                {Object.keys(this.state).map(filter => (
+                                        <Form.Group controlId={this.state[filter]}>
+                                          <Form.Label>{this.state[filter].label}:</Form.Label>
+                                          <Form.Control
+                                                type="text"
+                                                name={filter}
+                                                value={this.state[filter].value}
+                                                onChange={this.handleChange}
+                                                placeholder="" />
+                                        </Form.Group>
+                                ))}
                           </Form.Row>
                       </Col>
 
