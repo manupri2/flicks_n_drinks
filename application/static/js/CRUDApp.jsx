@@ -148,6 +148,59 @@ class CRUDApp extends Component {
   }
 
 
+
+  deleteMovie(tconst) {
+    // const {movies} = this.state;
+
+    const apiUrl = 'http://cs411ccsquad.web.illinois.edu/delete/Movie/'+ tconst.toString();
+    // console.log(apiUrl)
+
+    // const formData = new FormData();
+    // formData.append('tconst', tconst);
+
+    // const options = {
+    //   method: 'GET',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({product_id:tconst})
+    // }
+
+    fetch(apiUrl)
+      .then(res => res.json())
+      .then(
+          (result) => {
+              this.setState({
+                  isLoaded: false,
+                  error: null
+              });
+          },
+          (error) => {
+              this.setState({
+                  isLoaded: true,
+                  error
+              });
+          }
+      )
+
+    // const arrayCopy = this.props.info.items.filter((row) => row.tconst != tconst);
+    // this.setState({movies:arrayCopy});
+
+
+
+    // fetch(apiUrl, options)
+    //   .then(res => res.json())
+    //   .then(
+    //     (result) => {
+    //       this.setState({
+    //         response: result,
+    //         movies: movies.filter(movie => movie.tconst !== tconst)
+    //       });
+    //     },
+    //     (error) => {
+    //       this.setState({ error });
+    //     }
+    //   )
+  }
+
   render() {
     let movieForm;
     if(this.state.isAddMovie || this.state.isEditMovie) {
@@ -167,7 +220,7 @@ class CRUDApp extends Component {
           {this.state.response.status === 'success' && <div><br /><Alert variant="info">{this.state.response.message}</Alert></div>}
           {!this.state.isAddMovie && <div class="text-right pr-0"><Button variant="primary" onClick={() => this.onCreate()}>Add {this.state.database.slice(0, -1)} <PlusCircle /></Button><br /><br /></div>}
           {!this.state.isAddMovie && this.state.database == "Movies" && <MovieQueryForm updateFilters={this.updateFilters}/>}
-          {!this.state.isAddMovie && this.state.database == "Movies" && <MovieList editMovie={this.editMovie} info={this.state}/>}
+          {!this.state.isAddMovie && this.state.database == "Movies" && <MovieList editMovie={this.editMovie} deleteMovie={this.deleteMovie} info={this.state}/>}
           {!this.state.isAddMovie && this.state.database == "Cocktails" && <CocktailQueryForm updateFilters={this.updateFilters}/>}
           {!this.state.isAddMovie && this.state.database == "Cocktails" && <CocktailList editItem={this.editMovie} info={this.state}/>}
 
