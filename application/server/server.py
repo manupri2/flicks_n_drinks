@@ -3,7 +3,7 @@ from flask import Flask, request, render_template
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 import json
-from handle import *
+from application.server.handle import *
 # from handle import *
 from flask import jsonify
 
@@ -86,7 +86,7 @@ def delete(database, id):
             result = query_data('SELECT * FROM Movie WHERE tConst = %s'%id, conn)
             query = 'DELETE FROM {} WHERE tConst = {}'.format(database,id)
         else:
-            result = query_data('SELECT * FROM CocktailName WHERE recipeId = %s'%id, conn)
+            result = query_data('SELECT * FROM CocktailRecipe WHERE recipeId = %s'%id, conn)
             query = 'DELETE FROM {} WHERE cocktailId = {}'.format(database,id)
 
         # else:
