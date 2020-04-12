@@ -79,7 +79,7 @@ def delete(database, id):
         # productId = data['product_id']
         # database = data['database']
         # if database == 'Movies':
-        query = 'DELETE FROM {} WHERE tconst = {}'.format(database,id)
+        query = 'DELETE FROM {} WHERE tConst = {}'.format(database,id)
         # else:
         #     query = 'DELETE FROM CocktailName WHERE cocktailId = %s' %productId
         print(query)
