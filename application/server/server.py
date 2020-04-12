@@ -87,10 +87,11 @@ def delete(database, item_id):
         # database = data['database']
         # if database == 'Movies':
 
-        
+        result = {'data': []}
         if database == 'Movie':
             result = query_data('SELECT * FROM Movie WHERE tConst = %s' % item_id, conn)
-            query = 'DELETE FROM Movie WHERE tConst = %s' % item_id
+            if result['data']:
+                query = 'DELETE FROM Movie WHERE tConst = %s' % item_id
         else:
             result = query_data('SELECT * FROM CocktailRecipe WHERE recipeId = %s' % item_id, conn)
             query = 'DELETE FROM CocktailRecipe WHERE cocktailId = %s' % item_id

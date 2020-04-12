@@ -18,6 +18,7 @@ class CRUDApp extends Component {
           response: {},
           database: "Movies",
           items: [],
+          deleted_item: {},
           movie: {},
           filters: {},
           isEditMovie: false
@@ -170,6 +171,7 @@ class CRUDApp extends Component {
           (result) => {
               this.setState({
                   isLoaded: false,
+                  deleted_item: result.data,
                   error: null
               });
           },
