@@ -20,13 +20,16 @@ eng = db.engine
 # ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 # page routes
 
+
 @app.route("/")
 def home():
 	return render_template("./pages/home.html")
 
+
 @app.route("/login_signup.html")
 def login():
 	return render_template("./pages/login_signup.html")
+
 
 @app.route("/index")
 def crud():
@@ -75,8 +78,8 @@ def cocktail_query(json_uri):
         return query_data(query, conn)
 
 
-@app.route('/delete/<database>/<id>', methods = ['GET'])
-def delete(database, id):
+@app.route('/delete/<database>/<item_id>', methods=['GET'])
+def delete(database, item_id):
     if request.method == 'GET':
         conn = eng.connect()
         # data = request.get_json()
@@ -86,11 +89,11 @@ def delete(database, id):
 
         
         if database == 'Movie':
-            result = query_data('SELECT * FROM Movie WHERE tConst = %s'%id, conn)
-            query = 'DELETE FROM {} WHERE tConst = {}'.format(database,id)
+            result = query_data('SELECT * FROM Movie WHERE tConst = %s' % item_id, conn)
+            query = 'DELETE FROM Movie WHERE tConst = %s' % item_id
         else:
-            result = query_data('SELECT * FROM CocktailRecipe WHERE recipeId = %s'%id, conn)
-            query = 'DELETE FROM {} WHERE cocktailId = {}'.format(database,id)
+            result = query_data('SELECT * FROM CocktailRecipe WHERE recipeId = %s' % item_id, conn)
+            query = 'DELETE FROM CocktailRecipe WHERE cocktailId = %s' % item_id
 
         # else:
         #     query = 'DELETE FROM CocktailName WHERE cocktailId = %s' %productId
@@ -101,7 +104,7 @@ def delete(database, id):
         return result
 
 
-@app.route('/getProduct', methods = ['POST'])
+@app.route('/getProduct', methods=['POST'])
 def getProduct():
     conn = eng.connect()
     data = request.get_json()
