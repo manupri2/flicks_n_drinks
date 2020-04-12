@@ -3,7 +3,7 @@ from flask import Flask, request, render_template
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 import json
-from handle import *
+from application.server.handle import *
 from flask import jsonify
 
 
