@@ -7,8 +7,8 @@ class MovieQueryForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          title: {value: '', operator: 'LIKE', label: "Titels"},
-          year: {value: '', operator: '=', label: "Years"},
+          title: {value: '', operator: 'LIKE', label: "Title"},
+          year: {value: '', operator: '=', label: "Year"},
           rating: {value: '', operator: '>=', label: "Rating"}
         }
 
