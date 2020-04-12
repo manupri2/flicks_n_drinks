@@ -77,8 +77,15 @@ def delete():
         conn = eng.connect()
         data = request.get_json()
         productId = data['product_id']
-        query = 'DELETE FROM CocktailName WHERE cocktailId = %s' %productId
-        query_data = conn.execute(query)
+        database = data['database']
+
+
+        if database == 'Movies':
+            query = 'DELETE FROM Movie WHERE tconst = %s' %productId
+        else:
+            query = 'DELETE FROM CocktailName WHERE cocktailId = %s' %productId
+        print(query)
+        # query_data = conn.execute(query)
         return 'Data id %s is deleted' %productId
 
 
