@@ -71,23 +71,22 @@ def cocktail_query(json_uri):
         return query_data(query, conn)
 
 
-@app.route('/delete', methods = ['POST'])
-def delete():
+@app.route('/delete/<database>/<id>', methods = ['POST'])
+def delete(database, id):
     if request.method == 'POST':
         conn = eng.connect()
-        data = request.get_json()
-        productId = data['product_id']
-        database = data['database']
+        # data = request.get_json()
+        # productId = data['product_id']
+        # database = data['database']
+        # if database == 'Movies':
 
-
-        if database == 'Movies':
-            query = 'DELETE FROM Movie WHERE tconst = %s' %productId
-        else:
-            query = 'DELETE FROM CocktailName WHERE cocktailId = %s' %productId
+        query = 'DELETE FROM {} WHERE tconst = {}'.format(database,id)
+        # else:
+        #     query = 'DELETE FROM CocktailName WHERE cocktailId = %s' %productId
 
         print(query)
         # query_data = conn.execute(query)
-        return 'Data id %s is deleted' %productId
+        return 'Data id {} in database {} is deleted'.format(id,database)
 
 
 @app.route('/getProduct', methods = ['POST'])
