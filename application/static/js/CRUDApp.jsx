@@ -45,10 +45,10 @@ class CRUDApp extends Component {
 
   onFormSubmit(data) {
     var db = this.state.database.slice(0, -1);
+    var apiUrl = 'http://cs411ccsquad.web.illinois.edu/';
 
-    apiUrl = 'http://cs411ccsquad.web.illinois.edu/';
     if(this.state.isEditMovie){
-      apiUrl += "/edit/" + db + "/" + data.tconst.toString() + "/" + data.title;
+      apiUrl += "edit/" + db + "/" + data.tconst.toString() + "/" + data.title;
     } else {
       apiUrl += "/add/" + db;
     }
@@ -64,23 +64,24 @@ class CRUDApp extends Component {
 
     fetch(apiUrl);
     this.setState({
-          response: result,
           isAddMovie: false,
           isEditMovie: false
         })
   }
 
   editMovie = tconst => {
-
+        console.log(tconst.toString());
         //const apiUrl = 'http://localhost/dev/tcxapp/reactapi/getProduct';
         //const formData = new FormData();
         //formData.append('tconst', tconst);
-        var filter_info = this.state.filters;
-        filter_info['tconst'] = {value: tconst.toString(), operator: '=', label: ""};
+        var filter_info = Object.assign({}, this.state.filters);
+        filter_info['Movie.tconst'] = {value: tconst.toString(), operator: '=', label: ""};
+
+        console.log(JSON.stringify(filter_info));
 
         var api_url = 'http://cs411ccsquad.web.illinois.edu/';
         var db = this.state.database
-        var filters = encodeURI(JSON.stringify());
+        var filters = encodeURI(JSON.stringify(filter_info));
         api_url += db + "/" + filters;
 
         //const options = {
@@ -88,12 +89,12 @@ class CRUDApp extends Component {
          // body: formData
         //}
 
-        fetch(apiUrl)
+        fetch(api_url)
           .then(res => res.json())
           .then(
             (result) => {
               this.setState({
-                movie: result.data,
+                movie: result.data[0],
                 isEditMovie: true,
                 isAddMovie: true
               });

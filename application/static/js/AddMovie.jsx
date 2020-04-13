@@ -6,7 +6,7 @@ class AddMovie extends React.Component {
     super(props);
     this.initialState = {
       tconst: '',
-      title: '',
+      title: 'Test',
     }
 
     if(props.movie){
@@ -51,13 +51,13 @@ class AddMovie extends React.Component {
           <Col sm={6}>
             <Form onSubmit={this.handleSubmit}>
               <Form.Group controlId="title">
-                <Form.Label>Movie Name</Form.Label>
+                <Form.Label>Movie Title</Form.Label>
                 <Form.Control
                   type="text"
                   name="title"
                   value={this.state.title}
                   onChange={this.handleChange}
-                  placeholder=""/>
+                  placeholder="placeholder"/>
               </Form.Group>
               <Form.Group>
                 <Form.Control type="hidden" name="tconst" value={this.state.tconst} />
