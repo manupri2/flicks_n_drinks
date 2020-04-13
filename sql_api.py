@@ -78,36 +78,48 @@ if __name__ == "__main__":
     'People',
     'Role',
     'User']
-    test_database_tables(table_list)
+    # test_database_tables(table_list)
     # //////////////////////////////////////////////////////////////////////////////////////////////
-    query = 'SELECT * FROM Movie WHERE title LIKE "%%ca%%"'
+    
+    query = """SELECT Movie.tconst, Movie.title, Movie.year, Movie.rating,
+                 GROUP_CONCAT(DISTINCT Genre.genreName ORDER BY Genre.genreName DESC) AS genres,
+               GROUP_CONCAT(DISTINCT People.name ORDER BY People.name DESC) AS crew
+                FROM Movie
+                 LEFT JOIN MovieCategory ON Movie.tconst = MovieCategory.tconst
+                 LEFT JOIN Genre ON MovieCategory.genreId = Genre.genreId
+                 LEFT JOIN Crew ON Movie.tconst = Crew.tconst
+                 LEFT JOIN People ON Crew.nconst = People.nconst
+                WHERE title LIKE '%%Bulldog Heaven%%'
+                GROUP BY Movie.tconst
+                 LIMIT 100"""
     print("\nQuery:\n%s" % query)
     df, code = api_query(query)
     print("Status Code: %d" % code)
     print(df)
-    # //////////////////////////////////////////////////////////////////////////////////////////////
-    json_dict = {'title': {'value': 'ca', 'operator': 'LIKE'},
-                 'year': {'value': '2005', 'operator': '='},
-                 'rating': {'value': '', 'operator': '>='}}
-    query = build_movie_query(json_dict)
-    print("\nQuery:\n%s" % query)
-    df, code = json_api_query('Movies', json_dict)
-    print("Status Code: %d" % code)
-    print(df)
 
     # //////////////////////////////////////////////////////////////////////////////////////////////
-    json_dict = {
-                  'cocktailName': {'value': 'a', 'operator': 'LIKE'},
-                  'ingredients': {'value': '', 'operator': 'LIKE'},
-                  'bartender': {'value': 'raul', 'operator': 'LIKE'},
-                  'location': {'value': '', 'operator': 'LIKE'},
-                  'rating': {'value': '', 'operator': '>='}
-                }
-    query = build_cocktail_query(json_dict)
-    print("\nQuery:\n%s" % query)
-    df, code = json_api_query('Cocktails', json_dict)
-    print("Status Code: %d" % code)
-    print(df)
+    # json_dict = {'title': {'value': 'ca', 'operator': 'LIKE'},
+    #              'year': {'value': '2005', 'operator': '='},
+    #              'rating': {'value': '', 'operator': '>='}}
+    # query = build_movie_query(json_dict)
+    # print("\nQuery:\n%s" % query)
+    # df, code = json_api_query('Movies', json_dict)
+    # print("Status Code: %d" % code)
+    # print(df)
+
+    # //////////////////////////////////////////////////////////////////////////////////////////////
+    # json_dict = {
+    #               'cocktailName': {'value': 'a', 'operator': 'LIKE'},
+    #               'ingredients': {'value': '', 'operator': 'LIKE'},
+    #               'bartender': {'value': 'raul', 'operator': 'LIKE'},
+    #               'location': {'value': '', 'operator': 'LIKE'},
+    #               'rating': {'value': '', 'operator': '>='}
+    #             }
+    # query = build_cocktail_query(json_dict)
+    # print("\nQuery:\n%s" % query)
+    # df, code = json_api_query('Cocktails', json_dict)
+    # print("Status Code: %d" % code)
+    # print(df)
 
 
 
