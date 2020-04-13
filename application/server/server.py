@@ -103,38 +103,37 @@ def delete(database, item_id):
         return result
 
 
-@app.route('/add/<database>/<input>')
-def add(database, input):
+@app.route('/add/<database>/<new_input>')
+def add(database, new_input):
     conn = eng.connect()
 
+    max_id_query = ""
     if database == "Movie":
         # inputName  = data['tconst']
-        maxId_query = 'SELECT MAX(tconst) as max FROM Movie'    
+        max_id_query = 'SELECT MAX(tconst) as max FROM Movie'
     # else:
     #     # inputName  = data['cocktailName']
     #     maxId_query = 'SELECT MAX(cocktailId) as max FROM CocktailRecipe'
 
-    maxIdQueryResult = conn.execute(maxId_query)
+    max_id_query_result = conn.execute(max_id_query)
 
-    for row in maxIdQueryResult:
+    for row in max_id_query_result:
         maxDic = dict(row)
     maxId = maxDic['max']+1
 
+    query = ""
     if database == "Movie":
-        query = "INSERT INTO %s (`tconst`, `title`,`Year`, `Rating`, `Crew`, `Genres`) VALUES ('%d' , '%s', `null`,`null`,`null`,`null`)" % (database, maxId, input )
+        query = "INSERT INTO %s (tconst, title, Year, Rating, Crew, Genres) VALUES (%d , '%s', null, null, null, null)" % (database, maxId, new_input)
     # else:
     #     query = f"INSERT INTO {database} (`cocktailId`, `cocktailName`, `Ingredients`, `Bartender`, `Location`, `Rating`) VALUES ('{maxId}' , '{inputName}',`null`,`null`,v,`null`)"
 
     conn.execute(query)
-
-    response = {'status':'success', 'message':'Product added successfully'}
+    response = {'status': 'success', 'message': 'Product added successfully'}
     return response
 
 
-
-
-@app.route('/edit/<database>/<id>/<title>')
-def add(database, id, title):
+@app.route('/edit/<database>/<item_id>/<title>')
+def edit(database, item_id, title):
     conn = eng.connect()
 
     # if database == "Movie":
@@ -151,13 +150,13 @@ def add(database, id, title):
     # maxId = maxDic['max']+1
 
     if database == "Movie":
-        query = "UPDATE Movie SET title = '%s' WHERE (tconst = %d)" % (title, id)
+        query = "UPDATE Movie SET title = '%s' WHERE (tconst = %d)" % (title, item_id)
     # else:
     #     query = f"INSERT INTO {database} (`cocktailId`, `cocktailName`, `Ingredients`, `Bartender`, `Location`, `Rating`) VALUES ('{maxId}' , '{inputName}',`null`,`null`,v,`null`)"
 
+    query = ""
     conn.execute(query)
-
-    response = {'status':'success', 'message':'Product edit successfully'}
+    response = {'status': 'success', 'message': 'Product edit successfully'}
     return response
 
 
