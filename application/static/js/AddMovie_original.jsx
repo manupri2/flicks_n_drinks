@@ -1,16 +1,18 @@
 import React from 'react';
 import { Row, Form, Col, Button } from 'react-bootstrap';
 
-class AddProduct extends React.Component {
+class AddMovie extends React.Component {
   constructor(props) {
     super(props);
     this.initialState = {
-      cocktailId: '',
-      cocktailName: '',
+      id: '',
+      productName: '',
+      price: '',
+      sku: ''
     }
 
-    if(props.product){
-      this.state = props.product
+    if(props.movie){
+      this.state = props.movie
     } else {
       this.state = this.initialState;
     }
@@ -22,11 +24,10 @@ class AddProduct extends React.Component {
   handleChange(event) {
     const name = event.target.name;
     const value = event.target.value;
-    
+
     this.setState({
       [name]: value
     })
-
   }
 
   handleSubmit(event) {
@@ -38,7 +39,7 @@ class AddProduct extends React.Component {
   render() {
 
     let pageTitle;
-    if(this.state.cocktailId>=0) {
+    if(this.state.id) {
       pageTitle = <h2>Edit Product</h2>
     } else {
       pageTitle = <h2>Add Product</h2>
@@ -50,17 +51,35 @@ class AddProduct extends React.Component {
         <Row>
           <Col sm={6}>
             <Form onSubmit={this.handleSubmit}>
-              <Form.Group controlId="cocktailName">
-                <Form.Label>Cocktail Name</Form.Label>
+              <Form.Group controlId="productName">
+                <Form.Label>Product Name</Form.Label>
                 <Form.Control
                   type="text"
-                  name="cocktailName"
-                  value={this.state.cocktailName}
+                  name="productName"
+                  value={this.state.productName}
                   onChange={this.handleChange}
-                  placeholder="Cocktail Name"/>
+                  placeholder="Product Name"/>
+              </Form.Group>
+              <Form.Group controlId="sku">
+                <Form.Label>SKU</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="sku"
+                  value={this.state.sku}
+                  onChange={this.handleChange}
+                  placeholder="SKU" />
+              </Form.Group>
+              <Form.Group controlId="price">
+                <Form.Label>Price</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="price"
+                  value={this.state.price}
+                  onChange={this.handleChange}
+                  placeholder="Price" />
               </Form.Group>
               <Form.Group>
-                <Form.Control type="hidden" name="cocktailId" value={this.state.cocktailId} />
+                <Form.Control type="hidden" name="id" value={this.state.id} />
                 <Button variant="success" type="submit">Save</Button>
               </Form.Group>
             </Form>
@@ -71,4 +90,4 @@ class AddProduct extends React.Component {
   }
 }
 
-export default AddProduct;
+export default AddMovie;

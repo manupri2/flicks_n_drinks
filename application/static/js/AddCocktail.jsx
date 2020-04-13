@@ -1,16 +1,16 @@
 import React from 'react';
 import { Row, Form, Col, Button } from 'react-bootstrap';
 
-class AddMovie extends React.Component {
+class AddCocktail extends React.Component {
   constructor(props) {
     super(props);
     this.initialState = {
-      tconst: '',
-      title: 'Test',
+      cocktailId: '',
+      cocktailName: '',
     }
 
-    if(props.movie){
-      this.state = props.movie
+    if(props.product){
+      this.state = props.product
     } else {
       this.state = this.initialState;
     }
@@ -38,7 +38,7 @@ class AddMovie extends React.Component {
   render() {
 
     let pageTitle;
-    if(this.state.tconst>=0) {
+    if(this.state.cocktailId>=0) {
       pageTitle = <h2>Edit Product</h2>
     } else {
       pageTitle = <h2>Add Product</h2>
@@ -50,17 +50,17 @@ class AddMovie extends React.Component {
         <Row>
           <Col sm={6}>
             <Form onSubmit={this.handleSubmit}>
-              <Form.Group controlId="title">
-                <Form.Label>Movie Title</Form.Label>
+              <Form.Group controlId="cocktailName">
+                <Form.Label>Cocktail Name</Form.Label>
                 <Form.Control
                   type="text"
-                  name="title"
-                  value={this.state.title}
+                  name="cocktailName"
+                  value={this.state.cocktailName}
                   onChange={this.handleChange}
-                  placeholder="placeholder"/>
+                  placeholder="Cocktail Name"/>
               </Form.Group>
               <Form.Group>
-                <Form.Control type="hidden" name="tconst" value={this.state.tconst} />
+                <Form.Control type="hidden" name="cocktailId" value={this.state.cocktailId} />
                 <Button variant="success" type="submit">Save</Button>
               </Form.Group>
             </Form>
@@ -71,4 +71,4 @@ class AddMovie extends React.Component {
   }
 }
 
-export default AddMovie;
+export default AddCocktail;
