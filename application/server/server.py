@@ -115,15 +115,18 @@ def add(database, new_input):
     #     # inputName  = data['cocktailName']
     #     maxId_query = 'SELECT MAX(cocktailId) as max FROM CocktailRecipe'
 
-    max_id_query_result = conn.execute(max_id_query)
+    # max_id_query_result = conn.execute(max_id_query)
+    query_d = conn.execute(max_id_query)
+    result = [dict(zip(tuple(query_d.keys()), i)) for i in query_d.cursor]
 
-    for row in max_id_query_result:
-        maxDic = dict(row)
-    maxId = maxDic['max'] + 1
+    # for row in max_id_query_result:
+    #     maxDic = dict(row)
+    max_id = result[0]['max'] + 1
 
     query = ""
     if database == "Movie":
-        query = "INSERT INTO %s (tconst, title, Year, Rating, Crew, Genres) VALUES (%d , '%s', null, null, null, null)" % (database, maxId, new_input)
+        query = "INSERT INTO %s (tconst, title)" \
+                " VALUES (%s , '%s')" % (database, max_id, parse.unquote(new_input))
     # else:
     #     query = f"INSERT INTO {database} (`cocktailId`, `cocktailName`, `Ingredients`, `Bartender`, `Location`, `Rating`) VALUES ('{maxId}' , '{inputName}',`null`,`null`,v,`null`)"
 
