@@ -3,8 +3,8 @@ from flask import Flask, request, render_template
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 import json
-# from application.server.handle import *
-from handle import *
+from application.server.handle import *
+# from handle import *
 from flask import jsonify
 
 
@@ -99,35 +99,38 @@ def add(database, new_input):
     conn = eng.connect()
 
     max_id_query = ""
+    max_recipe_id_query = ""
+    max_recipe_id = ""
+
     if database == "Movie":
         max_id_query = 'SELECT MAX(tconst) as max FROM Movie'
+
     else:
         max_id_query = 'SELECT MAX(cocktailId) as max FROM CocktailName'
         max_recipe_id_query = 'SELECT MAX(recipeId) as max FROM CocktailRecipe'
 
-    
+        query_d = conn.execute(max_recipe_id_query)
+        result = [dict(zip(tuple(query_d.keys()), i)) for i in query_d.cursor]
+        max_recipe_id = result[0]['max'] + 1
 
     query_d = conn.execute(max_id_query)
     result = [dict(zip(tuple(query_d.keys()), i)) for i in query_d.cursor]
-    
     max_id = result[0]['max'] + 1
-
-    if database != "Movie":
-        query_d_recipe = conn.execute(max_recipe_id_query)
-        result_recipe = [dict(zip(tuple(query_d_recipe.keys()), i)) for i in query_d_recipe.cursor]
-        max_recipe_id = result_recipe[0]['max'] + 1
         
     query = ""
     if database == "Movie":
         query = "INSERT INTO %s (tconst, title)" \
                 " VALUES (%s , '%s')" % (database, max_id, parse.unquote(new_input))
+        conn.execute(query)
     else:
         query = "INSERT INTO CocktailName (cocktailId, cocktailName)" \
-                " VALUES (%s)" % (max_id, parse.unquote(new_input))
-        query = "INSERT INTO CocktailRecipe (recipeId)" \
-                " VALUES (%s)" % (max_recipe_id)
+                " VALUES (%s, '%s')" % (max_id, parse.unquote(new_input))
+        conn.execute(query)
 
-    conn.execute(query)
+        query = "INSERT INTO CocktailRecipe (recipeId)" \
+                " VALUES (%s)" % max_recipe_id
+        conn.execute(query)
+
     response = {'status': 'success', 'message': 'Product added successfully'}
     return response
 
