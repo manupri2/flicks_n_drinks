@@ -26,9 +26,9 @@ def home():
 	return render_template("./pages/home.html")
 
 
-@app.route("/login_signup.html")
+@app.route("/loginPage.html")
 def login():
-	return render_template("./pages/login_signup.html")
+	return render_template("./pages/loginPage.html")
 
 
 @app.route("/index")

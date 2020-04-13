@@ -6,7 +6,7 @@ const config = {
 	entry: {
 		"CRUDPage":__dirname + '/js/CRUDPage.jsx',
 		"navigation":__dirname + '/js/navigation.jsx',
-		"login_signup":__dirname + '/js/login-page.jsx',
+		"loginPage":__dirname + '/js/loginPage.jsx',
 		"home":__dirname + '/js/home.jsx',
 	},
 	output:{
