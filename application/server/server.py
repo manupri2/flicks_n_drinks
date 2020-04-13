@@ -3,8 +3,8 @@ from flask import Flask, request, render_template
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 import json
-from application.server.handle import *
-# from handle import *
+# from application.server.handle import *
+from handle import *
 from flask import jsonify
 
 
@@ -12,7 +12,7 @@ id_dict = {'CocktailName': 'cocktailId', 'CocktailRecipe': 'recipeId', 'Ingredie
 app = Flask(__name__, static_folder="../static/dist", template_folder="../static")
 CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://cs411ccsquad_admin:password;uiuc@localhost/cs411ccsquad_FlicksNDrinks'
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:oscarhuang1212@localhost/MP1'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:oscarhuang1212@localhost/MP1'
 
 db = SQLAlchemy(app)
 eng = db.engine
@@ -82,24 +82,15 @@ def cocktail_query(json_uri):
 def delete(database, item_id):
     if request.method == 'GET':
         conn = eng.connect()
-        # data = request.get_json()
-        # productId = data['product_id']
-        # database = data['database']
-        # if database == 'Movies':
 
         if database == 'Movie':
             result = query_data('SELECT * FROM Movie WHERE tConst = %s' % item_id, conn)
             query = 'DELETE FROM Movie WHERE tConst = %s' % item_id
         else:
             result = query_data('SELECT * FROM CocktailRecipe WHERE recipeId = %s' % item_id, conn)
-            query = 'DELETE FROM CocktailRecipe WHERE cocktailId = %s' % item_id
-
-        # else:
-        #     query = 'DELETE FROM CocktailName WHERE cocktailId = %s' %productId
-        # print(query)
+            query = 'DELETE FROM CocktailRecipe WHERE recipeId = %s' % item_id
 
         conn.execute(query)
-
         return result
 
 
@@ -109,26 +100,32 @@ def add(database, new_input):
 
     max_id_query = ""
     if database == "Movie":
-        # inputName  = data['tconst']
         max_id_query = 'SELECT MAX(tconst) as max FROM Movie'
-    # else:
-    #     # inputName  = data['cocktailName']
-    #     maxId_query = 'SELECT MAX(cocktailId) as max FROM CocktailRecipe'
+    else:
+        max_id_query = 'SELECT MAX(cocktailId) as max FROM CocktailName'
+        max_recipe_id_query = 'SELECT MAX(recipeId) as max FROM CocktailRecipe'
 
-    # max_id_query_result = conn.execute(max_id_query)
+    
+
     query_d = conn.execute(max_id_query)
     result = [dict(zip(tuple(query_d.keys()), i)) for i in query_d.cursor]
-
-    # for row in max_id_query_result:
-    #     maxDic = dict(row)
+    
     max_id = result[0]['max'] + 1
 
+    if database != "Movie":
+        query_d_recipe = conn.execute(max_recipe_id_query)
+        result_recipe = [dict(zip(tuple(query_d_recipe.keys()), i)) for i in query_d_recipe.cursor]
+        max_recipe_id = result_recipe[0]['max'] + 1
+        
     query = ""
     if database == "Movie":
         query = "INSERT INTO %s (tconst, title)" \
                 " VALUES (%s , '%s')" % (database, max_id, parse.unquote(new_input))
-    # else:
-    #     query = f"INSERT INTO {database} (`cocktailId`, `cocktailName`, `Ingredients`, `Bartender`, `Location`, `Rating`) VALUES ('{maxId}' , '{inputName}',`null`,`null`,v,`null`)"
+    else:
+        query = "INSERT INTO CocktailName (cocktailId, cocktailName)" \
+                " VALUES (%s)" % (max_id, parse.unquote(new_input))
+        query = "INSERT INTO CocktailRecipe (recipeId)" \
+                " VALUES (%s)" % (max_recipe_id)
 
     conn.execute(query)
     response = {'status': 'success', 'message': 'Product added successfully'}
@@ -139,91 +136,79 @@ def add(database, new_input):
 def edit(database, item_id, title):
     conn = eng.connect()
 
-    # if database == "Movie":
-    #     # inputName  = data['tconst']
-    #     maxId_query = 'SELECT MAX(tconst) as max FROM Movie'    
-    # # else:
-    # #     # inputName  = data['cocktailName']
-    # #     maxId_query = 'SELECT MAX(cocktailId) as max FROM CocktailRecipe'
-
-    # maxIdQueryResult = conn.execute(maxId_query)
-
-    # for row in maxIdQueryResult:
-    #     maxDic = dict(row)
-    # maxId = maxDic['max']+1
     query = ""
     if database == "Movie":
         query = "UPDATE Movie SET title = '%s' WHERE (tconst = %s)" % (parse.unquote(title), item_id)
-    # else:
-    #     query = f"INSERT INTO {database} (`cocktailId`, `cocktailName`, `Ingredients`, `Bartender`, `Location`, `Rating`) VALUES ('{maxId}' , '{inputName}',`null`,`null`,v,`null`)"
-
+    else:
+        query = "UPDATE CocktailName SET cocktailName = '%s' WHERE (cocktailId = %s)" % (parse.unquote(title), item_id)
+  
     conn.execute(query)
     response = {'status': 'success', 'message': 'Product edit successfully'}
     return jsonify(response)
 
 
 
-@app.route('/getProduct', methods=['POST'])
-def getProduct():
-    conn = eng.connect()
-    data = request.get_json()
-    productId = data['product_id']
-    query = 'SELECT * FROM CocktailName where cocktailId = %s' %productId
-    query_data = conn.execute(query)
+# @app.route('/getProduct', methods=['POST'])
+# def getProduct():
+#     conn = eng.connect()
+#     data = request.get_json()
+#     productId = data['product_id']
+#     query = 'SELECT * FROM CocktailName where cocktailId = %s' %productId
+#     query_data = conn.execute(query)
     
-    for row in query_data:
-        row_as_dict = dict(row)
+#     for row in query_data:
+#         row_as_dict = dict(row)
 
-    return row_as_dict
+#     return row_as_dict
 
 
-@app.route('/editProduct', methods = ['POST'])
-def editProduct():
+# @app.route('/editProduct', methods = ['POST'])
+# def editProduct():
     
-    data = request.get_json()
-    if(data!=None):
-        conn = eng.connect()    
-        productId = data['cocktailId']
-        productNewName = data['cocktailName']
-        print(productId)
-        print(productNewName)
+#     data = request.get_json()
+#     if(data!=None):
+#         conn = eng.connect()    
+#         productId = data['cocktailId']
+#         productNewName = data['cocktailName']
+#         print(productId)
+#         print(productNewName)
 
-        query = f"UPDATE `CocktailName` SET `cocktailName` = '{productNewName}' WHERE (`cocktailId` = '{productId}')"
+#         query = f"UPDATE `CocktailName` SET `cocktailName` = '{productNewName}' WHERE (`cocktailId` = '{productId}')"
         
-        print(query)
-        print("UPDATE `CocktailName` SET `cocktailName` = 'Mauritius Sour2' WHERE (`cocktailId` = '0')")
-        conn.execute(query)   
+#         print(query)
+#         print("UPDATE `CocktailName` SET `cocktailName` = 'Mauritius Sour2' WHERE (`cocktailId` = '0')")
+#         conn.execute(query)   
 
-        response={'status':'success', 'message':'Product updated successfully'}
-    else:
-        response = {'status':'error'}
+#         response={'status':'success', 'message':'Product updated successfully'}
+#     else:
+#         response = {'status':'error'}
 
-    return response
+#     return response
 
 
-@app.route('/createProduct', methods = ['POST'])
-def createProduct():
-    data = request.get_json()
-    if(data!=None):
+# @app.route('/createProduct', methods = ['POST'])
+# def createProduct():
+#     data = request.get_json()
+#     if(data!=None):
         
-        inputName  = data['cocktailName']
-        conn = eng.connect()
-        maxId_query = 'SELECT MAX(cocktailId) as max FROM CocktailName'
+#         inputName  = data['cocktailName']
+#         conn = eng.connect()
+#         maxId_query = 'SELECT MAX(cocktailId) as max FROM CocktailName'
 
-        maxIdQueryResult = conn.execute(maxId_query)
-        for row in maxIdQueryResult:
-            maxDic = dict(row)
-        maxId = maxDic['max']+1
+#         maxIdQueryResult = conn.execute(maxId_query)
+#         for row in maxIdQueryResult:
+#             maxDic = dict(row)
+#         maxId = maxDic['max']+1
         
-        query = f"INSERT INTO CocktailName(`cocktailId`, `cocktailName`) VALUES ('{maxId}' , '{inputName}')"
+#         query = f"INSERT INTO CocktailName(`cocktailId`, `cocktailName`) VALUES ('{maxId}' , '{inputName}')"
 
-        conn.execute(query)
-        response = {'status':'success', 'message':'Product added successfully'}
+#         conn.execute(query)
+#         response = {'status':'success', 'message':'Product added successfully'}
     
-    else:
-        response = {'status':'error'}
+#     else:
+#         response = {'status':'error'}
     
-    return response
+#     return response
 
 
 if __name__ == "__main__":
