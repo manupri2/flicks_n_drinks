@@ -119,7 +119,7 @@ def add(database, new_input):
 
     for row in max_id_query_result:
         maxDic = dict(row)
-    maxId = maxDic['max']+1
+    maxId = maxDic['max'] + 1
 
     query = ""
     if database == "Movie":

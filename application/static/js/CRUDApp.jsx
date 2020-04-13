@@ -50,7 +50,7 @@ class CRUDApp extends Component {
     if(this.state.isEditMovie){
       apiUrl += "edit/" + db + "/" + data.tconst.toString() + "/" + data.title;
     } else {
-      apiUrl += "/add/" + db;
+      apiUrl += "add/" + db + "/" + data.title;
     }
 
     //const myHeaders = new Headers();
@@ -65,7 +65,8 @@ class CRUDApp extends Component {
     fetch(apiUrl);
     this.setState({
           isAddMovie: false,
-          isEditMovie: false
+          isEditMovie: false,
+          isLoaded: false
         })
   }
 
