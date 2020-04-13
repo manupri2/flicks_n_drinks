@@ -127,8 +127,8 @@ def add(database, new_input):
                 " VALUES (%s, '%s')" % (max_id, parse.unquote(new_input))
         conn.execute(query)
 
-        query = "INSERT INTO CocktailRecipe (recipeId)" \
-                " VALUES (%s)" % max_recipe_id
+        query = "INSERT INTO CocktailRecipe (recipeId, cocktailId)" \
+                " VALUES (%s, %s)" % (max_recipe_id, max_id)
         conn.execute(query)
 
     response = {'status': 'success', 'message': 'Product added successfully'}
