@@ -45,9 +45,9 @@ def build_cocktail_query(json_dict):
             " CocktailRecipe.rating, CocktailName.cocktailName,\n" \
             " GROUP_CONCAT(DISTINCT Ingredient.ingredientName ORDER BY Ingredient.ingredientName DESC) AS ingredients\n" \
             "FROM CocktailRecipe\n" \
-            " FULL OUTER JOIN Composition ON CocktailRecipe.recipeId = Composition.recipeId\n" \
-            " FULL OUTER JOIN Ingredient ON Composition.ingredientId = Ingredient.ingredientId\n" \
-            " FULL OUTER JOIN CocktailName ON CocktailRecipe.cocktailId = CocktailName.cocktailId\n"
+            " LEFT OUTER JOIN Composition ON CocktailRecipe.recipeId = Composition.recipeId\n" \
+            " LEFT OUTER JOIN Ingredient ON Composition.ingredientId = Ingredient.ingredientId\n" \
+            " LEFT OUTER JOIN CocktailName ON CocktailRecipe.cocktailId = CocktailName.cocktailId\n"
 
     filter_str = build_filters(json_dict)
     where_clause_str = build_where_and(filter_str)
