@@ -5,12 +5,12 @@ class AddCocktail extends React.Component {
   constructor(props) {
     super(props);
     this.initialState = {
-      cocktailId: '',
-      cocktailName: '',
+      recipeId: '',
+      cocktailName: 'Test',
     }
 
-    if(props.product){
-      this.state = props.product
+    if(props.item){
+      this.state = props.item
     } else {
       this.state = this.initialState;
     }
@@ -38,10 +38,10 @@ class AddCocktail extends React.Component {
   render() {
 
     let pageTitle;
-    if(this.state.cocktailId>=0) {
-      pageTitle = <h2>Edit Product</h2>
+    if(this.state.recipeId>=0) {
+      pageTitle = <h2>Edit Cocktail</h2>
     } else {
-      pageTitle = <h2>Add Product</h2>
+      pageTitle = <h2>Add Cocktail</h2>
     }
 
     return(
@@ -57,10 +57,10 @@ class AddCocktail extends React.Component {
                   name="cocktailName"
                   value={this.state.cocktailName}
                   onChange={this.handleChange}
-                  placeholder="Cocktail Name"/>
+                  placeholder=""/>
               </Form.Group>
               <Form.Group>
-                <Form.Control type="hidden" name="cocktailId" value={this.state.cocktailId} />
+                <Form.Control type="hidden" name="recipeId" value={this.state.recipeId} />
                 <Button variant="success" type="submit">Save</Button>
               </Form.Group>
             </Form>

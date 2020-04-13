@@ -5,35 +5,8 @@ class CocktailList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      response: {}
+        response: {}
     }
-  }
-
-  deleteProduct(recipeId) {
-    const {cocktails} = this.state;
-
-    const apiUrl = 'http://localhost/dev/tcxapp/reactapi/deleteProduct';
-    const formData = new FormData();
-    formData.append('cocktailId', recipeId);
-
-    const options = {
-      method: 'POST',
-      body: formData
-    }
-
-    fetch(apiUrl, options)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            response: result,
-            cocktails: cocktails.filter(cocktail => cocktail.id !== id)
-          });
-        },
-        (error) => {
-          this.setState({ error });
-        }
-      )
   }
 
   render() {
@@ -74,7 +47,7 @@ class CocktailList extends React.Component {
                   <td>{cocktail.rating}</td>
                   <td>
                     <Button variant="info" onClick={() => this.props.editItem(cocktail.recipeId)}>Edit</Button>
-                    &nbsp;<Button variant="danger">Delete</Button>
+                    &nbsp;<Button variant="danger" onClick={() => this.props.deleteItem(cocktail.recipeId)}>Delete</Button>
                   </td>
                 </tr>
               ))}

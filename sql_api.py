@@ -80,7 +80,7 @@ if __name__ == "__main__":
     'User']
     # test_database_tables(table_list)
     # //////////////////////////////////////////////////////////////////////////////////////////////
-    
+
     query = """SELECT Movie.tconst, Movie.title, Movie.year, Movie.rating,
                  GROUP_CONCAT(DISTINCT Genre.genreName ORDER BY Genre.genreName DESC) AS genres,
                GROUP_CONCAT(DISTINCT People.name ORDER BY People.name DESC) AS crew

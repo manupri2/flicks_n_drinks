@@ -5,11 +5,9 @@ class MovieList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      response: {},
-      movies:[]
+        response: {}
     }
   }
-
 
   render() {
     const error = this.props.info.error;
@@ -48,8 +46,8 @@ class MovieList extends React.Component {
                   <td>{movie.crew}</td>
                   <td>{movie.genres}</td>
                   <td>
-                    <Button variant="info" onClick={() => this.props.editMovie(movie.tconst)}>Edit</Button>
-                    &nbsp;<Button variant="danger" onClick={() => this.props.deleteMovie(movie.tconst)}>Delete</Button>
+                    <Button variant="info" onClick={() => this.props.editItem(movie.tconst)}>Edit</Button>
+                    &nbsp;<Button variant="danger" onClick={() => this.props.deleteItem(movie.tconst)}>Delete</Button>
                   </td>
                 </tr>
               ))}

@@ -9,8 +9,8 @@ class AddMovie extends React.Component {
       title: 'Test',
     }
 
-    if(props.movie){
-      this.state = props.movie
+    if(props.item){
+      this.state = props.item
     } else {
       this.state = this.initialState;
     }
@@ -39,9 +39,9 @@ class AddMovie extends React.Component {
 
     let pageTitle;
     if(this.state.tconst>=0) {
-      pageTitle = <h2>Edit Product</h2>
+      pageTitle = <h2>Edit Movie</h2>
     } else {
-      pageTitle = <h2>Add Product</h2>
+      pageTitle = <h2>Add Movie</h2>
     }
 
     return(
@@ -57,7 +57,7 @@ class AddMovie extends React.Component {
                   name="title"
                   value={this.state.title}
                   onChange={this.handleChange}
-                  placeholder="placeholder"/>
+                  placeholder=""/>
               </Form.Group>
               <Form.Group>
                 <Form.Control type="hidden" name="tconst" value={this.state.tconst} />

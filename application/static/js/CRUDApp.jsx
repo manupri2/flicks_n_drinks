@@ -6,33 +6,34 @@ import MovieQueryForm from './MovieQueryForm';
 import CocktailList from './CocktailList';
 import CocktailQueryForm from './CocktailQueryForm';
 import AddMovie from './AddMovie';
+import AddCocktail from './AddCocktail';
 
 
 class CRUDApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-          isAddMovie: false,
+          isAddItem: false,
           error: null,
           isLoaded: true,
           response: {},
           database: "Movies",
           items: [],
           deleted_item: {},
-          movie: {},
+          curr_item: {},
           filters: {},
-          isEditMovie: false
+          isEditItem: false
         }
 
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.updateFilters = this.updateFilters.bind(this);
-    this.searchMovie = this.searchMovie.bind(this);
+    this.searchItems = this.searchItems.bind(this);
     this.changeDB = this.changeDB.bind(this);
-    this.deleteMovie = this.deleteMovie.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
   }
 
   onCreate() {
-    this.setState({ isAddMovie: true });
+    this.setState({ isAddItem: true });
   }
 
   updateFilters(new_filters) {
@@ -47,7 +48,7 @@ class CRUDApp extends Component {
     var db = this.state.database.slice(0, -1);
     var apiUrl = 'http://cs411ccsquad.web.illinois.edu/';
 
-    if(this.state.isEditMovie){
+    if(this.state.isEditItem){
       apiUrl += "edit/" + db + "/" + data.tconst.toString() + "/" + data.title;
     } else {
       apiUrl += "add/" + db + "/" + data.title;
@@ -64,19 +65,24 @@ class CRUDApp extends Component {
 
     fetch(apiUrl);
     this.setState({
-          isAddMovie: false,
-          isEditMovie: false,
+          isAddItem: false,
+          isEditItem: false,
           isLoaded: false
         })
   }
 
-  editMovie = tconst => {
+  editItem = item_id => {
 
         //const apiUrl = 'http://localhost/dev/tcxapp/reactapi/getProduct';
         //const formData = new FormData();
         //formData.append('tconst', tconst);
         var filter_info = Object.assign({}, this.state.filters);
-        filter_info['Movie.tconst'] = {value: tconst.toString(), operator: '=', label: ""};
+
+        if(this.state.database == "Movies"){
+            filter_info['Movie.tconst'] = {value: item_id.toString(), operator: '=', label: ""};
+        } else {
+            filter_info['CocktailRecipe.recipeId'] = {value: item_id.toString(), operator: '=', label: ""};
+        }
 
         var api_url = 'http://cs411ccsquad.web.illinois.edu/';
         var db = this.state.database
@@ -86,16 +92,16 @@ class CRUDApp extends Component {
         //const options = {
         //  method: 'POST',
          // body: formData
-        //}
+        //
 
         fetch(api_url)
           .then(res => res.json())
           .then(
             (result) => {
               this.setState({
-                movie: result.data[0],
-                isEditMovie: true,
-                isAddMovie: true
+                curr_item: result.data[0],
+                isEditItem: true,
+                isAddItem: true
               });
             },
             (error) => {
@@ -105,25 +111,25 @@ class CRUDApp extends Component {
       }
 
 
-  changeDB(new_db){
+  changeDB(new_db) {
 
         console.log(new_db);
 
         this.setState(state => ({
-                                  isAddMovie: false,
+                                  isAddItem: false,
                                   error: null,
                                   isLoaded: true,
                                   response: {},
                                   database: new_db,
                                   items: [],
-                                  movie: {},
+                                  curr_item: {},
                                   filters: {},
-                                  isEditMovie: false
+                                  isEditItem: false
                             }));
   }
 
 
-  searchMovie() {
+  searchItems() {
             var api_url = 'http://cs411ccsquad.web.illinois.edu/';
             var db = this.state.database
             var filters = encodeURI(JSON.stringify(this.state.filters));
@@ -152,10 +158,10 @@ class CRUDApp extends Component {
 
 
 
-  deleteMovie(tconst) {
+  deleteItem(item_id) {
     // const {movies} = this.state;
 
-    const apiUrl = 'http://cs411ccsquad.web.illinois.edu/delete/Movie/'+ tconst.toString();
+    const apiUrl = 'http://cs411ccsquad.web.illinois.edu/delete/' + this.state.database.slice(0, -1) + '/' + item_id.toString();
     // console.log(apiUrl)
 
     // const formData = new FormData();
@@ -195,12 +201,16 @@ class CRUDApp extends Component {
   }
 
   render() {
-    let movieForm;
-    if(this.state.isAddMovie || this.state.isEditMovie) {
-      movieForm = <AddMovie onFormSubmit={this.onFormSubmit} movie={this.state.movie} />
+    let itemForm;
+    if(this.state.isAddItem || this.state.isEditItem) {
+        if(this.state.database == "Movies") {
+            itemForm = <AddMovie onFormSubmit={this.onFormSubmit} item={this.state.curr_item} />
+        } else {
+            itemForm = <AddCocktail onFormSubmit={this.onFormSubmit} item={this.state.curr_item} />
+        }
     }
 
-    this.searchMovie();
+    this.searchItems();
 
     return (
       <div>
@@ -211,13 +221,14 @@ class CRUDApp extends Component {
 
         <Container>
           {this.state.response.status === 'success' && <div><br /><Alert variant="info">{this.state.response.message}</Alert></div>}
-          {!this.state.isAddMovie && <div class="text-right pr-0"><Button variant="primary" onClick={() => this.onCreate()}>Add {this.state.database.slice(0, -1)} <PlusCircle /></Button><br /><br /></div>}
-          {!this.state.isAddMovie && this.state.database == "Movies" && <MovieQueryForm updateFilters={this.updateFilters}/>}
-          {!this.state.isAddMovie && this.state.database == "Movies" && <MovieList editMovie={this.editMovie} deleteMovie={this.deleteMovie} info={this.state}/>}
-          {!this.state.isAddMovie && this.state.database == "Cocktails" && <CocktailQueryForm updateFilters={this.updateFilters}/>}
-          {!this.state.isAddMovie && this.state.database == "Cocktails" && <CocktailList editItem={this.editMovie} info={this.state}/>}
+          {!this.state.isAddItem && <div class="text-right pr-0"><Button variant="primary" onClick={() => this.onCreate()}>Add {this.state.database.slice(0, -1)} <PlusCircle /></Button><br /><br /></div>}
 
-          {movieForm}
+          {!this.state.isAddItem && this.state.database == "Movies" && <MovieQueryForm updateFilters={this.updateFilters}/>}
+          {!this.state.isAddItem && this.state.database == "Movies" && <MovieList editItem={this.editItem} deleteItem={this.deleteItem} info={this.state}/>}
+          {!this.state.isAddItem && this.state.database == "Cocktails" && <CocktailQueryForm updateFilters={this.updateFilters}/>}
+          {!this.state.isAddItem && this.state.database == "Cocktails" && <CocktailList editItem={this.editItem} deleteItem={this.deleteItem} info={this.state}/>}
+
+          {itemForm}
           {this.state.error && <div>Error: {this.state.error.message}</div>}
         </Container>
       </div>
