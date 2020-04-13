@@ -150,7 +150,7 @@ def edit(database, item_id, title):
     # maxId = maxDic['max']+1
     query = ""
     if database == "Movie":
-        query = "UPDATE Movie SET title = '%s' WHERE (tconst = %d)" % (parse.unquote(title), item_id)
+        query = "UPDATE Movie SET title = '%s' WHERE (tconst = %s)" % (parse.unquote(title), item_id)
     # else:
     #     query = f"INSERT INTO {database} (`cocktailId`, `cocktailName`, `Ingredients`, `Bartender`, `Location`, `Rating`) VALUES ('{maxId}' , '{inputName}',`null`,`null`,v,`null`)"
 
