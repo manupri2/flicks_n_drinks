@@ -31,7 +31,7 @@ def login():
 	return render_template("./pages/loginPage.html")
 
 
-@app.route("/index")
+@app.route("/CRUDPage.html")
 def crud():
 	return render_template("./pages/CRUDPage.html")
 
