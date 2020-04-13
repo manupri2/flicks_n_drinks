@@ -48,7 +48,7 @@ class CRUDApp extends Component {
 
     apiUrl = 'http://cs411ccsquad.web.illinois.edu/';
     if(this.state.isEditMovie){
-      apiUrl += "/edit/" + db + "/" + data.tconst.toString();
+      apiUrl += "/edit/" + db + "/" + data.tconst.toString() + "/" + data.title;
     } else {
       apiUrl += "/add/" + db;
     }
