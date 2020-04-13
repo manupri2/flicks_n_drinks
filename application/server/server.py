@@ -103,6 +103,67 @@ def delete(database, item_id):
         return result
 
 
+@app.route('/add/<database>/<input>')
+def add(database, input):
+    conn = eng.connect()
+
+    if database == "Movie":
+        # inputName  = data['tconst']
+        maxId_query = 'SELECT MAX(tconst) as max FROM Movie'    
+    # else:
+    #     # inputName  = data['cocktailName']
+    #     maxId_query = 'SELECT MAX(cocktailId) as max FROM CocktailRecipe'
+
+    maxIdQueryResult = conn.execute(maxId_query)
+
+    for row in maxIdQueryResult:
+        maxDic = dict(row)
+    maxId = maxDic['max']+1
+
+    if database == "Movie":
+        query = "INSERT INTO %s (`tconst`, `title`,`Year`, `Rating`, `Crew`, `Genres`) VALUES ('%d' , '%s', `null`,`null`,`null`,`null`)" % (database, maxId, input )
+    # else:
+    #     query = f"INSERT INTO {database} (`cocktailId`, `cocktailName`, `Ingredients`, `Bartender`, `Location`, `Rating`) VALUES ('{maxId}' , '{inputName}',`null`,`null`,v,`null`)"
+
+    conn.execute(query)
+
+    response = {'status':'success', 'message':'Product added successfully'}
+    return response
+
+
+
+
+@app.route('/edit/<database>/<id>/<title>')
+def add(database, id, title):
+    conn = eng.connect()
+
+    # if database == "Movie":
+    #     # inputName  = data['tconst']
+    #     maxId_query = 'SELECT MAX(tconst) as max FROM Movie'    
+    # # else:
+    # #     # inputName  = data['cocktailName']
+    # #     maxId_query = 'SELECT MAX(cocktailId) as max FROM CocktailRecipe'
+
+    # maxIdQueryResult = conn.execute(maxId_query)
+
+    # for row in maxIdQueryResult:
+    #     maxDic = dict(row)
+    # maxId = maxDic['max']+1
+
+    if database == "Movie":
+        query = "UPDATE Movie SET title = '%s' WHERE (tconst = %d)" % (title, id)
+    # else:
+    #     query = f"INSERT INTO {database} (`cocktailId`, `cocktailName`, `Ingredients`, `Bartender`, `Location`, `Rating`) VALUES ('{maxId}' , '{inputName}',`null`,`null`,v,`null`)"
+
+    conn.execute(query)
+
+    response = {'status':'success', 'message':'Product edit successfully'}
+    return response
+
+
+
+
+
 @app.route('/getProduct', methods=['POST'])
 def getProduct():
     conn = eng.connect()
