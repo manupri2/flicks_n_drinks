@@ -45,9 +45,9 @@ def build_cocktail_query(json_dict):
             " CocktailRecipe.rating, CocktailName.cocktailName,\n" \
             " GROUP_CONCAT(DISTINCT Ingredient.ingredientName ORDER BY Ingredient.ingredientName DESC) AS ingredients\n" \
             "FROM CocktailRecipe\n" \
-            " INNER JOIN Composition ON CocktailRecipe.recipeId = Composition.recipeId\n" \
-            " INNER JOIN Ingredient ON Composition.ingredientId = Ingredient.ingredientId\n" \
-            " INNER JOIN CocktailName ON CocktailRecipe.cocktailId = CocktailName.cocktailId\n"
+            " FULL OUTER JOIN Composition ON CocktailRecipe.recipeId = Composition.recipeId\n" \
+            " FULL OUTER JOIN Ingredient ON Composition.ingredientId = Ingredient.ingredientId\n" \
+            " FULL OUTER JOIN CocktailName ON CocktailRecipe.cocktailId = CocktailName.cocktailId\n"
 
     filter_str = build_filters(json_dict)
     where_clause_str = build_where_and(filter_str)
@@ -62,10 +62,10 @@ def build_movie_query(json_dict):
             " GROUP_CONCAT(DISTINCT Genre.genreName ORDER BY Genre.genreName DESC) AS genres,\n" \
             " GROUP_CONCAT(DISTINCT People.name ORDER BY People.name DESC) AS crew\n" \
             "FROM Movie\n" \
-            " INNER JOIN MovieCategory ON Movie.tconst = MovieCategory.tconst\n" \
-            " INNER JOIN Genre ON MovieCategory.genreId = Genre.genreId\n" \
-            " INNER JOIN Crew ON Movie.tconst = Crew.tconst\n" \
-            " INNER JOIN People ON Crew.nconst = People.nconst\n"
+            " FULL OUTER JOIN MovieCategory ON Movie.tconst = MovieCategory.tconst\n" \
+            " FULL OUTER JOIN Genre ON MovieCategory.genreId = Genre.genreId\n" \
+            " FULL OUTER JOIN Crew ON Movie.tconst = Crew.tconst\n" \
+            " FULL OUTER JOIN People ON Crew.nconst = People.nconst\n"
 
     filter_str = build_filters(json_dict)
     where_clause_str = build_where_and(filter_str)
