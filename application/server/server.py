@@ -148,18 +148,15 @@ def edit(database, item_id, title):
     # for row in maxIdQueryResult:
     #     maxDic = dict(row)
     # maxId = maxDic['max']+1
-
+    query = ""
     if database == "Movie":
         query = "UPDATE Movie SET title = '%s' WHERE (tconst = %d)" % (parse.unquote(title), item_id)
     # else:
     #     query = f"INSERT INTO {database} (`cocktailId`, `cocktailName`, `Ingredients`, `Bartender`, `Location`, `Rating`) VALUES ('{maxId}' , '{inputName}',`null`,`null`,v,`null`)"
 
-    query = ""
     conn.execute(query)
     response = {'status': 'success', 'message': 'Product edit successfully'}
-    return response
-
-
+    return jsonify(response)
 
 
 

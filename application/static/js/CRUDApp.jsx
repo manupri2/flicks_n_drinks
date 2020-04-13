@@ -70,14 +70,12 @@ class CRUDApp extends Component {
   }
 
   editMovie = tconst => {
-        console.log(tconst.toString());
+
         //const apiUrl = 'http://localhost/dev/tcxapp/reactapi/getProduct';
         //const formData = new FormData();
         //formData.append('tconst', tconst);
         var filter_info = Object.assign({}, this.state.filters);
         filter_info['Movie.tconst'] = {value: tconst.toString(), operator: '=', label: ""};
-
-        console.log(JSON.stringify(filter_info));
 
         var api_url = 'http://cs411ccsquad.web.illinois.edu/';
         var db = this.state.database
