@@ -8,6 +8,11 @@ import CocktailQueryForm from './CocktailQueryForm';
 import AddMovie from './AddMovie';
 import AddCocktail from './AddCocktail';
 
+// just some scrap code i want to keep around as i think it may be useful
+// can put put it inside "componentDidMount()" for a component class and it will run this.test_Query() every 5000 ms
+// this will be useful for any auto update functions (i.e. showing a ticking clock):
+//
+// this.timerID = setInterval(() => this.test_Query(), 5000);
 
 class CRUDApp extends Component {
   constructor(props) {
@@ -48,11 +53,18 @@ class CRUDApp extends Component {
     var db = this.state.database.slice(0, -1);
     var apiUrl = 'http://cs411ccsquad.web.illinois.edu/';
 
-    if(this.state.isEditItem){
+
+    if(this.state.isEditItem && this.state.database == "Movies"){
       apiUrl += "edit/" + db + "/" + data.tconst.toString() + "/" + data.title;
-    } else {
+    } else if (!this.state.isEditItem && this.state.database == "Movies") {
       apiUrl += "add/" + db + "/" + data.title;
+
+    } else if (this.state.isEditItem && this.state.database == "Cocktails") {
+      apiUrl += "edit/" + db + "/" + data.recipeId.toString() + "/" + data.cocktailName;
+    } else if (!this.state.isEditItem && this.state.database == "Cocktails") {
+      apiUrl += "add/" + db + "/" + data.cocktailName;
     }
+
 
     //const myHeaders = new Headers();
     //myHeaders.append('Content-Type', 'application/json');

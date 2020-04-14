@@ -9,11 +9,12 @@ from sql_api import api_query
 
 
 # ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-# grab raw data
+# load matrix mapping peronality traits to genres
 movie_trait_matrix = pd.read_csv('./static/MovieTraitMatrix.csv')
 new_traits = np.array(movie_trait_matrix['trait_name'])
 new_traits[0::2] = new_traits[0::2] + 'H'
 new_traits[1::2] = new_traits[1::2] + 'L'
+
 movie_trait_matrix['trait_name'] = pd.Series(new_traits)
 movie_trait_matrix.set_index('trait_name', inplace=True)
 print(movie_trait_matrix)
@@ -21,19 +22,21 @@ print(movie_trait_matrix)
 query = 'SELECT Movie.tConst FROM Movie'
 movie_ids, code = api_query(query)
 
+# bring in all movies and their ratings
 query = 'SELECT Movie.tConst, Movie.rating FROM Movie'
 ratings, code3 = api_query(query)
 ratings.set_index('tConst', inplace=True)
 
+# bring in all movies and their corresponding genres
 query = 'SELECT MovieCategory.tConst, Genre.genreName' \
         ' FROM MovieCategory' \
         ' INNER JOIN Genre ON MovieCategory.genreId = Genre.genreId'
 movie_cat, code2 = api_query(query)
 movie_cat.set_index('tConst', inplace=True)
 # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-# initialize size of dataset
-num_users = 300
-num_movies = 200
+# initialize size of dataset of 60,000 total records
+num_users = 300  # 300 users with randomized personality traits
+num_movies = 200  # randomly assign 200 movies to each user
 total_num_movies = movie_ids.shape[0]
 
 traits = ['Openness', 'Conscientiousness', 'Extraversion', 'Agreeableness', 'Neuroticism']
@@ -49,18 +52,20 @@ training_set = np.concatenate([user_ids, ri_movies], axis=1)
 training_set = pd.DataFrame(training_set, columns=cols)
 print(training_set)
 # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# grab genres from the corresponding random movie id's tht were assigned
 training_set['tConst'] = training_set.loc[:, 'movie_i'].apply(lambda x: movie_ids['tConst'][x])
 training_set = training_set.join(movie_cat, on='tConst', how='inner')
 training_set = training_set.join(user_traits, on='user_id', how='inner')
 training_set.sort_values('user_id', inplace=True)
 training_set.reset_index(drop=True, inplace=True)
 print(training_set)
-# /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 genre_df = movie_trait_matrix.T
 training_set = training_set.join(genre_df, on='genreName', how='inner')
 training_set.sort_index(inplace=True)
 print(training_set)
-
+# /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# interpolate probabilties based on the manufactured personality trait to genre matrix
 prob_traits = np.array(pd.Series(np.array(traits)))
 prob_traits = 'prob' + prob_traits
 prob = pd.DataFrame()
@@ -80,7 +85,8 @@ for trait in traits:
 print(prob)
 training_set['prob'] = prob.mean(axis=1)
 
-# calculate original statistics
+# calculate original mean, std dev, and z score of the distribution
+# (probability user will like random movie based solely on their personality traits and the movie's genres)
 final_df = training_set.loc[:, ['user_id', 'tConst', 'prob']]
 final_df = final_df.groupby(['user_id', 'tConst']).mean()
 avg = final_df['prob'].mean()
@@ -89,7 +95,7 @@ print('Avg: %s' % repr(avg))
 print('Std: %s' % repr(std))
 final_df['z_score'] = (final_df['prob'] - avg) / std
 
-# adjusted distribution to fit the parameters below
+# adjust the distribution to fit the parameters below
 target_avg = 0.50
 target_std = 0.23
 final_df['new_prob'] = final_df['z_score'] * target_std + target_avg
@@ -104,7 +110,7 @@ mask = final_df['new_prob'] < 0
 final_df.loc[idx[mask], 'new_prob'] = 0
 print(final_df)
 
-# add originally ratings for comparison
+# add original ratings for comparison
 final_df = final_df.join(ratings, on='tConst', how='inner')
 print(final_df)
 final_df.to_csv('./trainingSet/MovieTraitTrainingSet.csv')

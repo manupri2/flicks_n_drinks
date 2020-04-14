@@ -19,8 +19,6 @@ eng = db.engine
 
 # ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 # page routes
-
-
 @app.route("/")
 def home():
 	return render_template("./pages/home.html")
@@ -35,15 +33,8 @@ def login():
 def crud():
 	return render_template("./pages/CRUDPage.html")
 
-
-@app.route("/stageFour")
-def stageFour():
-	return render_template("stage4Page.html")
-
 # ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 # API routes
-
-
 @app.route('/<table_name>', methods=['GET'])
 def basic_api(table_name):
     conn = eng.connect()
@@ -60,30 +51,28 @@ def api_sql(query_uri):
         return query_data(query, conn)
 
 
-@app.route('/Movies/<json_uri>', methods=['GET'])
-def movie_query(json_uri):
+# client passes JSON file of filters and their values
+@app.route('/read/<table>/<json_uri>', methods=['GET'])
+def movie_query(table, json_uri):
     conn = eng.connect()
     if request.method == 'GET':
         json_dict = json.loads(parse.unquote(json_uri))
-        query = build_movie_query(json_dict)
+
+        if table == "Movies":
+            query = build_movie_query(json_dict)
+        else:
+            query = build_cocktail_query(json_dict)
+
         return query_data(query, conn)
 
 
-@app.route('/Cocktails/<json_uri>', methods=['GET', 'POST'])
-def cocktail_query(json_uri):
-    conn = eng.connect()
-    if request.method == 'GET':
-        json_dict = json.loads(parse.unquote(json_uri))
-        query = build_cocktail_query(json_dict)
-        return query_data(query, conn)
-
-
-@app.route('/delete/<database>/<item_id>', methods=['GET'])
-def delete(database, item_id):
+# client passes JSON file of filters and their values
+@app.route('/delete/<table>/<item_id>', methods=['GET'])
+def delete(table, item_id):
     if request.method == 'GET':
         conn = eng.connect()
 
-        if database == 'Movie':
+        if table == 'Movie':
             result = query_data('SELECT * FROM Movie WHERE tConst = %s' % item_id, conn)
             query = 'DELETE FROM Movie WHERE tConst = %s' % item_id
         else:
@@ -94,15 +83,15 @@ def delete(database, item_id):
         return result
 
 
-@app.route('/add/<database>/<new_input>')
-def add(database, new_input):
+@app.route('/add/<table>/<new_input>', methods=['GET'])
+def add(table, new_input):
     conn = eng.connect()
 
     max_id_query = ""
     max_recipe_id_query = ""
     max_recipe_id = ""
 
-    if database == "Movie":
+    if table == "Movie":
         max_id_query = 'SELECT MAX(tconst) as max FROM Movie'
 
     else:
@@ -118,9 +107,9 @@ def add(database, new_input):
     max_id = result[0]['max'] + 1
         
     query = ""
-    if database == "Movie":
+    if table == "Movie":
         query = "INSERT INTO %s (tconst, title)" \
-                " VALUES (%s , '%s')" % (database, max_id, parse.unquote(new_input))
+                " VALUES (%s , '%s')" % (table, max_id, parse.unquote(new_input))
         conn.execute(query)
     else:
         query = "INSERT INTO CocktailName (cocktailId, cocktailName)" \
@@ -135,12 +124,12 @@ def add(database, new_input):
     return response
 
 
-@app.route('/edit/<database>/<item_id>/<title>')
-def edit(database, item_id, title):
+@app.route('/edit/<table>/<item_id>/<title>', methods=['GET'])
+def edit(table, item_id, title):
     conn = eng.connect()
 
     query = ""
-    if database == "Movie":
+    if table == "Movie":
         query = "UPDATE Movie SET title = '%s' WHERE (tconst = %s)" % (parse.unquote(title), item_id)
     else:
         query = "UPDATE CocktailName SET cocktailName = '%s' WHERE (cocktailId = %s)" % (parse.unquote(title), item_id)
@@ -148,7 +137,6 @@ def edit(database, item_id, title):
     conn.execute(query)
     response = {'status': 'success', 'message': 'Product edit successfully'}
     return jsonify(response)
-
 
 
 # @app.route('/getProduct', methods=['POST'])
@@ -213,8 +201,5 @@ def edit(database, item_id, title):
     
 #     return response
 
-
 if __name__ == "__main__":
-	app.run()
-
-
+    app.run()
