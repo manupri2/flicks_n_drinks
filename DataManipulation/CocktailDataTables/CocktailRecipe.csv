@@ -1,0 +1,1286 @@
+recipeId,cocktailId,bartender,company,location,glasswareId,instruction,votes,rating
+0,432,Kelly McCarthy,,Boston,0,"*Hibiscus Simple Syrup:
+1:1 w/ a cup of dried hibiscus steeping for 30-40 min",0,0
+1,31,Elizabeth Montana,Forgery & Verso,San Francisco,0,"*House-made Cranberry syrup: 
+-- 2 cups Fresh Cranberries
+-- 1 cup Sugar
+-- 1 cup Water
+-- 2 Bay Leaves
+-- .25 cup Pink Peppercorns
+-- Half Serrano Chile
+-- 4 Sprigs Fresh Rosemary
+
+Add all ingredients to a pot and heat thoroughly. Simmer on low until cranberries cook down for 25 minutes. Strain and let cool.",0,0
+2,120,Jon Morales,,San Francisco,29,"*Pineapple Gomme: 
+Mix equal parts (1.5 cups) gum arabic with water over high heat until it all mixes and then let cool for a bit. Then you're gonna make a sugar syrup with 2 parts sugar, 1 part water (4 cups water, 2 cups white granulated sugar) in the same manner over high heat until it mixes, and then add the gum syrup to the mix until everything dissolves and what you're left with is a thick gummy syrup that resembles a whole lot of baby batter. Then cut up 1.5 cups of pineapple chunks, put in mason jar, and pour the gum syrup over it and let it sit in the refrigerator over night. A few hours would work also if you don't have that much time. However, the more time, the more pineapple infusion takes place. When it's ready, strain into another mason jar or bottle, and it's ready to go.",0,0
+3,528,Daniel Braganca,Backbar,Somerville,0,"*Pineapple Syrup:
+<em>Equal parts pineapple blended with water and sugar and strained</em>",0,0
+4,532,Nik Virrey,,Seattle,0,"1st glass ingredients:
+Luxardo Maraschino, Acid Phosphate
+
+2nd glass ingredients:
+BarSol Quebranta Pisco, Luxardo Amaro Abano, Luxardo Fernet, Scrappy's Aromatic Bitters",0,0
+5,584,Kevin Diedrich,Pacific Cocktail Haven,San Francisco,27,"Add 6-8 sugar snap peas to cocktail shaker. Lightly muddle the peas. Add all other ingredients except for the tonic. Shake and double strain into a collins glass. Top with tonic. 
+
+*House-made Simple Syrup: 
+-- 1 cup Sugar
+-- 1 cup Water
+
+Add equal parts sugar and water into a small saucepan, bring to a boil; simmer until the sugar is dissolved, approximately 3 minutes. Remove from heat, let cool to room temperature and transfer to a clean glass jar. Cover and keep refrigerated for up to 2 weeks.",0,0
+6,538,Phillip Ricafort,American Oak,Alameda,16,"Add all ingredients and dry-shake (without ice), then add ice, and shake again. Strain into coupe and garnish with rhubarb bitters.",0,0
+7,7,Jon Ruiz,AMK Kitchen Bar,Chicago,5,"Add all ingredients except beer into shaker tin, shake vigorously for 10 seconds. Add beer in shaker tin then double strain into tin cup. Add mint for garish.",0,0
+8,32,Dale DeGroff,,,39,"Add all ingredients except the champagne to a mixing glass and fill with ice. Stir, and strain into a martini glass. Fill with champagne and garnish with a flamed orange peel.",0,0
+9,162,Ian Julian,,New Orleans,43,Add all ingredients except the whip cream and ginger snap. Shake and double into a rocks glass with no ice. Top with marshmallow whip cream. Garnish with Ginger snap crumbles.,0,0
+10,246,Danny Louie,Mister Jiu's,San Francisco,16,"Add all ingredients in a cocktail shaker, shake, fine strain into a chilled coupe or martini glass. Garnish with edible flower.
+
+*Jasmine Tea/Rice-Infused Junipero Gin:
+-- 1 bottle (750ml) Junípero gin
+-- .5 cup Jasmine Tea
+-- .5 cup Jasmine Rice (wash rice to eliminate starch)
+
+Sous Vide Version: Wash the jasmine rice to clean out the starch. Fill container with hot water. Set sous vide at 52c. Add vacuum seal bag with jasmine tea/rice in bath. Let sit in bath for 45 minutes. Take the bag out of bath and sit it in ice bath for 15 minutes. Open bag and fine strain back into bottle.
+
+Infusion Version: Wash the jasmine rice to clean out the starch. In a cambro/mason jar, add Junípero gin and jasmine tea and rice. Let infuse for 24 hours. Fine strain into bottle.
+
+**House-made Honey Syrup: 
+
+Put equal parts of honey (10 oz) and water (10 oz) in a saucepan. Boil, then turn down to a simmer and stir until the honey is completely dissolved.",0,0
+11,119,Ken Luciano,The Forgery,San Francisco,65,Add all ingredients in a mixing glass and stir with ice. Strain into a Nick & Nora coupe. Garnish with a ghost orange twist.,0,0
+12,110,Caterina Miltenberger,,,65,Add all ingredients in a mixing glass with fresh ice. Shake vigorously and strain into a Nick & Nora glass. Garnish with lime pinwheel and bing cherry.,0,0
+13,161,Caterina Miltenberger,,,65,"Add all ingredients in a mixing glass with fresh ice. Shake vigorously and strain into a Nick & Nora glass. Garnish with lime pinwheel and bing cherry.
+",0,0
+14,560,Caterina Miltenberger,,,65,Add all ingredients in a mixing glass with fresh ice. Shake vigorously and strain into a Nick & Nora glass. Garnish with orange slice and 1 bar spoon juniper berries.,0,0
+15,74,Caterina Miltenberger,,,0,Add all ingredients in a mixing glass with fresh ice. Shake vigorously and strain over fresh ice. Garnish with Luxardo Cherry.,0,0
+16,209,Jose Pereiro,Drift Fish House & Oyster Bar,Atlanta,53,"Add all ingredients in mixing glass, stir and strain over 2x2 ice cube in smoked glass on hickory board. Garnish with orange peel and clothes pin.",0,0
+17,362,,,,0,Add all ingredients into a cocktail shaker. Shake and double strain into a glass. Garnish with a sprig of mint.,0,0
+18,328,,,,29,Add all ingredients into a punch bowl or pitcher and stir. Add lemon wheels and strawberries to garnish.,0,0
+19,347,Kevin Diedrich,,,43,Add all ingredients into a punch bowl. Serve in small rocks glasses.,0,0
+20,271,Matt Grippo,Blackbird,San Francisco,16,"Add all ingredients into a shaker with ice, shake furiously. Fine strain into chilled coupe. Garnish with a lemon twist.",0,0
+21,66,Kate KaiKaew,Osha,San Francisco,43,Add all ingredients into a shaker with ice. Shake. Strain over fresh ice into a rocks glass. Garnish with star anise and two slices lemongrass.,0,0
+22,421,Elmer Mejicano,Tony's Pizza Napoletana,San Francisco,27,"Add all ingredients into a shaker, shake strain into a collins glass, fill with crushed ice, garnish with mint leaves.",0,0
+23,165,Kate Grutman,,,16,"Add all ingredients into shaking tin. Add ice cubes to tin. Shake vigorously and strain into coupe. Garnish with Luxardo Maraschino Cherry.
+",0,0
+24,478,,,,0,Add all ingredients over ice. Stir with a barspoon. Squeeze lemon wedges and add blackberries.,0,0
+25,512,,,,15,"Add all ingredients to a mixing glass and stir for 15-20 seconds. Strain into a highball filled with fresh ice.
+",0,0
+26,392,,,,16,Add all ingredients to a mixing glass filled with ice. Stir until cold and strain into a chilled coupe.,0,0
+27,90,Naomi Levy,Eastern Standard,Boston,15,Add all ingredients to a mixing glass. Add ice and integration shake. Pour over fresh ice into a highball and top with California Lager. Garnish with a half orange wheel.,0,0
+28,561,Chris Morris,,Houston,65,Add all ingredients to a mixing glass. Stir until thoroughly chilled (~30 seconds). Strain into a chilled cocktail glass. Serve with one big rock. Garnish with an expressed orange swath.,0,0
+29,476,Toby Cecchini,,,46,Add all ingredients to a shaker and fill with ice. Shake vigorously and strain into chilled stemmed cordial glass. Garnish with cocktail cherry and lemon twist.,0,0
+30,196,,,,16,"Add all ingredients to a shaker and fill with ice. Shake, and strain into a chilled coupe glass.",0,0
+31,615,Scott Baird,The Bon Vivants,San Francisco,16,Add all ingredients to a shaker and shake well without ice to emulsify the egg white. Add ice and shake hard until the drink is chilled. Strain through a fine-mesh strainer into a chilled coupe and garnish.,0,0
+32,228,Calvin Marty,Best Intentions,Chicago,36,"Add all ingredients to a shaker and shake with ice, then double strain into a cocktail glass. Garnish with a celery leaf.",0,0
+33,146,,,,39,"Add all ingredients to a shaker, add ice, shake and strain into a martini glass garnish with a Luxardo Cherry.",0,0
+34,124,Luis Hernandez,White Oak Tavern,New York,0,Add all ingredients to blender and blend throughly. Double strain into a glass with cracked ice garnish with a mint sprig and fresh grated nutmeg.,0,0
+35,277,Matt Grippo,Blackbird,San Francisco,36,"Add all ingredients to tin and dry shake. Add ice and vigorously shake for 12 seconds. Fine strain into chilled cocktail glass. Garnish by sprinkling matcha powder (.25 tsp). 
+
+*Rich Simple Syrup: 
+-- 2 cups Granulated Sugar
+-- 1 cup Water
+
+Combine sugar and water in a small saucepan over medium heat and stir until sugar dissolves. Remove from heat, let cool to room temperature and transfer to a clean glass jar. Cover and keep refrigerated for up to 2 weeks.",0,0
+36,355,David Ruiz,Padrecito,San Francisco,0,Add all ingredients together.,0,0
+37,294,,,,20,Add all liquid ingredients into a cocktail shaker with ice. Shake well and strain into an ice filled white wine glass. Garnish by adding pineapple chunks and Luxardo Cherry.,0,0
+38,498,Paul Sauter,Tippling Hall,Chicago,27,"Add all of the ingredients, except seeds, to a shaker with ice and shake well. Double strain onto fresh ice into a collins glass. Garnish with 1 spoon of passion fruit seeds.
+
+*Pilon Syrup:
+Homemade 50/50 simple syrup using Pilon Sugar made from Mexican Sugar Cane.",0,0
+39,95,Tony Abou-Ganim,,,36,Add all the ingredients to a mixing glass and fill with ice. Stir until well chilled and strain into a chilled cocktail glass. Garnish with a flamed orange twist.,0,0
+40,402,,,,0,"Add all the ingredients to a mixing glass and fill with ice. Stir, and strain into a chilled cocktail glass. Garnish with a Luxardo Cherry.",0,0
+41,458,Jay Zimmerman,,,36,"Add all the ingredients to a mixing glass and fill with ice. Stir, and strain into a cocktail glass. Garnish with a slice of orange peel.",0,0
+42,201,Brian Miller,,,39,"Add all the ingredients to a mixing glass and fill with ice. Stir, and strain into a martini glass. Garnish with an apple slice.",0,0
+43,573,Franky Marshall,,,20,"Add all the ingredients to a mixing glass and fill with ice. Stir, and strain into a small wine or cocktail glass. Twist a slice of lemon peel over the drink and use as garnish.",0,0
+44,668,Jared Schubert,,,57,"Add all the ingredients to a mixing glass and fill with ice. Stir, and strain into an old fashioned glass filled with fresh ice. Garnish with a Luxardo Cherry and an orange slice or twist.",0,0
+45,574,Jim Meehan,,,16,"Add all the ingredients to a shaker and fill with ice. Shake, and strain into a chilled coupe glass filled with crushed ice.",0,0
+46,676,Phil Ward,,,16,"Add all the ingredients to a shaker and fill with ice. Shake, and strain into a coupe glass.
+
+*Pineapple-Infused Mezcal:
+Peel, core and chop a whole pineapple into 1-inch cubes. Add to a large jar or other container with a lid, and add a 750-mL bottle of mezcal. Let stand for 5 days and strain before using.",0,0
+47,154,David Ruiz,Harper & Rye,San Francisco,16,"Add cognac, amaro, lemon, strawberry syrup and fresh cracked egg white of a whole egg to tin. Dry shake without ice approx. 5 seconds to emulsify. Add ice and shake hard again approx. 10 seconds. Fine strain into coupe. Crack drag black pepper over surface. Serve and enjoy.
+
+*Strawberry syrup- 1 cup fresh strawberries 1 cup water 1cup sugar. Blend in vitamix then heat on stove and stir until hot to bind sugars, don't boil. Bottle and refrigerate.",0,0
+48,223,Matthew Polzin,The Olde Bar,Philadelphia,43,"Add cognac, rye, Chartreuse and bitters to a mixing glass with ice, and stir until cold. Add splash of fernet to a rocks glass, roll the glass to coat the sides, and discard the excess. Add one large ice cube to the glass, strain the drink over the cube, and garnish with a mint sprig.",0,0
+49,468,Ryan Chetiyawardana,,,15,"Add cubed ice to a highball, add 2 dashes of Angostura Bitters, top with ginger beer, garnish with a sprig of basil.",0,0
+50,230,,,,0,Add first three ingredients to a mixing glass with shaker and lightly shake with ice. Pour mixture into a Collins or highball glass over ice. Top with Mexican Coke (or any coca cola as a substitute) and pour Luxardo Fernet on top to float. Garnish with a lime wheel and fresh mint sprig.,0,0
+51,511,,,,27,"Add gin, lemon juice, maraschino liqueur, and liqueur de violette to a collins glass filled with ice. Add tonic water; stir to combine. Garnish with a lemon wheel.",0,0
+52,652,Caterina Miltenberger,,,0,"Add ingredients in a mixing glass with fresh ice. Shake vigorously strain over fresh ice. Garnish with lemon peel to fit in glass and 1 dash of Abbott's Aromatic Bitters. Optional sugar rim.
+",0,0
+53,265,,,,27,"Add ingredients to a mixing glass except club soda. Shake over ice, strain over ice into a collins glass, top with club soda. Garnish with a lemon wedge and candied ginger on a pick.",0,0
+54,333,Christopher Buono,Walter Foods,Brooklyn,40,"Add ingredients to a mug and stir.
+
+*Honey-Ginger Syrup:
+Combine 1 part ginger with 2 parts honey and 1 cup of water and boil. Reduce heat and simmer for 5 mins. Strain and discard solids.
+
+**Ghost-Pepper-Infused Campari:
+Soak 1 ghost pepper in a 16 oz. bottle of Campari for up to 24 hrs (reduce infusion time to reduce heat).
+
+***Cinnamon Tincture:
+Soak 3 cinnamon sticks in 16 oz. of any neutral grain alcohol that is high proof (regular 80-proof vodka is great) for up to 14 days. Strain and discard the sticks.",0,0
+55,508,Natasha Bahrami,The Gin Room,St. Louis,62,"Add Junipero Gin and botanicals first. Add ice and follow with a bold tonic. Top with additional botanicals/garnish for presentation.
+
+*Assorted Complementing Botanicals: Orange, Star Anise, Rose Petals, Italian Juniper",0,0
+56,67,,,,15,Add pisco and lime juice into a highball glass filled with ice. Pour ginger ale into the glass to top. Add 2-3 drops of bitters. Garnish with lime wheel.,0,0
+57,380,,,,0,"Add room temperature Creme de Cassis to the glass first, followed by the Champagne.",0,0
+58,111,,,,0,"Add room temperature Creme de Cassis to the glass first, followed by the wine.",0,0
+59,307,,,,49,"Add soda to bucket first, then add spirits and mixers. Top with ice and garnish.",0,0
+60,598,,,,27,Add spirits and bitters to collins glass. Add large ice cubes and fill with club soda. Garnish with orange peel (or lemon peel).,0,0
+61,191,,,,31,"Add the Cherry Liqueur to a flute, top with Prosecco, and garnish with a Luxardo Maraschino Cherry.",0,0
+62,341,Jim Meehan,PDT ,New York,0,"Add the cucumber, mint and simple syrup to a mixing glass and muddle. Add everything else, then shake with ice and strain into a Collins glass filled with ice. Garnish with a mint sprig poking through a cucumber wheel.",0,0
+63,72,,,,55,"Add vodka and lime juice to drinking glass, add ice, and top with ginger beer. Garnish with a lime.",0,0
+64,455,Brian Means,Dirty Habit,San Francisco,16,"Barrel aged for 5 months in a used bourbon barrel.
+
+Stir with ice and strain into a small coupe. Garnish with an orange twist.",0,0
+65,155,Brian Means,Dirty Habit,San Francisco,16,"Barrel aged in a used bourbon barrel that previously held a cocktail containing Hine Cognac and Luxardo Bitter.
+
+Stir with ice and strain into a small coupe. Garnish with an orange twist.",0,0
+66,412,Morgan Schick,Bon Vivants,,43,Blend with ice.,0,0
+67,259,Jourdan Reinhart,,San Francisco,3,"Boil water in a tea kettle. 
+
+Squeeze lemon slice into the mug. Insert whole cloves into the lemon slice and drop it into the mug.",0,0
+68,337,Kate Grutman,,,31,Brown sugar cube soaked in Peychaud’s Bitters. Put soaked sugar cube in glass first. Pour .75 oz Pink Pigeon rum into flute over sugar cube. Fill remainder of the glass with champagne. Garnish with lemon twist.,0,0
+69,82,Brian Means,Dirty Habit,San Francisco,6,Build & Stir. Hoshizaki Ice.,0,0
+70,431,Rebecca Burkart,,Houston,20,Build all ingredients except for the Topo Chico in a wine glass. Fill the glass with cubed ice then top with Topo Chico by pouring it down a barspoon to incorporate. Zest the top with orange and place it in the glass. Add edible flowers for aroma and aesthetic.,0,0
+71,446,Karri Cormican,Wildhawk,San Francisco,39,"Build all ingredients in a mixing glass, add ice and stir. Strain into a chilled martini glass and garnish with fresh fennel flowers.",0,0
+72,488,Linda Salinas,,Houston,16,Build all ingredients in a mixing glass. Stir with ice and strain into coupe. Garnish with grapefruit peel.,0,0
+73,533,,Dirty Habit,San Francisco,29,"Build all ingredients in a punch bowl and add ice, stir gently. Garnish with seasonal fruit and citrus wheels.",0,0
+74,20,Scott Brody,Presidio Social Club,San Francisco,15,Build all into highball. Fill with ice. Top with soda water. Place pineapple leaf vertically in the glass.,0,0
+75,315,Morgan Schick,Bon Vivants,,43,Build and pour in punch bowl over large ice block.,0,0
+76,302,,,,31,Build and serve in a champagne flute.,0,0
+77,470,Ken Luciano,The Forgery,San Francisco,0,"Build cocktail in glass, add ice and stir. Garnish with rose petal.",0,0
+78,457,,,,0,Build in a glass over ice. Add lemon wheels and strawberries. Finish with a splash of fresh lemon or top up with some sparkling wine. This drink can also be made in jugs or punch bowls.,0,0
+79,23,,,,16,"Build in a large pitcher or punchbowl. Combine Pink Pigeon Rum, juice from 2 lemons and agave. Blend 7 oz. of fresh watermelon in a blender and puree to mixture. Add a generous amount of ice and stir. Top with ginger beer. Ladle or pour into coupe glasses.",0,0
+80,122,,Dirty Habit,San Francisco,27,"Build in a mixing glass and add ice. Slowly pour back and forth between two tins, about 4-6 times. Then dump the whole cocktail into a Fizz or Collins glass.",0,0
+81,577,Justin Ware,,Houston,65,"Build in a mixing glass. Add ice. Stir to dilute. Strain into a Nick & Nora glass. Garnish with an orange twist.
+
+*Clarified Milk:
+-- 1 C Whole Milk
+-- .5 oz Lemon Juice
+
+Heat milk to just before a simmer, then add lemon juice. Lightly stir to break the solid from the whey. Let chill for 5 mins to allow the solids to properly separate. Coffee strain twice for clarity.",0,0
+82,521,Marvin Allen,Hotel Monteleone,New Orleans,51,"Build in an ice filled 14 oz beer glass, add BarSol Pisco, Ginger Liqueur, fresh lime juice, and agave nectar. Roll into a Boston shaker and shake to mix, place cranberry bitters on top, add ginger beer and garnish with a wedge of fresh lime.",0,0
+83,142,Claire & Chad,Tin Roof Drink Community,San Francisco,57,Build in an old fashioned glass over ice. Garnish with orange peel.,0,0
+84,435,Morgan Schick ,Jupiter Olympus ,San Francisco,27,Build in collins glass. Top with soda. Orange peel.,0,0
+85,345,Nate Jimenez,,,0,Build in glass. Add crushed ice and swizzle. Top with more crushed ice. Dash pepita tincture on top for aromatics. Garnish with lemon wheel and dried fig.,0,0
+86,363,,,,0,"Build in ice-filled tall glass, garnish with a squeeze of lime.",0,0
+87,404,,,,57,Build in old fashioned glass over ice.,0,0
+88,99,Jim Romdall,,,57,"Build in old fashioned glass, stir and serve over large ice cube.",0,0
+89,1,Joaquin Simo,Pouring Ribbons,New York,43,Build in rocks glass. Use cylinder ice cube.,0,0
+90,445,,,,57,Build over ice in Old Fashioned glass.,0,0
+91,472,,,,0,"Build over ice, stir lightly, and garnish with a lime twist and a Luxardo Cherry.",0,0
+92,506,,,San Francisco,0,"Build over ice, stir lightly, and garnish with an orange peel or slice and Luxardo Cherry.",0,0
+93,254,Pasha Morshedi,,Houston,27,Build spirits in a tall glass over clear ice. Top with 4 oz tonic and garnish with a lemon twist curled into a flower if you're feeling fancy.,0,0
+94,151,,Gastronomista.com,,10,"Build syrup and ice cream in a lowball cocktail glass, and top with soda water. Serve with a metal straw, a spoon, and garnish with a Luxardo Maraschino Cherry.",0,0
+95,284,,Dirty Habit,San Francisco,57,Build the cocktail in a mixing glass. Stir for about 15 seconds and then strain over ice into a old fashioned glass.,0,0
+96,128,Robert Krueger,,,64,Build then pour into a pre-heated Irish coffee glass or mug. Top with hot water. Garnish with the orange slice and add a dash of Peychaud's Bitters.,0,0
+97,68,Kevin Diedrich,,San Francisco,16,Chill coupe glass and garnish rim by coating the outer lip of the glass with a wedge of lemon and dipping into a shallow dish containing superfine white sugar. Place lemon strip neatly along side of sugared coupe. Combine all liquid ingredients into shaker; add ice and shake. Double strain into glass.,0,0
+98,258,Benedict Simpson,Ancestral Garden Bar & Restaurant,New Zealand,18,"Chill cup and place a napkin around it. In the base of the cup put everything except the cider and the raspberry syrup and give a brief stir. Add some crushed ice. Stir vigorously. Top with crushed ice. Add cider. Pour raspberry syrup on top. Garnish with cinnamon quill as a stirrer, some small flowers, and a lime wheel.",0,0
+99,71,,,,0,Chilled. Serve up or on the rocks.,0,0
+100,361,,,,16,Cold shake-strain into coupe and garnish with a Luxardo Maraschino Cherry.,0,0
+101,129,Laura Maddox,Small Victory,Austin,27,"Combine all ingredients and shake thoroughly without ice for several minutes. Add ice, shake, and strain into a tall collins glass. Top with soda and garnish with an orange wheel.",0,0
+102,572,Brian Means,Dirty Habit,San Francisco,16,Combine all ingredients and stir with ice in a mixing glass. Strain into coupe glass and garnish with a Luxardo Cherry.,0,0
+103,578,Jeramy Campbell,Juliet Ristorante,Austin,65,Combine all ingredients and stir. Pour the mixture into a chilled Nick & Nora glass and garnish with the orange zest.,0,0
+104,649,Brian Means,Dirty Habit,San Francisco,7,"Combine all ingredients besides beer and bitters and dry shake without ice. Add ice and re-shake, double strain into a fizz glass and top with beer. Garnish with shaved nutmeg and 3 drops of bitters.",0,0
+105,639,Russell Davis,,San Francisco,39,Combine all ingredients besides blood orange into a mixing glass and stir until proper dilution (15-20 seconds). Pour into a small martini glass. Rub a thin slice of blood orange around the rim and place in drink.,0,0
+106,651,Russell Davis,,San Francisco,43,Combine all ingredients except Duke's Lemon garnish in mixing glass and stir. Pour into a rocks glass and garnish. Ice does not touch this drink.,0,0
+107,548,Alex Quesada,Local Edition,San Francisco,16,"Combine all ingredients except for tonic. Shake with ice. Strain into a chilled coupe. Top with the tonic and garnish with a fresh grapefruit peel. 
+
+*Substitute with Yellow Chartreuse Liqueur",0,0
+108,433,Alan Kropf,,San Francisco,16,"Combine all ingredients except soda in a shaker with ice, shake to combine. Pour into a coupe glass and garnish with a lemon peel.",0,0
+109,552,Alan Kropf,,San Francisco,43,"Combine all ingredients except soda in a shaker with ice, shake to combine. Pour over ice in a rocks glass and top with soda. Garnish with a Luxardo cherry.
+",0,0
+110,449,Tom Cavazos,The Cedars Social,Dallas,27,"Combine all ingredients except soda in a tin and dry shake. Add ice and shake vigorously. Add soda into a collins glass and slowly strain the drink over it until it forms a head. Garnish with one rhubarb stalk.
+
+*Rhubarb Infused Gin:
+750 ml of gin with 3 chopped stalks of fresh rhubarb for 48 hours",0,0
+111,319,Kevin Diedrich,Turnkey,San Francisco,31,Combine all ingredients except sparkling wine in a shaker. Add ice and shake until chilled through. Double strain into a champagne flute and garnish with an orange twist.,0,0
+112,58,Bonnie Wilson,Ida Claire,Dallas,57,Combine all ingredients except the bitters and dry shake. Add ice and shake again. Strain over fresh ice into a double old fashioned glass. Dash bitters over the top of the cocktail. Garnish with a dried peach and a piece of candied ginger.,0,0
+113,523,Russell Davis,,,0,"Combine all ingredients in a chilled mixing glass, rimmed with sea salt and stir. Add ice. Stir again to mix. Garnish with a cocktail shrimp, lemon zest, fresh ground pepper and a celery stalk.",0,0
+114,609,Michael Esposito,Snake Oil Company,San Diego,27,Combine all ingredients in a Collins glass and stir. Garnish with a slice of ginger and lemon wheel.,0,0
+115,485,Sean McClure,,,16,Combine all ingredients in a frozen mixing glass with hard ice and stir for 20 seconds. Strain into a frozen coupe glass.,0,0
+116,236,Sean McClure,,,0,Combine all ingredients in a glass filled with ice and garnish with an orange twist.,0,0
+117,320,Enrique Sanchez,,Pacifica,16,Combine all ingredients in a mixing glass and add ice. Shake well and double strain and serve into a coupe.,0,0
+118,667,,,San Francisco,0,Combine all ingredients in a mixing glass and stir until proper dilution. Strain into a chilled cocktail glass. Garnish with a sage leaf speared through two cocktail onions.,0,0
+119,94,Mo Hodges & Brian Felley,Benjamin Cooper,San Francisco,36,"Combine all ingredients in a mixing glass with ice, stir and strain into a chilled cocktail glass. Garnish with a lemon twist and the edible flower of your choice.",0,0
+120,678,Carl Wenger,Shady Lady Saloon,Sacramento,16,"Combine all ingredients in a mixing glass, add ice and stir. Strain into a chilled coupe glass and garnish with a Luxardo Maraschino Cherry.",0,0
+121,112,John Codd,Tradition,San Francisco,65,"Combine all ingredients in a mixing glass, add ice and then stir. Strain into a Nick & Nora glass and garnish with a lemon twist.",0,0
+122,10,Anthony Parks,Mourad,San Francisco,65,"Combine all ingredients in a mixing glass, stir, and strain into a chilled Nick & Nora glass. Garnish with a picked cucumber ribbon.
+
+*Nori-Infused Sake: 
+-- Ginjo Sake
+-- Nori Seaweed Sheet
+
+Using an Oji Style Cold Brew Coffee Maker, drip Ginjo sake through a 0.5 gram of nori seaweed sheet that has been hand-shredded. It takes 3 hours to infuse a 750 ml bottle.",0,0
+123,518,Jason Rager,AQ,San Francisco,0,Combine all ingredients in a mixing glass. Stir until 2 oz water is diluted. Strain into a sherry or nosing glass. Flame and discard an orange peel. Drink deeply.,0,0
+124,416,Brian MacGregor,,San Francisco,27,"Combine all ingredients in a mixing tin. Shake and strain into a collins glass full of crushed ice. Garnish with apple slices.
+
+*Chamomile Tea Syrup: 
+-- 2 c water
+-- 1 c chamomile flower
+-- 1 c sugar
+Bring 1 cup water to boil.
+Add 1 cup chamomile flower and 1 more cup of water, bring back to a boil.
+Add 1 cup sugar, bring to boil. 
+Let it rest. When cool, the syrup is ready.",0,0
+125,493,,,,29,"Combine all ingredients in a punch bowl, add a large chunk or block of ice, garnish with lemon wheels and apple slices. Serve when punch is chilled.",0,0
+126,268,,,,39,"Combine all ingredients in a shaker and shake until proper dilution. Double strain into a chilled martini or coupe glass and garnish with 2 fresh basil leaves that have been lightly ""spanked"" to release aromatics.",0,0
+127,507,Tyler Chauvin,Treo,New Orleans,48,Combine all ingredients in a shaker tin and shake vigorously. Double strain using a fine mesh strainer. Serve in a lager glass over ice.,0,0
+128,679,Tyler Chauvin,Treo,New Orleans,15,Combine all ingredients in a shaker tin and shake vigorously. Double strain with a fine mesh strainer into a highball glass.,0,0
+129,606,Caitlin Laman,Trick Dog,San Francisco,57,Combine all ingredients in a shaker tin filled with crushed ice. Flash-shake and dump into a double old fashioned glass. Garnish.,0,0
+130,562,Tyler Chauvin,Treo,New Orleans,15,"Combine all ingredients in a shaker tin, add ice, and shake vigorously. Double strain with a fine mesh strainer into a highball glass.",0,0
+131,217,John Weyrich,La Mar Cebicheria Peruana,San Francisco,0,"Combine all ingredients in a shaker, except the apple cider. Shake vigorously. Strain over ice. Top with apple cider. Garnish with shaved cinnamon and nutmeg.",0,0
+132,409,Danny Louie,Alembic,San Francisco,57,"Combine all ingredients in a shaking tin and give it a short shake, five seconds. Strain into an old fashined glass with three medium sized ice cubes.",0,0
+133,148,Chris Lane,Lolinda,San Francisco,43,"Combine all ingredients in a shaking tin or mixing glass and vigorously shake without ice for 10 seconds. Add ice, and shake for another 8 seconds. Strain over larger ice cube or into a cocktail glass and add freshly grated cinnamon on top.
+
+*Vanilla Syrup: 
+Split 1 vanilla pod lengthwise and scrape interior into a heavy sauce pan. 
+Add 2 c. raw sugar and 2 c. water. Bring to a simmer and reduce heat to low. 
+Cook for 5 mins and stir occasionally. 
+Remove from heat and keep unstrained for 24 hrs. 
+Strain through a cheese cloth and bottle. Keeps for 2 weeks.
+
+**Coconut Cream:
+Combine 1 part Coco Lopez with 1 part rich coconut milk. Mix well.",0,0
+134,627,,,,31,Combine all ingredients in a sparkling wine glass.,0,0
+135,600,Lynnette Marrero,,,0,Combine all ingredients in a tall glass.,0,0
+136,383,Lynnette Marrero,,,20,"Combine all ingredients in a wine glass, stir to mix. Add ice and enjoy.  
+Convert ounces to cups to make a larger pitcher for you and your guests.",0,0
+137,269,Robby Cook,,Houston,65,Combine all ingredients in mixing glass with ice and stir. Strain into chilled cocktail coupe or Nick & Nora. Expel lemon peel over cocktail then place in glass.,0,0
+138,543,Hal Brock,,Houston,65,"Combine all ingredients in mixing glass. Stir and strain into Nick & Nora cocktail glass. Garnish with lemon zest and yerba mate tea sachet.
+
+*Bay Leaf Syrup:
+-- 16 oz Water
+-- 12 Bay Leaves
+-- 1.5 C White Sugar
+
+Bring water to boil with bay leaves. Lower heat to medium and simmer 15-20 mins. Stir in white sugar until dissolved, without bringing to a boil again. Remove from heat, let cool at room temperature. Remove bay leaves and enjoy.
+
+**Salt Tincture:
+-- .5 C Salt
+-- 1 C Water
+-- 2 C 100p Vodka
+
+Stir salt with water and vodka. Stir until dissolved. Strain out extra salt, if any.",0,0
+139,427,,Alta CA,San Francisco,36,"Combine all ingredients in Perlini sparkling cocktail shaker, shake and double strain into cocktail glass. (For home use, combine all ingredients, add ice shake 30 seconds and double strain into coupe, add splash of soda water.)
+Spray with atomized Old Tom Gin.
+Garnish with cucumber peel or candied rhubarb slice.
+
+*Rhubarb Cucumber & Mint-Infused Junipero Gin:
+-- 1 bottle Junipero Gin
+-- 1 qt Chopped Rhubarb
+-- 1 Chopped Large English Cucumber
+-- .5 Bunch (15g) Fresh Mint (with stems)
+
+Combine all ingredients in vacuum sealed bag and circulate at 53º for 2 hours. (For home use, combine all ingredients in plastic container and let rest for one week.)
+
+*Rhubarb Syrup:
+Juice 1 qt (8-10 Stalks)
+Add to 1 qt of unbleached Cane sugar in saucepan and bring to simmer.
+Remove from heat, allow to cool and strain in Chinoise.",0,0
+140,8,Jon Morales,,San Francisco,38,"Combine all ingredients in shaker. Dry shake for 10 seconds, add ice and shake for 30 seconds. Strain into small tumbler. Garnish with a sprinkle of grated nutmeg.",0,0
+141,205,,,,16,"Combine all ingredients in to a mixing glass and add ice.
+
+Stir for about 10-15 seconds.
+
+Strain in to a cocktail coupe or a glass of your choosing.
+
+Garnish with an orange twist expressed over the top of the drink.",0,0
+142,210,Russell Davis,Rickhouse,San Francisco,0,Combine all ingredients into a large punch bowl and add large ice cube/cubes. Garnish liberally with slice fruits.,0,0
+143,22,,,,39,Combine all ingredients into a mixing glass and add ice. Shake and strain into a martini glass. Garnish with an olive.,0,0
+144,163,Brian Means,Fifth Floor,San Francisco,16,"Combine all ingredients into a mixing glass and add ice. Stir for about 10 seconds and then strain into a chilled cocktail coupe. Garnish with skewered apple spheres and be thankful you're having a cocktail, and not having an apple shot off your head.",0,0
+145,270,Russell Davis,,,16,Combine all ingredients into a mixing glass and add ice. Stir until proper dilution and strain into a chilled coupe. Garnish with an orange peel.,0,0
+146,382,,,San Francisco,49,"Combine all ingredients into a mixing glass and stir until proper dilution. Strain into a chilled bucket glass over a large ice cube and garnish with a dukes lemon and dukes grapefruit zest.
+",0,0
+147,192,Harold Madison,,Houston,16,Combine all ingredients into mixing glass. Add ice. Stir until very cold. Strain and fine strain to prevent ice chips in coupe glass. Garnish with orange twist entwined around a cinnamon stick.,0,0
+148,51,,,,39,"Combine all ingredients with ice, shake, strain into martini glass, top with prosecco, garnish with sage.",0,0
+149,403,Russell David,Unlimited Liabilities,,57,"Combine all ingredients, add ice, and shake. Double strain into an old fashioned glass and add fresh ice. Garnish with an orange slice (1/4 wheel) and Luxardo Cherry (both speared).
+
+*0.25 - 0.50 oz Cane Sugar Syrup (to taste to allow variations in citrus flavor when batching)",0,0
+150,130,Kim Rosselle,Trick Dog,San Francisco,31,"Combine all ingredients, minus the sparkling wine, into a tin. Shake and double strain into a flute glass. Top with a float of sparkling wine. Garnish with an edible flower petal.",0,0
+151,436,,,,21,"Combine all ingredients, shake for 20 seconds. Add ice and shake again. Strain into a snifter. Garnish with shaved nutmeg.",0,0
+152,121,Matt Solario,Stookey's Club Moderne,San Francisco,36,Combine all ingredients. Shake and strain into cocktail glass. Garnish with an orange peel.,0,0
+153,520,Sean McClure,,,57,"Combine all liquid ingredients in a chilled mixing glass with cracked ice and stir for 20 seconds.
+Double strain the cocktail over a large cube placed in an old-fashioned glass.
+Garnish with a lemon twist making sure to release all the essential oils out of the twist. Also make sure to rub the entire rim of the glass with the twist before dropping it into the cocktail.",0,0
+154,100,Sean McClure,,,15,"Combine all liquid ingredients in a highball or Collins glass with ice.
+Stir lightly and garnish with a lemon twist making sure to release all the essential oils out of the twist. Also make sure to rub the entire rim of the glass with the twist before dropping it into the cocktail.",0,0
+155,218,Christa Havican,,Houston,27,"Combine all liquids with exception of sodas, sir together. Strain into collins glass with singular large cube. Top with sodas. Garnish with sliver of poached pear from syrup (kept chilled).
+
+*Rose Poached Pear Syrup:
+-- 1.5 C Rose (La Vielle Ferme or similar)
+-- 1.5 C Water 
+-- 2 C Sugar
+-- 1 Large Lemon
+-- 1 Half Orange
+-- 1 tsp Ground Ginger (not fresh)
+-- 1 tsp Vanilla
+-- 3-5 Whole Cloves
+
+Combine Rose (La Vielle Ferme or similar), water, and sugar. Bring to a simmer. Add zest of lemon and an orange, ground ginger, vanilla, and cloves. Peel and halve pears, set gently into liquid. Keep just under a simmer for 15 mins. Remove from heat, let cool at least 20 mins. Pears will keep for 3 days refrigerated in syrup. The syrup itself will last longer.",0,0
+156,240,Brian Means,Dirty Habit,San Francisco,0,Combine all the ingredients except Prosecco. Add a large block of ice or large ice cubes and stir. Top with Prosecco. Garnish with orange wheels studded with cloves and float some mint sprigs in the bowl.,0,0
+157,397,,,,57,"Combine all the ingredients in a mixing glass and stir for about 10 seconds. Strain in to an Old Fashioned glass or glass of your choosing. Add large ice cubes. Garnish with a lemon wheel, mint sprigs and a blackberry.
+
+*Moroccan Mint Tea (Numi Tea Brand):
+-- 1 Moroccan Mint Tea Bag
+-- 8 oz. Boiling Water
+ 
+Combine the tea bag and the boiling water in a cup or a pot. Let steep for 5 minutes. Remove the tea bag and place the tea in the fridge to cool. Label and date the container. Will keep for 1 week.
+
+**Rich Honey Syrup:
+-- 10 oz. Honey
+-- 5 oz. Hot Water
+
+Combine both ingredients together in a container and stir until fully incorporated. Label and date the container. Will keep in the fridge for 2 weeks.",0,0
+158,589,Vince Toscano,Rye,San Francisco,57,Combine all the ingredients in an old-fashioned glass. Stir on the rocks. Garnish with lemon peel.,0,0
+159,172,Patrick Poelvoorde,Park Tavern,San Francisco,27,"Combine bourbon, lemon juice, and syrup in a shaker and add cold ice. Shake until chilled well (10-30 sec. depending on the quality of the ice). Strain into a collins glass and slowly pour the vermouth into the glass. Garnish with a lemon twist. 
+
+*Orange-scented Maple Syrup:
+combine 6 oz. of grade B maple syrup, 6 oz. filtered water and the peel of 1 orange, with a minimum amount of pith in a non-reactive pan. 
+Simmer for 10 mins. Remove from heat and allow it to cool to room temp. before using. 
+Syrup will keep for 1 month if refrigerated.",0,0
+160,553,Jeff Hollinger,,,27,"Combine Gin, Maraschino, juices, and bitters in an ice-filled mixing tin and shake for 20-30 seconds, or until well chilled. Strain over fresh ice into a Collins glass, top with the California Lager, and garnish with the grapefruit peel.",0,0
+161,93,Russell Davis,,San Francisco,0,"Combine H by HINE, King's Ginger Liqueur, and bitters over ice in a mixing glass. Stir until you reach proper dilution(15-20 seconds). Strain over a large ice rock in a bucket glass and garnish with Luxardo Cherries.",0,0
+162,30,Jeff Hollinger,,,27,"Combine Hophead Vodka, Kings Ginger, and lime juice in a Collins glass and fill with ice. Top with ginger beer. Stir. Garnish with a lime wheel.",0,0
+163,367,,The Gladly,Phoenix,0,"Combine Hophead, lemon juice, Giffard Pamplemousse, honey syrup, and bitters in a shaker. Add ice and shake vigorously. Strain into a chilled glass. Fill the glass with beer.",0,0
+164,349,,,San Francisco,0,"Combine Hophead, lemon juice, King's Ginger, honey syrup, egg white, and bitters in a shaker and dry shake to emulsify egg whites. Add ice and shake vigorously until proper dilution. Strain into a chilled fizz glass. Empty ice out of shakers and fill shaker with ale to create a froth. Pour this froth over the drink and garnish with half an orange wheel.
+	
+",0,0
+165,14,Claire Sprouse,The Bywater,Los Gatos,43,"Combine ingredients and shake with ice. Strain into a rocks glass over fresh ice. Grate nutmeg on top.
+
+*Bywater Spice Mix: Simple syrup infused with Vietnamese cinnamon, licorice root, and clove",0,0
+166,224,,,San Francisco,0,Combine ingredients in a mixing glass and stir with ice. Strain and serve up with an orange twist.,0,0
+167,339,,,,16,Combine ingredients in a mixing glass with ice and stir. Strain into a coupe glass and garnish with a flamed orange peel.,0,0
+168,81,Conal Nielsen,,Houston,16,"Combine ingredients in a pint glass, stir with ice to chill. Double strain into a coupe glass. Garnish with mint and lemon wedge flag.",0,0
+169,647,Megan Daniel,Whitechapel,San Francisco,16,"Combine ingredients in a shaker with ice. Shake and double strain into a coupe glass. Garnish with nutmeg.
+
+*Winter Spice Brown Sugar Syrup: 
+-- 2 qt Brown Sugar
+-- 2 qt Water
+-- 3 Tbsp Ground Ginger
+-- 3 Tbsp Ground Nutmeg
+-- 1 Tbsp Clove
+
+Heat and simmer the below ingredients in a medium pot for 15 minutes. Strain with cheesecloth.",0,0
+170,196,Jeff Hollinger,,,36,"Combine ingredients in an ice-filled mixing glass and stir for 20 to 30 seconds, or until well chilled. Strain into a chilled cocktail glass and garnish with the lemon peel.",0,0
+171,471,Jeff Faile,,,57,"Combine ingredients in an old fashioned glass filled with ice, stir to combine, and garnish with orange peel.",0,0
+172,125,Elyse Blechman,,Houston,16,"Combine ingredients in mixing glass, and stir with ice to dilution. Strain into a coupe cocktail glass. Garnish with a trimmed carrot ribbon.",0,0
+173,590,Kevin Martin,Eastern Standard,Boston,0,"Combine ingredients into a chilled punch bowl, ice and dilute appropriately, garnish seasonally.",0,0
+174,669,Brian Quinn,,,16,"Combine ingredients into a cocktail shaker. 
+Shake with ice vigorously for 10-15 seconds. 
+Strain into a chilled coupe glass. No garnish.",0,0
+175,624,Kevin Martin,,San Francisco,40,"Combine ingredients into a hot mug, top with hot water and garnish with a rough orange twist.",0,0
+176,27,,,,16,"Combine ingredients into a mixing glass, add ice and shake until properly diluted. Double strain into a glass over fresh ice, garnish with a cucumber wheel.",0,0
+177,504,Alan Kropf,,San Francisco,43,Combine ingredients with ice in a mixing glass and stir. Strain over a large cube in a rocks glass and garnish with an orange peel.,0,0
+178,126,Jeff Kinder,Bryant's Cocktail Lounge,Milwaukee,36,"Combine ingredients, stir until well chilled, and strain in to a cocktail glass. Serve with an orange twist.",0,0
+179,614,Keli Rivers,,,0,Combine ingredients. Pour over big cube and stir. Add the grapefruit peel.,0,0
+180,157,Laurie Sheddan,,Houston,31,Combine Luxardo Bitters and Dolin Blanc. Stir in mixing glass until chilled. Strain into flute. Top with prosecco. Zest with grapefruit. Garnish with long grapefruit zest.,0,0
+181,430,Arien Chabolla,,Houston,16,"Combine Luxardo, BarSol, and tincture. Ice, stir, and strain into chilled coupe. Top with Prosecco. Gently set candied blood orange wheel (thinly sliced) garnish into drink and serve.
+
+*Castillian Tincture:
+-- 750 ml Luxardo Grappa Euganea
+-- 20 g Sliced Blanched Almond
+-- 2 g Spanish Saffron
+-- 3 Sliced Madagascan Vanilla Beans
+-- 3 g Toasted Green Cardamom
+-- 4 Lemon Peels (pith removed)
+-- 2 Quartered Dried Pajarero Figs
+-- 2 Quartered Quartered Medjool Dates
+
+Combine all ingredients, gently agitate twice daily for 14 days. Fine filter and store.
+
+**Candied Blood Orange Wheels:
+-- 1 Blood Orange (sliced thin - approx. 10 slices/orange)
+-- .5 c Natural Sugar
+-- .25 c Water
+-- 2 Tbsp Corn Syrup
+
+Combine sugar, water, and corn syrup in shallow saucepan. Slow simmer on low heat approx. 10 min. When thickened mixture begins to cling to sides of pan, add orange slices. Allow to simmer for 5 more min. and remove from hardening syrup. Place slices on parchment-lined oven rack. Air dry overnight, then bake 10 min. at 400°F (or dehydrate them).",0,0
+182,373,Richard Bailey,,Houston,27,"Combine Luxardo, cachaca, gin, coconut water, tincture and almond extract in a yari (mixing glass). Add ice. Stir for proper dilution (30-40 revolutions). Pour in collins glass over a clarified ice sphere. Top cocktail with Fever-Tree. Add 3 almond slices for garnish.
+
+*Toasted Coconut Tincture:
+-- 4 oz (by weight) Semisweet Coconut Flakes
+-- High-Proof Neutral Grain Spirit (preferably Everclear)
+
+Lightly toast semisweet coconut flakes. Put in a small mason jar. Fill jar with high-proof neutral grain spirit. Let sit for 3 days then strain off.",0,0
+183,44,Qwesha Byrd,,Houston,16,"Combine Luxardo, gin, apple water and citric acid solution into a shaker tin and shake to chill. Double strain into a coupe glass and garnish with a slice of Fuji apple lightly dusted with cinnamon.
+
+*Apple Water:
+-- 1 Fuji Apple
+-- 2 c Water
+
+Slice Fuji apple and combine with water. Vacuum seal and place in a sous-vide for 3-4 hrs at 130°F. Strain apples; water is ready for use.
+
+**Citric Acid Solution:
+-- 1 ml gram Citric Acid
+-- 3 ml Water
+
+Combine citric acid and water. Stir until dissolved.",0,0
+184,37,,,,27,"Combine rum, curacao, violettes, and lime juice in a shaker, add ice and shake vigorously. Double strain into a chilled collins glass. Add fresh ice in the collins glass and top with chilled ginger beer. Float 2-3 dashes of Angostura Bitters on top and garnish with a grilled pineapple wedge on rim of glass, and two Luxardo Cherries speared through a toothpick, and edible orchid placed on top hanging from the rim.",0,0
+185,479,Ari & Micah Wilder,,Washington DC,59,"Combine the coffee and whiskey in a preheated cup. Top with Irish cream and pour the absinthe over the back of a spoon to float. Garnish.
+",0,0
+186,637,,,,36,Combine the ingredients in a Boston shaker or cocktail shaker. Add ice and shake vigorously for 10 seconds. Strain the contents into a chilled cocktail glass.,0,0
+187,260,Kelly McCarthy,,,0,"Combine the ingredients. Shake and strain over ice. Lemon and/or cherry flag garnish.
+
+Add soda water if you'd like to water it down.",0,0
+188,580,,,,57,Combine the Karlsson's Gold Vodka and grapefruit in a shaker with ice. Shake for 15 seconds and strain over fresh ice in an old-fashioned glass that has a salted rim. Top the cocktail with the club soda.,0,0
+189,0,Kim Rosselle,Trick Dog,San Francisco,36,"Combine the lime, elderflower, tincture and cherries into a shaker tin. Muddle the cherries and then add the Junipero Gin. Shake with ice. Double strain into a chilled cocktail glass. Garnish with a lime wheel.
+
+*Chili Tincture:
+-- Chiles (Habaneros or Bird’s eye Chiles recommended)
+-- Grain Alcohol or Vodka
+
+Fill a small jar with stemmed hot chili peppers and cover with grain alcohol or high-proof vodka. Let soak for 3 days; strain.",0,0
+190,612,,,,27,"Combine the Pink Pigeon, the cola, and the lime juice, in a tall Collins glass full of ice cubes.",0,0
+191,197,,,,27,"Combine the Pink Pigeon, the ginger beer, and the lime juice, in a tall Collins glass full of ice cubes.",0,0
+192,653,Amy Lewis ,One Sixty Blue,"Chicago, Ill",39,Combine these ingredients and roll gently over ice and strain into a martini glass. Top with pumpkin foam.,0,0
+193,138,Daniel Romero,Miles,Brooklyn,27,"Combine vodka, ginger liqueur, lemon juice, ginger-cinnamon syrup and bitters in tins with ice and shake. Double strain into collins glass over fresh ice and top with club soda.
+
+*Ginger-Cinnamon Syrup: 
+Equal parts demerara sugar, clover honey, fresh ginger juice, water. Combine demerara sugar and clover honey and top with boiling water. Stir to dissolve. Once cooled add fresh ginger juice and stir to mix.",0,0
+194,660,,,,0,Cut a lime in 4 pieces and put them in a glass. Add 1-2 tablespoons of sugar and crush with a pestle. Add Ypiòca. Fill with crushed ice. Stir well and enjoy!,0,0
+195,659,Kate Grutman,,,31,Dash each bitter and the Fernet over sugar cube in base of Champagne glass so that the sugar is fully saturated with mixture. Add Pink Pigeon Rum and top with chilled Champagne. Garnish with a twist of lemon.,0,0
+196,680,Cristina Bini,,New York,39,Double strain into a martini glass.,0,0
+197,2,Brian Means,Dirty Habit,San Francisco,7,"Dry Shake (no ice), Wet Shake (with ice) & Double Strain.",0,0
+198,623,Adam Fortuna,Artusi,Seattle,57,Dry shake all ingredients for 20-30 seconds. Then shake with ice. Double strain over fresh ice in an old fashioned glass. Garnish with wide lemon swath.,0,0
+199,340,,Palizzi Social Club,Philadelphia,63,Dry shake all ingredients. Hard shake with ice. Double strain into small pilsner glass. Garnish with Luxardo Cherry.,0,0
+200,175,,,,60,Dry shake and then shake with hand cracked ice. Serve in a goblet with grated nutmeg.,0,0
+201,159,,,,30,Dry shake whole egg until emulsified. Then add Kold Draft ice and all ingredients except bitters and shake vigorously until cold. Strain into chilled royal coupette and garnish with apple wheels.,0,0
+202,101,Naren Young,Saxon & Parole,New York,16,"Dry shake, add ice and shake again. Strain into a coupe glass.",0,0
+203,358,Carlo Splendorini,Michael Mina Restaurant Group,San Francisco,14,"Dry Shake, add ice and shake for 10 seconds. Double strain into a Copita Glass. Garnish with Dill.",0,0
+204,489,Ryan Chetiyawardana,,United Kingdom,0,"Dry shake, shake with cubed ice, double strain into chilled glass coated in vanilla-salt solution.",0,0
+205,235,Ryan Chetiyawardana,,United Kingdom,0,"Dry shake, shake with cubed ice, double strain into chilled glass.",0,0
+206,227,Natasha David,Nitecap,,8,"Dry shake, strain, top with porter.",0,0
+207,186,Brian Floyd,,,57,"Dry shake, then serve old-fashioned glass with crushed ice. Drizzle Bitter on top to finish.",0,0
+208,396,Jupiter Olympus,,San Francisco,31,"Dry shake, then shake with ice. Double strain into flute or sour glass. Top with a Saison.
+
+Zest orange over top and garnish with a star anise.
+",0,0
+209,43,,,United Kingdom,27,"Dry shake, then shake with ice. Double strain over cubed ice.",0,0
+210,529,Ken Luciano,The Forgery,San Francisco,16,"Dry shake. Add ice, shake. Double strain into a frozen coupe glass. Garnish with lemon twist or dehydrated apple slice.",0,0
+211,290,Kevin Diedrich,,,22,"dryshake/shake/dblrocks
+
+garnish jalapeño slice",0,0
+212,517,St. John Frizell,,,37,"Fill a 10-oz mug with boiling water. When the mug is hot, pour out the water and add the amaretto and cider. Top with a layer of cream. Grate fresh cinnamon on top as a garnish.",0,0
+213,200,Tineke Triggs,,,39,Fill a cocktail shaker with ice. Add all ingredients except the garnish and shake well. Stain into a very chilled martini glass (martini glass should have a sugar rim on half of the glass) and top with a splash of ginger beer. Garnish with a mint leaf and orange peel. Right before serving drop in a chip of dry ice for the mist.,0,0
+214,673,Phil Ward,,,39,Fill a cocktail shaker with ice. Add ingredients and shake well. Strain into a chilled coupe or martini glass and garnish with the grapefruit twist.,0,0
+215,617,,,,27,"Fill a collins or highball glass with cracked or cubed ice. Add all the ingredients to a cocktail shaker filled with cracked or cubed ice. Shake and strain into the glass.
+
+*SC Demerara Syrup:
+-- 2 C Water
+-- 1 C Demerara Sugar
+-- 3 C Granulated Sugar
+
+Bring water to boil in a saucepan over high heat. Add the demerara sugar and stir vigorously with a whisk (or use an immersion blender) until sugar is dissolved, about 1 minute (the water should become clear). Add granulated sugar and stir vigorously until dissolved, about 1 minute. Remove from heat and let cool.",0,0
+216,376,,Gastronomista.com,,15,"Fill a highball glass with ice, and build the syrup, lemon juice, and soda water. Stir, and garnish with a Luxardo Maraschino Cherry.",0,0
+217,352,,,,36,"Fill a mixing glass half full with ice. Add cognac, orgeat, and bitters. Stir well. Strain into chilled cocktail glass. Twist lemon peel over the drink and drop in as a garnish.",0,0
+218,411,Sean McClure,,,40,"Fill a mug with very hot water to warm the glass up. Once the glass is hot, empty it and add all the liquid ingredients. Stir well until the honey is incorporated. Garnish with the clove studded orange peel and enjoy.",0,0
+219,486,Julian Miller,Partender,San Francisco,57,"Fill a shaker with an old fashioned glass worth of ice. Add all ingredients except for the club soda. Shake vigorously for 20 seconds, then dump into old fashioned glass. Set lemon wheel and sliver of cinnamon-candied ginger on top then top with club soda.
+
+*Cinnamon Candied Ginger Syrup:
+Combine 1/4 lb. peeled ginger root (sliced 1/8"" on a 45-degree bias using a mandolin), 2 cups of water, and 4 cinnamon sticks in a pot (or pan) and bring to cusp of a light simmer. Continue to barely simmer for 30 minutes. Add 1 cup of demerara sugar and stir until fully dissolved. Lower heat and keep just below simmering. Continue to heat until almost all liquid is reduced and remaining sugar is just beginning to caramelize (2-3 hours). Remove from heat and spoon slivers of ginger (along with a generous dollop of now thick syrup) onto a sheet of parchment or wax paper. Let cool for at least 2 hours then store layered on the paper sealed in a ziplock bag. Remove cinnamon sticks and reserve syrup.",0,0
+220,288,,,,0,"Fill Chinaco stemmed flute with prosecco, cava or other dry sparkling.
+Garnish with Luxardo Cherry pinned inside of lemon peel and rested across rim.
+The cherry garnish which will be EVER so delicately laid across the top of the glass, should flame in my opinion. You can dip the in high-proof spirits and light it up!
+",0,0
+221,544,,,,57,Fill shaker with ingredients and ice. Shake. Strain into old fashioned or rocks glass filled with ice.,0,0
+222,384,Francesco Lafranconi,,,0,"Fill up a stem-less wine glass with ice and pour the ingredients over, stir and serve.",0,0
+223,683,,,,20,"Fill up a stemmed wine glass with ice then pour the ingredients, stir and serve.",0,0
+224,585,Francesco Lafranconi,,,0,"Fill up a wine glass with ice then pour the ingredients, stir and serve.",0,0
+225,310,,,,0,"First, dry shake all ingredients. Then, shake all ingredients vigorous with ice and strain into a cocktail glass. Garnish with 2-3 drops of Angostura bitters on top of the foam.",0,0
+226,183,Caitlin Laman,,,0,"Flash shake, strain onto fresh ice, top with Mexican Squirt. Salted starfruit garnish.",0,0
+227,413,Lauren Sanchez,,Miami,0,"For a punch, combine Ypioca, lime, agave and Ancho Reyes together. Add fresh pineapple chunks, 3 thin sliced chiles (seeds included) and 1 star anise to garnish.",0,0
+228,527,Lauren Sanchez,,Miami,0,"For punch, combine Ypioca, Lillet Rose, guava nectar, lime and agave. Top with Rosa Regale sparkling and add sliced strawberries and thin-sliced lime wheels to float as garnish.
+
+For individual cocktails, muddle 2-3 strawberry slices w/ agave and add Ypioca, guava and Lillet. Add ice and shake to chill/mix. Strain over ice and top with champagne. Garnish with thin-sliced strawberry. Remember, this is an aperitif style so it's meant to be refreshing but not necessarily sweet.",0,0
+229,374,Brian Van Flandern,,,43,"Garnish with 3 drops of Angostura Bitters over foam.
+
+*Beet Sugar Water:
+-- 50% Beet Sugar
+-- 50% Water",0,0
+230,134,,,,43,Garnish: mint and lime wheel,0,0
+231,106,Enrique Sanchez,The Commissary,Los Angeles,2,"Garnished with orange peel and star anise. Served over the rocks in a stemless wine glass.
+
+*7-Spice Syrup:
+-- Pink Peppercorn
+-- Star Anise
+-- Sumac
+-- Cinnamon
+-- Nutmeg
+-- Coriander
+-- Cardamom",0,0
+232,452,Jeff Hollinger,,,0,"Genevieve is Hotaling's interpretation of genever, an ancient and mysterious gin style. The most common way to consume genever has always been straight. If you are planning to set sail for the day, picnic or do something else to enjoy the great outdoors, we recommend throwing a bottle of Genevieve in the freezer the evening before your outing and moving it to the cooler day of. We sip it straight while enjoying a lager. Glassware is dealer's choice, but cordial glasses are elegant and fun.",0,0
+233,334,Andrew Grala,,Houston,39,"Hard vigorous shake with high density ice for 5-6 seconds. Hawthorne and fine strain into a chilled martini glass. Garnish with a mint sprig spanked and lightly rubbed around the edge of the glass. Raspberry garnish and mint sprig attached to the raspberry. Channel zest lemon bath over the glass.
+
+*Strawberry-Raspberry Turbinado ""Sugar in the Raw"" Simple Syrup:
+-- 2 C Water
+-- 2 C Sugar in the Raw Turbinado Sugar
+-- 15 Raspberries
+-- 3 Strawberries, quartered
+-- 3 Mint Leaves
+
+As the water boils, slowly add sugar a few spoon fulls at a time and whisk vigorously into the boiling water until all 2 cups have been dissolved. Continue to keep on high heat for 5 mins.
+Then take raspberries, strawberries, and mint leaves and macerate all components together and add into the boiling simple syrup.
+Reduce heat to low-medium heat for the next 15 mins.
+After that allow simple syrup to cool down and rest for additional 15 mins. 
+Double strain the simple syrup through fine strainers until all fruit, seeds and mint leaves are strained out.  Allow to cool.",0,0
+234,592,Sarah Manowitz,Spitfire Bar,New Orleans,0,"Heat cider to 180°F. In a 5 oz cup pour the scotch and drambuie. Add the heated cider. Stir in the spiced butter. Top with 3 drops bitters.
+
+For the garnish, add 2 small cocktail stirrers, hang cookie off of the stirrer so that it leans off of the side of the cup.
+
+*Spiced Butter:
+-- 1 half Stick Butter
+-- 1 tbsp Pumpkin Pie Spice
+-- .5 tbsp Brown Sugar
+-- .5 tsp Cayenne Pepper
+
+Soften butter, add spices and mix with a spoon until all ingredients are combined.
+
+**Chrusciki Cookies:
+-- 1 c All-purpose Flour
+-- 3 Egg Yolks
+-- 3 tbsp Sour Cream
+-- 1 tsp Vanilla Extract
+-- 1 tbsp Dark Rum
+-- 1 pinch Salt
+
+Using a mixer, incorporate egg yolks into sour cream, add vanilla and rum, kneed in all-purpose flower and salt to taste.
+Divide dough in half on a floured board and let rest for 20 min. Working with half the dough at a time, roll out to 1/8 in. thickness, cut into 2 in. wide strips, cut these strips on the diagonal at 4 in. intervals.
+Heat 2 in. of vegetable oil in a large deep skillet to 350°F. Make a slit in the center of each strip of dough. Pull one end through the slit to form a bow.
+Fry 6 Chrusciki at a time for 1 min. or less per side till golden brown.
+Drain on a paper towel and dust with confectioners sugar.
+",0,0
+235,466,,,,0,"Heat cranberries, sugar, OJ and King's Ginger over medium heat. Place the peppercorns, allspice, cloves and cinnamon in a piece of cheesecloth with the end tied. Add to pot. Cook stirring often until cranberries soften about 25 to 30 min. Refrigerate for 1 hour before serving.",0,0
+236,150,,,,57,Ice: Large block or spherical,0,0
+237,439,,,,44,"In a blender, combine white rum, Luxardo, coconut milk, lime juice, sugar, bitters, 3 cherries, and 1 cup ice and purée until smooth; pour into a tiki glass and top with black rum. Place halved cherry, cut-side up, on top of cocktail and fill with Everclear before lighting cherry on fire.",0,0
+238,33,Sean McClure,,,11,In a Boston shaker combine all liquid ingredients (not the foam) with cracked ice and shake vigorously for 20 seconds. Double strain the cocktail into an espresso cup. Using an aero-latte frothing whip froth the coffee infused soy milk and spoon the froth over the cocktail. Sprinkle with a little espresso powder.,0,0
+239,389,Sean McClure,,,43,In a Boston shaker combine all liquid ingredients except the ginger beer with whole hard ice and shake vigorously for 30 seconds. Double strain the cocktail over whole hard ice cubes in a 13 oz. rocks glass and top with the ginger beer. Garnish with the licorice root.,0,0
+240,442,Sean McClure,,,16,In a Boston shaker combine all liquid ingredients in a shaker without ice and dry shake for 10-12 shakes to blend the egg whites. Once blended add cracked ice and shake vigorously for 30 seconds and strain into a frozen 4.5 oz. coupe glass. Let the cocktail settle and sprinkle with the vanilla powder.,0,0
+241,272,Sean McClure,,,15,In a Boston shaker combine and muddle the fresh lemon juice and cranberries. Add the remaining liquid ingredients except the club soda with hard ice and shake vigorously for 20 seconds pour directly into a highball add a little more ice to fill the glass and top with the club soda. Garnish with a few pear slices and fresh cranberries.,0,0
+242,513,Sean McClure,,,15,"In a Boston shaker, combine all liquid ingredients except the ginger beer with cracked ice and shake vigorously for 30 seconds. Double strain over ice into a 16 oz. highball or Collins glass and top with the ginger beer. Garnish with the candied ginger using 2 toothpicks placed on the rim of the glass.
+
+*Thai Basil Syrup:
+-- 1 C Chopped Thai Basil
+-- 2 C Granulated Sugar
+-- 1 C Water
+
+In a 1 qt. saucepot bring the water and sugar to boil and stir until sugar is completely dissolved. Add the chopped Thai basil to the pot and remove from heat. Let the basil steep for 1 hour or until syrup is room temperature. Strain the basil out of the syrup using a fine mesh sieve and store covered in fridge.",0,0
+243,331,Sean McClure,,,43,"In a Boston shaker, combine all liquid ingredients except the ginger beer. Shake vigorously for 25 seconds and strain over fresh ice in a rocks glass. Top with the ginger beer and grate the fresh nutmeg over the top.
+
+*Oatmeal-Infused Karlsson's Gold Vodka:
+-- 750 ml Karlsson's Gold Vodka
+-- 2 C Raw Oats
+
+Using a large sauté pan toast the oats for about 10 minutes constantly watching them and making sure they don't burn. Once aromatic and have a touch of color add the oats to a mason jar with the vodka and let infuse for 12-24 hours. Strain and press out all the vodka from the oats. Return the liquid to the bottle and store in a cool dark place.",0,0
+244,343,Sean McClure,,,16,"In a Boston shaker, combine all liquid ingredients with cracked ice and shake vigorously for 30 seconds. Double strain into a frozen 4.5 oz. coupe glass. Garnish with 1/2 piece kaffir lime leaf. (Clap the leaf several times before placing on top of the cocktail to release the aromatics.)",0,0
+245,414,Sean McClure,,,16,"In a Boston shaker, combine all liquid ingredients with cracked ice and shake vigorously for 30 seconds. Double strain into a frozen 4.5 oz. coupe glass. Garnish with the apple slice. Can also be served warm.",0,0
+246,18,Sean McClure,,,16,"In a Boston shaker, combine the Karlsson's and the lemon curd with whole hard ice and shake vigorously for 30-40 seconds. Add the champagne to the shaker, stir until mixed well and double strain the cocktail into a 4.5 oz. coupe glass. Garnish the cocktail with a lemon twist making sure to release all the essential oils into the glass. Rub the entire rim with the twist before dropping the twist into the glass.",0,0
+247,462,,,,49,"In a bucket glass, combine Hophead, coffee liqueur, and cream. Add Ice and give a quick stir. Top with cold Mexican Coke and garnish with a Luxardo Cherry.",0,0
+248,461,Sean McClure,,,31,"In a chilled mixing glass combine the Karlsson's gold vodka and the spiced apple shrub with cracked ice and stir for 20 seconds. Add the chilled club soda to the mixing glass, stir just until mixed and strain into a frozen champagne flute. Garnish with two apple slices placed on the rim.",0,0
+249,453,Clint Rogers,Henri,Chicago,27,"In a collins glass, add ingredients beginning with orgeat and ending with rye. Fill glass half full with minted crushed ice. Begin ""swizzling"" cocktail with stick until cocktail is blended and ice forms on outside of glass. Top with more minted crushed ice and garnish with lemon and mint.",0,0
+250,555,,,,15,"In a highball glass full of ice add No.3, King's Ginger and red vermouth. Top up with the lemonade and serve with a slice of ginger and a wedge of pink grapefruit.",0,0
+251,531,Jaymee Mandeville,Drago Centro,Los Angeles,57,"In a mixing glass muddle mint, add all other ingredients and ice, shake, fine strain into a double old fashioned glass over fresh cracked ice. Garnish with cucumber slices and raspberries.",0,0
+252,28,,,,36,"In a mixing glass, add all ingredients, then fill halfway with ice. Stir with a barspoon until chilled, about 30 seconds. Strain into a chilled cocktail glass. Rub the lemon twist around the rim, drop it in the cocktail, and serve.",0,0
+253,595,Mariel Bordas,Putnam's Pub & Cooker,Brooklyn,57,"In a mixing glass, add ice and shake with all of the ingredients. Strain over new ice (large sphere ice cube) and serve in old fashioned glass and grate fresh cinnamon over the ice.
+
+*Apple Cider Reduction: Boil apple cider until it reduces in volume by half.
+
+**Cinnamon-Chipotle Syrup: Bring 1 cup sugar, 1 cup water and 3 cinnamon sticks to boil, take off heat and let steep for 20mins, add chipotle powder and mix well.",0,0
+254,144,Kate Grutman,,,16,"In a mixing glass, add the first three ingredients over ice. Stir to chill. In a separate coupe glass, add .5 oz of Luxardo Fernet and swirl glass until it is fully coated with the Fernet. Strain chilled cocktail from mixing glass into the Fernet-rinsed coupe (discard excess fernet). Garnish by placing a Luxardo Cherry into the bottom of the glass.",0,0
+255,338,Jason Fendick,,United Kingdom,27,"In a mixing glass, combine Pink Pigeon Rum, Lychee Juice and the juice from 1/2 a lime. Add the pulp of one passion fruit (to prep passion fruit: cut in half, setting aside a small slice for garnish and scoop out the pulp and drop both the pulp and peel into the glass). Add ice and shake vigorously. Pour in a tall glass over ice, top with ginger beer.  Garnish with the passion fruit wedge to serve.",0,0
+256,549,Ronaldo Colli,,San Francisco,49,"In a pint glass pour all the ingredients, stir and strain into a bucket glass 3/4 full of ice and garnish with an orange peel.",0,0
+257,232,,,,29,In a punch bowl add ingredients per person.,0,0
+258,350,Raul Ayala,Dirty Habit,San Francisco,23,"In a shaker mix all ingredients discarding the beer and dry shake vigorously to activate the egg whites. Add ice and shake for about 10 sec and double strain into 8 oz glass and top with beer. Garnish with a marigold flower.
+
+*Spiced Apricot Syrup:
+-- Organic Earl Grey Tea
+-- Green Cardamom
+-- Juniper Berries",0,0
+259,216,Joaquin Simo,Death & Co.,New York,16,"In a shaker, gently muddle the strawberry. Add the remaining ingredients and shake with ice. Strain into a coupe. Garnish with strawberry.",0,0
+260,550,,,,0,"In a shaker, muddle the mint and simple syrup. Add the lemon juice and gin, and fill with ice. Shake, and double-strain into a cocktail glass. Garnish with a mint sprig.
+
+",0,0
+261,426,Francesco Lafranconi,,,0,"In a tall glass muddle the mint and plum with fresh sweet n' sour, pour the liquors then fill up with ice and top with Prosecco.",0,0
+262,273,,,,57,"In an old fashioned glass, muddle the lemon peel with the bitters and demerara syrup, just enough to bruise the peel and release its oils. Add Coffey Malt and ice, and stir for 20 to 30 seconds, or until well chilled.",0,0
+263,87,,,,27,"In collins glass, gently muddle honey, lime and basil leaves. Add English Harbour rum and ice and stir. Top with ginger ale.",0,0
+264,153,,,,36,"In mixing glass or cocktail shaker filled with ice, combine whiskey, vermouth, and bitters. Stir well, about 20 seconds, then strain into cocktail glass. Add cherry and serve.",0,0
+265,386,,,,36,"In mixing glass, using a spoon, crush 2 mint leaves in the simple syrup, and add gin, lime juice and pomegranate syrup. Pour into ice-filled shaker. Shake well and strain into chilled cocktail glass. Float remaining 2 mint leaves for garnish.",0,0
+266,69,,,,57,"In old fashioned glass, lightly muddle orange zest with bitters and orange curacao.  Add bourbon and creme de cacao then stir with ice for proper dilution (depending on ice) and mixing of ingredients.",0,0
+267,610,Brian Floyd,,Austin,0,"In one shaker, mix heavy cream and simple syrup and dry shake vigorously until it's whipped.
+In another, shake Pink Pigeon Rum and Luxardo Espresso with ice.  Pour into a coupe, and then carefully top with the cream.  It should layer perfectly.  The vanilla complexity of the rum pairs awesomely with coffee and cream.
+",0,0
+268,444,,,,43,"In rocks glass, make an emulsion by using a glass muddler (wood muddlers absorb the ingredients too much). Place sugar cubes in glass. Add mezcal onto the cubes. Add bitters, onto cubes. Add drops of agave nectar, onto cubes. Add Luxardo, onto cubes. Muddle well to make a ""syrup"" paying attention the blending of all ingredients. 
+Take the long orange peel and twist all the essential oils into glass. Leave peel in glass. 
+Place Gläce Luxury Ice G-Cubed in glass. Rotate Gläce G-Cubed so that it becomes coated and chills the ""syrup"" swirl around the inside of glass. Pour the Anejo Tequila over Gläce G-Cubed. Stir with glass swizzle. Garnish with 3 Luxardo Cherries, speared.
+",0,0
+269,437,,,,4,"In the bottom of a cocktail shaker, muddle pitted cherries if using. Add Luxardo Maraschino, vodka, fresh lemon juice and simple syrup. Shake hard, then double strain (though a fine mesh strainer) into a tall glass with fresh ice. Add a splash of soda and stick a cherry on top.",0,0
+270,158,Sean McClure,,,43,"In the small tin of a Boston shaker set, combine the cilantro sprigs, thai chili, yuzu juice, simple syrup and a small piece of ice. Muddle these ingredients well. Add the remaining liquid ingredients to the shaker with cracked ice and shake vigorously for 20 seconds. 
+Double strain the cocktail over ice into a 13 oz. rocks glass. 
+Garnish with the Thai chili piece and the cilantro sprig.",0,0
+271,182,Zachary Brian Taylor,Ziryab,San Francisco,43,"Juice potato and strain into a nearby usable container (must be done as close to drink making process as possible since oxidization will occur quickly). Add vodka, potato juice, lemon, Benedictine, cinnamon-honey syrup, and salt and pepper to mixing glass. Add ice, and shake and fine strain over fresh ice.",0,0
+272,62,,Sprig & Spirit,,56,"Juice the ingredients and pour into a chilled glass (do not use ice or the drink will lose body).
+
+Top with Pastis Prado or absinthe and garnish with a sprig of mint.",0,0
+273,514,,,,0,Method:  Simmer on a gentle heat for 30 minutes and garnish with a cinnamon stick,0,0
+274,187,Edgar & Joselino Solis,Matador,San Francisco,34,Mint salt on the rim. Garnish with mint sprig.,0,0
+275,336,Joy Richards,,,0,Mix all ingredients in a blender until smooth and icy. Pout into a glass and top with 3 dashes of angostura bitters.,0,0
+276,365,,,,24,"Mix all ingredients in a large pitcher, add ice, and enjoy!",0,0
+277,24,Raul Ayala,Dirty Habit,San Francisco,0,"Mix all ingredients in a mixing glass and stir for 15-20 secs depending on the type of ice. Strain over a large rock and garnish with an orange peel expressing the oils over the cocktail.
+
+*Anchor Christmas Ale 2016 w/ Honey (reduction) 2:1 (2-parts Beer to 1-part Honey)",0,0
+278,133,Raul Ayala,Dirty Habit,San Francisco,16,"Mix all ingredients in a tin except for the walnut oil. Utilizing the throwing technique, throw the mixture from one vessel to another vessel until chilled to air out the ingredients. Coat coupe glass with walnut oil and pour the mixture. Garnish with a dehydrated orange.
+
+*Oloroso & Moscatel Blend:
+-- 2 parts César Florido Moscatel Special
+-- 1 part Lustau Oloroso Sherry
+
+Blend ingredients.",0,0
+279,160,,,,0,Mix all ingredients together.,0,0
+280,117,,,,0,Mix all ingredients together.,0,0
+281,379,,,,0,Mix all the liquid contents together in a heavy-bottomed tumbler with ice. Stir. Add a slice of orange and lemon zest to decorate.,0,0
+282,85,Matthew Biancaniello,,Los Angeles,16,"Mix all together and shake and double strain into a coupe without ice.
+
+*Bay Leaf-Infused Honey Syrup:
+• 3 cups honey to 1 cup water
+• 4 bay leaves, crumbled
+<em>Bring to a boil. Stir until honey completely dissolves in water. Turn off heat and allow 2 hours to cool.</em>",0,0
+283,215,Nusan Brounstein,Fog Harbor Fish House,San Francisco,0,"Mix equal parts of the 4 spirits and age in a 5 liter oak barrel for 30 days. Transfer into glass bottles and rest for a minimum of 3 days. Make giant (2"" x 2"") ice cubes with an orange peel frozen inside. Pour negroni on ice cube and serve.",0,0
+284,387,,,,29,Mix ingredients in the punch bowl.,0,0
+285,541,Josh Trabulsi,Burritt Room,San Francisco,0,"Mix ingredients together then pour over crushed ice into a Julep tin. Dust with salt, sugar, and cinnamon.",0,0
+286,475,,,,31,"Mix the gin or cognac, lemon juice and syrup in a cocktail shaker. Pour the contents into a Champagne flute. Top up with Champagne. Add a Luxardo Cherry or a peel of lemon.",0,0
+287,602,Francesco Lafranconi,,,33,"Mix the Pisco, apricot liqueur and citric acid ingredients together in a punch bowl and allow to rest for 45 minutes. Place a large 2.2 lb. ice block 10 minutes before serving. Scoop the pineapple sorbet in a punch glass and fill up with the mix, top up with mint-flavored soda. Garnish with candied pineapple wheel from Dress the Drink.",0,0
+288,291,Kevin Mabry,Capo Restaurant,Boston,16,Mount all ingredients in a shaker tin. Add ice. Hard shake. Double strain into a chilled coupe glass. Garnish with orange twist.,0,0
+289,213,Zachary Brian Taylor,Ziryab,San Francisco,39,"Muddle 3 cacao beans in a mixing glass, add vodka, ginger-brown sugar, and Bitter Beast Hella Hula bitters. Add ice and vigorously shake to incorporate cacao flavor. Fine strain into a martini glass. Garnish with a cocao bean.",0,0
+290,454,Kate Grutman,,Los Angeles,16,Muddle 3-4 cucumber slices and a couple mint leaves. Shake and strain into martini or coupe glass. Garnish with lime or mint or cucumber.,0,0
+291,107,Calvin Marty,Best Intentions,Chicago,36,"Muddle 4 basil leaves, 16 peppercorns and simple syrup in shaker tin. Add all other ingredients except final basil leaf. Add ice. Shake vigorously. Fine strain into chilled cocktail glass. Express lemon oil from lemon swath over drink. Garnish with lemon swath and final basil leaf.",0,0
+292,53,Kate Grutman,,Los Angeles,0,"Muddle a small handful of fresh mint leaves, ¾ oz simple syrup (equal parts sugar and water) 
+1 oz fresh lime juice.
+Add crushed ice to the glass to fill half way.
+pour in 2 oz of Pink Pigeon.
+Swizzle to incorporate ingredients and slowly add in the rest of the crushed ice.",0,0
+293,261,,,,27,"Muddle basil in mixing glass, add all ingredients except club soda. Shake and strain into a collins glass, top with club soda.  Top with crushed ice and garnish with a basil sprig.",0,0
+294,253,Rafa García Febles,,New York,0,"Muddle cherry in liquid ingredients. Shake, double strain over cracked ice. Garnish with two more cherries on a pick with an orange flag.",0,0
+295,233,Matthew Biancaniello,,Los Angeles,43,Muddle everything in a tin except Hophead. Then add Hophead and ice and shake and strain into a rocks glass with ice and garnish with a lovage sprig.,0,0
+296,4,Andy Minchow,Ration & Dram,Atlanta,0,"Muddle fruit, bitters and syrup. Add ice (1 large cube if available). Top with Whisky. Long stir.",0,0
+297,262,Tyler Chauvin,Treo,New Orleans,27,Muddle mint and cucumber with the simple syrup in a shaker tin. Combine the remainder of the ingredients in the tin. Shake vigorously. Double strain with a fine mesh strainer into a collins glass. Fill with ice and garnish with a cucumber slice.,0,0
+298,535,,Bonneville,Austin ,57,"Muddle Orange Slice. Add Nikka. Add Ginger Syrup. Stir over Ice. Add bitters. 
+",0,0
+299,526,Larry Miller ,,Austin,0,Muddle orange twist with sugar. Add ice. Pour ingredients over ice. Add bitters,0,0
+300,645,,,,0,"Muddle pineapple and ginger root, lemon juice and simple syrup, then add Aperitivo and rum, shake well, over ice and top up with Ginger beer.",0,0
+301,293,,,,0,"Muddle pineapple and ginger root, lemon juice and simple syrup. Add rum. Shake well, over ice and top with ginger beer and Luxardo Bitter",0,0
+302,451,Caterina Miltenberger,,,16,Muddle raspberries in mixing glass. Add remainder of ingredients in a mixing glass with fresh ice. Shake vigorously and strain into a well chilled coupe. Top off with sparkling wine. Garnish with raspberry and mint.,0,0
+303,238,Caterina Miltenberger,,,0,Muddle raspberries in mixing glass. Add remainder of ingredients in a mixing glass with fresh ice. Shake vigorously strain over fresh ice. Garnish with raspberry and mint.,0,0
+304,515,,,,0,"Muddle red pepper and mint. Add all other ingredients. Shake well over ice and strain into a chilled martini glass.
+Garnish with red pepper slice and mint sprig.",0,0
+305,255,William Golde,,,43,"Muddle sage and Thyme. Stirred, over ice in single rocks glass. Burnt orange, and thyme sprig to garnish.",0,0
+306,440,Lynnette Marrero,,,27,"Muddle strawberries in a shaker with agave nectar, add lime juice, hibiscus tea, and Chinaco Blanco. Top with sparkling water.",0,0
+307,171,,,,43,"Muddle sugar and 1 roasted cherry in a rocks glass until the sugar has dissolved; add vodka, Amaro, Maraschino, and bitters and stir. Add 1 large ice cube and garnish with half a roasted cherry and the tarragon.
+
+Cherry-Infused Vodka:
+- 1 cup pitted cherries, quartered
+- 1 cup vodka
+Combine cherries and vodka in a bottle; cover, and let sit to meld the flavors for 3-5 days.",0,0
+308,587,,,,0,"Muddle the basil with the lime juice, then add tonic water. Fill glass with ice and stir in the gin.",0,0
+309,622,Francesco Lafranconi,,,0,Muddle the fruit with syrup in a mixing glass. Add ice and shake vigorously. Pour all ingredients(do not strain) in a tumbler glass. Add a float of Mango flavored Rum.,0,0
+310,364,Francesco Lafranconi,,,0,Muddle the kiwi pulp with lime juice in a shaker tin. Add ice and liquors and shake vigorously. Strain into a chilled cocktail glass.,0,0
+311,670,Eduardo Val Naval,A Japanese Kirikata,Spain,15,"Muddle the kumquats and lychee in a cocktail shaker. Add the whiskey, King's Ginger, lemon juice, syrup and white egg, and shake very hard. Double strain into a highball glass filled with ice spheres.",0,0
+312,607,Jeff Hollinger,,,0,"Muddle the lemon peel and bitters with the King’s Ginger to release the oils.  Add scotch, stir, and enjoy.",0,0
+313,484,Duggan McDonnell,,,16,Muddle the pineapple adding more or less simple syrup as needed and depending on sweetness of the pineapple. Add all other ingredients. Give the mixture a hard shake. Double strain into chilled coupe.,0,0
+314,6,Brian Means,Michael Mina Restaurant Group,San Francisco,16,"Muddle the sage in a mixing tin. Add the remaining ingredients and dry shake (no ice) for 15 seconds. Add ice and shake another 15 seconds to chill down the drink. Double strain into a large coupe glass. Garnish with a whole star anise floated in the middle of the egg white.
+
+*Honey Cinnamon Syrup:
+-- 16 oz Honey
+-- 2 Cinnamon Sticks
+-- 8 oz Water
+Combine all the ingredients together in a pot. Place on the stove and bring to a simmer, stirring the honey so it doesn’t burn and let the pot simmer for 20 minutes. Remove from heat and place on an ice bath. Place in a container and label and date it. Store in the fridge for up to 2 weeks.",0,0
+315,92,Bruce Cole,Japonais,Chicago,15,"Muddle two cucumber slices, two raspberries and simple syrup in a highball, add ice. Shake gin, ginger liqueur and orange juice with ice. Strain into highball glass.  Garnish with a candied ginger stick.",0,0
+316,348,William Golde,,,0,"Muddled ginger root. Shaken, served up, cinnamon stick and apple to garnish.",0,0
+317,292,Matt Grippo,Blackbird,San Francisco,0,On the rocks with twist.,0,0
+318,497,,,,22,Place all ingredients in a mixing glass. Add ice and stir until proper dilution. Strain over a large hand cut ice cube placed in a double rocks glass. Garnish with a Luxardo Maraschino Cherry on a pick.,0,0
+319,70,,,,15,"Place all ingredients in a mixing tin, muddle fresh raspberries, add ice and shake until tin is frosty. Strain into a chilled highball glass. Garnish with orange wedge.",0,0
+320,620,Shaher Misif,,,16,Place all ingredients into a Yarai mixing glass with ice and stir. Strain into a coupe. Garnish with an apple slice.,0,0
+321,406,,,,43,"Place ice cubes in a rocks glass. Add ingredients. Garnish with your choice of: rosemary, basil, lavender, edible flowers, or a lemon, lime or orange twist.
+
+*Tonic Water Ice Cubes:
+Fill an ice cube tray with tonic water and freeze.",0,0
+322,418,,,,39,Place ingredients in a shaker with ice and shake hard for seven seconds. Double strain into a chilled martini glass and garnish with lemon peel.,0,0
+323,662,Marvin Allen,Hotel Monteleone,New Orleans,31,"Place King's Ginger and orange bitters in a Champagne flute, and top with sparkling wine. No garnish.",0,0
+324,77,Francesco Lafranconi,,,16,"Place the Concord grapes and blackberries in a shaker and muddle. Add the rest of the ingredients and ice. Shake, and strain into a chilled coupe. Garnish with Concord grapes and lemon peel twisted to release oils.",0,0
+325,346,Francesco Lafranconi,,,57,"Place the lemon peel in an Old Fashioned glass and muddle with bitters. In a mixing glass filled with ice, add the bourbon and apricot liqueur, then strain into the glass. Garnish with cherry and orange slice, and serve over an ice sphere.",0,0
+326,21,Francesco Lafranconi,,,43,"Place the lime wedges and pinapple in a tumbler glass with gomme syrup and muddle briskly, then add ice and Amaretto. Stir well and serve with a float of Pisco.",0,0
+327,502,Francesco Lafranconi,,,0,"Place the mint and cucumber in a mixing glass and muddle briskly, then add sour mix and liquor. Shake with ice and double strain over ice into a stemmed glass.",0,0
+328,164,Francesco Lafranconi,,,27,"Place the mint in a Collins glass and muddle for a few seconds to release the oils, then add ice and ingredients, stir well and serve.",0,0
+329,554,Francesco Lafranconi,,,0,"Place the mint in a tumbler glass and muddle briskly to release the essential oils, then add the cherry liqueur and the brandy. Fill up the glass with crushed ice, stir well and serve with a float of Luxardo Amaretto. Garnish with 4 sprigs of mint and 3 Luxardo Cherries.",0,0
+330,286,Francesco Lafranconi,,,43,"Place the thyme in a tumbler glass and muddle to release the oils, then add ice and ingredients, stir well and serve.",0,0
+331,399,,,,27,Pour 2 oz. of Club Soda into a Collin’s Glass. Hard shake first fIve ingredients with ice for at 20 seconds. Slowly strain into the Collins glass. Garnish with an orange wedge.,0,0
+332,596,,,,0,Pour a generous measure of The King's Ginger into a flute. Add chilled Champagne to taste.,0,0
+333,419,,,,31,Pour a generous measure of The King's Ginger into a flute. Add chilled Champagne to taste.,0,0
+334,324,,,,49,"Pour all ingredients and shake in tin. Pour into bucket. Top with rum float, then garnish.",0,0
+335,285,Francesco Lafranconi,,,39,Pour all ingredients in a mixing glass filled with ice. Stir well and strain into a chilled cocktail glass.,0,0
+336,289,Francesco Lafranconi,,,27,Pour all ingredients in a shaker with ice. Shake and strain over ice into a Collins or Pilsner glass.,0,0
+337,317,Sother Teague,Amor y Amargo,New York,36,Pour all ingredients into a mixing glass with ice. Stir to chill and dilute. Strain into a chilled cocktail glass. Express the oil from the twist over the drink and discard.,0,0
+338,284,,,,43,"Pour all ingredients into an ice-filled old-fashioned glass, and stir approximately 20 seconds. Add garnish.",0,0
+339,633,,,,16,Pour all ingredients into cocktail shaker filled with ice cubes. Shake well. Strain into coupe glass. Flame orange zest over the top of the glass.,0,0
+340,356,Taylor Wright,,Houston,16,"Pour all liquid ingredients into a mixing glass and stir about 55 times for proper dilution and optimal clarity. Strain into a chilled coupe. Twist fresh lemon peel over cocktail for aroma. Garnish with a simple lemon peel, trimmed neatly.",0,0
+341,575,,,,27,Pour Amaretto and lime juice over ice in a collins glass. Fill with club soda and serve.,0,0
+342,391,,,,54,"Pour brandy into a brandy snifter. Top with 2-3 drops of truffle tincture. Spray Pipe Tobacco Essence on wrist. Smell wrist, sip drink, and enjoy.",0,0
+343,594,Maxwell Britten,,,22,"Pour ingredients in a shaker tin, add ice and shake well. 
+
+Fine strain the drink into a double rocks glass filled with ice.
+ 
+Balance a small watermelon triangle on top of the glass. Grate fresh lime zest on top using a microplane, and then sprinkle with Maldon salt.",0,0
+344,450,,,,20,Pour ingredients into a wine glass half-filled with crushed ice. Garnish with a half-slice of lemon and a maraschino cherry.,0,0
+345,313,,,,43,Pour ingredients into cocktail shaker and shake vigorously with ice. Strain into a rocks glass over crushed ice with a mint sprig garnish.,0,0
+346,96,,,,25,"Pour ingredients into mug, fill with ice. top with ginger ale. Roll into tin. Roll back into mug. Garnish.",0,0
+347,583,Francesco Lafranconi,,,0,"Pour ingredients over crushed ice into a stemmed glass, stir well and serve.",0,0
+348,267,,Bonneville,Austin,39,Pour into shaker over ice and shake well. Serve straight up in a martini glass with an orange twist.,0,0
+349,366,,,,27,"Pour King's Ginger into an ice-filled collins glass. Top off with Fever-Tree Ginger Ale. Add bitters, and squeeze lime over and serve.",0,0
+350,83,,,,43,Pour No.3 gin into a highball glass over ice cubes. Add a slice of lemon and stir. Top up with tonic water to taste.,0,0
+351,640,,,,27,Pour No.3 into ice-filled collins glass. Top off with Fever-Tree Tonic Water to just below rim of the glass. Float .25 oz. of Maurin Quina on top of cocktail. Garnish with small spoonful of fresh pomegranate seeds.,0,0
+352,287,,,,0,Pour over crushed ice with a mint garnish.,0,0
+353,109,,,,43,Pour over crushed ice with zest. Garnish with an orange peel.,0,0
+354,545,Devin Hardy,House of Blues Anaheim,Anaheim,52,"Pour over ice in a pint glass, then fill with steam beer. Garnish with a lemon wedge and a straw.",0,0
+355,9,,,San Francisco,43,Pour Perfecto Amor over ice and garnish with an orange wheel.,0,0
+356,52,Sophie,,,0,"Pour the Cognac and lemon juice into the glass and then add orgeat syrup; fill with ices cubes and mix with a spoon. At the end, add lemonade and lemon peel.",0,0
+357,671,Michel,,,0,Pour the Cognac into the glass and add ice cubes. Perceive the aromas that are released as a summer rain that reveals the secrets of the nature...,0,0
+358,78,Elodie,,,0,"Pour the Cognac, sugar syrup, lemon juice and 3 pressed raspberries into the shaker, then shake. Strain into the glass (using a cocktail strainer) and fill with chilled Champagne. Garnish with 3 raspberries.",0,0
+359,665,,,London,39,"Pour the Extra Dry Vermouth into a frozen martini glass (either 7 oz. or 5.5 oz. glass) and coat in a circular motion. Top up the glass with ice cold No.3 gin. Pare the rind of an Amalfi lemon, and give it a twist to extract the oils into the glass.",0,0
+360,181,Francesco Lafranconi,,,0,Pour the first four ingredients in a blender and blend until smooth. Serve into a champagne saucer. Top with Pomegranate Liqueur float.,0,0
+361,141,Francesco Lafranconi,,,0,Pour the ingredients in a blender and blend until smooth. Serve in a cocktail glass or coupe.,0,0
+362,50,Francesco Lafranconi,,,57,"Pour the ingredients in an old fashioned glass, then fill up with ice and stir well before serving.",0,0
+363,208,Catherine,,,0,Pour the ingredients in the shaker. Close and shake well until frosted. Strain into the glass. Garnish with fresh mint.,0,0
+364,45,,,,27,Pour the ingredients into a cocktail shaker filled with ice. Shake well. Strain into a chilled cocktail or Collins glass.,0,0
+365,581,,,,0,Pour the liquor ingredients over ice and top with half inch (about one centimeter) layer of lightly whipped cream shaken with Hum Liqueur.,0,0
+366,75,Laurent,,,0,"Pour the sugar syrup into the glass and add fresh mint and green lemon. Lightly crush and add ice cubes, Cognac, lemon juice and sparkling water. Mix with a spoon and serve with a straw.",0,0
+367,503,Tyler Chauvin,Treo,New Orleans,43,Pre-freeze pomegranate juice into one large cube. Rinse a glass with Montanaro vermouth. Dump any excess out. Build the remainder of spirits and bitters into a shaker tin. Shake vigorously. Strain over the pomegranate ice cube into a rocks glass.,0,0
+368,256,Francesco Lafranconi,,,16,Pre-mix the liquors together and keep refrigerated. Serve 2 oz. neat into a small coupe glass. Float the fresh cream on top.,0,0
+369,29,Loris Melis,,,57,Prepare directly in an old fashioned glass.,0,0
+370,113,Lauren Sanchez,,Miami,0,"Punch Preparation Instructions:
+Combine Ypioca, lime and syrup in bowl. Top with ginger beer and Angostura bitters* (amounts will depend on size of punch and number of anticipated servings). Garnish with thin-sliced dried ancho chiles and lime wheels to float. 
+
+*You can optionally skip adding Angostura in punch and instead add a dash or 2 to each individual cocktail as served.
+
+
+Individual Cocktail Preparation Instructions:
+Combine ingredients exactly the same way as a traditional Moscow Mule over crushed ice. Garnish with dash or 2 bitters and ancho chile slices. Mint is an optional garnish.",0,0
+371,91,,,,0,"Put 1 1/2 ounces of coconut milk, 1 1/2 ounces of condensed milk, 3 ounces of Ypiòca and tablespoon of sugar in a blender. Mix for a few seconds. Add ice cubes and serve.",0,0
+372,469,,,,0,"Put 1 1/2 ounces, 2 1/2 ounces orange juice, and 1-2 tablespoons of sugar in a shaker. Add ice cubes and shake for a few seconds. Put in glass and serve.",0,0
+373,184,,,,0,"Put 1/2 passion fruit inner part in a blender, 1-2 tablespoons of sugar and 50ml ( 1 1/2 ounces) of Ypiòca. Mix for a few seconds. Filter in a glass and serve with ice.",0,0
+374,447,,,,0,"Put 3 ounces of peach juice, 1 1/2 ounces of Ypiòca, 1 1/2 ounces of condensed milk and 1 tablespoon of sugar in a shaker. Add ice cubes, shake well and serve.",0,0
+375,525,,,,0,"Put a brown sugar cube at the bottom of a frosted glass.
+Add a splash of bitter and muddle the sugar.
+Add Karlsson's Gold Vodka and stir with ice.
+Add lemon and orange peels (which you can burn for added flavor).",0,0
+376,368,Leilani Brennan,Southside Spirit House,San Francisco,16,"Put basil leaves in mixing glass. Gently muddle the leaves. Add all ingredients except the bitters or ice. Dry shake the cocktail vigorously. Add the ice and shake again vigorously. Double strain into a coupe. Add a few drops of angostura on top, add cracked pepper, slap one single basil leaf on top for garnish.",0,0
+377,556,,,,0,Put ingredients in mixing glass. Stir. Strain into glass that has absinthe rinse. Add lemon zest.,0,0
+378,65,,,,20,Quick stir and garnish with rosemary.,0,0
+379,204,Matt Tocco,,,43,"Rinse a rocks glass with eau de vie. Combine remaining ingredients in a shaker with ice. Shake, and strain over fresh ice into a rocks glass. Garnish with a lemon pigtail.",0,0
+380,459,,,,0,Rinse cocktail glass with Vieux Pontarlier Absinthe. Shake rest with ice and strain.,0,0
+381,563,,,,57,"Rinse entire glass with absinthe, discard, if you must.
+Stir with ice and strain into an old-fashion glass, garnish with lemon peel.",0,0
+382,283,Luke Ridge,,,0,"Rinse glass with absinthe. Add a Luxardo Cherry (covered in its juice) to a mixing glass with remaining ingredients. Stir until cold and slightly rose colored. Single strain, serve with cherry from mixing glass.",0,0
+383,123,Josh Ruiz,,Houston,65,"Rinse the glass with Orange Blossom Water and pour cocktail. Shake Egg White, Sauternes and Lemon Juice vigorously dry for 25 seconds, then add ice, gin, Luxardo Bitter Bianco and Lillet Blanc, shake again for 10 seconds. Strain into Nick & Nora, garnish with a lemon wheel.",0,0
+384,672,Jason Lee,,New Orleans,0,Serve cold and garnish with a scoop of vanilla bean ice cream swirled with Luxardo Maraschino Cherry Juice.,0,0
+385,546,Diego Sanchez,Cocteleria,New York,31,"Serve in a champagne flute up to 60% full and top with tonic water up to 80% full, garnish with a grapefruit twist.
+
+*Ginger/Cardamom/Honey Syrup:
+Bring about 8 cups of water to a boil, once boiling turn off heat and add 2 cups of cardamom pods. Let sit for about 6 hours. Strain the pods out, add 1 qt (32 oz) of honey and stir until dissolved. For an added cardamom boost: place the cardamom pods with the cardamom/honey ""tea"" in a blender. Blend and press through a fine strainer so as to discard the solids but keep the flavor.",0,0
+386,655,,,,17,"Serve in a handled glass, hot or over ice. Garnish with lemon, cinnamon stick and fresh blackberries.",0,0
+387,567,Diego Sanchez,Cocteleria,New York,18,"Serve in a julep cup with crushed ice and basil garnish.
+
+*Serrano Pepper Syrup:
+Take 6 serrano peppers. Slice 4 in half, carefully de-vein and seed them (this will take some of the heat away, make absolutely sure to wash your hands after handling the peppers, avoid touching anything unless you've washed your hands), place a skillet on medium to high heat and roast the peppers until they are a little charred. Once charred place in a blender with about 2 cups of water and throw in the 2 remaining fresh serranos (seeds and all). Blend and strain out the solids. Add 1 cup of demarara sugar to the serrano pepper water and stir until it is dissolved.",0,0
+388,482,,,,43,Serve in a rocks glass with an orange peel garnish and a Luxardo Cherry.,0,0
+389,621,,,,27,Serve in a tall glass over ice.,0,0
+390,99,,,Seattle,0,Serve in an old fashioned glass over a large ice cube.,0,0
+391,648,,,,43,Serve neat or on the rocks.,0,0
+392,586,Misty Kalkofen,Drink,Boston,0,Serve on one big rock.,0,0
+393,56,Brian Floyd,,Austin,0,Serve on the rocks. Garnish with a Luxardo Cherry.,0,0
+394,571,,,,27,Serve over ice in a collins glass.,0,0
+395,483,Brian Floyd,,Austin,27,Serve tall on the rocks.,0,0
+396,249,Nick Jones,Pabu,San Francisco,0,Served in a snifter with grated cinnamon.,0,0
+397,569,,,,41,"Served in v-shaped rocks glass with ""vintage ice"".
+",0,0
+398,326,,Grimaldi's Pizzeria,,0,Served up and finished with a lemon wheel.,0,0
+399,576,Chad Philips,Surfcomber,Miami,16,Served up in a coupe glass.,0,0
+400,303,Jacyara de Oliveira,"Rob Roy, The Hideout",Seattle,0,Served up with a lemon peel garnish.,0,0
+401,179,John deBarry,Momofuku,,0,Shake - pebble/crushed ice,0,0
+402,314,,Land and Water Co.,Carlsbad,27,"Shake & Dump into Collins Glass, Top with Prosecco, cap with crushed ice. Garnish with Mint Sprig. 
+",0,0
+403,131,Eric Quilty,Jupiter Olympus,San Francisco,0,"Shake all ingredients and double strain over fresh ice. Garnish with lemon verbena leaf.
+
+*Lemon Verbena Cordial:
+-- Fresh Lemon Verbena 
+-- Fresh Mint
+-- Grapefruit Peel 
+-- Lemon Peel
+-- Pure Cane Sugar
+-- Citric Acid
+
+Make a fresh herb and citrus peel tea and add sugar and citric acid to taste. Let cool before using.",0,0
+404,309,Enrique Sanchez,The Commissary,,47,"Shake all ingredients and double strain. Serve in a hurricane glass, add 2 oz Lager. Garnish with an orange horse-neck peel.",0,0
+405,344,Keli Rivers,The Devil's Acre,San Francisco,16,"Shake all ingredients and strain into a coupe glass. Express a lemon peel over the drink and discard.
+
+*Rich Brown Sugar Simple Syrup: 
+-- 2 cups Brown Sugar
+-- 1 cup Water
+
+Combine sugar and water in a small saucepan over medium heat and stir until sugar dissolves. Remove from heat, let cool to room temperature and transfer to a clean glass jar. Cover and keep refrigerated for up to 2 weeks.",0,0
+406,305,Stuart McCloskey,,San Francisco,16,"Shake all ingredients except foam, strain into chilled cocktail ""coupe"". Layer foam onto cocktail. Add garnish.",0,0
+407,644,Jessica Maria,,San Francisco,0,"Shake all ingredients except ginger ale, then strain into chilled cocktail ""coupe"" glass. Float ginger ale and zest of fresh lemon.",0,0
+408,59,Gina Scheurte,Cala,San Francisco,16,Shake all ingredients for 10-15 seconds (over shaking will over dilute) and fine strain into chilled coupe glass. Garnish with Xoconostle (sour prickly pear) and a stuffed Castelvetrano olive.,0,0
+409,474,,Jazz Kitchen ,New Orleans,0,"Shake all ingredients in an ice-filled cocktail shaker. Strain into a chilled serving glass. Top with a splash of ginger ale. Garnish with a cucumber slice, quartered.",0,0
+410,188,,Jazz Kitchen,New Orleans,16,"Shake all ingredients in an ice-filled cocktail shaker. Strain, and Serve.",0,0
+411,677,,,,39,Shake all ingredients in an iced-filled cocktail shaker. Strain into chilled martini glass or cocktail coupe.,0,0
+412,448,,,,57,"Shake all ingredients together with ice in a cocktail shaker. Strain into a small old-fashioned glass, and serve.",0,0
+413,354,Jonathan Pogash,,,15,Shake all ingredients very well with ice and strain over ice into a highball glass.,0,0
+414,335,,Jazz Kitchen,New Orleans,0,"Shake all ingredients vigorously with lots of ice in a shaker. Strain, and Serve. Garnish with a fresh mint sprig.",0,0
+415,214,,,,39,Shake all ingredients well in cocktail shaker. Strain into chilled martini glass or cocktail coupe.,0,0
+416,568,,,,43,Shake all ingredients well in cocktail shaker. Strain into ice filled rock glass. Top with soda.,0,0
+417,564,Kate Bolton,Maven,San Francisco,27,Shake all ingredients with ice and fine strain into Collins glass. Top with seltzer water and add lavender blossom garnish.,0,0
+418,516,Enrique Sanchez,The Commissary,,16,Shake all ingredients with ice and strain into a coupe glass. Nutmeg on top for garnish.,0,0
+419,487,Dave Guest ,,San Francisco,0,Shake all ingredients with ice and strain into an iced up glass with brown sugar rim.,0,0
+420,371,Dave Guest ,,San Francisco,0,Shake all ingredients with ice and strain into an iced up glass.,0,0
+421,329,,,,57,Shake all ingredients with ice and strain into old fashioned glass over ice cubes. Add an orange slice.,0,0
+422,139,Francesco Lafranconi,,,0,Shake all ingredients with ice then double strain into a chilled cocktail glass. Garnish with channeled lemon and raspberry on the rim.,0,0
+423,603,,,,36,Shake all ingredients with ice then strain into a chilled cocktail glass.,0,0
+424,393,,,,0,Shake all ingredients with ice then strain into a chilled cocktail glass.,0,0
+425,424,Francesco Lafranconi,,,39,Shake all ingredients with ice then strain into a chilled cocktail glass.,0,0
+426,185,,,,57,Shake all ingredients with ice then strain over fresh ice into an old fashioned glass.,0,0
+427,332,,,,39,Shake all ingredients with ice. Double strain into a chilled Martini glass. Garnish with a Luxardo Maraschino cherry.,0,0
+428,245,,,,39,Shake all ingredients with ice. Double strain into a chilled Martini glass. Garnish with a Luxardo Maraschino cherry.,0,0
+429,674,Francesco Lafranconi,,,0,Shake all ingredients with ice. Strain into a chilled cocktail glass.,0,0
+430,481,,Jazz Kitchen,New Orleans,0,Shake all ingredients with lots of ice. Strain into serving glass. Top off with a splash of club soda.,0,0
+431,542,Carlos Yturria,The Treasury,San Francisco,27,"Shake all ingredients. Serve over crushed ice in a collins glass. Garnish with a sage leaf.
+
+*Substitute with Perfect Puree Green Apple flavor",0,0
+432,241,BC Hoffman,The Edison,Los Angeles,0,"Shake all ingredients. Strain and top with ginger beer. Give it a quick stir. 
+
+Tajin ground ginger and salt rim.",0,0
+433,650,Sergio Leanza,,,15,"Shake all the ingredients a part from the Prosecco. Double strain in an highball. Fill with crushed Ice. Top up with a touch of Prosecco.
+
+Garnish with a mint sprig, a marshmallow on a stick, and a green and white striped paper straw.",0,0
+434,400,,,,16,Shake all the ingredients over ice and strain into a chilled coupe glass. Garnish with an orange twist.,0,0
+435,381,Joaquin Simo,Death & Co.,New York,16,"Shake all the ingredients with ice, then strain into a coupe. No garnish.",0,0
+436,40,,Death & Co.,New York,16,"Shake all the ingredients with ice, then strain into a coupe. No garnish.",0,0
+437,19,Kevin Diedrich,,,27,Shake and 2x strain into a collins glass. Garnish with a lemon wheel and Luxardo Cherry.,0,0
+438,89,Chelsea Little,Olive & Oak,St. Louis,16,"Shake and double strain into a coupe. Garnish with sage.
+
+*Pear Syrup:
+-- Pear
+-- Sage
+-- White Pepper
+-- Star Anise",0,0
+439,608,Kevin Diedrich,,,22,Shake and double strain into double rocks glass. Garnish with torched cinnamon stick and Luxardo Cherry.,0,0
+440,494,Gabriele Modica,Farina,San Francisco,39,Shake and serve up in a martini glass with lemon peel rind.,0,0
+441,263,Brian Floyd,,Austin,0,Shake and serve up.,0,0
+442,140,Sam Treadway,Backbar,Somerville,0,Shake and serve up. Garnish elaborately with a Luxardo Cherry and a grapefruit peel.,0,0
+443,3,,,,39,"Shake and strain into a martini glass, spray some absinthe on the glass.",0,0
+444,297,Duane Fernandez,ACME,New York,39,Shake and strain into a martini glass.,0,0
+445,625,,Flatiron Lounge,New York,43,Shake and strain into a rocks glass. Garnish with a mint sprig.,0,0
+446,312,Paul Taylor,Cherry Blossom PUB,Washington DC,32,Shake and strain into a tiki cat filled with crushed ice.,0,0
+447,321,Brian Miller,,,15,"Shake and strain into an ice-filled highball glass. Garnish with a lime wheel.
+
+*Don's Mix:
+-- 2 parts Grapefruit Juice
+-- 1 part Cinnamon Syrup",0,0
+448,207,Johel Huaman Barbosa & Christian Hurtado,NEAT,Westport,0,Shake and strain into ice filled glass.,0,0
+449,540,Kevin Diedrich,,,43,Shake and strain into rocks glass.,0,0
+450,169,Morgan Schick,Bon Vivants,,0,Shake and strain into small cocktail glass.,0,0
+451,166,,Land and Water Co.,,27,"Shake and strain over fresh ice into collins glass. Add soda. Garnish with basil.
+",0,0
+452,510,Tricia Alley,,Los Angeles,39,Shake and strain up into cocktail glass.,0,0
+453,61,Sean Gleason,Biltong Bar,Atlanta,0,Shake and top with Anchor Steam.,0,0
+454,618,,ABV,San Francisco,22,"Shake booze, juice and gum. Add bitters and salt to a double rocks glass then add ice. Strain cocktail, top with tonic. Garnish with bitter covered lemon peel.",0,0
+455,357,Paul Taylor,Cherry Blossom PUB,Washington DC,66,"Shake everything but soda water. Strain into a bamboo highball, add soda water, add ice, garnish with a basil leaf.",0,0
+456,199,Paul Taylor,Cherry Blossom PUB,Washington DC,66,"Shake everything except for the soda water, strain into bamboo highball, add soda, add ice, garnish with 3 picked cherries.",0,0
+457,654,Tiki Dave ,The Usual,Fort Worth,0,Shake fine and strain on crushed ice. Top with Strong Ginger Beer.,0,0
+458,247,Lainey Collum,Arthur Ave.,Houston,27,Shake first 4 ingredients and strain into collins. Top with pebble ice. Top with the rose. Garnish with a basil and a lime flower for aromatics.,0,0
+459,264,,Jazz Kitchen ,New Orleans,31,"Shake first three ingredients in an ice-filled cocktail shaker. Strain into a chilled serving glass. Top with chilled champagne, or sparkling wine.",0,0
+460,168,Francesco Lafranconi,,,0,"Shake first three ingredients with ice.
+
+Strain over ice cream into prepared glass.",0,0
+461,156,,,,36,"Shake gin, maraschino, and lemon juice with ice then strain into a chilled cocktail glass. Use a bar spoon to float the violettes (which it will sink) into the bottom of the glass. Garnish with a lemon peel and a Luxardo Cherry on a pick.",0,0
+462,636,,,,39,Shake ingredients very well with ice and strain into a martini glass. Garnish with lemon and orange twists.,0,0
+463,359,John Davis,Savor Gastropub,Dallas,16,"Shake ingredients with ice in shaker and then double strain into a couple glass.
+Top with champagne and garnish with lemon and apple slice.",0,0
+464,491,,,,0,Shake ingredients with ice then strain into a chilled cocktail glass.,0,0
+465,408,Francesco Lafranconi,,,0,Shake ingredients with ice then strain into a cocktail glass previously swirled with chocolate syrup and rimmed with ground pistachios.,0,0
+466,105,Francesco Lafranconi,,,27,Shake ingredients with ice then strain into a Collins glass.,0,0
+467,102,Francesco Lafranconi,,,0,Shake ingredients with ice then strain into a sour cocktail glass previously rimmed with cardamom sugar.,0,0
+468,189,,,,27,Shake ingredients with ice then strain into an ice-filled collins or pilsner glass.,0,0
+469,311,,,,43,Shake ingredients with ice until well combined. Strain into a chilled tumbler or large rocks glass over ice sphere or large ice cubes. Garnish with orange peel (or slice) and Luxardo Original Maraschino Cherries on a pick.,0,0
+470,167,,,,0,Shake or stir briskly and strain into a cocktail glass.,0,0
+471,378,Jackson Cannon,The Hawthorne,Boston,16,"Shake over ice and strain into a chilled cocktail coupe. Garnish with a dash of cinnamon.
+
+*Pumpkin-Infused Glenrothes Vintage Reserve:
+Peel, clean and cut small 2x2 in. pieces of sugar pumpkin. Salt very lightly and roast for about 20 mins. at 250°F. Put into a sealed container with scotch and let rest for 2 days. Strain off the pumpkin and re-bottle. Keep refrigerated.",0,0
+472,114,Del Prado,Tooker Alley,New York,0,Shake over ice. Strain into a 6 oz. cocktail glass,0,0
+473,219,Sam Wiener,The Bend Liquor Lounge,Miami,25,"Shake rye, rum, lemonade, and ginger liqueur. Strain over fresh ice in a copper mug. Top with Abita Big Easy IPA (or similar session IPA). Gently stir.
+
+*Basic House Lemonade:
+-- 2 parts Water
+-- 1 part Sugar
+-- 1 part Lemon Juice",0,0
+474,47,Francesco Lafranconi,,,0,Shake the first five ingredients with ice then strain over fresh ice into a Collins or Tiki glass. Top with coconut foam.,0,0
+475,604,Francesco Lafranconi,,,0,Shake the first four ingredients with ice then strain into a tall glass filled with ice and top with lemon lime soda. Stir and serve.,0,0
+476,372,Francesco Lafranconi,,,0,"Shake the first three ingredients with ice then strain into a Collins glass and fill up with tonic water, stir and serve.",0,0
+477,251,Lynnette Marrero,,,15,"Shake the gin, lemon, and simple syrup ingredients together in a shaker to chill. Gently pour into a highball glass filled with ice and 3/4 oz Curacao Blue. Top the cocktail with 1/2 oz Luxardo Aperitivo. Add a splash of Perrier grapefruit and garnish with Luxardo Cherries and blueberries for color.",0,0
+478,641,Francesco Lafranconi,,,0,"Shake the ingredients with ice, then strain into a chilled cocktail glass.",0,0
+479,530,"Jennifer Costello, Charles Lintott, Sarah Holmes",Bonneville,Austin,57,Shake the ingredients with ice. Strain into an old fashioned glass. Garnish with a Luxardo Cherry.,0,0
+480,244,Douglas Ford,Cold-Glass.com,,36,Shake until very cold; double strain into a chilled cocktail glass. No garnish.,0,0
+481,656,Douglas Ford,Cold-Glass.com,,36,Shake until very cold; double strain into a chilled cocktail glass. No garnish.,0,0
+482,57,Douglas Ford,Cold-Glass.com,,36,Shake until very cold; double strain into a chilled cocktail glass. No garnish.,0,0
+483,41,Morgan Schick,Jupiter Olympus,San Francisco,15,Shake vigorously. Strain into highball glass. Top with Ale. Grated nutmeg.,0,0
+484,477,,,,50,"Shake well in a shaker, serve in a tumbler filled with ice. Top with soda water.",0,0
+485,557,,,,16,"Shake well with cracked ice, then strain into a chilled cocktail glass.",0,0
+486,36,,,,36,Shake well with lots of ice. Strain into cocktail glass.,0,0
+487,385,,,,36,Shake well with lots of ice. Strain into cocktail glass.,0,0
+488,547,James Martin,The Sipologist,,36,Shake with cracked ice and strain into a chilled cocktail glass.,0,0
+489,195,Jillian Vose,Death & Co.,New York,31,Shake with ice and fine strain into a champagne flute. Top with sparkling wine and garnish with Granny Smith Apple fan.,0,0
+490,34,Sam Treadway,Backbar,Somerville,16,Shake with ice and single strain into a coupe glass. Garnish with basil leaf.,0,0
+491,682,,,Boston,16,Shake with ice and strain into a coupe glass. Garnish with a toasted marshmallow,0,0
+492,377,Ryan Hall,The Treasury,San Francisco,63,"Shake with ice and strain into a footed pilsner glass. Add a few drops of bitters. Garnish with a mint leaf. 
+
+*Strawberry & Black Pepper Shrub:
+-- 1 cup Sliced Strawberries
+-- 1 cup Granulated Sugar
+-- 1 cup Champagne Vinegar
+-- 1 handful of Black Balinese Peppers
+
+Combine all ingredients in a medium bowl. Using a potato masher or a wooden spoon, mash the berries so they release their juices. Stir until the sugar has mostly dissolved and refrigerate overnight.
+The next day, remove the mixture to a saucepan and heat gently over medium-low heat. Do not bring to a simmer--you simply want to heat the mixture to coax the sugar to dissolve.
+Strain the shrub through a fine mesh strainer. If desired, strain again through a coffee filter. Refrigerate.",0,0
+493,465,Morgan Schick,,San Francisco,0,Shake with ice and strain into an ice-filled collins glass.,0,0
+494,634,,Dirty Habit,San Francisco,7,"Shake with ice in a mixing glass for about 15 seconds to properly chill. Double strain into a small fizz glass over ice.
+
+*Coconut Pistachio Puree:
+-- .5 lb Pistachios (toasted)
+-- 1.5 lbs Sugar (144 oz.)
+-- 11 oz Coconut Milk
+-- 13 oz Water
+-- 1 tsp Salt
+
+Toast the pistachios at 250°F for 20 mins. Remove and put in a blender with sugar until well chopped. Combine all the ingredients in a pot and bring to a boil. Let simmer for 20 mins and then remove from the heat. Let cool and place in a large container. Let the mixture sit overnight then strain out the solids. Save the solids to spin in the ice cream maker (if you have one). Spin the solids and add the mixture back into the puree via chinois. Bottle, label and date the syrup (it will keep indefinitely if you freeze it).",0,0
+495,98,,,,16,Shake with ice in a mixing tin and double strain into a chilled cocktail coupe. Garnish with a grapefruit twist.,0,0
+496,257,Francesco Lafranconi,,,57,Shake with ice to mix and emulsify. Strain into a chilled old fashioned glass filled with ice. Garnish with Luxardo Maraschino Cherries and fresh lemon zest.,0,0
+497,211,,,,57,Shake with ice to mix and emulsify. Strain into a chilled old fashioned glass filled with ice. Garnish with Luxardo Maraschino Cherries and fresh lemon zest.,0,0
+498,242,Jason Westplate,,,39,"Shake with ice, strain and pour into a chilled martini glass.",0,0
+499,496,Jason Littrell,,,16,"Shake with ice, strain into a coupe. No garnish.",0,0
+500,17,,,,31,"Shake with ice, strain into flute, top with sparkling rose and a grapefruit twist.",0,0
+501,190,,,,0,Shake with ice. Strain into a chilled cocktail glass.,0,0
+502,38,,,,39,Shake with ice. Strain into chilled martini glass. Garnish with lemon peel.,0,0
+503,611,,,,43,Shake with ice. Strain into rocks glass and top with crushed ice. Float 1 oz. of Gosslings 151 rum on top.  Garnish with mint and Luxardo Maraschino Cherries.,0,0
+504,276,Rafael Jimenez Rivera,Urchin Bistrot,San Francisco,16,Shake with intent. Double strain in coupe. Garnish with lemon wheel.,0,0
+505,632,Jeff Bell,PDT,New York,13,"Shake without ice, add ice and shake again then fine strain into a chilled egg coupe. Garnish with a Sage leaf.",0,0
+506,628,Kate Grutman,,Los Angeles,9,"Shake without ice, to whip and emulsify ingredients until frothy. Add ice to shaker and shake vigorously. Strain into port glass or small fluted glass. Garnish with shaved cinnamon or nutmeg.
+",0,0
+507,250,,,,16,"Shake, and fine strain into a chilled coupe, and garnish with a Luxardo Cherry.",0,0
+508,49,Carlo Splendorini ,Michael Mina Restaurant Group,San Francisco,0,"Shake, double strain into a Burgundy Glass.",0,0
+509,252,,The Forgery,San Francisco,16,"Shake, fine strain into a chilled coupe. Garnish with lemon twist.",0,0
+510,492,Karri Cormican,Comstock Saloon,San Francisco,16,"Shake, fine strain into chilled coupe. Garnish with lime wheel.",0,0
+511,616,Ryan Fitzgerald,ABV,San Francisco,16,"Shake, fine strain into chilled frosted coupe, float Fernet.",0,0
+512,11,Kelly O'Hare,Small Victory,Austin,0,"Shake, serve on the rocks, garnish with a lemon wedge.",0,0
+513,104,,Beretta,San Francisco,16,"Shake, strain into a chilled coupe, float tonic water.",0,0
+514,558,,Blackbird,San Francisco,16,"Shake, strain into a chilled coupe. Garnish with lemon twist.",0,0
+515,103,Jackie Goldstein,ABV,San Francisco,16,"Shake, strain into a chilled coupe. Garnish with lemon twist.",0,0
+516,631,,Rickhouse,San Francisco,16,"Shake, strain into a chilled coupe. Garnish with lime wheel.",0,0
+517,579,,Comstock Saloon,San Francisco,42,"Shake, strain into a chilled flip glass with one cube. Garnish with lemon peel.",0,0
+518,202,,,,19,"Shake, strain into a Tiki glass over crushed ice and garnish with a large sprig of mint.
+
+",0,0
+519,80,Nicole Hassoun,The Gin Joint,Charleston,16,"Shake, strain into coupe glass. Top with sparkling wine and a sprig of lemon balm.",0,0
+520,395,,Ace Hotel,Los Angeles,15,"Shake, strain over crushed ice in a highball. Garnish with a mint sprig and a cherry.",0,0
+521,152,Zachary Pearson,,,0,"Shake, strain, lemon twist garnish.",0,0
+522,434,Jason Westplate,,,0,"Shake, strain, up, garnish.",0,0
+523,132,Collin Nicholas,Mourad,San Francisco,0,Shake. Double strain. King cube. Orange peel garnish,0,0
+524,282,,,,43,Shake. Serve in small rocks glass with no ice. Grapefruit slice to garnish.,0,0
+525,55,Jason Patz,Union Lodge No.1,Denver,36,Shake. Serve up. Garnish with lemon peel/pineapple.,0,0
+526,173,Nate Matson,Mizu Izakaya,Denver,36,Shake. Serve up. Garnish with lime wheel.,0,0
+527,398,Brandon Weiss,Departure,Denver,31,Shake. Serve up. Top with sparkling rose. Garnish with lime peel.,0,0
+528,536,Sean Gleason,Biltong Bar,Atlanta,16,Shake. Strain into a coupe. Garnish with a lime twist.,0,0
+529,570,Kevin Diedrich,,,16,"shake/2strain/coupe
+
+garnish lemon twist",0,0
+530,375,Kevin Diedrich,,,16,"shake/2xstrain/coupe
+
+garnish cucumber slice",0,0
+531,661,,Grimaldi's Pizzeria,,0,Shaken and served over ice.,0,0
+532,417,Brian Means,Dirty Habit,San Francisco,16,"Shaken and strained into a large coupe. Garnish with a dehydrated lime wheel soaked in Angostura Bitters.
+
+*Blood Orange Vanilla Mint Puree:
+-- 1 container Boiron Blood Orange Puree (34 oz.)
+-- 39 grams Mint (stems and leaves)
+-- 1 tsp Vanilla Extract
+-- 30 oz White Sugar
+
+Combine all the ingredients except the mint in a pot. 
+Bring to a light simmer, stirring to incorporate everything.
+Then add the mint and cook for 5 minutes, then remove the pot from the heat and strain through a chinois to remove the mint.
+Label and date a container, then place in your fridge. Use within a week.",0,0
+533,565,Brian Means,Dirty Habit,San Francisco,16,Shaken and strained into a large coupe. Mint oil is house-made and used as a garnish.,0,0
+534,42,Julian Cox,,,43,"Shaken and strained over ice in a rocks glass.
+
+*Chapuline, Salt & Chile Pepper Rim:
+Grind the chapuline  (dried crickets) and dried chile pepper in a mortar and pestle, as it becomes a powder, throw in the salt and pour onto a plate. Use a fresh lime wedge to moisten the rim of the glass and dip into the powder.",0,0
+535,298,,,,0,Shaken and strained. Orange peel garnish.,0,0
+536,79,Crystal Chasse,Dirty Habit,San Francisco,57,"Shaken slightly. Served over shaved ice in an old fashioned glass. Garnished with turmeric toasted coconut flakes.
+
+*Toasted Coconut Infused Old Potrero
+-- 750ml Old Potrero Straight Rye Whiskey
+-- 2.5 oz Toasted Coconut
+
+Combine all ingredients in a clean container and let sit for 8 hours.
+Strain through cheesecloth and then funnel back into your Old Potrero bottles.
+Keeps indefinitely.
+
+**Turmeric Coconut Cream:
+-- 12 g Fresh Turmeric
+-- 1 c Water
+-- 1 c Honey
+-- 3 tsp Black Pepper
+-- 12 oz Coconut Milk
+
+Grate fresh turmeric into 1 cup water.
+Bring to a boil, add 1 cup of honey and stir.
+Remove from heat and let the mix sit for 1:30 hours.
+Strain out turmeric and add 3 tsp. ground black pepper.
+Add 12 oz. coconut milk and stir.
+Place in an airtight container and keep in the fridge. Use within a week.",0,0
+537,524,Sarah Ruiz,Dirty Habit,San Francisco,16,"Shaken without ice, then with ice and strained into a large coupe. Garnished with candied thyme.
+
+*Beet Thyme Reduction
+-- 520 grams raw beets 
+-- 344 grams honey
+-- 2 oranges peeled (just the peels)
+-- 2 sprigs of thyme
+-- pinch of salt
+
+Juice beets, add honey and let dissolve and cook for 15 mins. 
+Add thyme and simmer for 5 more mins. 
+Strain through a chinois into a container and then place in the fridge.
+This makes 1 quart, so multiply as needed.
+Use within 1 week.",0,0
+538,35,Matt Orth,LARK on the Park,Dallas,15,"Shaken, poured over fresh ice in highball. Garnish with macadamia nut. Coconut shaved rim.",0,0
+539,428,Lisa Brier,Skyfall Lounge,Las Vegas,16,Shaken.,0,0
+540,630,Leo Robitschek,Eleven Madison Park,New York,43,Shaker and strain into a rocks glass with fresh ice. Garnish with an Apple Fan.,0,0
+541,39,Kate Grutman,,Los Angeles,31,"Short shake-strain into champagne flute- top with champagne. 
+Drop a Luxardo cherry into the flute.
+",0,0
+542,360,,,,0,"Simmer over low heat for 3 hours, double strain with fine sieve.",0,0
+543,663,Andrew Kalini,Highlands,New York,40,"Soak 1 chai tea bag in half mug of hot water for 30 seconds, remove the tea bag, add all the ingredients, add more hot water. 
+
+Lemon wheel stuffed with 4-5 cloves for garnish.",0,0
+544,234,Kate Grutman,,,43,"Soak brown sugar cube in Angostura and Orange bitters. Muddle soaked sugar cube into a paste in a rocks glass. Pour 2 oz. Pink Pigeon. Add ice and stir. Garnish with an orange peel and Luxardo Cherry.
+",0,0
+545,135,Josh Bearden,,Houston,31,"Soak cube in 8 dashes Abbott's Bitter. Drop sugar cube into bottom of flute glass. Stir, Luxardo, gin, and pomegranate cordial. Strain into flute glass. Top with Brachetto. Garnish with small rose, dipped in rose flower water.
+
+*Pomegranate Cordial:
+-- 48 oz Pomegranate Juice
+-- 2.5 lbs White Sugar
+-- 1 lb Turbinado Sugar
+-- 8 Course Cracked Black Peppercorns
+-- 2 Cloves
+-- 5 Allspice Berries
+-- 1 Tbsp Pomegranate Molasses
+-- 1 oz Orange Flower Water
+
+Mix all ingredients together in large saucepan. Stir on medium heat until all sugar is dissolved. Strain of spices. Bottle.",0,0
+546,438,,,,43,"Spray a rocks glass with absinthe, build all other ingredients over cubed ice, garnish with a lemon wheel.",0,0
+547,390,,The Cavalier,San Francisco,39,"Spray of Lemon Verbana oil on the Martini glass. Combine all other ingredients and dry shake for 20 seconds. Add ice to the mixing tin and shake again. Double strain into a Martini glass. Garnish with fresh lemon verbena. Served in a martini.
+
+",0,0
+548,597,Michael Blum,Bar Stella,Los Angeles,16,"Spray the inside of the glass with absinthe, then sugar the external rim of the glass. Pour ingredients into a cocktail shaker. Shake and strain into the glass.",0,0
+549,237,Chase Ware,,Houston,57,"Spray vessel with absinthe as a rinse. Build cocktail in a stirring glass. Stir cocktail. Place a large format cube in the vessel. Pour cocktail over large format cube. 
+
+To garnish, peel a blood orange skin and express the oils over the cocktail. Grab mint sprigs and slap over the top of hand to express oils, wrap the peel at the base of the mint sprigs, tie off with twine and set on top of large format cube.
+
+*Clarified Coconut Sugar Blood Orange Cordial:
+-- Blood Oranges
+-- Agar Agar
+-- Coconut Sugar
+
+Juice blood oranges. Bring 1/4 of juice to a boil with agar agar. Pour cooked juice into the remaining 3/4 juice. Freeze the juice. Pull the block from the freezer and let drip through cheese cloth and perforated pan creating the clarified juice. Bring the juice together with a rich (2:1) coconut sugar creating a coconut sugar blood orange cordial.",0,0
+550,231,William Golde,,,1,Steam in steaming tin. Pour in Demitasse glass. Top with heavy whipping cream and nutmeg.,0,0
+551,537,,,San Francisco,39,"Step one: Infuse the vodka
+- Transfer ingredients including 750 ml of Karlsson's vodka to a canning jar or glass container. Close the container.
+- Shake and rotate every few hours. Let infuse for 24 hours total.
+- After 24 hours, strain the vodka through a cheesecloth or nutmilk bag.
+- Transfer the vodka to a glass bottle. Store in the refrigerator or freezer until use.
+
+Step two: Make the martini
+- Stir 2-3 oz, depending on preference, of the infused vodka with ice.
+- Strain into a chilled martini glass.
+- Add pickled onions and peppers.",0,0
+552,295,,,,43,"Stir all 3 ingredients continuously in an ice-filled glass, approximately 20 seconds. Strain into a rocks glass with one large ice cube.",0,0
+553,681,Coly Den,The Must,Los Angeles,0,Stir all ingredients and pour over 2-inch single ice cube. Garnish with birch smoked sea salt rim and bow tie orange peel.,0,0
+554,127,Nandini Khaund,The Violet Hour,Chicago,57,"Stir all ingredients except for Absinthe and Orange Flower. Strain over a chunk/sphere of ice in an old fashioned glass. Garnish with a sprig of mint, with 3 drops of Orange Flower.",0,0
+555,308,Elaine Collum,,Houston,27,Stir all ingredients over cubed ice and then strain over large rock while incorporating the cream soda. Garnish with Italian baking spice infused olive and cherry.,0,0
+556,176,Alex Smith,,,45,"Stir all ingredients over ice and strain into a footed rocks glass. Garnish with a lemon peel.
+
+*Equal parts lemon and celery bitters in a dasher bottle.",0,0
+557,464,Toby Cecchini,The Long Island Bar,Brooklyn,43,"Stir all ingredients together, strain into a chilled large rocks glass, no ice. Twist a zest of lemon above the drink, dip it once and then discard.",0,0
+558,601,,,,36,"Stir all ingredients until well chilled, and strain into a chilled cocktail glass.
+Garnish with an orange peel with oils squeeze over cocktail.",0,0
+559,86,,,,39,Stir all ingredients with ice. Strain into a chilled Martini glass. Garnish with a lemon peel.,0,0
+560,54,Phil Ward,Death & Co.,New York,16,"Stir all the ingredients over ice, then strain into a coupe. No garnish.",0,0
+561,480,Jessica Gonzalez,Death & Co.,New York,16,"Stir all the ingredients over ice, then strain into a coupe. No garnish.",0,0
+562,325,Brian Miller,Death & Co.,New York,22,"Stir all the ingredients over ice, then strain into a double rocks glass over 1 large ice cube. Garnish with a lemon twist and orange twist.
+",0,0
+563,643,Graham Hunter Gregg,Expatriate,Portland,0,Stir and garnish lemon peel.,0,0
+564,638,Clint Rogers,The Dawson,,57,Stir and pour over ice in an old fashioned glass. Garnish with an orange peel.,0,0
+565,443,,,,16,Stir and strain into a chilled coupe.,0,0
+566,591,Eric Quilty,Bon Marché,San Francisco,65,Stir and strain into a chilled Nick and Nora glass. Garnish with a clove(2) studded orange coin.,0,0
+567,278,Brian Means,Dirty Habit,San Francisco,57,Stir and strain into an old fashioned glass with a large ice cube.,0,0
+568,306,Brian Means,Dirty Habit,San Francisco,57,Stir and strain into an old fashioned glass. Large ice cube.,0,0
+569,193,Josh Trabulsi,Burritt Tavern,San Francisco,0,Stir and strain into stem. Garnish torched star anise and discarded lemon peel.,0,0
+570,467,Morgan Schick,Bon Vivants,,57,Stir and strain over ice.,0,0
+571,657,,Land and Water Co.,,16,Stir and strain up into cocktail glass.,0,0
+572,220,Brian Means,Dirty Habit,San Francisco,16,Stir and strain.,0,0
+573,118,,,,57,Stir and strain. Garnish with a Luxardo Maraschino Cherry.,0,0
+574,145,Brian Means,Dirty Habit,San Francisco,58,Stir and strain. Hoshizaki ice.,0,0
+575,500,,Dirty Habit,San Francisco,65,Stir for about 20 seconds with ice and then Strain into a chilled Nick & Nora glass.,0,0
+576,243,,,San Francisco,16,Stir gently and garnish with a lemon twist.,0,0
+577,593,Brian Means,Dirty Habit,San Francisco,16,Stir in a mixing glass to chill down and serve up in a coupe with a lemon zest garnish.,0,0
+578,422,Saul Ranella,Hog Island Oyster Co.,San Francisco,16,Stir in a mixing glass with ice; strain into a coupe glass; garnish with orange and lemon zest.,0,0
+579,322,,,,16,Stir in mixing glass and serve in a chilled coupe.,0,0
+580,505,,,,36,Stir ingredients and strain into cocktail glass. Garnish with Luxardo Cherry.,0,0
+581,174,Francesco Lafranconi,,,16,Stir ingredients in a mixing glass filled with ice then strain into a chilled cocktail coupe.,0,0
+582,495,Francesco Lafranconi,,,0,"Stir ingredients in a mixing glass over an ice sphere(if available) then strain and serve into a chilled cocktail glass filled with the same ice sphere. Garnish with lemon balm and grapefruit peel.
+
+",0,0
+583,226,Francesco Lafranconi,,,43,Stir ingredients in glass over an ice sphere.,0,0
+584,635,Torrence Swain,,Washington DC,36,"Stir ingredients over cracked ice. With a julep strainer, pour into a chilled cocktail glass. Once poured, top with lemon foam.
+
+*Dry Vermouth Infusion:
+-- 1.5 oz Togarashi Spice
+-- 3 Vanilla Beans
+-- 2 bags of Green Tea
+Place ingredients in cheesecloth to steep in a bell jar with 1 bottle of Dolin Dry vermouth for 2 days. 
+Remove the infusion elements and refrigerate the infusion.
+
+**Lemon Foam:
+-- 1 bsp Lemon Juice
+-- 1 bsp Simple Syrup
+-- 1 Egg White 
+Place ingredients into a shaker tin and whip with a bar whisk into a foam.",0,0
+585,281,Kate Grutman,,,0,Stir ingredients together and strain into an absinthe-rinsed coupe. Garnish with a lemon twist/peel.,0,0
+586,415,Jacques,Wildhawk,San Francisco,35,Stir ingredients with ice and strain into Canadian Glencairn glass.,0,0
+587,137,Emily Arden Wells,Gastronomista.com,,0,Stir IPA and Luxardo in a tumbler. Garnish with Luxardo Cherry.,0,0
+588,274,Dave Guest,,San Francisco,0,Stir over 1 large rock. Garnish with zest of an orange peel.,0,0
+589,353,Dave Guest,,San Francisco,0,Stir over 1 large rock. Garnish with zest of an orange peel.,0,0
+590,394,Ryan Chetiyawardana,,United Kingdom,39,"Stir over cubed/vintage ice, double strain into a small chilled martini glass. Garnish with a black olive on a pick.",0,0
+591,559,,,Washington DC,43,Stir over ice and serve in a rocks glass.,0,0
+592,304,Brian Means,Dirty Habit,,65,Stir over ice and strain into a Nick and Nora glass.,0,0
+593,12,,,,36,"Stir over ice for at least 30 seconds, strain into cocktail glass. Garnish with lemon twist.",0,0
+594,407,,Gastronomista.com,,16,"Stir the cherry juice, Maraschino, bitters and Amaro in a mixing glass with ice. Strain into a cocktail coupe and top with Champagne. Garnish with a sprig of thyme.",0,0
+595,588,Ian Scalzo,Horsefeather,San Francisco,16,Stir the first three ingredients and the sea salt tincture over ice. Strain into a coupe glass and add licorice-infused Angostura Bitters. Garnish with 3 brandied cherries.,0,0
+596,463,Francesco Lafranconi,,,0,"Stir the first two ingredients with ice, then strain into a chilled wine glass. Top with chilled wine, stir and serve.",0,0
+597,351,Francesco Lafranconi,,,0,"Stir the ingredients in a mixing glass filled with ice, strain and serve over ice into an old fashioned glass.",0,0
+598,48,,,,0,"Stir the ingredients in a mixing glass filled with ice, then strain and serve into a chilled cocktail glass.",0,0
+599,522,Thad Vogler,Trou Normand,San Francisco,22,"Stir to 35 °F, strain into a double rocks glass over an angled ice wedge. Garnish with orange peel.",0,0
+600,149,Brian Means,Dirty Habit,San Francisco,65,Stir with ice and serve in a Nick and Nora glass (slimmer version of a coupe).,0,0
+601,566,,Gastronomista.com,,16,Stir with ice and strain into a chilled coupe. Garnish with a fresh cherry tree blossom.,0,0
+602,388,Jim Meehan,American Express Centurion Lounge,San Francisco,16,Stir with ice and strain into a chilled coupe. Garnish with a grapefruit twist.,0,0
+603,658,Brian Means,Dirty Habit,San Francisco,65,Stir with ice and strain into a Nick & Nora glass. Garnish with a grapefruit twist.,0,0
+604,642,Ryan Lotz,,,43,Stir with ice and strain into a rocks glass. Garnish with an orange twist.,0,0
+605,405,Jacques,The Forgery,San Francisco,20,Stir with Ice and strain into a small wine glass.,0,0
+606,456,Brian Means,Dirty Habit,San Francisco,57,Stir with ice and strain into an old fashioned glass over small ice cubes. Garnish with an orange twist.,0,0
+607,136,,Dirty Habit,San Francisco,16,Stir with ice for about 20 seconds and then strain into a chilled cocktail coupe.,0,0
+608,25,Douglas Ford,Cold-Glass.com,,36,Stir with ice until cold; strain into a chilled cocktail glass. Express and garnish with lemon.,0,0
+609,46,,,,0,Stir with ice. Strain into a cocktail glass.,0,0
+610,180,,The Devil's Acre,San Francisco,26,"Stir with pebble ice, strain into rimmed vintage glass.",0,0
+611,473,,MAVEN,San Francisco,27,"Stir, fine strain into a collins glass over ice. Top with soda. Garnish with grapefruit peel.",0,0
+612,605,Caitlin Laman,,,0,"Stir, serve on a large rock with an orange twist garnish.",0,0
+613,266,,Hideout at Dalva,San Francisco,65,"Stir, strain into a chilled Nick and Nora glass. Garnish with lemon twist.",0,0
+614,675,,Trick Dog,San Francisco,22,"Stir, strain into absinthe rinsed double rocks glass over big cube. Garnish with lemon peel.",0,0
+615,84,,Elixir,San Francisco,16,"Stir, strain into an absinthe rinsed coupe. Garnish with Luxardo Cherry.",0,0
+616,519,,,,0,"Stir, strain, and serve straight up.",0,0
+617,646,,Absinthe Brasserie & Bar,San Francisco,0,"Stir, strain, and serve straight up. Express zest and garnish.",0,0
+618,88,Brandon Wise,Imperial,Portland,0,"Stir, tastes great up or over a large ice cube with an orange twist.",0,0
+619,212,Julia Momose,GreenRiver,Chicago,22,"Stir. Add ice cube.
+
+*Barley Tea-Infused Nikka Coffey Grain Whiskey:
+-- 10 g. Barley Tea (1 package)
+-- 750 mls. Nikka Coffey Grain Whisky
+In a cambro, empty a bottle of Nikka Coffey Grain Whiskey, add 1 package of barley tea.
+Steep for 30 minutes at room temperature.
+Strain and store.",0,0
+620,108,,,,36,Stir. Serve in a small cocktail glass. Lemon twist to garnish.,0,0
+621,423,Kevin Diedrich,BDK Restaurant & Bar,San Francisco,39,Stir. Strain into martini glass. Garnish with lemon twist.,0,0
+622,318,Anthony Parks,Mourad,San Francisco,65,Stir. Strain into Nick & Nora glass. Mist of Pipe Tobacco Tincture.,0,0
+623,420,Morgan Schick,Jupiter Olympus,San Francisco,0,Stir. Strain. Lemon peel garnish.,0,0
+624,279,John deBarry ,Momofuku,,61,Stir. Use large ice cube.,0,0
+625,116,,,,0,Strain into an ice filled glass and garnish with an orange twist.,0,0
+626,280,Kate Grutman,,,0,"To make simple syrup, mix equal parts hot water and sugar until sugar is dissolved. Place mint in bottom of glass. Add ice and remaining ingredients except club soda then stir. Top with club soda and garnish with a mint sprig.",0,0
+627,115,Sean McClure,,,0,"Toast spices and set aside. Bring cranberry juice to a simmer. Tie the spices and orange peel in cheesecloth and add them to the cranberry juice. Let this simmer for about 30 minutes. Remove the spice sachet and add the other liquid ingredients. Serve warm or chilled with orange wheels as a garnish. (The magic of punches is that you can adjust them to your liking as you make them, so please play around with different juices and proportions.)",0,0
+628,147,Alex Smith,Novela,San Francisco,27,Top with Fever-Tree Bitter Lemon. Build in a collins glass full of ice cubes and garnish with a lemon wheel and mint sprig.,0,0
+629,239,Johel Huaman Barbosa & Christian Hurtado,NEAT,Westport,0,Top with Grapefruit soda. Shake and strain into ice filled glass.,0,0
+630,248,Matt Grippo,Blackbird,San Francisco,0,Topped with about 4 oz. of LaCroix Pamplemousse. Garnish with grapefruit twist and thyme.,0,0
+631,460,Francesco Lafranconi,,,0,Use an empty bottle of 750ml capacity and combine together 12 ounces - 360 ml of each of the two liqueurs and store in the freezer. Serve very cold in a small cordial glass without ice.,0,0
+632,369,,,,57,"Using a grater, slice 1 peel of grapefruit into a double old-fashioned glass, angling into the glass in order to get the expressed citrus. Then add Cinnamon-Clove Syrup and 3 large ice cubes.
+
+Separately, in a large mixing glass full of ice, pour in Chinaco Anejo Tequila. Using a barspoon, stir for 28-33 rotations. Strain tequila into prepared glass. Add 4 drops of Bittermens Hellfire Bitters. Garnish and enjoy.
+
+*Cinnamon-Clove Syrup:  
+-- 2 C Water
+-- 1 C Demarea Sugar
+-- 4-5 Cinnamon Sticks
+-- 7-9 Cloves
+
+Combine Water and Demarea in a pot and bring to a simmer until the sugar is dissolved. Remove from heat. Add Cinnamon Sticks and Cloves and let steep. Leave at room temperature, overnight. Once cooled, strain into a squeeze bottle and refrigerate.",0,0
+633,629,,,,40,"Warm and flame H by Hine VSOP Fine Champagne in metal mug like a Blue Blazer without the tossing back and forth.
+Douse flame of heated brandy with cacao, top with foamed cream.
+Garnish with freshly grated nutmeg.
+",0,0
+634,441,Sean McClure,,,43,Wet half of the rim of a 13 oz. rocks glass with Benedictine. Shake off the excess Benedictine to avoid clumping on the rim and dip it into the peanut butter powder. Flick the glass to shake the excess powder off. Place the glass in a cooler to chill the glass. In a frozen mixing glass combine all liquid ingredients with equal parts cracked ice and whole hard ice. Stir the cocktail for 45 seconds. Remove the glass from the cooler and place a 2 in. hard ice cube in it. Double strain the cocktail into the glass. Spritz the cocktail with both of the twists. Make sure to release all the essential oils into the cocktail. Discard the twists.,0,0
+635,13,Lucia Stucki,Mora Bar & Kitchen,United Kingdom,15,"Wet shake all ingredients except grapefruit soda, pour over ice and top with grapefruit soda. Rim glass with grapefruit demerara. Add dehydrated grapefruit wheel and slice of fresh root ginger for garnish.",0,0
+636,143,,Honeycut,Los Angeles,27,Whip / Dump / Crushed,0,0
+637,300,Hung Nguyen,Caffe Dante,New York,16,Whisk ingredients in birdie (or tin). Pour into coupe glass and top with Prosecco (1 oz). Garnish with dehydrated orange wheel. Spray orange flower from atomizer.,0,0
+638,73,Monica Anderson,Republic Street Bar,Fort Worth,0,This is a recipe for Jello Shots!,0,0
+639,534,Adam Delaney,,San Francisco,0,Combine all ingredients in a punch bowl. Mix well.,0,0
+640,330,Nick Jones,Pabu,San Francisco,28,Muddle Okinawa sugar with bitters. Add whisky and stir. Top with soda.,0,0
+641,194,Sean McClure,,,0,Combine all ingredients in a large pitcher and mix well. Store in fridge over night to let all the flavors meld together.,0,0
+642,60,Kate Grutman,,Los Angeles,0,,0,0
+643,613,Kate Grutman,,Los Angeles,27,,0,0
+644,490,Ann Maynard,,Austin,0,,0,0
+645,97,Naomi Levy,,Boston,0,,0,0
+646,275,Liz Pearce,,Chicago,0,,0,0
+647,206,Brittini Rae,,Los Angeles,0,,0,0
+648,296,KJ Williams,,New York,0,,0,0
+649,626,Michael Jack Pazdon,,San Francisco,0,,0,0
+650,26,,,,12,,0,0
+651,509,Karen Grill,The Spare Room,Los Angeles,0,,0,0
+652,222,,,,15,,0,0
+653,198,Reza Esmaili,,San Francisco,27,,0,0
+654,5,,,,0,,0,0
+655,551,Michael Parish,,Miami,0,,0,0
+656,301,,,San Francisco,43,,0,0
+657,342,,,,0,,0,0
+658,177,,Five Star,Chicago,0,,0,0
+659,178,Nick Meyer,The Soigne Group,Los Angeles,57,,0,0
+660,225,Nick Meyer,The Soigne Group,Los Angeles,57,,0,0
+661,599,Nick Meyer,The Soigne Group,Los Angeles,27,,0,0
+662,203,Kevin Diedrich,,San Francisco,0,,0,0
+663,16,Kevin Diedrich,,San Francisco,0,,0,0
+664,221,Kevin Diedrich,,San Francisco,0,,0,0
+665,429,Kevin Diedrich,,San Francisco,0,,0,0
+666,501,,,,0,,0,0
+667,64,Morgan Schick,Jupiter Olympus,San Francisco,0,,0,0
+668,76,,,,0,,0,0
+669,539,,,,0,,0,0
+670,582,Kevin Diedrich,,,27,,0,0
+671,323,Takumi  Watanabe,The Sailing Bar,Japan,0,,0,0
+672,299,,,,57,,0,0
+673,666,,,,15,,0,0
+674,619,Enrique Sanchez,,,0,,0,0
+675,370,Kenta Goto,Bar Goto,New York,0,,0,0
+676,425,Brandon Bigalke,Wingtip,San Francisco,0,,0,0
+677,401,Ashley Wacker,Wish Bar,San Francisco,0,,0,0
+678,327,Ashley Rose Conway,,,0,,0,0
+679,170,Theo Sabatini,Novo Restaurant Lounge,San Luis Obispo,0,,0,0
+680,229,Revae Schneider,Bar Siena,Chicago,0,,0,0
+681,15,Revae Schneider,Siena Tavern,Chicago,0,,0,0
+682,664,,,,0,,0,0
+683,410,Jarred Weigand,Death & Co.,New York,0,,0,0
+684,499,Jacyara de Oliveira,"Rob Roy, The Hideout",Seattle,0,,0,0
+685,63,Patrick Halloran,Henrietta Red,Nashville,0,,0,0
+686,316,Jason Patz,Union Lodge No.1,Denver,0,,0,0

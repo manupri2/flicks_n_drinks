@@ -1,0 +1,685 @@
+cocktailId,cocktailName
+0,The Last Tango
+1,Le Femme Nikita
+2,Far From the Tree
+3,Primo Carnera
+4,Georgia Old Fashioned
+5,Elderfashion
+6,Sage & Sound
+7,IPA Mule
+8,See You T'Amaro
+9,Simply Perfecto
+10,Nori & Islay
+11,Bird On
+12,Astoria
+13,Fiery Clydesdale
+14,West Bank
+15,No.10
+16,Champagne Sidecar
+17,French 33
+18,Swedish 75
+19,Orchard Malt Mule
+20,Ypioca Yellow Card
+21,Pina Del Este
+22,Hophead Dirty Martini
+23,Pink Pigeon Punch
+24,The 42nd Round
+25,The Silver Cocktail
+26,Mayan Sacrifice
+27,Picadilly
+28,Vieux Carré
+29,Marchesa
+30,Hopped-Up Mule
+31,The Happy Place
+32,Ritz Cocktail
+33,Karlsson's Kold Brew
+34,Basilway Daquiri
+35,Nectar of the Amazon
+36,Blue 88
+37,The Cliffdiver
+38,Vesper
+39,Carrier Pigeon (an Airmail with Pink Pigeon)
+40,Flamenco
+41,Phineas Flip
+42,Donaji
+43,The Queen's A Redhead
+44,Fuji-La
+45,Pink Colada
+46,Obituary Cocktail
+47,Tropical Bronzer
+48,Angel Face (Classic)
+49,I'm Only Happy when it Rains
+50,Kentucky Likker
+51,3 Degrees
+52,Château Montifaud Creation
+53,Winter Swizzle
+54,Sidewinder
+55,Holland House
+56,The House of Duncan
+57,The Asterisk
+58,Peachy Keane
+59,Oaxacan Martini
+60,Ju-Ju Hurricane
+61,Pants off Dance off
+62,Spring Cleanse
+63,Red Hook
+64,The Greatest Punch on Earth
+65,Luxardo Fresco
+66,A.Nise
+67,Chilcano
+68,Almond Crusta
+69,Desmond's Choice
+70,Raspberry Batida
+71,Hidarite
+72,Karlsson's Mule
+73,"Amaretto Jello Shot, Why Not"
+74,Lux Orchard Lemonade
+75,Château Montifaud on Mint
+76,3 & Tree Tonic
+77,The Bacchus Cocktail
+78,Château Montifaud Pink Love
+79,You Go Glen Coco
+80,The Fall 75
+81,Shadowcat
+82,Short Round II
+83,No.3 & T
+84,The Hollinger Manhattan
+85,Clover Holiday Cocktail
+86,Frisco San
+87,Honey Basil Smash
+88,The Professor
+89,#106 Cocktail
+90,Lux Shandy
+91,Coco Batida
+92,Japonais No.3
+93,End of Winter
+94,The Douglas Tilden
+95,Neighborhood Negroni
+96,Rio De Janeiro Mule
+97,True Dish
+98,Hemingway Daiquiri
+99,Rita's Song
+100,L.E.S. Is More
+101,Hibiscus Pisco Sour
+102,Abano Sour
+103,Where's the Orgeat?
+104,Iron Tonic
+105,Smoke On The Dock
+106,Hotaling Old Tom Gin
+107,Farmer's Gold
+108,Doctor's Orders
+109,Orange Crush
+110,West Coast Punch
+111,Kir
+112,Sahara Glowing Heart
+113,Brazilian Mule Punch
+114,Cherry Orchard
+115,Karlsson's Winter Punch
+116,Gran Classico Negroni
+117,Trip to Jarnac
+118,Manhattan
+119,Fourth Generation
+120,Bon Voyage Pisco Punch
+121,Buenaventura
+122,Kentucky Garrigue
+123,Seersucker Sunshine
+124,La Maracuja
+125,Radice Amara
+126,The Canevari Cocktail
+127,Temple of the Moon
+128,Nellie Fer' Toddy
+129,Jammie Dodger Fizz
+130,Spring Forward
+131,On the Fritz
+132,Pumpkin & Pecan
+133,The Nutty Sensation
+134,Mauritian Made
+135,The Callas Cocktail
+136,B-String
+137,Cherry Shandy
+138,King's Mule
+139,Essence No.5 (Adapted)
+140,Flight to Peru
+141,Bloody Fernet
+142,Little Ground Tapper
+143,Mister Gingy
+144,The Ladybird
+145,Polish Penance
+146,The Bitter King
+147,The Boys of Summer Cup
+148,The Bossa Nova
+149,Dirt Nap
+150,Mexican Sazerac
+151,Luxardo Ice Cream Float
+152,Drink Lab #16
+153,Nikka Coffey Grain Perfect Manhattan
+154,Nick & Janae
+155,Mandrake
+156,Aviation (Adapted)
+157,The Sparkler
+158,Phad Thai
+159,White Walker Flip
+160,Maria Canevari Punch
+161,Mille Miglia
+162,King's Snap the Chocolate Out of You
+163,Newton's Theory
+164,Culebra
+165,Peace Daiquiri
+166,Andy Warhol
+167,Stinger
+168,The Last Wish
+169,Knockemdown Key
+170,Potrero Hill
+171,Cherry Old Fashioned
+172,Second City Sour
+173,Last Samurai
+174,Abrazo Latino
+175,The King's Egg Nog
+176,The Queen Mother
+177,Five Star Cocktail
+178,Doitashimashie
+179,Northern Hemisphere (Nikka 12 Edition)
+180,Bourbon Crusta
+181,Glimpse of Seduction
+182,The Swedish
+183,Jamaica Paloma
+184,Passion Fruit Batida
+185,The Windtalker
+186,The Brightside
+187,Prickly Pear Margarita
+188,Creole Cobbler
+189,Singapore Sling (1915 Recipe)
+190,20th Century
+191,Lux Cherry Sparkler
+192,Bacio Romana
+193,Cherry Bark Martinez
+194,Bloody Swede
+195,Boomin' Granny
+196,Martinez
+197,Pink & Ginger
+198,The Shah's Shandy
+199,"Eat, Drink and Be Cherry"
+200,The Alpine Mist
+201,Kiss
+202,Cupid's Carrier Pigeon
+203,Southside Fizz
+204,Stranger in the Alps
+205,Cut To The Chase
+206,California Aurora
+207,Chingerito
+208,Château Montifaud Lady Touch Triple Sec
+209,Cut & Rum
+210,The Lover's Quarrel 
+211,Amaretto Sour
+212,Cullerton Street
+213,Cocao Martini 
+214,P.T. Barnum Cocktail
+215,Barrel Aged Ginger Negroni
+216,Muddled Mission
+217,Peter Pumpkin
+218,La Perle de Verre
+219,Slow Ride
+220,Above My Pay Grade
+221,Pisco Sling
+222,Speyside Highball
+223,On the Wings of Eagles
+224,Hotaling White Manhattan
+225,Lucky No.3
+226,The Awen
+227,Platonic Snuggle
+228,Julia's Child
+229,No3
+230,Cuba Liberation
+231,Smashing Great Pumpkins
+232,The No.3 Winter Punch
+233,Lovage In The Garden
+234,Huntsman
+235,Dry Mauritian Sour
+236,Gold Spritz
+237,Land of Valencia
+238,Stone Fruit Patch V1
+239,Brisa del Sur
+240,A Tall Tell
+241,Mayan Mule
+242,Red Letters
+243,50/50 Split
+244,Final Ward
+245,Kay Pacha Mi Pacha
+246,Happiness
+247,Palermo Breeze
+248,Bianco Americano
+249,Bakko & Zengo
+250,Mauritius Sour
+251,Americana Fizz (Layered Cocktail)
+252,Monet
+253,Feingold
+254,La Chiara
+255,Sabotage
+256,Kiss Of Persuasion
+257,Amaretto Sour (Modern)
+258,Mexico Mule
+259,The Tahoe Toddy
+260,Old Tom and The Sea
+261,Lost at Sea
+262,Stroll Through the Park
+263,Frankie and Johnnie
+264,Nola '75
+265,The Royal Buck
+266,Scotch Joplin
+267,Red Bud Trail
+268,La Hops Vie
+269,White Tie
+270,West Coast Vesper
+271,The King's Medicine
+272,Pear and Cranberry Fizz
+273,Nikka Coffey Malt Old Fashioned
+274,Playa Matalan (Mezcal Negroni)
+275,The Fifth Star
+276,Champs Élysées
+277,San Francisco Strong (Skrong)
+278,Canary vs. the Coal Mine
+279,Nigamono
+280,Pink Mojito
+281,Bird on a Wire
+282,The Red Anchor
+283,The Last Marasca
+284,Negroni
+285,Sorriso (Adapted)
+286,Sorrentino
+287,Crooked Kilt
+288,Mayan Sacrifice Champagne Cocktail
+289,Pacific Breeze
+290,Jalapeño Sour
+291,You're Bitter Than That
+292,Apples & Grapes
+293,Spice and Stormy
+294,Pisco Punch
+295,Deviled Negroni 
+296,Plum Loco
+297,Floral Summer
+298,Monkey Gland
+299,Margarita
+300,Negroni Sorbetto
+301,Mauritian Sunrise
+302,Kick the Pigeon
+303,"Yes, Queen!"
+304,Mean Martinez
+305,Tea Party Cocktail
+306,In HINEsight
+307,Citrus Agave Caipirinha
+308,Clear Intentions
+309,Bajo Control
+310,Pisco Sour
+311,Windtalker
+312,Neko Colada
+313,Rothes Julep
+314,Italian Riviera Mojito
+315,Buzzard's Bay
+316,Union Jack
+317,Heart Breaker
+318,Coffee & Clove
+319,Charente Royale
+320,La Madrugada
+321,Opaka Raka
+322,Alaska Cocktail
+323,Cove
+324,Brazilian Mai Tai
+325,Conference
+326,Long Island Limoncello Martini
+327,Spring Fling Sipper
+328,The King's Ginger Spiced Punch
+329,Apricot Lady
+330,Classic Lolita
+331,Pumpkin and Spice
+332,Arapa Cocktail
+333,Rx Hot Toddy
+334,Blind Luck
+335,Banana's Froster
+336,The Sixth Sense
+337,Pink Ribbon
+338,Passionate Pigeon 
+339,Coffey Grain Manhattan
+340,The Molino
+341,French Maid
+342,My Spicy Valentine
+343,Tambourine
+344,Cock-tail
+345,The Big Picture
+346,Garrison's New Fashioned
+347,War of the Roses
+348,PDA
+349,San Fran Shandy
+350,Xmas in Juniper
+351,The Lady Whisper
+352,Japanese Cocktail
+353,Party in the Agave Fields
+354,Santa Patricia
+355,Nuestra Julep
+356,Harms' Way
+357,“Prepare for Destiny! Where’s my Pizza?”
+358,Lux Japanese Lemonade
+359,The French Connection
+360,The King's Mulled Wine
+361,Bird is the Word
+362,The King's Spring Daisy
+363,The King's Squeeze
+364,Mystique Green (Adapted)
+365,Pink Punch
+366,The Twinger 
+367,Bay City Shandy
+368,Gold Rush
+369,Vieja Moda
+370,Yuzu Sazerac
+371,3AM
+372,Black Jam
+373,New Beginnings
+374,Engaged and Cant-Aloupe
+375,Mezcal Witch
+376,Grown-Up Shirley Temple
+377,Double Trouble
+378,The Great Pumpkin Cocktail
+379,No.3 Negroni
+380,Kir Royale
+381,Solera Sidecar
+382,Hophead Old Fashioned
+383,Rose Sangria
+384,Citrus Quo (Adapted)
+385,Cherries St. James
+386,Juniperotivo
+387,Amaretto Bourbon Punch
+388,Pineapple Express
+389,Root Down
+390,The Cavalier White Lady
+391,The Touch  of Glass
+392,The Robert Baratheon
+393,White Lady (Classic) (Adapted)
+394,The Pink Aperitivo
+395,Kentucky Mai Tai
+396,The King's Froth & Frizz
+397,Cut and Run
+398,Long Division
+399,SOMA Fizz
+400,Corpse Reviver No 1
+401,Im(pear)ed Fashioned
+402,Rothes Roy
+403,Jack Cherry Sour (2001 Remix)
+404,English Harbour Colada
+405,Lonesome George
+406,Junipero Gin and Tonic
+407,Cherry Champagne Cocktail
+408,Pistachio Follies
+409,A Botanical Garden
+410,Match Grip Julep
+411,Vinterpäls
+412,Redondo Beach
+413,Ypioca Chile Punch
+414,Eden's Apple
+415,Kind of Fancy
+416,Speyside Orchard
+417,A Bloody Shame
+418,L'Aviation
+419,The Royal King
+420,Swedish Nightingale
+421,Down the Rabbit Hole
+422,The Commissioner's Trophy #3
+423,Creole
+424,Toasted Drop
+425,An Oaxacan Christmas
+426,Apricot Blush
+427,Bunny Poison
+428,Thyme for Bed
+429,T&T
+430,Shroud of the Inca
+431,A Gift from Zara
+432,Flor de Amaras
+433,Round Pond Aperitif
+434,Grey Anchor
+435,Prince of Humbugs
+436,Three Flips
+437,And The Cherry On Top Is...
+438,Mauritian Buck
+439,Roasted Cherry Colada
+440,Rhapsody in Red
+441,PB&K Old Fashioned
+442,Chilli Vanilli
+443,Improved Whisky Cocktail
+444,La Nueva Moda (The New Fashion)
+445,1880's Americana
+446,Gin Made Me Do It
+447,Peach Batida
+448,Amaretto Sourball
+449,Fizzy Rhubarb Mule
+450,Palais Royal
+451,Stone Fruit Patch V2
+452,Hotaling Seaside Shandy
+453,Goat Town Swizzle
+454,On the Flipside
+455,Creek Ran Dry
+456,Under the Sun
+457,The King's Ginger Summer Cup
+458,Angel's Face
+459,Corpse Reviver No.2
+460,Soleo
+461,Apple Shrub Spritz
+462,Barbary Coast Bulldog
+463,El Cortez
+464,Espèce de Sazerac
+465,Yawkey Way 
+466,The King's Cranberry Sauce
+467,Coos Bay
+468,Mule Pigeon
+469,Orange Batida
+470,Croatia Firing Squad
+471,Negroni D'Amore
+472,Luxardo Maraschino Simple Spritz
+473,International Mistress
+474,Geaux Geaux Cup
+475,French 75
+476,Le Sang et Sable
+477,Luxardo Sling
+478,The King's Autumn Cobbler
+479,Irish Goodbye
+480,Sade's Taboo
+481,Pontchartrain Punch
+482,Vintage Reserve Sour
+483,Big and Bright
+484,Buccaneer
+485,Swedish Royal
+486,A Southern Jackass
+487,The King Merlet Sidecar
+488,Clearly Bitter
+489,Flip and Flight
+490,II Piacere
+491,Hanky Panky (Classic)
+492,Hippi Hill
+493,Chippendale Rosetone
+494,10 to 7
+495,Peruvian Wish (Adapted)
+496,Almond Brother
+497,The Proverb
+498,La Batida Loca
+499,The Dry Cruise
+500,Sloe & Steady
+501,Scottish Fruit Tart
+502,Vida Verde (Adapted)
+503,Tequila Sunflare
+504,Elgin Elixir
+505,Bushido Cocktail
+506,Aperitivo Spritz
+507,Cap't of the Seven Seas
+508,Spanish G&T
+509,"Lox, Stock & Two Smoking Barrels"
+510,Ginger Drop
+511,Off the Radar
+512,The Mad King
+513,Asian Affair
+514,The King's Winter Cup
+515,Mint Garden
+516,Pisco Punch (Adaptation by The Commissary)
+517,Hanny's Hot Apple Toddy
+518,You Bet Your Ascot
+519,The Claridge
+520,Nieux Carré
+521,Chilcano (variation)
+522,Improved Calvados Cocktail
+523,Hopped-Up Mary
+524,Just Beet It
+525,Karlsson's Old Fashioned
+526,Masataka's Vision
+527,Prata Punch
+528,Still Life of a Pineapple
+529,Delicious Sour
+530,Strike No.3
+531,La La Land
+532,The Bittered Valley
+533,Short Round
+534,Local Edition Punch
+535,Naughty Nikka
+536,Sidecar
+537,Green and Gold
+538,Wabash Avenue Sour
+539,The King's Ginger Truffles 
+540,Tokyo Tea
+541,Merry Sherry Cobbler
+542,Junipero Jolly
+543,The Italian Diplomat
+544,Pacific Kick
+545,San Fran Soda
+546,Wooster 53
+547,Bachelor's Bait
+548,Mother Superior
+549,Mayan Decadence
+550,The Southside
+551,Lychee & 3
+552,Across The Pond
+553,California's Callin'
+554,Morlacco Julep
+555,The No.3 Winter Cup
+556,The Improved Sazerac
+557,White Lady
+558,King's Medicine
+559,Nikka Earl Grey
+560,Paradiso Sun
+561,Fiona Graham
+562,Baile de Verano
+563,Sazerac
+564,Tahitian Fix
+565,Full of Bologna
+566,Cherry Blossom Martini
+567,Mango No. 3
+568,No.3 Bramble
+569,Tamaulipas Margarita
+570,Spiced Marmalade
+571,The King and Tonic
+572,Rudolph's Rose
+573,The Cappa
+574,The Sun Also Rises
+575,Amaretto Rose
+576,Endless Summer
+577,Bitter Valencia
+578,Heard It Through The Grapevine
+579,Pisco Punch (Adaptation by The Comstock Saloon)
+580,Salty Swede
+581,Profundo
+582,Kerouac
+583,Fernet Frappe
+584,OH Snap!
+585,Club Med
+586,Space Age Pop
+587,Basil Gin and Tonic
+588,The Chief
+589,The Stand By
+590,Don't Rock the Boat Punch
+591,Day For Night
+592,The Naughty & Nice
+593,Mayahuel's Revenge
+594,La Capilla
+595,Mack's Apple
+596,The Ginger Royale
+597,Winter Season
+598,Bermuda Highball
+599,Motel Nacional
+600,See ya Amaro!
+601,Kanazawa
+602,A Mi Manera (My Way) Pisco Punch
+603,Last Word
+604,Padova Collins
+605,Mezcal Coffee Old Fashioned
+606,Chapman Cobbler
+607,The Reserved King
+608,Figge bout it
+609,The Palace Cellar
+610,Cafe Creole
+611,The Seniorita
+612,Pink & Black
+613,Bay Shandy
+614,Erasmus' Revenge
+615,Amaretto Sour BV-Style
+616,Buster Crusta
+617,Golden Gun
+618,Gin n' Celery
+619,Margarita Ahumeada
+620,Ode to Kinshi
+621,The King's Queen
+622,Kumquat Smash
+623,Luxardo Sour
+624,King's Toddy
+625,Daisy Mae
+626,Port's North Fogcutter Cup
+627,The Monte Rua
+628,Flip the Bird
+629,Flambeed Brandy Alexander
+630,Mott and Mulberry
+631,Fortune & Glory
+632,The Double Crown
+633,Blood & Sand
+634,Cream of the Crop
+635,Nikka's Golden Cherry
+636,Vesper's Sister
+637,Beachcomber
+638,Parisian Manhattan
+639,A Love Song
+640,3 & Tree 
+641,Dutch Stories
+642,The Fritz
+643,Piedra de sol
+644,Delicious in Mauritius
+645,Ginger Pigeon
+646,Venetian
+647,San Francisco Harvest
+648,The Rusty Tack
+649,Snow Bunny
+650,Assemble Mule
+651,Drops of Jupiter
+652,Maraschino Side Car
+653,A Regal Air 
+654,Bird to Buck
+655,The King's Mulled Cider
+656,Dernier Mot
+657,Divine Aspect
+658,Iron Fist in a Velvet Glove
+659,Bubbly Bird
+660,Caipirinha
+661,Italian Margarita
+662,The Kings Mule
+663,Tea & Sympathy
+664,The Negroni Bianco
+665,Duke's Classic Dry Martini
+666,Paloma
+667,The Rickenbacker
+668,The Inside Job
+669,Miyagikyo Kick
+670,Nara Mule
+671,Château Montifaud on the Rocks
+672,Bubbleliciously Delicious
+673,Division Bell
+674,Creole Summer
+675,Virgil St.
+676,Trato Hecho
+677,7th Heaven 
+678,Willow
+679,Boko Buku
+680,Framboise de Pigeon
+681,El Mustavo
+682,The Pink Pussycat
+683,The Mayan Premonition
