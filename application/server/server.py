@@ -29,9 +29,9 @@ def login():
 	return render_template("./pages/loginPage.html")
 
 
-@app.route("/CRUDPage.html")
+@app.route("/signupPage.html")
 def crud():
-	return render_template("./pages/CRUDPage.html")
+	return render_template("./pages/signupPage.html")
 
 # ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 # API routes
