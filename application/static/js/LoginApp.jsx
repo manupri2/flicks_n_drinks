@@ -25,8 +25,8 @@ class LoginApp extends Component {
         return (
             <div>
                 <Container>
-                    <h2 className="text-center">Log In</h2>
                     <Form>
+                        <h2 className="text-center">Log In</h2>
                         <Form.Group size="lg" controlId="formBasicEmail">
                             <Form.Label>Email address</Form.Label>
                             <Form.Control type="email" placeholder="Enter email"/>
