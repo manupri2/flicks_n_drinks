@@ -1,15 +1,7 @@
 import numpy as np
 import pandas as pd
 import tensorflow as tf
-from tensorflow import feature_column
-from tensorflow.keras.layers import Input, Dense, DenseFeatures
-from tensorflow.keras.models import model_from_json, Model
-from sklearn.model_selection import train_test_split
-from sql_api import api_query
-from DataManipulation.build_NN_training_set import *
-import tensorflow_hub as hub
-import matplotlib.pyplot as plt
-from DataManipulation.BuildModel import get_data_df, df_to_dataset, model_traits, num_cats
+from DataManipulation.BuildModel import df_to_dataset
 
 
 def get_model():
