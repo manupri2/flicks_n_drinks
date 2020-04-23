@@ -2,10 +2,26 @@ from io import StringIO
 import csv
 import pandas as pd
 import numpy as np
+import tensorflow as tf
 import re
 from urllib import parse
 import requests
 from sql_api import api_query
+
+
+def bin_traits(traits, df):
+    bin_labels = list(np.linspace(0, 98, 50))
+    print("Trait bin labels: %s" % repr(bin_labels))
+    bin_vals = np.linspace(0, 100, 51)
+    bin_intervals = []
+    for i in range(bin_vals.shape[0] - 1):
+        bin_intervals.append((bin_vals[i], bin_vals[i + 1]))
+    print("Trait bin intervals: %s\n" % repr(bin_intervals))
+
+    for trait in traits:
+        df[trait] = pd.cut(df[trait], bin_vals, labels=bin_labels, include_lowest=True)
+
+    return df
 
 
 # ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -18,7 +34,7 @@ def build_training_set(users=200, movies=200, num_bins=5, group_by_movie=False, 
 
     movie_trait_matrix['trait_name'] = pd.Series(new_traits)
     movie_trait_matrix.set_index('trait_name', inplace=True)
-    print(movie_trait_matrix)
+    # print(movie_trait_matrix)
 
     query = 'SELECT Movie.tConst FROM Movie'
     movie_ids, code = api_query(query)
@@ -29,7 +45,7 @@ def build_training_set(users=200, movies=200, num_bins=5, group_by_movie=False, 
     ratings.set_index('tConst', inplace=True)
 
     # bring in all movies and their corresponding genres
-    query = 'SELECT MovieCategory.tConst, Genre.genreName' \
+    query = 'SELECT MovieCategory.tConst, Genre.genreName, Genre.genreId' \
             ' FROM MovieCategory' \
             ' INNER JOIN Genre ON MovieCategory.genreId = Genre.genreId'
     movie_cat, code2 = api_query(query)
@@ -72,7 +88,7 @@ def build_training_set(users=200, movies=200, num_bins=5, group_by_movie=False, 
     # print(training_set)
 
     # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    # interpolate probabilties based on the MovieTraitMatrix values that were just joined in
+    # interpolate probabilities based on the MovieTraitMatrix values that were just joined in
     prob_traits = np.array(pd.Series(np.array(traits)))
     prob_traits = 'prob' + prob_traits
     prob = pd.DataFrame()
@@ -95,7 +111,7 @@ def build_training_set(users=200, movies=200, num_bins=5, group_by_movie=False, 
     training_set['prob'] = prob.mean(axis=1)
     # ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     # reduce dataframe down to required columns
-    final_df = training_set.loc[:, ['user_id', 'tConst', 'genreName', 'prob', 'Openness', 'Conscientiousness', 'Extraversion', 'Agreeableness', 'Neuroticism']]
+    final_df = training_set.loc[:, ['user_id', 'tConst', 'genreId', 'genreName', 'prob', 'Openness', 'Conscientiousness', 'Extraversion', 'Agreeableness', 'Neuroticism']]
 
     if group_by_movie:
         final_df = final_df.groupby(['user_id', 'tConst']).mean()
@@ -104,18 +120,18 @@ def build_training_set(users=200, movies=200, num_bins=5, group_by_movie=False, 
     # (probability user will like random movie based solely on their personality traits and the movie's genres)
     avg = final_df['prob'].mean()
     std = final_df['prob'].std()
-    print("Original statistics:")
-    print('Avg: %s' % repr(avg))
-    print('Std: %s\n' % repr(std))
+    # print("Original statistics:")
+    # print('Avg: %s' % repr(avg))
+    # print('Std: %s\n' % repr(std))
     final_df['z_score'] = (final_df['prob'] - avg) / std
 
     # adjust the distribution to fit the parameters below
     target_avg = 0.50
     target_std = 0.23
     final_df['new_prob'] = final_df['z_score'] * target_std + target_avg
-    print("Adjusted statistics:")
-    print('Avg: %s' % repr(final_df['new_prob'].mean()))
-    print('Std: %s\n' % repr(final_df['new_prob'].std()))
+    # print("Adjusted statistics:")
+    # print('Avg: %s' % repr(final_df['new_prob'].mean()))
+    # print('Std: %s\n' % repr(final_df['new_prob'].std()))
 
     # clean data to ensure nothing greater than 1 and nothing below 0
     idx = pd.IndexSlice
@@ -142,31 +158,58 @@ def build_training_set(users=200, movies=200, num_bins=5, group_by_movie=False, 
 
         final_df = final_df.join(movie_cat, on='tConst', how='inner')
     # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    bin_labels = list(range(1, num_bins + 1))
-    print("Bin labels: %s" % repr(bin_labels))
+    # bin_labels = list(range(0, num_bins))
+    # print("Bin labels: %s" % repr(bin_labels))
+    # bin_vals = np.linspace(0, 10, num_bins + 1)
+    # bin_intervals = []
+    # for i in range(bin_vals.shape[0] - 1):
+    #     bin_intervals.append((bin_vals[i], bin_vals[i + 1]))
+    # print("Bin intervals: %s\n" % repr(bin_intervals))
+    #
+    # # bins = pd.IntervalIndex.from_tuples(bin_intervals)
+    # final_df['BinProb'] = pd.cut(final_df['new_prob']*10, bin_vals, labels=bin_labels, include_lowest=True)
+    # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    bin_vals = np.linspace(0, 10, num_bins + 1)
+    bin_labels = list(range(0, num_bins))
+    print("Bin labels: %s" % repr(bin_labels))
+    bin_vals = np.linspace(0, 1, num_bins + 1)
     bin_intervals = []
     for i in range(bin_vals.shape[0] - 1):
         bin_intervals.append((bin_vals[i], bin_vals[i + 1]))
     print("Bin intervals: %s\n" % repr(bin_intervals))
 
     # bins = pd.IntervalIndex.from_tuples(bin_intervals)
-    final_df['BinProb'] = pd.cut(final_df['new_prob']*10, bin_vals, labels=bin_labels, include_lowest=True)
+    final_df['BinProb'] = pd.cut(final_df['prob'], bin_vals, labels=bin_labels, include_lowest=True)
+    # print(final_df)
 
+
+    # ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     if final_df['BinProb'].isnull().any():
         print("WARNING: Dataset has null classifications.")
     else:
         print("Items successfully binned. No null classifications detected.")
 
     export_df = final_df.loc[:, ['Openness', 'Conscientiousness', 'Extraversion', 'Agreeableness', 'Neuroticism',
-                                 'genreName', 'BinProb']]
+                                 'genreId', 'genreName', 'BinProb']]
+
+    export_df = export_df.astype({'genreId': 'float32'})
 
     if save_file:
-        export_df.to_csv('./trainingSet/MovieTraitTrainingSet.csv')
+        export_df.to_csv('../application/server/MovieTraitModel/MovieTraitTrainingSet.csv')
 
     return export_df
 
 
 if __name__ == "__main__":
-    print(build_training_set(users=200, movies=200, num_bins=5))
+    test_df = build_training_set(users=200, movies=200, num_bins=20, save_file=True)
+    feats = test_df.iloc[:, 0:6].values.astype(np.float32)
+    print(feats)
+    print(feats.shape)
+    print(type(feats))
+    print(feats[0, 5])
+    print(type(feats[0, 5]))
+
+    labels = np.array(test_df.iloc[:, 6].values)
+    labels = labels.reshape((labels.shape[0], 1))
+    print(labels.shape)
+    print(type(labels))
