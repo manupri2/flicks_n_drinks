@@ -5,14 +5,19 @@ from tensorflow import feature_column
 from tensorflow.keras.layers import Input, Dense, DenseFeatures
 from tensorflow.keras.models import model_from_json, Model
 from sklearn.model_selection import train_test_split
-from sql_api import api_query
+# from sql_api import api_query
 from DataManipulation.build_NN_training_set import *
 import tensorflow_hub as hub
 import matplotlib.pyplot as plt
 
 
 model_traits = ['Openness', 'Conscientiousness', 'Extraversion', 'Agreeableness', 'Neuroticism']
-num_cats = 10
+model_feats = model_traits + ['genreName']
+num_cats = 20
+model_genres = ['Romance', 'Biography', 'Crime', 'Drama', 'Adventure', 'Family', 'History', 'Fantasy', 'War',
+                'Thriller', 'Documentary', 'Comedy', 'Mystery', 'Horror', 'Western', 'Music', 'Action', 'Sci-Fi',
+                'Animation', 'Musical', 'Sport', 'Film-Noir', 'News', 'Talk-Show', 'Adult', 'Reality-TV', 'Short',
+                'Game-Show']
 
 
 def df_to_dataset(df, shuffle=False, batch_size=32):
@@ -273,19 +278,13 @@ def build_model_new(training_set, num_cat=10, load_ts="", save_model=""):
 
 
 if __name__ == "__main__":
-    model_genres = ['Romance', 'Biography', 'Crime', 'Drama', 'Adventure', 'Family', 'History', 'Fantasy', 'War',
-                    'Thriller', 'Documentary', 'Comedy', 'Mystery', 'Horror', 'Western', 'Music', 'Action', 'Sci-Fi',
-                    'Animation', 'Musical', 'Sport', 'Film-Noir', 'News', 'Talk-Show', 'Adult', 'Reality-TV', 'Short',
-                    'Game-Show']
-    model_file = '../application/server/MovieTraitModel'
-
-
+    model_file = 'test_model/MovieTraitModel'
     build_mod = True
     if build_mod:
-        training_df = get_data_df(model_traits, "genreName", users=400, movies=400, num_cat=num_cats, save=True)
+        training_df = get_data_df(model_traits, "genreName", users=10000, movies=400, num_cat=num_cats, save=True)
         live_model = build_model(model_genres, model_traits, num_cat=num_cats)
         live_model, rebuild_ds = fit_model(training_df, live_model, save_model=model_file)
-        rebuild_ds.to_csv('../application/server/MovieTraitModel/MovieTraitRebuild.csv')
+        # rebuild_ds.to_csv('../application/server/MovieTraitModel/MovieTraitRebuild.csv')
 
         live_model.summary()
         original_weights = live_model.get_weights()

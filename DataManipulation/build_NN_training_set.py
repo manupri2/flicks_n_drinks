@@ -7,6 +7,14 @@ import re
 from urllib import parse
 import requests
 from sql_api import api_query
+import os
+
+
+def load_mt_matrix():
+    path_str = repr(os.path.dirname(os.path.abspath(__file__)))
+    path_str = path_str.replace("\\\\", "/")
+    path_str = path_str.replace("'", "")
+    return pd.read_csv(path_str + "/static/MovieTraitMatrix.csv")
 
 
 def bin_traits(traits, df):
@@ -27,7 +35,10 @@ def bin_traits(traits, df):
 # ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 def build_training_set(users=200, movies=200, num_bins=5, group_by_movie=False, save_file=False):
     # load matrix mapping peronality traits to genres
-    movie_trait_matrix = pd.read_csv('./static/MovieTraitMatrix.csv')
+    # movie_trait_matrix = pd.read_csv('./static/MovieTraitMatrix.csv')
+
+    movie_trait_matrix = load_mt_matrix()
+
     new_traits = np.array(movie_trait_matrix['trait_name'])
     new_traits[0::2] = new_traits[0::2] + 'H'
     new_traits[1::2] = new_traits[1::2] + 'L'
@@ -171,17 +182,16 @@ def build_training_set(users=200, movies=200, num_bins=5, group_by_movie=False, 
     # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     bin_labels = list(range(0, num_bins))
-    print("Bin labels: %s" % repr(bin_labels))
+    # print("Bin labels: %s" % repr(bin_labels))
     bin_vals = np.linspace(0, 1, num_bins + 1)
     bin_intervals = []
     for i in range(bin_vals.shape[0] - 1):
         bin_intervals.append((bin_vals[i], bin_vals[i + 1]))
-    print("Bin intervals: %s\n" % repr(bin_intervals))
+    # print("Bin intervals: %s\n" % repr(bin_intervals))
 
     # bins = pd.IntervalIndex.from_tuples(bin_intervals)
-    final_df['BinProb'] = pd.cut(final_df['prob'], bin_vals, labels=bin_labels, include_lowest=True)
+    final_df['BinProb'] = pd.cut(final_df['new_prob'], bin_vals, labels=bin_labels, include_lowest=True)
     # print(final_df)
-
 
     # ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     if final_df['BinProb'].isnull().any():

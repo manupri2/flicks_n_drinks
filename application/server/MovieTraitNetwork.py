@@ -1,12 +1,13 @@
 import numpy as np
 import pandas as pd
 import tensorflow as tf
-from DataManipulation.BuildModel import df_to_dataset
+import tensorflow.keras.models as models
+from DataManipulation.BuildModel import df_to_dataset, model_feats, num_cats
 
 
-def get_model():
+def load_model():
     model_file = './MovieTraitModel'
-    mt_model = tf.keras.models.load_model(model_file)
+    mt_model = models.load_model(model_file)
 
     rebuild_df = pd.read_csv('./MovieTraitModel/MovieTraitRebuild.csv')
     rebuild_ds = df_to_dataset(rebuild_df)
@@ -17,6 +18,60 @@ def get_model():
     return mt_model
 
 
+def see_mtnn(features_df, mt_model):
+    """calculates compatibility and returns as numpy array"""
+    batch_size = 1  # traits_df.shape[0]
+
+    df = features_df.loc[:, model_feats]
+    traits_ds = tf.data.Dataset.from_tensor_slices(dict(df))
+    traits_ds = traits_ds.batch(batch_size)
+
+    compat = mt_model.predict(traits_ds, batch_size=batch_size, verbose=1)
+    compat = (np.argmax(compat, axis=1) + 1)/num_cats
+
+    return compat
+
+
+def build_features_df(trait_dict, tconst_list, genre_df):
+    if tconst_list:
+        feat_tups = []
+        for tconst in tconst_list:
+            temp = trait_dict.copy()
+            temp['tConst'] = tconst
+            feat_tups.append(temp)
+        feats_df = pd.DataFrame(feat_tups)
+        genre_df.set_index('tConst', inplace=True)
+        feats_df = feats_df.join(genre_df, on='tConst', how='inner')
+    else:
+        feats_df = pd.DataFrame([trait_dict for i in range(genre_df.shape[0])])
+        feats_df['genreName'] = genre_df['genreName']
+
+    return feats_df
+
+
+def calc_personalized_rating(df):
+    compat = df['compatibility']
+    df['personalRating'] = df['rating'] * (-0.8 * compat**2 + 2.4 * compat)
+    return df
+
+
+def calc_genre_compat(json_dict, tconst_list, genre_df, model):
+    results_df = build_features_df(json_dict, tconst_list, genre_df)  # build features dataframe for NN
+    results_df['compatibility'] = see_mtnn(results_df, model)  # calculate compatility through NN
+
+    if tconst_list:
+        results_df = results_df.groupby(['tConst'], as_index=False).mean()
+        results_df = results_df.loc[:, ['tConst', 'rating', 'compatibility']]
+        results_df = calc_personalized_rating(results_df)
+    else:
+        num_results = 5
+        results_df.sort_values('compatibility', inplace=True, ascending=False)
+        results_df.reset_index(inplace=True)
+        results_df = results_df.loc[0:num_results - 1, ['genreName', 'compatibility']]
+
+    return results_df
+
+
 if __name__ == "__main__":
-    new_mod = get_model()
-    new_mod.summary()
+    test_mod = load_model()
+    test_mod.summary()
