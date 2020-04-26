@@ -37,10 +37,13 @@ class LoginApp extends Component {
 
         setValidated(true);
 
-        let db = this.state.database;
-        let apiUrl = 'http://cs411ccsquad.web.illinois.edu/';
-        let email = encodeURI(JSON.stringify(this.state.email));
-        apiUrl += db + "/" + email;
+        var db = this.state.database;
+        var apiUrl = 'http://cs411ccsquad.web.illinois.edu/';
+        var body = encodeURI(JSON.stringify({
+            'emailId': this.state.email,
+            'password': this.state.password
+        }));
+        apiUrl += db + "/" + body;
         if(!this.state.isLoggedIn){
             fetch(apiUrl)
                 .then((res => res.json()))
@@ -49,7 +52,7 @@ class LoginApp extends Component {
                     if (result.status === 'Invalid')
                         alert('Invalid User');
                     else
-                    this.props.history.push("/CRUDpage.html");
+                    this.props.history.push("/CRUDPage");
                 })
         }
 
@@ -72,7 +75,6 @@ class LoginApp extends Component {
                                 value={this.state.email}
                                 onChange={this.handleChange}
                                 placeholder="Enter email" />
-                        <Form.Control.Feedback type="invalid">Please enter email address.</Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group size="lg" controlId="formBasicPassword">
                             <Form.Label>Password</Form.Label>
@@ -83,7 +85,6 @@ class LoginApp extends Component {
                                 value={this.state.password}
                                 onChange={this.handleChange}
                                 placeholder="Password"/>
-                            <Form.Control.Feedback type="invalid">Please enter password.</Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group size="md" controlId="formBasicCheckbox">
                             <Form.Check type="checkbox" label="Remember Password"/>
