@@ -1,4 +1,4 @@
-from application.server.MovieTraitNetwork import *
+# from application.server.MovieTraitNetwork import *
 from flask import jsonify
 import pandas as pd
 import sql_api
@@ -109,21 +109,21 @@ def build_genres_query(tconst_list):
     return query
 
 
-def handle_mtnn_api(json_dict, model, conn):
-    tconst_list = json_dict.pop('tConst')
-
-    # build query to get the genres we are interested in matching
-    genre_query = build_genres_query(tconst_list)
-    if conn == 'test':
-        genre_df, code = sql_api.api_query(genre_query)
-    else:
-        genre_df = query_data(genre_query, conn, 'df')
-
-    result = calc_genre_compat(json_dict, tconst_list, genre_df, model)
-
-    if tconst_list:
-        result = calc_personalized_rating(result)
-    return result.to_json()
+# def handle_mtnn_api(json_dict, model, conn):
+#     tconst_list = json_dict.pop('tConst')
+#
+#     # build query to get the genres we are interested in matching
+#     genre_query = build_genres_query(tconst_list)
+#     if conn == 'test':
+#         genre_df, code = sql_api.api_query(genre_query)
+#     else:
+#         genre_df = query_data(genre_query, conn, 'df')
+#
+#     result = calc_genre_compat(json_dict, tconst_list, genre_df, model)
+#
+#     if tconst_list:
+#         result = calc_personalized_rating(result)
+#     return result.to_json()
 
 
 if __name__ == '__main__':

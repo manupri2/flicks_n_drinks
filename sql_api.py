@@ -2,7 +2,6 @@ import pandas as pd
 from urllib import parse
 import requests
 import json
-# from application.server.handle import *
 
 
 # Status Code 500 - Error in SQL query or error in connecting to database
