@@ -8,6 +8,7 @@ const config = {
 		"navigation":__dirname + '/js/navigation.jsx',
 		"loginPage":__dirname + '/js/loginPage.jsx',
 		"home":__dirname + '/js/home.jsx',
+		"signupPage":__dirname + '/js/signupPage.jsx',
 	},
 	output:{
 		path: __dirname + '/dist',

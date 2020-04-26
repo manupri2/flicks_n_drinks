@@ -11,7 +11,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
 }
-.form-box {
+Form {
   width: 420px;
   height: 480px;
   position: relative;
