@@ -122,15 +122,9 @@ def add(table, new_input):
         max_id_query = 'SELECT MAX(cocktailId) as max FROM CocktailName'
         max_recipe_id_query = 'SELECT MAX(recipeId) as max FROM CocktailRecipe'
 
-        # query_d = conn.execute(max_recipe_id_query)
-        # result = [dict(zip(tuple(query_d.keys()), i)) for i in query_d.cursor]
-        # max_recipe_id = result[0]['max'] + 1
         result = query_data(max_recipe_id_query, conn, 'df')
         max_recipe_id = result['max'][0] + 1
 
-    # query_d = conn.execute(max_id_query)
-    # result = [dict(zip(tuple(query_d.keys()), i)) for i in query_d.cursor]
-    # max_id = result[0]['max'] + 1
     result = query_data(max_id_query, conn, 'df')
     max_id = result['max'][0] + 1
 
