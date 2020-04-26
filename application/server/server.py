@@ -75,15 +75,18 @@ def api_sql(query_uri):
 
 
 @app.route('/read/<table>/<json_uri>', methods=['GET'])
-def movie_query(table, json_uri):
+def read(table, json_uri):
     conn = eng.connect()
     if request.method == 'GET':
         json_dict = json.loads(parse.unquote(json_uri))
 
+        query = ""
         if table == "Movies":
             query = build_movie_query(json_dict)
-        else:
+        if table == "Cocktails":
             query = build_cocktail_query(json_dict)
+        if table == "User":
+            query = build_user_query(json_dict)
 
         return query_data(query, conn, 'json')
 

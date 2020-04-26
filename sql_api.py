@@ -79,18 +79,12 @@ if __name__ == "__main__":
     'User']
     # test_database_tables(table_list)
     # //////////////////////////////////////////////////////////////////////////////////////////////
+    json_dict = {'emailId': "ohuang2@illinois.edu"}
+    user_email = json_dict['emailId']
 
-    query = """SELECT Movie.tconst, Movie.title, Movie.year, Movie.rating,
-                 GROUP_CONCAT(DISTINCT Genre.genreName ORDER BY Genre.genreName DESC) AS genres,
-               GROUP_CONCAT(DISTINCT People.name ORDER BY People.name DESC) AS crew
-                FROM Movie
-                 LEFT JOIN MovieCategory ON Movie.tconst = MovieCategory.tconst
-                 LEFT JOIN Genre ON MovieCategory.genreId = Genre.genreId
-                 LEFT JOIN Crew ON Movie.tconst = Crew.tconst
-                 LEFT JOIN People ON Crew.nconst = People.nconst
-                WHERE title LIKE '%%Bulldog Heaven%%'
-                GROUP BY Movie.tconst
-                 LIMIT 100"""
+    query = "SELECT userId, firstName, lastName, emailId, trOpen, trCon, trEx, trAg, trNe\n" \
+            "FROM User\n" \
+            "WHERE emailId = '%s'" % user_email
     print("\nQuery:\n%s" % query)
     df, code = api_query(query)
     print("Status Code: %d" % code)

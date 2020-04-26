@@ -1,7 +1,6 @@
 # from application.server.MovieTraitNetwork import *
 from flask import jsonify
 import pandas as pd
-import sql_api
 
 
 # use sql_api.py for testing
@@ -78,13 +77,29 @@ def build_movie_query(json_dict):
     return query
 
 
+def build_user_query(json_dict):
+    user_email = json_dict['emailId']
+    query = "SELECT userId, firstName, lastName, emailId, trOpen, trCon, trEx, trAg, trNe\n" \
+            "FROM User\n" \
+            "WHERE emailId = '%s'" % user_email
+    return query
+
+
 def query_data(query, conn, return_type):
     q_data = conn.execute(query)
     # result = (1, 2, 3,) or result = ((1, 3), (4, 5),)
     result_data = [dict(zip(tuple(q_data.keys()), i)) for i in q_data.cursor]
 
     if return_type == 'json':
-        return jsonify({'data': result_data})
+        if query:
+            message = "No results found"
+        else:
+            message = "Query empty"
+
+        if result_data:
+            message = "Results found"
+        return jsonify({'data': result_data, 'status': message})
+
     if return_type == 'df':
         return pd.DataFrame(result_data)
 
