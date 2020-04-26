@@ -36,6 +36,11 @@ def login():
 def signup():
 	return render_template("./pages/signupPage.html")
 
+
+@app.route("/CRUDAPP")
+def crud_app():
+	return render_template("./pages/CRUDPage.html")
+
 # ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 # API routes
 @app.route('/<table_name>', methods=['GET'])
