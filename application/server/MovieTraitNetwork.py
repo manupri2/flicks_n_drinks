@@ -5,6 +5,7 @@ import tensorflow.keras.models as models
 from DataManipulation.BuildModel import df_to_dataset, model_feats, num_cats
 
 
+# model_traits = ['Openness', 'Conscientiousness', 'Extraversion', 'Agreeableness', 'Neuroticism']
 trait_names = {'trOpen': 'Openness',
                'trCon': 'Conscientiousness',
                'trEx': 'Extraversion',
@@ -39,19 +40,23 @@ def see_mtnn(features_df, mt_model):
     return compat
 
 
-def build_features_df(trait_dict, tconst_list, genre_df):
+def build_features_df(user_df, tconst_list, genre_df):
     if tconst_list:
-        feat_tups = []
+        feats_df = pd.DataFrame()
         for tconst in tconst_list:
-            temp = trait_dict.copy()
+            temp = user_df.copy()
             temp['tConst'] = tconst
-            feat_tups.append(temp)
-        feats_df = pd.DataFrame(feat_tups)
+            feats_df = pd.concat([feats_df, temp])
+
         genre_df.set_index('tConst', inplace=True)
         feats_df = feats_df.join(genre_df, on='tConst', how='inner')
     else:
-        feats_df = pd.DataFrame([trait_dict for i in range(genre_df.shape[0])])
-        feats_df['genreName'] = genre_df['genreName']
+        # feats_df = pd.DataFrame([trait_dict for i in range(genre_df.shape[0])])
+        feats_df = pd.DataFrame()
+        for gen in list(genre_df['genreName'].values):
+            temp = user_df.copy()
+            temp['genreName'] = gen
+            feats_df = pd.concat([feats_df, temp])
 
     return feats_df
 
@@ -62,21 +67,32 @@ def calc_personalized_rating(df):
     return df
 
 
-def calc_genre_compat(json_dict, tconst_list, genre_df, model):
-    results_df = build_features_df(json_dict, tconst_list, genre_df)  # build features dataframe for NN
+def calc_genre_compat(user_df, tconst_list, genre_df, model):
+    user_df = rename_trait_cols(user_df)
+    results_df = build_features_df(user_df, tconst_list, genre_df)  # build features dataframe for NN
     results_df['compatibility'] = see_mtnn(results_df, model)  # calculate compatility through NN
 
     if tconst_list:
-        results_df = results_df.groupby(['tConst'], as_index=False).mean()
-        results_df = results_df.loc[:, ['tConst', 'rating', 'compatibility']]
+        results_df = results_df.groupby(['userId', 'tConst'], as_index=False).mean()
+        results_df = results_df.loc[:, ['userId', 'tConst', 'rating', 'compatibility']]
         results_df = calc_personalized_rating(results_df)
     else:
         num_results = 5
         results_df.sort_values('compatibility', inplace=True, ascending=False)
         results_df.reset_index(inplace=True)
-        results_df = results_df.loc[0:num_results - 1, ['genreName', 'compatibility']]
+        results_df = results_df.loc[0:num_results - 1, ['userId', 'genreName', 'compatibility']]
 
     return results_df
+
+
+def rename_trait_cols(df):
+    new_names = trait_names.copy()
+    for col in df:
+        if col not in new_names.keys():
+            new_names[col] = col
+    df.rename(columns=new_names, inplace=True)
+
+    return df
 
 
 if __name__ == "__main__":
