@@ -96,7 +96,7 @@ class CRUDApp extends Component {
             filter_info['CocktailRecipe.recipeId'] = {value: item_id.toString(), operator: '=', label: ""};
         }
 
-        var api_url = 'http://cs411ccsquad.web.illinois.edu/';
+        var api_url = 'http://cs411ccsquad.web.illinois.edu/read/';
         var db = this.state.database
         var filters = encodeURI(JSON.stringify(filter_info));
         api_url += db + "/" + filters;
@@ -142,7 +142,7 @@ class CRUDApp extends Component {
 
 
   searchItems() {
-            var api_url = 'http://cs411ccsquad.web.illinois.edu/';
+            var api_url = 'http://cs411ccsquad.web.illinois.edu/read/';
             var db = this.state.database
             var filters = encodeURI(JSON.stringify(this.state.filters));
             api_url += db + "/" + filters;
