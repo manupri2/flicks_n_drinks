@@ -1,9 +1,8 @@
-# from application.server.MovieTraitNetwork import *
+from application.server.MovieTraitNetwork import *
 from flask import jsonify
 import pandas as pd
 
 
-# use sql_api.py for testing
 def build_filters(filter_dict):
     """
     This function takes a dictionary of filters where each filter stores a dictionary containing the filter value and
@@ -16,10 +15,13 @@ def build_filters(filter_dict):
         filter_val = options['value']
         operator = options['operator']
 
-        if filter_val:
+        if isinstance(filter_val, str) and filter_val:
             if operator == 'LIKE':
                 filter_val = "'%%" + filter_val + "%%'"
             filter_strs.append(filterX + " " + operator + " " + filter_val)
+
+        if isinstance(filter_val, int):
+            filter_strs.append(filterX + " " + operator + " " + repr(filter_val))
 
     return filter_strs
 
@@ -78,10 +80,27 @@ def build_movie_query(json_dict):
 
 
 def build_user_query(json_dict):
-    user_email = json_dict['emailId']
     query = "SELECT userId, firstName, lastName, emailId, trOpen, trCon, trEx, trAg, trNe\n" \
-            "FROM User\n" \
-            "WHERE emailId = '%s'" % user_email
+            "FROM User\n"
+
+    if 'userId' in json_dict.keys():
+        user_ids = json_dict['userId']
+
+        # if searching for multiple users, 'user_ids' should be a list of the userId's
+        # if searching for a single user, 'user_ids' can be int or int nested in a list
+        # this code will convert user_ids to list if it is not
+        if not isinstance(user_ids, list):
+            user_ids = [user_ids]
+
+        user_filters = []
+        for uid in user_ids:
+            user_filters += build_filters({'userId': {'value': uid, 'operator': "="}})
+    else:
+        user_email = "'" + json_dict['emailId'] + "'"
+        user_filters = build_filters({'emailId': {'value': user_email, 'operator': "="}})
+
+    where_str = build_where(user_filters, relationship="OR")
+    query += where_str
     return query
 
 
@@ -124,21 +143,31 @@ def build_genres_query(tconst_list):
     return query
 
 
-# def handle_mtnn_api(json_dict, model, conn):
-#     tconst_list = json_dict.pop('tConst')
-#
-#     # build query to get the genres we are interested in matching
-#     genre_query = build_genres_query(tconst_list)
-#     if conn == 'test':
-#         genre_df, code = sql_api.api_query(genre_query)
-#     else:
-#         genre_df = query_data(genre_query, conn, 'df')
-#
-#     result = calc_genre_compat(json_dict, tconst_list, genre_df, model)
-#
-#     if tconst_list:
-#         result = calc_personalized_rating(result)
-#     return result.to_json()
+def handle_mtnn_api(json_dict, model, conn):
+    tconst_list = json_dict.pop('tConst')
+
+    # build query to get the genres we are interested in matching
+    genre_query = build_genres_query(tconst_list)
+    if conn == 'test':
+        genre_df, code = sql_api.api_query(genre_query)
+    else:
+        genre_df = query_data(genre_query, conn, 'df')
+
+    if 'userId' in json_dict.keys():
+        traits_dict = traits_from_user(json_dict['userId'])
+
+    result = calc_genre_compat(json_dict, tconst_list, genre_df, model)
+
+    if tconst_list:
+        result = calc_personalized_rating(result)
+    return result.to_json()
+
+
+def traits_from_user(user_ids):
+    """expects list of userId's"""
+    
+
+    return
 
 
 if __name__ == '__main__':

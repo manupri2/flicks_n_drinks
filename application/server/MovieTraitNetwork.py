@@ -5,6 +5,13 @@ import tensorflow.keras.models as models
 from DataManipulation.BuildModel import df_to_dataset, model_feats, num_cats
 
 
+trait_names = {'trOpen': 'Openness',
+               'trCon': 'Conscientiousness',
+               'trEx': 'Extraversion',
+               'trAg': 'Agreeableness',
+               'trNe': 'Neuroticism'}
+
+
 def load_model():
     model_file = './MovieTraitModel'
     mt_model = models.load_model(model_file)

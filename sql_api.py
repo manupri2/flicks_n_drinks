@@ -55,6 +55,18 @@ def test_database_tables(tables):
             print('Table %s was a fail!' % table)
 
 
+def remote_test_read_query(test_query):
+    """This is the general API for the REMOTE testing of any read query (testing from your machine w/o the need to push)
+       The server must be running for this to work"""
+    print("//////////////////////////////////////////////////////////////////////////////////////////////////////////")
+    print("Query:\n%s" % test_query)
+    df, code = api_query(test_query)
+    print("Status Code: %d" % code)
+    print("Query Results:")
+    print(df)
+    print("//////////////////////////////////////////////////////////////////////////////////////////////////////////")
+
+
 if __name__ == "__main__":
     table_list = ['CocktailDecoration',
     'CocktailName',
@@ -85,34 +97,8 @@ if __name__ == "__main__":
     query = "SELECT userId, firstName, lastName, emailId, trOpen, trCon, trEx, trAg, trNe\n" \
             "FROM User\n" \
             "WHERE emailId = '%s'" % user_email
-    print("\nQuery:\n%s" % query)
-    df, code = api_query(query)
-    print("Status Code: %d" % code)
-    print(df)
+    remote_test_read_query(query)
 
-    # //////////////////////////////////////////////////////////////////////////////////////////////
-    # json_dict = {'title': {'value': 'ca', 'operator': 'LIKE'},
-    #              'year': {'value': '2005', 'operator': '='},
-    #              'rating': {'value': '', 'operator': '>='}}
-    # query = build_movie_query(json_dict)
-    # print("\nQuery:\n%s" % query)
-    # df, code = json_api_query('Movies', json_dict)
-    # print("Status Code: %d" % code)
-    # print(df)
-
-    # //////////////////////////////////////////////////////////////////////////////////////////////
-    # json_dict = {
-    #               'cocktailName': {'value': 'a', 'operator': 'LIKE'},
-    #               'ingredients': {'value': '', 'operator': 'LIKE'},
-    #               'bartender': {'value': 'raul', 'operator': 'LIKE'},
-    #               'location': {'value': '', 'operator': 'LIKE'},
-    #               'rating': {'value': '', 'operator': '>='}
-    #             }
-    # query = build_cocktail_query(json_dict)
-    # print("\nQuery:\n%s" % query)
-    # df, code = json_api_query('Cocktails', json_dict)
-    # print("Status Code: %d" % code)
-    # print(df)
 
 
 
