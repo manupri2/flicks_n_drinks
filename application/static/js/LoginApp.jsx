@@ -10,7 +10,7 @@ class LoginApp extends Component {
         this.state = {
             database: "User",
             isLoggedIn: false,
-            email:'',
+            emailId:'',
             password:'',
             setValidated: false
         };
@@ -32,12 +32,14 @@ class LoginApp extends Component {
         var apiUrl = 'http://cs411ccsquad.web.illinois.edu/read/';
         console.log("Url " + apiUrl);
         var body = encodeURI(JSON.stringify({
-            'emailId': this.state.email,
+            'emailId': this.state.emailId,
             'password': this.state.password
         }));
+
         console.log("Url " + apiUrl);
         apiUrl += db + "/" + body;
         console.log("Url " + apiUrl);
+
         if(!this.state.isLoggedIn){
             fetch(apiUrl)
                 .then(res => res.json())
@@ -66,8 +68,8 @@ class LoginApp extends Component {
                             <Form.Control
                                 required
                                 type="email"
-                                name="email"
-                                value={this.state.email}
+                                name="emailId"
+                                value={this.state.emailId}
                                 onChange={this.handleChange}
                                 placeholder="Enter email" />
                         </Form.Group>
