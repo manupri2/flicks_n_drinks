@@ -10,8 +10,8 @@ class LoginApp extends Component {
         this.state = {
             database: "User",
             isLoggedIn: false,
-            emailId:'',
-            password:'',
+            email: '',
+            password: '',
             setValidated: false
         };
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,36 +23,49 @@ class LoginApp extends Component {
         const value = event.target.value;
 
         this.setState({
-          [name]: value
+            [name]: value
         })
     }
 
-    handleSubmit() {
+    handleSubmit(event) {
+        event.preventDefault();
         var db = this.state.database;
         var apiUrl = 'http://cs411ccsquad.web.illinois.edu/read/';
         console.log("Url " + apiUrl);
         var body = encodeURI(JSON.stringify({
-            'emailId': this.state.emailId,
+            'emailId': this.state.email,
             'password': this.state.password
         }));
-
         console.log("Url " + apiUrl);
         apiUrl += db + "/" + body;
         console.log("Url " + apiUrl);
-
-        if(!this.state.isLoggedIn){
+        if (!this.state.isLoggedIn) {
             fetch(apiUrl)
-                .then(res => res.json())
-                .then(
-                    (result) => {
-                            console.log("Result!!!!!!!");
-                            console.log(result.status);
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then((result) => {
+                        console.log("Result!!!!!!!");
+                        if (result.status === 'Results found')
+                            alert('Valid User');
+                        else
+                            alert('Invalid User');
                     },
                     (error) => {
-                            console.log("Error!!!!!!!!!");
-                            console.log(error.message);
+                        console.log("Error!!!!!!!!!");
+                        console.log(error);
                     })
+                .catch((error)=> { 
+                    console.log(error)
+                 });
+
+
         }
+        this.setState(this.state);
+
     }
 
 
@@ -68,10 +81,10 @@ class LoginApp extends Component {
                             <Form.Control
                                 required
                                 type="email"
-                                name="emailId"
-                                value={this.state.emailId}
+                                name="email"
+                                value={this.state.email}
                                 onChange={this.handleChange}
-                                placeholder="Enter email" />
+                                placeholder="Enter email"/>
                         </Form.Group>
                         <Form.Group size="lg" controlId="formBasicPassword">
                             <Form.Label>Password</Form.Label>
