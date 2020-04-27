@@ -10,7 +10,7 @@ class LoginApp extends Component {
         this.state = {
             database: "User",
             isLoggedIn: false,
-            email: '',
+            email:'',
             password:'',
             setValidated: false
         };
@@ -28,32 +28,31 @@ class LoginApp extends Component {
     }
 
     handleSubmit(event) {
-
-        const form = event.currentTarget;
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-
-        setValidated(true);
-
         var db = this.state.database;
-        var apiUrl = 'http://cs411ccsquad.web.illinois.edu/';
+        var apiUrl = 'http://cs411ccsquad.web.illinois.edu/read/';
+        console.log("Url " + apiUrl);
         var body = encodeURI(JSON.stringify({
             'emailId': this.state.email,
             'password': this.state.password
         }));
+       console.log("Url " + apiUrl);
         apiUrl += db + "/" + body;
+        console.log("Url " + apiUrl);
         if(!this.state.isLoggedIn){
             fetch(apiUrl)
-                .then((res => res.json()))
-                .then((result) =>{
-                    console.log(result);
-                    if (result.status === 'Invalid')
-                        alert('Invalid User');
-                    else
-                    this.props.history.push("/CRUDPage");
-                })
+                .then(res => res.json())
+                .then((result) => {
+                            console.log("Result!!!!!!!");
+                            if (result.status === 'Results found')
+                                alert('Valid User');
+                            else
+                                alert('Invalid User');
+                            },
+                        (error) => {
+                            console.log("Error!!!!!!!!!");
+                            console.log(error.message);
+                        } )
+
         }
 
     }
