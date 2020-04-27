@@ -27,7 +27,7 @@ class LoginApp extends Component {
         })
     }
 
-    handleSubmit(event) {
+    handleSubmit() {
         var db = this.state.database;
         var apiUrl = 'http://cs411ccsquad.web.illinois.edu/read/';
         console.log("Url " + apiUrl);
@@ -35,26 +35,22 @@ class LoginApp extends Component {
             'emailId': this.state.email,
             'password': this.state.password
         }));
-       console.log("Url " + apiUrl);
+        console.log("Url " + apiUrl);
         apiUrl += db + "/" + body;
         console.log("Url " + apiUrl);
         if(!this.state.isLoggedIn){
             fetch(apiUrl)
                 .then(res => res.json())
-                .then((result) => {
+                .then(
+                    (result) => {
                             console.log("Result!!!!!!!");
-                            if (result.status === 'Results found')
-                                alert('Valid User');
-                            else
-                                alert('Invalid User');
-                            },
-                        (error) => {
+                            console.log(result.status);
+                    },
+                    (error) => {
                             console.log("Error!!!!!!!!!");
                             console.log(error.message);
-                        } )
-
+                    })
         }
-
     }
 
 

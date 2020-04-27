@@ -27,12 +27,12 @@ def home():
 	return render_template("./pages/home.html")
 
 
-@app.route("/loginPage.html")
+@app.route("/login")
 def login():
 	return render_template("./pages/loginPage.html")
 
 
-@app.route("/signupPage.html")
+@app.route("/signup")
 def signup():
 	return render_template("./pages/signupPage.html")
 
