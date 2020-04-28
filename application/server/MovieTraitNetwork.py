@@ -34,7 +34,7 @@ def df_to_dataset(df, shuffle=False, batch_size=32):
 def load_model():
     model_file = './MovieTraitModel'
     mt_model = models.load_model(model_file)
-    mt_model.summmary()
+    print(repr(mt_model))
 
     rebuild_df = pd.read_csv('./MovieTraitModel/MovieTraitRebuild.csv')
     print(rebuild_df)
