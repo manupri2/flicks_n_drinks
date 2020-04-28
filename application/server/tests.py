@@ -86,6 +86,6 @@ def test_crud():
 
 
 if __name__ == "__main__":
-    test_mtnn_api()
+    test_movie_read_api()
 
 
