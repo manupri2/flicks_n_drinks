@@ -3,10 +3,10 @@ from flask import Flask, request, render_template
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 import json
-# from application.server.handle import *
-from handle import *
-# import application.server.MovieTraitNetwork as MovieTraitNetwork
-import MovieTraitNetwork
+from application.server.handle import *
+# from handle import *
+import application.server.MovieTraitNetwork as MovieTraitNetwork
+# import MovieTraitNetwork
 from flask import jsonify
 
 
