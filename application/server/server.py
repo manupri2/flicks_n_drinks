@@ -11,6 +11,7 @@ else:
     from application.server.handle import *
     import application.server.MovieTraitNetwork as MovieTraitNetwork
 
+mt_model, test_df = MovieTraitNetwork.load_model()
 
 app = Flask(__name__, static_folder="../static/dist", template_folder="../static")
 CORS(app)
@@ -68,7 +69,7 @@ def movie_trait_network(json_uri):
     :return:
     """
     # rebuild NN
-    mt_model, test_df = MovieTraitNetwork.load_model()
+    # mt_model, test_df = MovieTraitNetwork.load_model()
     # print("Enter Name:")
     # user_name = str(input())
     # print("Hello " + user_name)
