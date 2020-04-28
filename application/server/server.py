@@ -5,12 +5,12 @@ from flask_sqlalchemy import SQLAlchemy
 import json
 from application.server.handle import *
 # from handle import *
-# import application.server.MovieTraitNetwork as MovieTraitNetwork
+import application.server.MovieTraitNetwork as MovieTraitNetwork
 from flask import jsonify
 
 
 # rebuild NN
-# mt_model = MovieTraitNetwork.load_model()
+mt_model = MovieTraitNetwork.load_model()
 
 app = Flask(__name__, static_folder="../static/dist", template_folder="../static")
 CORS(app)
@@ -59,19 +59,19 @@ def api_sql(query_uri):
         return query_data(query, conn, 'json')
 
 
-# @app.route('/MTNN/<json_uri>', methods=['GET'])
-# def movie_trait_network(json_uri):
-#     """
-#     if 'tConst' empty, returns compatibilities for top 5 most compatible genres
-#     if 'tConst' non-empty, calculates personalized ratings for movies in 'tConst'
-#     :param json_uri: {'userId':[int, ...], 'tConst': [int, int, ...]}
-#     :return:
-#     """
-#     conn = eng.connect()
-#     if request.method == 'GET':
-#         json_dict = json.loads(parse.unquote(json_uri))
-#         result = handle_mtnn_api(json_dict, mt_model, conn)
-#         return result.to_json()
+@app.route('/MTNN/<json_uri>', methods=['GET'])
+def movie_trait_network(json_uri):
+    """
+    if 'tConst' empty, returns compatibilities for top 5 most compatible genres
+    if 'tConst' non-empty, calculates personalized ratings for movies in 'tConst'
+    :param json_uri: {'userId':[int, ...], 'tConst': [int, int, ...]}
+    :return:
+    """
+    conn = eng.connect()
+    if request.method == 'GET':
+        json_dict = json.loads(parse.unquote(json_uri))
+        result = handle_mtnn_api(json_dict, mt_model, conn)
+        return result.to_json()
 
 
 @app.route('/read/<table>/<json_uri>', methods=['GET'])
