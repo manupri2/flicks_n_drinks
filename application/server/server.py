@@ -4,21 +4,13 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 import json
 
-if __name__ == "__main__":
-    from handle import *
-    import MovieTraitNetwork
-else:
-    from application.server.handle import *
-    import application.server.MovieTraitNetwork as MovieTraitNetwork
+# if __name__ == "__main__":
+#     from handle import *
+#     import MovieTraitNetwork
+# else:
+from application.server.handle import *
+import application.server.MovieTraitNetwork as MovieTraitNetwork
 
-
-# rebuild NN
-mt_model, test_df = MovieTraitNetwork.load_model()
-print("Enter Name:")
-user_name = str(input())
-print("Hello " + user_name)
-test_df['compat'] = MovieTraitNetwork.see_mtnn(test_df, mt_model)
-print(test_df)
 
 app = Flask(__name__, static_folder="../static/dist", template_folder="../static")
 CORS(app)
@@ -75,6 +67,14 @@ def movie_trait_network(json_uri):
     :param json_uri: {'userId':[int, ...], 'tConst': [int, int, ...]}
     :return:
     """
+    # rebuild NN
+    mt_model, test_df = MovieTraitNetwork.load_model()
+    # print("Enter Name:")
+    # user_name = str(input())
+    # print("Hello " + user_name)
+    # test_df['compat'] = MovieTraitNetwork.see_mtnn(test_df, mt_model)
+    # print(test_df)
+
     conn = eng.connect()
     if request.method == 'GET':
         json_dict = json.loads(parse.unquote(json_uri))
