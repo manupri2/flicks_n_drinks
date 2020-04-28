@@ -37,6 +37,7 @@ def load_model():
     print(repr(mt_model))
 
     rebuild_df = pd.read_csv('./MovieTraitModel/MovieTraitRebuild.csv')
+    rebuild_df = rebuild_df.loc[:, model_feats]
     print(rebuild_df)
     rebuild_ds = df_to_dataset(rebuild_df)
 
