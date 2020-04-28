@@ -13,11 +13,16 @@ else:
 
 
 # rebuild NN
-mt_model = MovieTraitNetwork.load_model()
+mt_model, test_df = MovieTraitNetwork.load_model()
+print("Enter Name:")
+user_name = str(input())
+print("Hello " + user_name)
+test_df['compat'] = MovieTraitNetwork.see_mtnn(test_df, mt_model)
+print(test_df)
 
 app = Flask(__name__, static_folder="../static/dist", template_folder="../static")
 CORS(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://cs411ccsquad_admin:password;uiuc@localhost/cs411ccsquad_FlicksNDrinks'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://cs411ccsquad_admin:password;uiuc@localhost/cs411ccsquad_FlicksNDrinks'
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:oscarhuang1212@localhost/MP1'
 
 db = SQLAlchemy(app)

@@ -44,7 +44,7 @@ def load_model():
     loss, accuracy = mt_model.evaluate(rebuild_ds)
     print("\nAccuracy on loaded model: ", accuracy)
     mt_model.summary()
-    return mt_model
+    return mt_model, rebuild_df
 
 
 def see_mtnn(features_df, mt_model):
