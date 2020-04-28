@@ -34,8 +34,10 @@ def df_to_dataset(df, shuffle=False, batch_size=32):
 def load_model():
     model_file = './MovieTraitModel'
     mt_model = models.load_model(model_file)
+    mt_model.summmary()
 
     rebuild_df = pd.read_csv('./MovieTraitModel/MovieTraitRebuild.csv')
+    print(rebuild_df)
     rebuild_ds = df_to_dataset(rebuild_df)
 
     loss, accuracy = mt_model.evaluate(rebuild_ds)
