@@ -3,11 +3,13 @@ from flask import Flask, request, render_template
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 import json
-from application.server.handle import *
-# from handle import *
-import application.server.MovieTraitNetwork as MovieTraitNetwork
-# import MovieTraitNetwork
-from flask import jsonify
+
+if __name__ == "__main__":
+    from handle import *
+    import MovieTraitNetwork
+else:
+    from application.server.handle import *
+    import application.server.MovieTraitNetwork as MovieTraitNetwork
 
 
 # rebuild NN
