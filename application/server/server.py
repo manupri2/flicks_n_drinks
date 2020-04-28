@@ -11,7 +11,7 @@ else:
     from application.server.handle import *
     import application.server.MovieTraitNetwork as MovieTraitNetwork
 
-mt_model, test_df = MovieTraitNetwork.load_model()
+# mt_model, test_df = MovieTraitNetwork.load_model()
 
 app = Flask(__name__, static_folder="../static/dist", template_folder="../static")
 CORS(app)
