@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import tensorflow as tf
 import tensorflow.keras.models as models
-from DataManipulation.BuildModel import df_to_dataset, model_feats, num_cats
+# from DataManipulation.BuildModel import df_to_dataset, model_feats, num_cats
 
 
 # model_traits = ['Openness', 'Conscientiousness', 'Extraversion', 'Agreeableness', 'Neuroticism']
@@ -11,6 +11,24 @@ trait_names = {'trOpen': 'Openness',
                'trEx': 'Extraversion',
                'trAg': 'Agreeableness',
                'trNe': 'Neuroticism'}
+
+model_traits = ['Openness', 'Conscientiousness', 'Extraversion', 'Agreeableness', 'Neuroticism']
+model_feats = model_traits + ['genreName']
+num_cats = 20
+# model_genres = ['Romance', 'Biography', 'Crime', 'Drama', 'Adventure', 'Family', 'History', 'Fantasy', 'War',
+#                 'Thriller', 'Documentary', 'Comedy', 'Mystery', 'Horror', 'Western', 'Music', 'Action', 'Sci-Fi',
+#                 'Animation', 'Musical', 'Sport', 'Film-Noir', 'News', 'Talk-Show', 'Adult', 'Reality-TV', 'Short',
+#                 'Game-Show']
+
+
+def df_to_dataset(df, shuffle=False, batch_size=32):
+    df = df.copy()
+    labels = df.pop('BinProb')
+    ds = tf.data.Dataset.from_tensor_slices((dict(df), labels))
+    if shuffle:
+        ds = ds.shuffle(buffer_size=len(df))
+    ds = ds.batch(batch_size)
+    return ds
 
 
 def load_model():
