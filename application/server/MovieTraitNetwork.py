@@ -55,7 +55,7 @@ def see_mtnn(features_df, mt_model):
     traits_ds = tf.data.Dataset.from_tensor_slices(dict(df))
     traits_ds = traits_ds.batch(batch_size)
 
-    compat = mt_model.predict(traits_ds, batch_size=batch_size, verbose=1)
+    compat = mt_model.predict(traits_ds, verbose=1)
     compat = (np.argmax(compat, axis=1) + 1)/num_cats
 
     return compat
