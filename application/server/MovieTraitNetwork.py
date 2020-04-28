@@ -37,13 +37,13 @@ def load_model():
     print(repr(mt_model))
 
     rebuild_df = pd.read_csv('./MovieTraitModel/MovieTraitRebuild.csv')
-    rebuild_df = rebuild_df.loc[:, model_feats]
+    rebuild_df = rebuild_df.loc[:, model_feats + ['BinProb']]
     print(rebuild_df)
     rebuild_ds = df_to_dataset(rebuild_df)
 
     loss, accuracy = mt_model.evaluate(rebuild_ds)
     print("\nAccuracy on loaded model: ", accuracy)
-
+    mt_model.summary()
     return mt_model
 
 
