@@ -4,12 +4,12 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 import json
 
-# if __name__ == "__main__":
-#     from handle import *
-#     import MovieTraitNetwork
-# else:
-from application.server.handle import *
-import application.server.MovieTraitNetwork as MovieTraitNetwork
+if __name__ == "__main__":
+    from handle import *
+    import MovieTraitNetwork
+else:
+    from application.server.handle import *
+    import application.server.MovieTraitNetwork as MovieTraitNetwork
 
 
 app = Flask(__name__, static_folder="../static/dist", template_folder="../static")
