@@ -164,7 +164,7 @@ def edit(table, item_id, title):
         query = "UPDATE Movie SET title = '%s' WHERE (tconst = %s)" % (parse.unquote(title), item_id)
     else:
         query = "UPDATE CocktailName SET cocktailName = '%s' WHERE (cocktailId = %s)" % (parse.unquote(title), item_id)
-  
+        
     conn.execute(query)
     response = {'status': 'success', 'message': 'Product edit successfully'}
     return jsonify(response)

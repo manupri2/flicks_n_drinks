@@ -9,6 +9,7 @@ const config = {
 		"loginPage":__dirname + '/js/loginPage.jsx',
 		"home":__dirname + '/js/home.jsx',
 		"signupPage":__dirname + '/js/signupPage.jsx',
+		"userPage":__dirname + '/js/userPage.jsx'
 	},
 	output:{
 		path: __dirname + '/dist',
