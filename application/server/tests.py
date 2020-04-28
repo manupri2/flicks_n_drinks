@@ -4,12 +4,13 @@ import json
 from urllib import parse
 from flask import jsonify
 import pandas as pd
-from sql_api import remote_test_read_query
+from sql_api import remote_test_read_query, json_api_query
 import os
+import requests
 
 
-def test_mtnn_api():
-    test_mod = load_model()
+def test_mtnn_api_functions():
+    test_mod, blah = load_model()
 
     test_dict = {'userId': 0, 'tConst': []}
     test_res = mtnn_run_test(test_dict, test_mod)
@@ -22,6 +23,37 @@ def test_mtnn_api():
 
     test_dict = {'userId': [0, 1], 'tConst': [24, 28, 31]}
     test_res = mtnn_run_test(test_dict, test_mod)
+
+
+def test_mtnn_api_real():
+    # test_mod, blah = load_model()
+
+    test_dict = {'userId': 0, 'tConst': []}
+    test_res = mtnn_run_test_real(test_dict)
+
+    test_dict = {'userId': [1], 'tConst': []}
+    test_res = mtnn_run_test_real(test_dict)
+
+    test_dict = {'userId': [0], 'tConst': [24, 28, 31]}
+    test_res = mtnn_run_test_real(test_dict)
+
+    test_dict = {'userId': [0, 1], 'tConst': [24, 28, 31]}
+    test_res = mtnn_run_test_real(test_dict)
+
+
+def mtnn_run_test_real(json_dict):
+    # test_json = json.dumps(json_dict)
+    # json_uri = parse.quote(test_json)
+    print("/////////////////////////////////////////////////////////////////////////////////////////////////////////")
+    print("JSON Input:")
+    print(json_dict)
+    resp_json, code = json_api_query("MTNN", json_dict)
+    result_dict = json.loads(resp_json)
+    result_df = pd.DataFrame(result_dict)
+    print("\nMovieTrait Results::")
+    print(result_df)
+    print("/////////////////////////////////////////////////////////////////////////////////////////////////////////")
+    return result_df
 
 
 def mtnn_run_test(json_dict, model):
@@ -86,6 +118,6 @@ def test_crud():
 
 
 if __name__ == "__main__":
-    test_movie_read_api()
+    test_mtnn_api_real()
 
 
