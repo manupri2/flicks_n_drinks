@@ -14,14 +14,16 @@ class userApp extends Component {
         firstName:'Oscar',
         lastName:'Huang',
         data: [80,50,30,40,100],
-        isMaster: 1
+        isMaster: 1,
+        userRank :0
       },
       {
         userId:1,
         firstName:'Barney',
         lastName:'Stinson',
         data: [100,20,80,90,10],
-        isMaster: 0
+        isMaster: 0,
+        userRank :1
       }
     ],
 
@@ -54,8 +56,10 @@ class userApp extends Component {
 
       addFriendPopup:false,
       deleteFriendPopup:false,
+      editPersonalityPopup: false,
+      editPersonalityResult: '',
       addSearch:{firstName:'', lastName:'', email:''},
-      nextUserId:2
+      nextUserRank:2
     }
 
     this.showChart= this.showChart.bind(this)
@@ -102,7 +106,7 @@ class userApp extends Component {
         const data = u.data.map((d) => {return d})
         if(u.isMaster ==1)
           data[0] = input
-        return {userId:u.userId, firstName: u.firstName, lastName: u.lastName, isMaster: u.isMaster,data}
+        return {userId:u.userId, firstName: u.firstName, lastName: u.lastName, isMaster: u.isMaster,data, userRank:u.userRank}
       })
       return {user}
     });
@@ -116,7 +120,7 @@ class userApp extends Component {
         const data = u.data.map((d) => {return d})
         if(u.isMaster ==1)
           data[1] = input
-        return {userId:u.userId, firstName: u.firstName, lastName: u.lastName, isMaster: u.isMaster,data}
+        return {userId:u.userId, firstName: u.firstName, lastName: u.lastName, isMaster: u.isMaster,data, userRank:u.userRank}
       })
       return {user}
     });
@@ -130,7 +134,7 @@ class userApp extends Component {
         const data = u.data.map((d) => {return d})
         if(u.isMaster ==1)
           data[2] = input
-        return {userId:u.userId, firstName: u.firstName, lastName: u.lastName, isMaster: u.isMaster,data}
+        return {userId:u.userId, firstName: u.firstName, lastName: u.lastName, isMaster: u.isMaster,data, userRank:u.userRank}
       })
       return {user}
     });
@@ -144,7 +148,7 @@ class userApp extends Component {
         const data = u.data.map((d) => {return d})
         if(u.isMaster ==1)
           data[3] = input
-        return {userId:u.userId, firstName: u.firstName, lastName: u.lastName, isMaster: u.isMaster,data}
+        return {userId:u.userId, firstName: u.firstName, lastName: u.lastName, isMaster: u.isMaster,data, userRank:u.userRank}
       })
       return {user}
     });
@@ -158,18 +162,58 @@ class userApp extends Component {
         const data = u.data.map((d) => {return d})
         if(u.isMaster ==1)
           data[4] = input
-        return {userId:u.userId, firstName: u.firstName, lastName: u.lastName, isMaster: u.isMaster,data}
+        return {userId:u.userId, firstName: u.firstName, lastName: u.lastName, isMaster: u.isMaster,data, userRank:u.userRank}
       })
       return {user}
     });
   }
 
-/////////////////////////////////////////////////////////////
+
   submitPersonalityChange(){
-    this.setState({trOpen_value:5})
+    
+    return(
+      <div>
+        <Button onClick={() => this.openEditModal()}>Submit Change</Button>
+        <Modal visible={this.state.editPersonalityPopup} width="800" height="400" effect="fadeInUp" onClickAway={() => this.closeEditModal()}>
+            <h2>&nbsp;&nbsp;{this.state.editPersonalityResult.message}</h2>
+            <br/><br/><br/><br/><br/>
+            &nbsp;&nbsp;<Button onClick={() => this.closeEditModal()}> Close </Button>
+        </Modal>              
+      </div>
+    )
 
   }
-/////////////////////////////////////////////////////////////
+
+  openEditModal(){
+    this.setState({
+      editPersonalityPopup : true
+    });
+
+    var api_url = 'http://cs411ccsquad.web.illinois.edu/edit/User/';
+    api_url += this.state.user[0].userId +'/'
+    
+    for(const [index, value] of this.state.user[0].data.entries()){
+      api_url += value+":"
+    }
+    
+    fetch(api_url)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({editPersonalityResult:result})
+        },
+        (error) => {this.setState({error})}
+      )
+      
+      console.log(this.state.editPersonalityResult)
+
+  }
+
+  closeEditModal(){
+    this.setState({
+      editPersonalityPopup : false
+    });
+  }
 
   addFriendPopup(){
 
@@ -266,9 +310,10 @@ class userApp extends Component {
       .then(
         (result) => {
           let old_user = this.state.user
-          var result = {'userId':this.state.nextUserId, 'firstName': firstName, 'lastName':lastName, 
-                        'data':[result.data[0].trOpen,result.data[0].trCon,result.data[0].trEx,result.data[0].trAg,result.data[0].trNe], isMaster:0}
-          this.setState({nextUserId: this.state.nextUserId+1});
+          var result = {'userId':this.state.userId, 'firstName': firstName, 'lastName':lastName, 
+                        'data':[result.data[0].trOpen,result.data[0].trCon,result.data[0].trEx,result.data[0].trAg,result.data[0].trNe], isMaster:0,
+                        'userRank':this.state.nextUserRank}
+          this.setState({nextUserRank: this.state.nextUserRank+1});
 
           old_user.push(result)
           console.log(this.state.user)
@@ -299,11 +344,11 @@ class userApp extends Component {
             </thead>
             <tbody>
               {this.state.user.map(u => (
-                <tr key = {u.userId}>
+                <tr key = {u.userRank}>
                   <td>{u.firstName}</td>
                   <td>{u.lastName}</td>
                   <td>                    
-                     <Button disabled={Boolean(u.isMaster)} onClick = {()=>this.submitDeleteFriend(u.userId)}>Delete</Button> 
+                     <Button disabled={Boolean(u.isMaster)} onClick = {()=>this.submitDeleteFriend(u.userRank)}>Delete</Button> 
                   </td>
                 </tr>
               ))}
@@ -337,7 +382,7 @@ class userApp extends Component {
  
     this.setState(state => {
       const user = state.user.filter(function(u){
-        return u.userId != id
+        return u.userRank != id
       });
     
     return {user};
@@ -379,7 +424,7 @@ class userApp extends Component {
           <Row><h6>Neuroticism: {this.state.user[0].data[4]}</h6></Row>
           <Row><input type = "range" value= {this.state.user[0].data[4]} onChange={(e) => {this.handleChange_Neuroticism(e)}}></input></Row>
           <Row>&nbsp;</Row>
-          <Row><Button onClick={() => this.submitPersonalityChange()}>Submit Change</Button></Row>
+          <Row>{this.submitPersonalityChange()}</Row>
         
         </Col>
 
