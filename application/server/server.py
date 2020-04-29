@@ -162,8 +162,12 @@ def edit(table, item_id, title):
     query = ""
     if table == "Movie":
         query = "UPDATE Movie SET title = '%s' WHERE (tconst = %s)" % (parse.unquote(title), item_id)
-    else:
+    elif table == "Cocktail":
         query = "UPDATE CocktailName SET cocktailName = '%s' WHERE (cocktailId = %s)" % (parse.unquote(title), item_id)
+    elif table == "User":
+        trs = title.split(':')
+        query = "UPDATE User SET trOpen = '%s',trCon = '%s',trex = '%s',trAg = '%s',trNe = '%s', WHERE (userId = %s)" % (trs[0],trs[1],trs[2],trs[3],trs[4], item_id)
+    
         
     conn.execute(query)
     response = {'status': 'success', 'message': 'Product edit successfully'}
