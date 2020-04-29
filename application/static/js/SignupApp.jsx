@@ -59,7 +59,7 @@ class SignupApp extends Component {
                             ReactDOM.render(<LoginApp />, document.getElementById('signup'));
                         }
                         else
-                            alert('Invalid User');
+                            alert('SignUp Unsuccessful!!!!!');
                     },
                     (error) => {
                         console.log("Error!!!!!!!!!");

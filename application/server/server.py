@@ -160,7 +160,7 @@ def add(table, new_input):
                 " VALUES (%s, '%s')" % (max_id, parse.unquote(new_input))
         conn.execute(query)
 
-    response = {'status': 'success', 'message': 'Product added successfully'}
+    response = {'status': 'success', 'message': 'Record added successfully'}
     return response
 
 
