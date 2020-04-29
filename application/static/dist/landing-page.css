@@ -1,10 +1,13 @@
 body {
-  background: #000;
-  color: #030303;
-  font-family: sans-serif;
-  background-image: url(https://res.cloudinary.com/dqdwxivsq/image/upload/v1585974698/wang-john-CZ6PG4ozU9c-unsplash_rwrw66.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
-  background-size: cover;
+  width: 1200px;
+  height:600px;
+  background-image: url(https://www.angelsagainstabuse.org/wp-content/uploads/2018/11/blue-moving-flowing-abstract-waves-on-white-background-blurred-smooth-graphic-motion-design-video-animation-1920x1080_vhhueydte__F0000.png);
+  background-size: cover; /* or contain depending on what you want */
+  background-position: center center;
   background-repeat: no-repeat;
+  text-align:center;
+  margin:auto;
+  padding:0;
 }
 .nav {
   padding: 2%;
