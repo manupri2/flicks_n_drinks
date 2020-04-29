@@ -73,11 +73,20 @@ class LoginApp extends Component {
 
 
     render() {
-
+        const loginFormStyle = {
+              width: "420px",
+              height: "480px",
+              position: "relative",
+              margin: "5% auto",
+              backgroundColor: "#fff",
+              padding: "5px",
+              overflow: "hidden",
+              border: "2px solid #000"
+        };
         return (
             <div>
                 <Container>
-                    <Form onSubmit={this.handleSubmit}>
+                    <Form style={loginFormStyle} onSubmit={this.handleSubmit}>
                         <h2 className="text-center">Log In</h2>
                         <Form.Group size="lg" controlId="formBasicEmail">
                             <Form.Label>Email address</Form.Label>
@@ -102,7 +111,7 @@ class LoginApp extends Component {
                         <Form.Group size="md" controlId="formBasicCheckbox">
                             <Form.Check type="checkbox" label="Remember Password"/>
                         </Form.Group>
-                        <Button variant="success" type="submit">
+                        <Button variant="primary" type="submit">
                             Submit
                         </Button>
                     </Form>

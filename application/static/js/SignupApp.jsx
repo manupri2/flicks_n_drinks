@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import {Button, Container, Col, Form, Jumbotron} from 'react-bootstrap';
 import "../dist/signup-page.css"
+import ReactDOM from "react-dom";
+import CRUDApp from "./CRUDApp";
+import LoginApp from "./LoginApp";
 
 
 class SignupApp extends Component {
@@ -28,6 +31,47 @@ class SignupApp extends Component {
     }
 
     handleSubmit(event) {
+        event.preventDefault();
+        var db = this.state.database;
+        var apiUrl = 'http://cs411ccsquad.web.illinois.edu/add/';
+        console.log("Url " + apiUrl);
+        var body = encodeURI(JSON.stringify({
+            'firstName': this.state.firstName,
+            'lastName': this.state.lastName,
+            'emailId': this.state.email,
+            'password': this.state.password
+        }));
+        console.log("Url " + apiUrl);
+        apiUrl += db + "/" + body;
+        console.log("Url " + apiUrl);
+        if (!this.state.isLoggedIn) {
+            fetch(apiUrl)
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then((result) => {
+                        console.log("Result!!!!!!!");
+                        if (result.status === 'success'){
+                            ReactDOM.unmountComponentAtNode(document.getElementById('signup'));
+                            ReactDOM.render(<LoginApp />, document.getElementById('signup'));
+                        }
+                        else
+                            alert('Invalid User');
+                    },
+                    (error) => {
+                        console.log("Error!!!!!!!!!");
+                        console.log(error);
+                    })
+                .catch((error)=> { 
+                    console.log(error)
+                 });
+
+
+        }
+        this.setState(this.state);
 
     }
 
@@ -77,7 +121,7 @@ class SignupApp extends Component {
                                 onChange={this.handleChange}
                                 placeholder="Password"/>
                         </Form.Group>
-                        <Button variant="success" type="submit">
+                        <Button variant="primary" type="submit">
                             Submit
                         </Button>
                     </Form>

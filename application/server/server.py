@@ -127,12 +127,15 @@ def add(table, new_input):
     # find maximum
     if table == "Movie":
         max_id_query = 'SELECT MAX(tconst) as max FROM Movie'
-    else:
+    if table == "Cocktails":
         max_id_query = 'SELECT MAX(cocktailId) as max FROM CocktailName'
         max_recipe_id_query = 'SELECT MAX(recipeId) as max FROM CocktailRecipe'
 
         result = query_data(max_recipe_id_query, conn, 'df')
         max_recipe_id = result['max'][0] + 1
+
+    if table == "User":
+        max_id_query = 'SELECT MAX(userId) as max FROM User'
 
     result = query_data(max_id_query, conn, 'df')
     max_id = result['max'][0] + 1
@@ -142,13 +145,19 @@ def add(table, new_input):
         query = "INSERT INTO %s (tconst, title)" \
                 " VALUES (%s , '%s')" % (table, max_id, parse.unquote(new_input))
         conn.execute(query)
-    else:
+
+    if table == "Cocktails":
         query = "INSERT INTO CocktailName (cocktailId, cocktailName)" \
                 " VALUES (%s, '%s')" % (max_id, parse.unquote(new_input))
         conn.execute(query)
 
         query = "INSERT INTO CocktailRecipe (recipeId, cocktailId)" \
                 " VALUES (%s, %s)" % (max_recipe_id, max_id)
+        conn.execute(query)
+
+    if table == "User":
+        query = "INSERT INTO User (userId, firstName, lastName, emailId, password)" \
+                " VALUES (%s, '%s')" % (max_id, parse.unquote(new_input))
         conn.execute(query)
 
     response = {'status': 'success', 'message': 'Product added successfully'}
