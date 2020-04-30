@@ -64,7 +64,7 @@ def basic_api():
         # print("Hello " + user_name)
         test_df['compat'] = see_mtnn(test_df, mt_model)
         # print(test_df)
-        
+
         return Response(test_df.to_json(orient="records"), mimetype='application/json')
 
 
@@ -95,6 +95,7 @@ def movie_trait_network(json_uri):
     conn = eng.connect()
     if request.method == 'GET':
         json_dict = json.loads(parse.unquote(json_uri))
+        mt_model, test_df = load_model()
         result_df = handle_mtnn_api(json_dict, mt_model, conn)
         return Response(result_df.to_json(orient="records"), mimetype='application/json')
 
