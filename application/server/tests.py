@@ -130,6 +130,6 @@ def basic_df():
 
 
 if __name__ == "__main__":
-    basic_df()
+    test_mtnn_api_real()
 
 
