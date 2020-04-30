@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Button, Container, Col, Form, Jumbotron} from 'react-bootstrap';
 import "../dist/signup-page.css"
 import ReactDOM from "react-dom";
-import CRUDApp from "./CRUDApp";
 import LoginApp from "./LoginApp";
 
 
@@ -15,7 +14,7 @@ class SignupApp extends Component {
             lastName:'',
             email:'',
             password:'',
-            setValidated: false
+            isSignedUp: false
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -41,10 +40,9 @@ class SignupApp extends Component {
             'emailId': this.state.email,
             'password': this.state.password
         }));
-        console.log("Url " + apiUrl);
         apiUrl += db + "/" + body;
         console.log("Url " + apiUrl);
-        if (!this.state.isLoggedIn) {
+        if (!this.state.isSignedUp) {
             fetch(apiUrl)
                 .then((response) => {
                     if (!response.ok) {
