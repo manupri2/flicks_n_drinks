@@ -51,12 +51,13 @@ def crud_app():
 
 # ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 # API routes
-@app.route('/<table_name>', methods=['GET'])
-def basic_api(table_name):
+@app.route('/BasicDF', methods=['GET'])
+def basic_api():
     conn = eng.connect()
     if request.method == 'GET':
-        query = 'SELECT * FROM %s' % table_name
-        return query_data(query, conn, 'json')
+        query = 'SELECT * FROM User'
+        ret_df = query_data(query, conn, 'df')
+        return ret_df.to_json(orient="records")
 
 
 @app.route('/api/<query_uri>', methods=['GET'])
