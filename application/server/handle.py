@@ -1,4 +1,4 @@
-# from application.server.MovieTraitNetwork import *
+from application.server.MovieTraitNetwork import *
 # from MovieTraitNetwork import *
 from flask import jsonify
 import pandas as pd

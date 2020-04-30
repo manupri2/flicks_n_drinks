@@ -1,4 +1,5 @@
 from application.server.handle import *
+from application.server.MovieTraitNetwork import *
 from DataManipulation.build_NN_training_set import build_training_set
 import json
 from urllib import parse
