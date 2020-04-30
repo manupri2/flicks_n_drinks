@@ -12,13 +12,13 @@ else:
     from application.server.handle import *
 
 
-mt_model, test_df = load_model()
-mt_model.summary()
+# mt_model, test_df = load_model()
+# mt_model.summary()
 # print("Enter Name:")
 # user_name = str(input())
 # print("Hello " + user_name)
-test_df['compat'] = see_mtnn(test_df, mt_model)
-print(test_df)
+# test_df['compat'] = see_mtnn(test_df, mt_model)
+# print(test_df)
 
 app = Flask(__name__, static_folder="../static/dist", template_folder="../static")
 CORS(app)
@@ -76,7 +76,7 @@ def movie_trait_network(json_uri):
     :return:
     """
     # rebuild NN
-    # mt_model, test_df = MovieTraitNetwork.load_model()
+    # mt_model, test_df = load_model()
     # print("Enter Name:")
     # user_name = str(input())
     # print("Hello " + user_name)
