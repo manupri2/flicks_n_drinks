@@ -1,5 +1,5 @@
 from urllib import parse
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, Response
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 import json
@@ -87,7 +87,7 @@ def movie_trait_network(json_uri):
     if request.method == 'GET':
         json_dict = json.loads(parse.unquote(json_uri))
         result = handle_mtnn_api(json_dict, mt_model, conn)
-        return result.to_json(orient="records")
+        return Response(result.to_json(orient="records"), mimetype='application/json')
 
 
 @app.route('/read/<table>/<json_uri>', methods=['GET'])
