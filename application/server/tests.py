@@ -50,8 +50,8 @@ def mtnn_run_test_real(json_dict):
     print(json_dict)
     resp_json, code = json_api_query("MTNN", json_dict)
     print(resp_json)
-    result_dict = json.loads(resp_json.json())
-    result_df = pd.DataFrame(result_dict)
+    # result_dict = json.loads(resp_json.json())
+    result_df = pd.DataFrame(resp_json)
     print("\nMovieTrait Results::")
     print(result_df)
     print("/////////////////////////////////////////////////////////////////////////////////////////////////////////")
@@ -123,13 +123,13 @@ def test_crud():
 def basic_df():
     resp_json, code = json_api_query("BasicDF", {})
     print(resp_json)
-    result_dict = json.loads(resp_json.json())
-    result_df = pd.DataFrame(result_dict)
+    # result_dict = json.loads(resp_json)
+    result_df = pd.DataFrame(resp_json)
     print("\nMovieTrait Results::")
     print(result_df)
 
 
 if __name__ == "__main__":
-    basic_df()
+    test_mtnn_api_real()
 
 

@@ -12,7 +12,7 @@ else:
     from application.server.handle import *
 
 
-mt_model, test_df = load_model()
+# mt_model, test_df = load_model()
 # mt_model.summary()
 # print("Enter Name:")
 # user_name = str(input())
@@ -55,9 +55,17 @@ def crud_app():
 def basic_api():
     conn = eng.connect()
     if request.method == 'GET':
-        query = 'SELECT * FROM User'
-        ret_df = query_data(query, conn, 'df')
-        return Response(ret_df.to_json(orient="records"), mimetype='application/json')
+        # query = 'SELECT * FROM User'
+        # ret_df = query_data(query, conn, 'df')
+        mt_model, test_df = load_model()
+        # mt_model.summary()
+        # print("Enter Name:")
+        # user_name = str(input())
+        # print("Hello " + user_name)
+        test_df['compat'] = see_mtnn(test_df, mt_model)
+        # print(test_df)
+        
+        return Response(test_df.to_json(orient="records"), mimetype='application/json')
 
 
 @app.route('/api/<query_uri>', methods=['GET'])
@@ -87,8 +95,8 @@ def movie_trait_network(json_uri):
     conn = eng.connect()
     if request.method == 'GET':
         json_dict = json.loads(parse.unquote(json_uri))
-        result = handle_mtnn_api(json_dict, mt_model, conn)
-        return Response(result.to_json(orient="records"), mimetype='application/json')
+        result_df = handle_mtnn_api(json_dict, mt_model, conn)
+        return Response(result_df.to_json(orient="records"), mimetype='application/json')
 
 
 @app.route('/read/<table>/<json_uri>', methods=['GET'])
