@@ -5,13 +5,20 @@ from flask_sqlalchemy import SQLAlchemy
 import json
 
 if __name__ == "__main__":
+    from MovieTraitNetwork import *
     from handle import *
-    import MovieTraitNetwork
 else:
+    from application.server.MovieTraitNetwork import *
     from application.server.handle import *
-    import application.server.MovieTraitNetwork as MovieTraitNetwork
 
-# mt_model, test_df = MovieTraitNetwork.load_model()
+
+mt_model, test_df = load_model()
+mt_model.summary()
+# print("Enter Name:")
+# user_name = str(input())
+# print("Hello " + user_name)
+test_df['compat'] = see_mtnn(test_df, mt_model)
+print(test_df)
 
 app = Flask(__name__, static_folder="../static/dist", template_folder="../static")
 CORS(app)
