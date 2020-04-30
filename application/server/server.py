@@ -87,7 +87,7 @@ def movie_trait_network(json_uri):
     if request.method == 'GET':
         json_dict = json.loads(parse.unquote(json_uri))
         result = handle_mtnn_api(json_dict, mt_model, conn)
-        return result.to_json()
+        return result.to_json(orient="records")
 
 
 @app.route('/read/<table>/<json_uri>', methods=['GET'])

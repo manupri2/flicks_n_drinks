@@ -68,6 +68,7 @@ def mtnn_run_test(json_dict, model):
     # result_df = pd.DataFrame(result_dict)
     print("\nMovieTrait Results::")
     print(result_df)
+    print(type(result_df.to_json(orient="records")))
     print("/////////////////////////////////////////////////////////////////////////////////////////////////////////")
     return result_df
 
@@ -119,6 +120,6 @@ def test_crud():
 
 
 if __name__ == "__main__":
-    test_mtnn_api_real()
+    test_mtnn_api_functions()
 
 
