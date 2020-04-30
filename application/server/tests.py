@@ -120,7 +120,16 @@ def test_crud():
     return
 
 
+def basic_df():
+    resp_json, code = json_api_query("BasicDF", {})
+    print(resp_json)
+    result_dict = json.loads(resp_json.json())
+    result_df = pd.DataFrame(result_dict)
+    print("\nMovieTrait Results::")
+    print(result_df)
+
+
 if __name__ == "__main__":
-    test_mtnn_api_real()
+    basic_df()
 
 

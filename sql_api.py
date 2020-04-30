@@ -11,15 +11,21 @@ import json
 
 def json_api_query(api, json_data):
 
-    query_str = json.dumps(json_data)
-    encoded_query = parse.quote(query_str)
+    encoded_query = ""
+    if json_data:
+        query_str = json.dumps(json_data)
+        encoded_query = parse.quote(query_str)
     # print(encoded_query)
     # print(parse.unquote(encoded_query))
-    route = "http://cs411ccsquad.web.illinois.edu/%s/%s" % (api, encoded_query)
+    route = "http://cs411ccsquad.web.illinois.edu/" + api
+
+    if encoded_query:
+        route += "/" + encoded_query
+
     print(route)
     response = requests.get(route)
     print("Status code: %d" % response.status_code)
-    return response, response.status_code
+    return response.json(), response.status_code
 
 
 def api_query(query_str):

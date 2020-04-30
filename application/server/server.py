@@ -57,7 +57,7 @@ def basic_api():
     if request.method == 'GET':
         query = 'SELECT * FROM User'
         ret_df = query_data(query, conn, 'df')
-        return ret_df.to_json(orient="records")
+        return Response(ret_df.to_json(orient="records"), mimetype='application/json')
 
 
 @app.route('/api/<query_uri>', methods=['GET'])
