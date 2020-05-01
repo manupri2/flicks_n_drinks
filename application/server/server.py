@@ -12,7 +12,7 @@ else:
     from application.server.handle import *
 
 
-# mt_model, test_df = load_model()
+mt_model, test_df = load_model()
 # mt_model.summary()
 # print("Enter Name:")
 # user_name = str(input())
@@ -57,7 +57,7 @@ def basic_api():
     if request.method == 'GET':
         # query = 'SELECT * FROM User'
         # ret_df = query_data(query, conn, 'df')
-        mt_model, test_df = load_model()
+        # mt_model, test_df = load_model()
         # mt_model.summary()
         # print("Enter Name:")
         # user_name = str(input())
