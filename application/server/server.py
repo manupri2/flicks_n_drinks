@@ -13,12 +13,6 @@ else:
 
 
 mt_model, test_df = load_model()
-# mt_model.summary()
-# print("Enter Name:")
-# user_name = str(input())
-# print("Hello " + user_name)
-# test_df['compat'] = see_mtnn(test_df, mt_model)
-# print(test_df)
 
 app = Flask(__name__, static_folder="../static/dist", template_folder="../static")
 CORS(app)
@@ -49,12 +43,14 @@ def signup():
 def crud_app():
 	return render_template("./pages/CRUDPage.html")
 
+
 # ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 # API routes
 @app.route('/BasicDF', methods=['GET'])
 def basic_api():
     conn = eng.connect()
     if request.method == 'GET':
+        test_q = query_data("SELECT * FROM User", conn, 'df')
         test_df['compat'] = see_mtnn(test_df, mt_model)
         return Response(test_df.to_json(orient="records"), mimetype='application/json')
 
@@ -103,13 +99,6 @@ def movie_trait_network2(json_uri):
     :param json_uri: {'userId':[int, ...], 'tConst': [int, int, ...]}
     :return:
     """
-    # rebuild NN
-    # mt_model, test_df = load_model()
-    # print("Enter Name:")
-    # user_name = str(input())
-    # print("Hello " + user_name)
-    # test_df['compat'] = MovieTraitNetwork.see_mtnn(test_df, mt_model)
-    # print(test_df)
 
     # conn = eng.connect()
     if request.method == 'GET':

@@ -36,7 +36,7 @@ def test_mtnn_api_real():
     # test_res = run_json_api_test("MTNN", test_dict)
 
     test_dict = {'userId': [0], 'tConst': [24, 28, 31]}
-    test_res = run_json_api_test("MTNN2", test_dict)
+    test_res = run_json_api_test("MTNN", test_dict)
 
     # test_dict = {'userId': [0, 1], 'tConst': [24, 28, 31]}
     # test_res = run_json_api_test("MTNN", test_dict)
@@ -113,7 +113,11 @@ def test_read_api_real():
     run_json_api_test("read/User", json_dict)
 
 
+def test_basic_api():
+    json_dict = {}
+    run_json_api_test("BasicDF", json_dict)
+
 if __name__ == "__main__":
-    test_mtnn_api_real()
+    test_basic_api()
 
 
