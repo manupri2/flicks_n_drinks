@@ -114,6 +114,6 @@ def test_read_api_real():
 
 
 if __name__ == "__main__":
-    test_mtnn_api_functions()
+    test_mtnn_api_real()
 
 
