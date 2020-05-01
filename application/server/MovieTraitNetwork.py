@@ -32,13 +32,13 @@ def df_to_dataset(df, shuffle=False, batch_size=32):
 
 
 def load_model():
-    model_file = './MovieTraitModel'
-    # model_file = './application/server/MovieTraitModel'
+    # model_file = './MovieTraitModel'
+    model_file = './application/server/MovieTraitModel'
     mt_model = models.load_model(model_file)
     # print(repr(mt_model))
 
-    rebuild_df = pd.read_csv('./MovieTraitModel/MovieTraitRebuild.csv')
-    # rebuild_df = pd.read_csv('./application/server/MovieTraitModel/MovieTraitRebuild.csv')
+    # rebuild_df = pd.read_csv('./MovieTraitModel/MovieTraitRebuild.csv')
+    rebuild_df = pd.read_csv('./application/server/MovieTraitModel/MovieTraitRebuild.csv')
     rebuild_df = rebuild_df.loc[:, model_feats + ['BinProb']]
     # print(rebuild_df)
     rebuild_ds = df_to_dataset(rebuild_df)
