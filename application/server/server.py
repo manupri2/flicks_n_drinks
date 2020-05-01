@@ -90,7 +90,7 @@ def movie_trait_network1(json_uri):
         tconst_list = json_dict.pop('tConst')
         genre_query = build_genres_query(tconst_list)
         user_info_df = query_data(build_user_query(json_dict), conn, 'df')
-        # genre_df = query_data(genre_query, conn, 'df')
+        genre_df = query_data(genre_query, conn, 'df')
 
         # mt_model, test_df = load_model()
         # result_df = handle_mtnn_api(json_dict, mt_model, user_info_df, genre_df, tconst_list)
