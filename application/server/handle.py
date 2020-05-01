@@ -163,12 +163,6 @@ def handle_mtnn_api(json_dict, model, user_info_df, genre_df, tconst_list):
     return result
 
 
-def test_basic_nn_api(json_dict, mt_model):
-    test_df = pd.DataFrame
-    test_df['compat'] = see_mtnn(test_df, mt_model)
-    return test_df
-
-
 if __name__ == '__main__':
     print("Test with sql_api.py or tests.py")
 

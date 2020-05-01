@@ -68,7 +68,7 @@ def api_sql(query_uri):
 
 
 @app.route('/MTNN1/<json_uri>', methods=['GET'])
-def movie_trait_network(json_uri):
+def movie_trait_network1(json_uri):
     """
     if 'tConst' empty, returns compatibilities for top 5 most compatible genres
     if 'tConst' non-empty, calculates personalized ratings for movies in 'tConst'
@@ -99,7 +99,7 @@ def movie_trait_network(json_uri):
 
 
 @app.route('/MTNN2/<json_uri>', methods=['GET'])
-def movie_trait_network(json_uri):
+def movie_trait_network2(json_uri):
     """
     if 'tConst' empty, returns compatibilities for top 5 most compatible genres
     if 'tConst' non-empty, calculates personalized ratings for movies in 'tConst'
