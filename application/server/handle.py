@@ -145,7 +145,7 @@ def build_genres_query(tconst_list):
     return query
 
 
-def handle_mtnn_api(json_dict, model, user_info_df, genre_df, tconst_list):
+def handle_mtnn_api(model, user_info_df, genre_df, tconst_list):
     # tconst_list = json_dict.pop('tConst')
     # genre_query = build_genres_query(tconst_list)
 
@@ -158,8 +158,8 @@ def handle_mtnn_api(json_dict, model, user_info_df, genre_df, tconst_list):
 
     result = calc_genre_compat(user_info_df, tconst_list, genre_df, model)
 
-    if tconst_list:
-        result = calc_personalized_rating(result)
+    # if tconst_list:
+    #     result = calc_personalized_rating(result)
     return result
 
 

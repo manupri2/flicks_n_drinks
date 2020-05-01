@@ -5,7 +5,7 @@ import json
 from urllib import parse
 from flask import jsonify
 import pandas as pd
-from sql_api import remote_test_read_query, json_api_query
+from sql_api import remote_test_read_query, json_api_query, api_query, run_json_api_test
 import os
 import requests
 
@@ -30,30 +30,16 @@ def test_mtnn_api_real():
     # test_mod, blah = load_model()
 
     test_dict = {'userId': 0, 'tConst': []}
-    test_res = run_json_api_test("MTNN1", test_dict)
+    test_res = run_json_api_test("MTNN", test_dict)
 
     # test_dict = {'userId': [1], 'tConst': []}
     # test_res = run_json_api_test("MTNN", test_dict)
 
     test_dict = {'userId': [0], 'tConst': [24, 28, 31]}
-    test_res = run_json_api_test("MTNN1", test_dict)
-    #
+    test_res = run_json_api_test("MTNN", test_dict)
+
     test_dict = {'userId': [0, 1], 'tConst': [24, 28, 31]}
-    test_res = run_json_api_test("MTNN1", test_dict)
-
-
-def run_json_api_test(api, json_dict):
-    # test_json = json.dumps(json_dict)
-    # json_uri = parse.quote(test_json)
-    print("/////////////////////////////////////////////////////////////////////////////////////////////////////////")
-    print("JSON Input:")
-    print(json_dict)
-    resp_json, code = json_api_query(api, json_dict)
-    result_df = pd.DataFrame(resp_json)
-    print("\nResults:")
-    print(result_df)
-    print("/////////////////////////////////////////////////////////////////////////////////////////////////////////")
-    return result_df
+    test_res = run_json_api_test("MTNN", test_dict)
 
 
 def mtnn_run_test(json_dict, model):
@@ -62,12 +48,16 @@ def mtnn_run_test(json_dict, model):
     print("/////////////////////////////////////////////////////////////////////////////////////////////////////////")
     print("JSON Input:")
     print(json_dict)
-    result_df = handle_mtnn_api(json_dict, model, 'test')
-    # result_dict = json.loads(result_json)
-    # result_df = pd.DataFrame(result_dict)
-    print("\nMovieTrait Results::")
+
+    tconst_list = json_dict.pop('tConst')
+    genre_query = build_genres_query(tconst_list)
+
+    user_info_df, code = api_query(build_user_query(json_dict))
+    genre_df, code = api_query(genre_query)
+    result_df = handle_mtnn_api(model, user_info_df, genre_df, tconst_list)
+
+    print("\nMovieTrait Results:")
     print(result_df)
-    print(type(result_df.to_json(orient="records")))
     print("/////////////////////////////////////////////////////////////////////////////////////////////////////////")
     return result_df
 
@@ -124,6 +114,6 @@ def test_read_api_real():
 
 
 if __name__ == "__main__":
-    test_mtnn_api_real()
+    test_mtnn_api_functions()
 
 

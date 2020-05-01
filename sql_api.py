@@ -68,6 +68,20 @@ def remote_test_read_query(test_query):
     print("//////////////////////////////////////////////////////////////////////////////////////////////////////////")
 
 
+def run_json_api_test(api, json_dict):
+    # test_json = json.dumps(json_dict)
+    # json_uri = parse.quote(test_json)
+    print("/////////////////////////////////////////////////////////////////////////////////////////////////////////")
+    print("JSON Input:")
+    print(json_dict)
+    resp_json, code = json_api_query(api, json_dict)
+    result_df = pd.DataFrame(resp_json)
+    print("\nResults:")
+    print(result_df)
+    print("/////////////////////////////////////////////////////////////////////////////////////////////////////////")
+    return result_df
+
+
 if __name__ == "__main__":
     table_list = ['CocktailDecoration',
     'CocktailName',

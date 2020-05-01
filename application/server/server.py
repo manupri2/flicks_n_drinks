@@ -91,9 +91,9 @@ def movie_trait_network(json_uri):
         genre_query = build_genres_query(tconst_list)
         user_info_df = query_data(build_user_query(json_dict), conn, 'df')
         genre_df = query_data(genre_query, conn, 'df')
-        test_df['compat'] = see_mtnn(test_df, mt_model)
-        # result_df = handle_mtnn_api(json_dict, mt_model, user_info_df, genre_df, tconst_list)
-        result_df = test_df
+        # test_df['compat'] = see_mtnn(test_df, mt_model)
+        result_df = handle_mtnn_api(mt_model, user_info_df, genre_df, tconst_list)
+        # result_df = test_df
         return Response(result_df.to_json(orient="records"), mimetype='application/json')
 
 
