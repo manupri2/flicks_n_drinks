@@ -2,6 +2,7 @@ import pandas as pd
 from urllib import parse
 import requests
 import json
+from flask import jsonify
 
 
 # Status Code 500 - Error in SQL query or error in connecting to database

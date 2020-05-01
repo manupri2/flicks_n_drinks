@@ -30,29 +30,29 @@ def test_mtnn_api_real():
     # test_mod, blah = load_model()
 
     test_dict = {'userId': 0, 'tConst': []}
-    test_res = mtnn_run_test_real(test_dict)
+    test_res = run_json_api_test("MTNN", test_dict)
 
     test_dict = {'userId': [1], 'tConst': []}
-    test_res = mtnn_run_test_real(test_dict)
+    test_res = run_json_api_test("MTNN", test_dict)
 
     test_dict = {'userId': [0], 'tConst': [24, 28, 31]}
-    test_res = mtnn_run_test_real(test_dict)
+    test_res = run_json_api_test("MTNN", test_dict)
 
     test_dict = {'userId': [0, 1], 'tConst': [24, 28, 31]}
-    test_res = mtnn_run_test_real(test_dict)
+    test_res = run_json_api_test("MTNN", test_dict)
 
 
-def mtnn_run_test_real(json_dict):
+def run_json_api_test(api, json_dict):
     # test_json = json.dumps(json_dict)
     # json_uri = parse.quote(test_json)
     print("/////////////////////////////////////////////////////////////////////////////////////////////////////////")
     print("JSON Input:")
     print(json_dict)
-    resp_json, code = json_api_query("MTNN", json_dict)
+    resp_json, code = json_api_query(api, json_dict)
     print(resp_json)
     # result_dict = json.loads(resp_json.json())
     result_df = pd.DataFrame(resp_json)
-    print("\nMovieTrait Results::")
+    print("\nResults:")
     print(result_df)
     print("/////////////////////////////////////////////////////////////////////////////////////////////////////////")
     return result_df
@@ -120,16 +120,12 @@ def test_crud():
     return
 
 
-def basic_df():
-    resp_json, code = json_api_query("BasicDF", {})
-    print(resp_json)
-    # result_dict = json.loads(resp_json)
-    result_df = pd.DataFrame(resp_json)
-    print("\nMovieTrait Results::")
-    print(result_df)
+def test_read_api_real():
+    json_dict = {'userId': 0}
+    run_json_api_test("read/User", json_dict)
 
 
 if __name__ == "__main__":
-    basic_df()
+    test_mtnn_api_real()
 
 

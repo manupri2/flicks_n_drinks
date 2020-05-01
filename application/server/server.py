@@ -52,19 +52,10 @@ def crud_app():
 # ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 # API routes
 @app.route('/BasicDF', methods=['GET'])
-def basic_api():
+def basic_api(json_uri):
     conn = eng.connect()
     if request.method == 'GET':
-        # query = 'SELECT * FROM User'
-        # ret_df = query_data(query, conn, 'df')
-        # mt_model, test_df = load_model()
-        # mt_model.summary()
-        # print("Enter Name:")
-        # user_name = str(input())
-        # print("Hello " + user_name)
         test_df['compat'] = see_mtnn(test_df, mt_model)
-        # print(test_df)
-
         return Response(test_df.to_json(orient="records"), mimetype='application/json')
 
 
@@ -76,7 +67,7 @@ def api_sql(query_uri):
         return query_data(query, conn, 'json')
 
 
-@app.route('/MTNN/<json_uri>', methods=['GET'])
+@app.route('/MTNN1/<json_uri>', methods=['GET'])
 def movie_trait_network(json_uri):
     """
     if 'tConst' empty, returns compatibilities for top 5 most compatible genres
@@ -99,10 +90,42 @@ def movie_trait_network(json_uri):
         tconst_list = json_dict.pop('tConst')
         genre_query = build_genres_query(tconst_list)
         user_info_df = query_data(build_user_query(json_dict), conn, 'df')
+        # genre_df = query_data(genre_query, conn, 'df')
+
+        # mt_model, test_df = load_model()
+        # result_df = handle_mtnn_api(json_dict, mt_model, user_info_df, genre_df, tconst_list)
+        result_df = user_info_df
+        return Response(result_df.to_json(orient="records"), mimetype='application/json')
+
+
+@app.route('/MTNN2/<json_uri>', methods=['GET'])
+def movie_trait_network(json_uri):
+    """
+    if 'tConst' empty, returns compatibilities for top 5 most compatible genres
+    if 'tConst' non-empty, calculates personalized ratings for movies in 'tConst'
+    :param json_uri: {'userId':[int, ...], 'tConst': [int, int, ...]}
+    :return:
+    """
+    # rebuild NN
+    # mt_model, test_df = load_model()
+    # print("Enter Name:")
+    # user_name = str(input())
+    # print("Hello " + user_name)
+    # test_df['compat'] = MovieTraitNetwork.see_mtnn(test_df, mt_model)
+    # print(test_df)
+
+    conn = eng.connect()
+    if request.method == 'GET':
+        json_dict = json.loads(parse.unquote(json_uri))
+
+        tconst_list = json_dict.pop('tConst')
+        genre_query = build_genres_query(tconst_list)
+        # user_info_df = query_data(build_user_query(json_dict), conn, 'df')
         genre_df = query_data(genre_query, conn, 'df')
 
-        mt_model, test_df = load_model()
-        result_df = handle_mtnn_api(json_dict, mt_model, user_info_df, genre_df, tconst_list)
+        # mt_model, test_df = load_model()
+        # result_df = handle_mtnn_api(json_dict, mt_model, user_info_df, genre_df, tconst_list)
+        result_df = genre_df
         return Response(result_df.to_json(orient="records"), mimetype='application/json')
 
 
