@@ -76,14 +76,15 @@ def movie_trait_network(json_uri):
     :return:
     """
 
-    conn = eng.connect()
+    # conn = eng.connect()
     if request.method == 'GET':
-        json_dict = json.loads(parse.unquote(json_uri))
+        with eng.connect() as conn:
+            json_dict = json.loads(parse.unquote(json_uri))
 
-        tconst_list = json_dict.pop('tConst')
-        genre_query = build_genres_query(tconst_list)
-        user_info_df = query_data(build_user_query(json_dict), conn, 'df')
-        genre_df = query_data(genre_query, conn, 'df')
+            tconst_list = json_dict.pop('tConst')
+            genre_query = build_genres_query(tconst_list)
+            user_info_df = query_data(build_user_query(json_dict), conn, 'df')
+            genre_df = query_data(genre_query, conn, 'df')
 
         user_df = rename_trait_cols(user_info_df)
         results_df = build_features_df(user_df, tconst_list, genre_df)  # build features dataframe for NN
@@ -110,14 +111,15 @@ def movie_trait_network2(json_uri):
     # test_df['compat'] = MovieTraitNetwork.see_mtnn(test_df, mt_model)
     # print(test_df)
 
-    conn = eng.connect()
+    # conn = eng.connect()
     if request.method == 'GET':
-        json_dict = json.loads(parse.unquote(json_uri))
+        with eng.connect() as conn:
+            json_dict = json.loads(parse.unquote(json_uri))
 
-        tconst_list = json_dict.pop('tConst')
-        genre_query = build_genres_query(tconst_list)
-        user_info_df = query_data(build_user_query(json_dict), conn, 'df')
-        genre_df = query_data(genre_query, conn, 'df')
+            tconst_list = json_dict.pop('tConst')
+            genre_query = build_genres_query(tconst_list)
+            user_info_df = query_data(build_user_query(json_dict), conn, 'df')
+            genre_df = query_data(genre_query, conn, 'df')
 
         user_df = rename_trait_cols(user_info_df)
         results_df = build_features_df(user_df, tconst_list, genre_df)  # build features dataframe for NN
