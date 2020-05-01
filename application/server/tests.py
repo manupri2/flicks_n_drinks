@@ -30,16 +30,16 @@ def test_mtnn_api_real():
     # test_mod, blah = load_model()
 
     test_dict = {'userId': 0, 'tConst': []}
-    test_res = run_json_api_test("MTNN", test_dict)
+    test_res = run_json_api_test("MTNN2", test_dict)
 
     # test_dict = {'userId': [1], 'tConst': []}
     # test_res = run_json_api_test("MTNN", test_dict)
 
     test_dict = {'userId': [0], 'tConst': [24, 28, 31]}
-    test_res = run_json_api_test("MTNN", test_dict)
+    test_res = run_json_api_test("MTNN2", test_dict)
 
     test_dict = {'userId': [0, 1], 'tConst': [24, 28, 31]}
-    test_res = run_json_api_test("MTNN", test_dict)
+    test_res = run_json_api_test("MTNN2", test_dict)
 
 
 def mtnn_run_test(json_dict, model):

@@ -93,13 +93,23 @@ def movie_trait_network(json_uri):
         genre_df = query_data(genre_query, conn, 'df')
 
         user_df = rename_trait_cols(user_info_df)
-        # results_df = build_features_df(user_df, tconst_list, genre_df)  # build features dataframe for NN
-        # results_df['compatibility'] = see_mtnn(results_df, model)  # calculate compatility through NN
+        results_df = build_features_df(user_df, tconst_list, genre_df)  # build features dataframe for NN
+        results_df['compatibility'] = see_mtnn(results_df, mt_model)  # calculate compatility through NN
 
+
+        if tconst_list:
+            results_df = results_df.groupby(['userId', 'tConst'], as_index=False).mean()
+            results_df = results_df.loc[:, ['userId', 'tConst', 'rating', 'compatibility']]
+            results_df = calc_personalized_rating(results_df)
+        else:
+            num_results = 5
+            results_df.sort_values('compatibility', inplace=True, ascending=False)
+            results_df.reset_index(inplace=True)
+            results_df = results_df.loc[0:num_results - 1, ['userId', 'genreName', 'compatibility']]
 
         # result_df = handle_mtnn_api(mt_model, user_info_df, genre_df, tconst_list)
-        result_df = user_df
-        return Response(result_df.to_json(orient="records"), mimetype='application/json')
+        # result_df = results_df
+        return Response(results_df.to_json(orient="records"), mimetype='application/json')
 
 
 @app.route('/MTNN2/<json_uri>', methods=['GET'])
@@ -129,7 +139,7 @@ def movie_trait_network2(json_uri):
 
         user_df = rename_trait_cols(user_info_df)
         results_df = build_features_df(user_df, tconst_list, genre_df)  # build features dataframe for NN
-        # results_df['compatibility'] = see_mtnn(results_df, model)  # calculate compatility through NN
+        results_df['compatibility'] = see_mtnn(results_df, mt_model)  # calculate compatility through NN
         
         # result_df = handle_mtnn_api(mt_model, user_info_df, genre_df, tconst_list)
         result_df = results_df
