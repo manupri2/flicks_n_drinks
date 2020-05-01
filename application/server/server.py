@@ -51,8 +51,9 @@ def basic_api():
     conn = eng.connect()
     if request.method == 'GET':
         test_q = query_data("SELECT * FROM User", conn, 'df')
+        test_q2 = query_data("SELECT * FROM CocktailRecipe", conn, 'df')
         test_df['compat'] = see_mtnn(test_df, mt_model)
-        return Response(test_df.to_json(orient="records"), mimetype='application/json')
+        return Response(test_q2.to_json(orient="records"), mimetype='application/json')
 
 
 @app.route('/api/<query_uri>', methods=['GET'])

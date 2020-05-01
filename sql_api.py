@@ -109,7 +109,7 @@ if __name__ == "__main__":
     json_dict = {'emailId': "ohuang2@illinois.edu"}
     user_email = json_dict['emailId']
 
-    query = "SELECT * FROM User"
+    query = "SELECT * FROM CocktailRecipe"
     remote_test_read_query(query)
 
 
