@@ -52,8 +52,9 @@ def load_model():
 def see_mtnn(features_df, mt_model):
     """calculates compatibility and returns as numpy array"""
     batch_size = 1  # traits_df.shape[0]
-
+    print(features_df)
     df = features_df.loc[:, model_feats].copy()
+    print(df)
     traits_ds = tf.data.Dataset.from_tensor_slices(dict(df))
     traits_ds = traits_ds.batch(batch_size)
 
