@@ -87,7 +87,7 @@ def read(table, json_uri):
 
         query = ""
         if table == "Movies" or table == "Cocktails":
-            build_read_query_from_view(table[:-1], json_dict)
+            query = build_read_query_from_view(table[:-1], json_dict)
         if table == "User":
             query = build_user_query(json_dict)
 
