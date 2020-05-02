@@ -5,7 +5,6 @@ import tensorflow.keras.models as models
 # from DataManipulation.BuildModel import df_to_dataset, model_feats, num_cats
 
 
-# model_traits = ['Openness', 'Conscientiousness', 'Extraversion', 'Agreeableness', 'Neuroticism']
 trait_names = {'trOpen': 'Openness',
                'trCon': 'Conscientiousness',
                'trEx': 'Extraversion',
@@ -15,10 +14,6 @@ trait_names = {'trOpen': 'Openness',
 model_traits = ['Openness', 'Conscientiousness', 'Extraversion', 'Agreeableness', 'Neuroticism']
 model_feats = model_traits + ['genreName']
 num_cats = 20
-# model_genres = ['Romance', 'Biography', 'Crime', 'Drama', 'Adventure', 'Family', 'History', 'Fantasy', 'War',
-#                 'Thriller', 'Documentary', 'Comedy', 'Mystery', 'Horror', 'Western', 'Music', 'Action', 'Sci-Fi',
-#                 'Animation', 'Musical', 'Sport', 'Film-Noir', 'News', 'Talk-Show', 'Adult', 'Reality-TV', 'Short',
-#                 'Game-Show']
 
 
 def df_to_dataset(df, shuffle=False, batch_size=32):
@@ -35,31 +30,23 @@ def load_model():
     # model_file = './MovieTraitModel'
     model_file = './application/server/MovieTraitModel'
     mt_model = models.load_model(model_file)
-    # print(repr(mt_model))
 
     # rebuild_df = pd.read_csv('./MovieTraitModel/MovieTraitRebuild.csv')
     rebuild_df = pd.read_csv('./application/server/MovieTraitModel/MovieTraitRebuild.csv')
     rebuild_df = rebuild_df.loc[:, model_feats + ['BinProb']]
-    # print(rebuild_df)
-    rebuild_ds = df_to_dataset(rebuild_df)
 
+    rebuild_ds = df_to_dataset(rebuild_df)
     loss, accuracy = mt_model.evaluate(rebuild_ds)
     print("\nAccuracy on loaded model: ", accuracy)
-    # mt_model.summary()
+
     return mt_model, rebuild_df
 
 
 def see_mtnn(features_df, mt_model):
     """calculates compatibility and returns as numpy array"""
     batch_size = 1  # traits_df.shape[0]
-    # print("Pre Index:")
-    # print(features_df)
-    # print("Post Index:")
-    # features_df.reset_index(inplace=True)
-    # print(features_df)
 
     df = features_df.loc[:, model_feats].copy()
-    print(df)
     traits_ds = tf.data.Dataset.from_tensor_slices(dict(df))
     traits_ds = traits_ds.batch(batch_size)
 
@@ -80,13 +67,13 @@ def build_features_df(user_df, tconst_list, genre_df):
         genre_df.set_index('tConst', inplace=True)
         feats_df = feats_df.join(genre_df, on='tConst', how='inner')
     else:
-        # feats_df = pd.DataFrame([trait_dict for i in range(genre_df.shape[0])])
         feats_df = pd.DataFrame()
         for gen in list(genre_df['genreName'].values):
             temp = user_df.copy()
             temp['genreName'] = gen
             feats_df = pd.concat([feats_df, temp])
 
+    feats_df.reset_index(inplace=True)
     return feats_df
 
 

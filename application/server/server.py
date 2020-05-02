@@ -72,53 +72,10 @@ def movie_trait_network(json_uri):
     :param json_uri: {'userId':[int, ...], 'tConst': [int, int, ...]}
     :return:
     """
-
-    # conn = eng.connect()
     if request.method == 'GET':
         with eng.connect() as conn:
             json_dict = json.loads(parse.unquote(json_uri))
-
-            tconst_list = json_dict.pop('tConst')
-            genre_query = build_genres_query(tconst_list)
-            user_info_df = query_data(build_user_query(json_dict), conn, 'df')
-            genre_df = query_data(genre_query, conn, 'df')
-        print(user_info_df)
-        user_df = rename_trait_cols(user_info_df)
-        print(user_df)
-        results_df = build_features_df(user_df, tconst_list, genre_df)  # build features dataframe for NN
-        print(results_df)
-        # results_df['compatibility'] = see_mtnn(results_df, mt_model)  # calculate compatility through NN
-
-        # result_df = handle_mtnn_api(mt_model, user_info_df, genre_df, tconst_list)
-        # result_df = results_df
-        return Response(results_df.to_json(orient="records"), mimetype='application/json')
-
-
-@app.route('/MTNN2/<json_uri>', methods=['GET'])
-def movie_trait_network2(json_uri):
-    """
-    if 'tConst' empty, returns compatibilities for top 5 most compatible genres
-    if 'tConst' non-empty, calculates personalized ratings for movies in 'tConst'
-    :param json_uri: {'userId':[int, ...], 'tConst': [int, int, ...]}
-    :return:
-    """
-
-    # conn = eng.connect()
-    if request.method == 'GET':
-        with eng.connect() as conn:
-            json_dict = json.loads(parse.unquote(json_uri))
-
-            tconst_list = json_dict.pop('tConst')
-            genre_query = build_genres_query(tconst_list)
-            user_info_df = query_data(build_user_query(json_dict), conn, 'df')
-            genre_df = query_data(genre_query, conn, 'df')
-
-        user_df = rename_trait_cols(user_info_df)
-        results_df = build_features_df(user_df, tconst_list, genre_df)  # build features dataframe for NN
-        results_df['compatibility'] = see_mtnn(results_df, mt_model)  # calculate compatility through NN
-
-        # result_df = handle_mtnn_api(mt_model, user_info_df, genre_df, tconst_list)
-        result_df = results_df
+            result_df = handle_mtnn_api(json_dict, mt_model, conn)
         return Response(result_df.to_json(orient="records"), mimetype='application/json')
 
 

@@ -145,15 +145,16 @@ def build_genres_query(tconst_list):
     return query
 
 
-def handle_mtnn_api(model, user_info_df, genre_df, tconst_list):
+def handle_mtnn_api(json_dict, model, conn):
+    tconst_list = json_dict.pop('tConst')
+    genre_query = build_genres_query(tconst_list)
 
-    user_df = rename_trait_cols(user_info_df)
-    results_df = build_features_df(user_df, tconst_list, genre_df)  # build features dataframe for NN
-    results_df['compatibility'] = see_mtnn(results_df, model)  # calculate compatility through NN
+    user_info_df = query_data(build_user_query(json_dict), conn, 'df')
+    genre_df = query_data(genre_query, conn, 'df')
 
-    # result = calc_genre_compat(user_info_df, tconst_list, genre_df, model)
+    result = calc_genre_compat(user_info_df, tconst_list, genre_df, model)
 
-    return results_df
+    return result
 
 
 if __name__ == '__main__':
