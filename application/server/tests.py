@@ -101,6 +101,21 @@ def test_cocktail_read_api():
     remote_test_read_query(query)
 
 
+def test_signup():
+
+    max_id_query = 'SELECT MAX(userId) as max FROM User'
+    result = remote_test_read_query(max_id_query)
+    # result = query_data(max_id_query, conn, 'df')
+    max_id = result['max'][0] + 1
+    new_input = '%7B%22firstName%22:%22Mjghga%22,%22lastName%22:%22Arbnbora%22,%22emailId%22:%22mari2@illinois.edu%22,%22password%22:%22password%22%7D'
+    json_dict = json.loads(parse.unquote(new_input))
+    query = "INSERT INTO User (userId, firstName, lastName, emailId, password, trOpen, trCon, trex, trAg, trNe)" \
+            " VALUES (%s, %s, %s, %s, %s, 0, 0, 0, 0, 0)" % (max_id, '"'+json_dict['firstName']+'"', '"'+json_dict['lastName']+'"',
+                                                             '"'+json_dict['emailId']+'"', '"'+json_dict['password']+'"')
+    result1 = remote_test_read_query(query)
+    print('User query: %s and Result: %s' % (query,result1))
+
+
 def test_crud():
 
     return
@@ -117,6 +132,6 @@ def test_basic_api():
 
 
 if __name__ == "__main__":
-    test_mtnn_api_real()
+    test_signup()
 
 
