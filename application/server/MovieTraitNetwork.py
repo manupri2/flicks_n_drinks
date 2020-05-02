@@ -52,11 +52,11 @@ def load_model():
 def see_mtnn(features_df, mt_model):
     """calculates compatibility and returns as numpy array"""
     batch_size = 1  # traits_df.shape[0]
-    print("Pre Index:")
-    print(features_df)
-    print("Post Index:")
-    features_df.reset_index(inplace=True)
-    print(features_df)
+    # print("Pre Index:")
+    # print(features_df)
+    # print("Post Index:")
+    # features_df.reset_index(inplace=True)
+    # print(features_df)
 
     df = features_df.loc[:, model_feats].copy()
     print(df)
