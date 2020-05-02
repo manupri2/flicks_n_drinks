@@ -85,7 +85,12 @@ def test_movie_read_api():
     json_dict = {'title': {'value': 'ca', 'operator': 'LIKE'},
                  'year': {'value': '2005', 'operator': '='},
                  'rating': {'value': '', 'operator': '>='}}
-    query = build_movie_query(json_dict)
+    # query = build_movie_query(json_dict)
+    # remote_test_read_query(query)
+
+    # json_dict = {}
+    table = "Movies"
+    query = build_read_query_from_view(table[:-1], json_dict)
     remote_test_read_query(query)
 
 
@@ -97,7 +102,11 @@ def test_cocktail_read_api():
                   'location': {'value': '', 'operator': 'LIKE'},
                   'rating': {'value': '', 'operator': '>='}
                 }
-    query = build_cocktail_query(json_dict)
+    # query = build_cocktail_query(json_dict)
+    # remote_test_read_query(query)
+
+    table = "Cocktails"
+    query = build_read_query_from_view(table[:-1], json_dict)
     remote_test_read_query(query)
 
 
@@ -117,6 +126,6 @@ def test_basic_api():
 
 
 if __name__ == "__main__":
-    test_mtnn_api_real()
+    test_cocktail_read_api()
 
 

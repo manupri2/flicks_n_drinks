@@ -46,39 +46,49 @@ def build_where(filter_strs, relationship="AND"):
     return where_str
 
 
-def build_cocktail_query(json_dict):
-    query = "SELECT CocktailRecipe.recipeId, CocktailRecipe.bartender, CocktailRecipe.location,\n" \
-            " CocktailRecipe.rating, CocktailName.cocktailName,\n" \
-            " GROUP_CONCAT(DISTINCT Ingredient.ingredientName ORDER BY Ingredient.ingredientName DESC) AS ingredients\n" \
-            "FROM CocktailRecipe\n" \
-            " LEFT OUTER JOIN Composition ON CocktailRecipe.recipeId = Composition.recipeId\n" \
-            " LEFT OUTER JOIN Ingredient ON Composition.ingredientId = Ingredient.ingredientId\n" \
-            " LEFT OUTER JOIN CocktailName ON CocktailRecipe.cocktailId = CocktailName.cocktailId\n"
+def build_read_query_from_view(view, json_dict):
+    query = "SELECT *\n" \
+            "FROM %sSummary\n" % view
 
     filter_str = build_filters(json_dict)
     where_clause_str = build_where(filter_str, relationship="AND")
     query += where_clause_str
-    query += "GROUP BY CocktailRecipe.recipeId\n" \
-             "LIMIT 100\n"
+    query += "LIMIT 100\n"
     return query
 
-
-def build_movie_query(json_dict):
-    query = "SELECT Movie.tconst, Movie.title, Movie.year, Movie.rating,\n" \
-            " GROUP_CONCAT(DISTINCT Genre.genreName ORDER BY Genre.genreName DESC) AS genres,\n" \
-            " GROUP_CONCAT(DISTINCT People.name ORDER BY People.name DESC) AS crew\n" \
-            "FROM Movie\n" \
-            " LEFT JOIN MovieCategory ON Movie.tconst = MovieCategory.tconst\n" \
-            " LEFT JOIN Genre ON MovieCategory.genreId = Genre.genreId\n" \
-            " LEFT JOIN Crew ON Movie.tconst = Crew.tconst\n" \
-            " LEFT JOIN People ON Crew.nconst = People.nconst\n"
-
-    filter_str = build_filters(json_dict)
-    where_clause_str = build_where(filter_str, relationship="AND")
-    query += where_clause_str
-    query += "GROUP BY Movie.tconst\n" \
-             "LIMIT 100\n"
-    return query
+# def build_cocktail_query(json_dict):
+#     query = "SELECT CocktailRecipe.recipeId, CocktailRecipe.bartender, CocktailRecipe.location,\n" \
+#             " CocktailRecipe.rating, CocktailName.cocktailName,\n" \
+#             " GROUP_CONCAT(DISTINCT Ingredient.ingredientName ORDER BY Ingredient.ingredientName DESC) AS ingredients\n" \
+#             "FROM CocktailRecipe\n" \
+#             " LEFT OUTER JOIN Composition ON CocktailRecipe.recipeId = Composition.recipeId\n" \
+#             " LEFT OUTER JOIN Ingredient ON Composition.ingredientId = Ingredient.ingredientId\n" \
+#             " LEFT OUTER JOIN CocktailName ON CocktailRecipe.cocktailId = CocktailName.cocktailId\n"
+#
+#     filter_str = build_filters(json_dict)
+#     where_clause_str = build_where(filter_str, relationship="AND")
+#     query += where_clause_str
+#     query += "GROUP BY CocktailRecipe.recipeId\n" \
+#              "LIMIT 100\n"
+#     return query
+#
+#
+# def build_movie_query(json_dict):
+#     query = "SELECT Movie.tconst, Movie.title, Movie.year, Movie.rating,\n" \
+#             " GROUP_CONCAT(DISTINCT Genre.genreName ORDER BY Genre.genreName DESC) AS genres,\n" \
+#             " GROUP_CONCAT(DISTINCT People.name ORDER BY People.name DESC) AS crew\n" \
+#             "FROM Movie\n" \
+#             " LEFT JOIN MovieCategory ON Movie.tconst = MovieCategory.tconst\n" \
+#             " LEFT JOIN Genre ON MovieCategory.genreId = Genre.genreId\n" \
+#             " LEFT JOIN Crew ON Movie.tconst = Crew.tconst\n" \
+#             " LEFT JOIN People ON Crew.nconst = People.nconst\n"
+#
+#     filter_str = build_filters(json_dict)
+#     where_clause_str = build_where(filter_str, relationship="AND")
+#     query += where_clause_str
+#     query += "GROUP BY Movie.tconst\n" \
+#              "LIMIT 100\n"
+#     return query
 
 
 def build_user_query(json_dict):
