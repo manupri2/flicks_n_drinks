@@ -142,6 +142,5 @@ def test_basic_api():
 
 if __name__ == "__main__":
     test_cocktail_read_api()
-    test_signup()
 
 
