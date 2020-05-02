@@ -66,7 +66,7 @@ def remote_test_read_query(test_query):
     print("Query Results:")
     print(df)
     print("//////////////////////////////////////////////////////////////////////////////////////////////////////////")
-
+    return df
 
 def run_json_api_test(api, json_dict):
     # test_json = json.dumps(json_dict)

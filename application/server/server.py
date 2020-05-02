@@ -152,8 +152,11 @@ def add(table, new_input):
     if table == "User":
         json_dict = json.loads(parse.unquote(new_input))
         query = "INSERT INTO User (userId, firstName, lastName, emailId, password, trOpen, trCon, trex, trAg, trNe)" \
-                " VALUES (%s, %s, %s, %s, %s, 0, 0, 0, 0, 0)" % (max_id, json_dict['firstName'], json_dict['lastName'],
-                                        json_dict['emailId'], json_dict['password'])
+                " VALUES (%s, %s, %s, %s, %s, 0, 0, 0, 0, 0)" % (
+                max_id, '"' + json_dict['firstName'] + '"', '"' + json_dict['lastName'] + '"',
+                '"' + json_dict['emailId'] + '"', '"' + json_dict['password'] + '"')
+
+        print('User query: %s' % query)
         conn.execute(query)
 
     response = {'status': 'success', 'message': 'Record added successfully'}
