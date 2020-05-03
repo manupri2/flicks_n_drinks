@@ -107,11 +107,15 @@ def build_user_query(json_dict):
         user_filters = []
         for uid in user_ids:
             user_filters += build_filters({'userId': {'value': uid, 'operator': "="}})
+
+        where_str = build_where(user_filters, relationship="OR")
     else:
         user_email = "'" + json_dict['emailId'] + "'"
         user_filters = build_filters({'emailId': {'value': user_email, 'operator': "="}})
+        user_password = "'" + json_dict['password'] + "'"
+        user_filters = build_filters({'password': {'value': user_password, 'operator': "="}})
+        where_str = build_where(user_filters, relationship="AND")
 
-    where_str = build_where(user_filters, relationship="OR")
     query += where_str
     return query
 
