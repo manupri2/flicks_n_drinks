@@ -156,26 +156,49 @@ def test_basic_api():
 
 
 def new_add():
-    # table = "Movie"
-    # json_dict = {'title': "THIS IS WILLS TEST TITLE 2",
-    #              'year': 2020}
-    # query = build_insert_query(table, json_dict)
-    # df, code = api_query(query)
-    # print(query)
-
-    api = "add/User"
-    json_dict = {'firstName': 'Billy',
-                 'lastName': 'Fresco',
-                 'emailId': 'frescoFresh2@billy.com',
-                 'password': 'test'}
-    # query = build_insert_query(table, json_dict)
-    # df, code = api_query(query)
-
+    api = "add/Movie"
+    json_dict = {'title': "Bulldog Heaven Tres Perros",
+                 'year': -2020}
     json_api_query(api, json_dict)
-    # print(query)
+
+    # api = "add/User"
+    # json_dict = {'firstName': 'Billy',
+    #              'lastName': 'Fresco',
+    #              'emailId': 'frescoFresh2@billy.com',
+    #              'password': 'test'}
+    #
+    # json_api_query(api, json_dict)
+
+
+def test_vote_print_state(json_dict, vote_table, vote_col, state):
+    match_filters = preformat_filter_dict(json_dict, "=")
+    new_val_filter = {vote_col: match_filters.pop(vote_col)}
+
+    user_filter = {"userId": match_filters["userId"]}
+    mov_filter = {"tConst": match_filters["tConst"]}
+    check_mov_query = build_general_read_query("Movie", mov_filter, "AND")
+    check_vote_query = build_general_read_query(vote_table, user_filter, "AND")
+
+    check_df, message = sql_api.api_query(check_mov_query)
+    print("State: %s" % state)
+    print(check_df.loc[:, ['tConst', 'rating', 'votes']])
+    check_df, message = sql_api.api_query(check_vote_query)
+    print(check_df)
+    print()
+
+
+def test_vote():
+    vote_table = "FavoriteMovie"
+    vote_col = "ratesMovie"
+    json_dict = {"userId": 1, "tConst": 50, "ratesMovie": 10}
+    print(json_dict)
+
+    test_vote_print_state(json_dict, vote_table, vote_col, "Before")
+    handle_vote(vote_table, vote_col, json_dict, "conn")
+    test_vote_print_state(json_dict, vote_table, vote_col, "After")
 
 
 if __name__ == "__main__":
-    test_movie_read_api()
+    test_vote()
 
 

@@ -92,11 +92,13 @@ def read(table, json_uri):
             if "userId" in json_dict.keys():
                 result = personalized_movie_search(table[:-1], json_dict, mt_model, conn)
             else:
-                query = build_read_query_from_view(table[:-1], json_dict)
+                q_table = table[:-1] + "Summary"
+                query = build_general_read_query(q_table, json_dict, "AND")
                 result = query_data(query, conn, 'json')
 
         if table == "Cocktails":
-            query = build_read_query_from_view(table[:-1], json_dict)
+            q_table = table[:-1] + "Summary"
+            query = build_general_read_query(q_table, json_dict, "AND")
             result = query_data(query, conn, 'json')
 
         if table == "User":
@@ -201,6 +203,20 @@ def edit(table, item_id, title):
     
         
     conn.execute(query)
+    response = {'status': 'success', 'message': 'Product edit successfully'}
+    return response
+
+
+@app.route('/vote/<table>/<json_uri>', methods=['GET'])
+def vote(table, json_uri):
+    conn = eng.connect()
+    json_dict = json.loads(parse.unquote(json_uri))
+
+    if table == "Movie":
+        vote_table = "FavoriteMovie"
+        vote_col = "ratesMovie"
+        handle_vote(vote_table, vote_col, json_dict, conn)
+
     response = {'status': 'success', 'message': 'Product edit successfully'}
     return response
 
