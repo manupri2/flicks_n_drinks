@@ -167,8 +167,8 @@ def add(table, new_input):
 @app.route('/add/<table>/<new_input>', methods=['GET'])
 def insert(table, new_input):
     conn = eng.connect()
-
-    query = build_insert_query(table, new_input)
+    json_dict = json.loads(parse.unquote(new_input))
+    query = build_insert_query(table, json_dict)
     conn.execute(query)
 
     response = {'status': 'success', 'message': 'Record added successfully'}
