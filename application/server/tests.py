@@ -93,15 +93,20 @@ def test_movie_read_api():
                  'rating': {'value': '', 'operator': '>='}}
     table = "Movies"
 
+    # run test on the query used in API
     query = build_read_query_from_view(table[:-1], json_dict)
     remote_test_read_query(query)
 
+    # run test on actual API without "userId"
     api = "read/" + table
     res = run_json_api_test(api, json_dict)
     print(res.columns)
 
+    # run test on actual API with "userId"
     json_dict["userId"] = 1
-    run_json_api_test(api, json_dict)
+    res = run_json_api_test(api, json_dict)
+    print(res.columns)
+    print(res.loc[:, ["rating", "personalRating"]])
 
 
 def test_cocktail_read_api():
