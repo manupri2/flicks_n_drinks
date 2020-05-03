@@ -94,7 +94,7 @@ def test_movie_read_api():
     table = "Movies"
 
     # run test on the query used in API
-    query = build_read_query_from_view(table[:-1], json_dict)
+    query = build_general_read_query(table[:-1], json_dict, "AND")
     remote_test_read_query(query)
 
     # run test on actual API without "userId"
@@ -121,7 +121,7 @@ def test_cocktail_read_api():
     # remote_test_read_query(query)
 
     table = "Cocktails"
-    query = build_read_query_from_view(table[:-1], json_dict)
+    query = build_general_read_query(table[:-1], json_dict, "AND")
     remote_test_read_query(query)
 
 
@@ -179,10 +179,10 @@ def test_vote_print_state(json_dict, vote_table, vote_col, state):
     check_mov_query = build_general_read_query("Movie", mov_filter, "AND")
     check_vote_query = build_general_read_query(vote_table, user_filter, "AND")
 
-    check_df, message = sql_api.api_query(check_mov_query)
-    print("State: %s" % state)
+    check_df, message = api_query(check_mov_query)
+    print("\nState: %s" % state)
     print(check_df.loc[:, ['tConst', 'rating', 'votes']])
-    check_df, message = sql_api.api_query(check_vote_query)
+    check_df, message = api_query(check_vote_query)
     print(check_df)
     print()
 
@@ -190,15 +190,16 @@ def test_vote_print_state(json_dict, vote_table, vote_col, state):
 def test_vote():
     vote_table = "FavoriteMovie"
     vote_col = "ratesMovie"
-    json_dict = {"userId": 1, "tConst": 50, "ratesMovie": 10}
+    json_dict = {"userId": 1, "tConst": 40, "ratesMovie": 10}
     print(json_dict)
 
     test_vote_print_state(json_dict, vote_table, vote_col, "Before")
-    handle_vote(vote_table, vote_col, json_dict, "conn")
+    # handle_vote(vote_table, vote_col, json_dict, "conn")
+    json_api_query("vote/Movie", json_dict)
     test_vote_print_state(json_dict, vote_table, vote_col, "After")
 
 
 if __name__ == "__main__":
-    test_vote()
+    test_movie_read_api()
 
 

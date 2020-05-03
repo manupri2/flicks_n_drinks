@@ -214,7 +214,7 @@ def personalized_movie_search(table, json_dict, model, conn):
     result_df, message = query_data(query, conn, 'df')
 
     if not result_df.empty:
-        feat_dict = {"userId": user_id, "tConst": list(result_df["tconst"].values)}
+        feat_dict = {"userId": user_id, "tConst": list(result_df["tConst"].values)}
         compat_df = handle_mtnn_api(feat_dict, model, conn)
         result_df["personalRating"] = compat_df["personalRating"]
 
@@ -249,7 +249,6 @@ def handle_vote(vote_table, vote_col, json_dict, conn):
 
     # check_df, message = sql_api.api_query(query)
     conn.execute(query)
-
 
 
 if __name__ == '__main__':
