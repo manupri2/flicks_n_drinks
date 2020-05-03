@@ -171,8 +171,8 @@ def handle_mtnn_api(json_dict, model, conn):
     tconst_list = json_dict.pop('tConst')
     genre_query = build_genres_query(tconst_list)
 
-    user_info_df = query_data(build_user_query(json_dict), conn, 'df')
-    genre_df = query_data(genre_query, conn, 'df')
+    user_info_df, message = query_data(build_user_query(json_dict), conn, 'df')
+    genre_df, message = query_data(genre_query, conn, 'df')
 
     result = calc_genre_compat(user_info_df, tconst_list, genre_df, model)
 
@@ -204,7 +204,6 @@ def json_to_cs_str(json_dict):
 
         key_str += k
         val_str += v
-
         count += 1
 
     return key_str, val_str

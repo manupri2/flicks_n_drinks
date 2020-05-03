@@ -51,8 +51,8 @@ def crud_app():
 def basic_api():
     conn = eng.connect()
     if request.method == 'GET':
-        test_q = query_data("SELECT * FROM User", conn, 'df')
-        test_q2 = query_data("SELECT * FROM CocktailRecipe", conn, 'df')
+        test_q, message = query_data("SELECT * FROM User", conn, 'df')
+        test_q2, message = query_data("SELECT * FROM CocktailRecipe", conn, 'df')
         test_df['compat'] = see_mtnn(test_df, mt_model)
         return Response(test_df.to_json(orient="records"), mimetype='application/json')
 
@@ -124,55 +124,55 @@ def delete(table, item_id):
         return result
 
 
-@app.route('/add_old/<table>/<new_input>', methods=['GET'])
-def add(table, new_input):
-    conn = eng.connect()
-
-    max_recipe_id = ""
-
-    # find maximum
-    if table == "Movie":
-        max_id_query = 'SELECT MAX(tconst) as max FROM Movie'
-    if table == "Cocktails":
-        max_id_query = 'SELECT MAX(cocktailId) as max FROM CocktailName'
-        max_recipe_id_query = 'SELECT MAX(recipeId) as max FROM CocktailRecipe'
-
-        result = query_data(max_recipe_id_query, conn, 'df')
-        max_recipe_id = result['max'][0] + 1
-
-    if table == "User":
-        max_id_query = 'SELECT MAX(userId) as max FROM User'
-
-    result = query_data(max_id_query, conn, 'df')
-    max_id = result['max'][0] + 1
-
-    # insert new value
-    if table == "Movie":
-        query = "INSERT INTO %s (tconst, title)" \
-                " VALUES (%s , '%s')" % (table, max_id, parse.unquote(new_input))
-        conn.execute(query)
-
-    if table == "Cocktails":
-        query = "INSERT INTO CocktailName (cocktailId, cocktailName)" \
-                " VALUES (%s, '%s')" % (max_id, parse.unquote(new_input))
-        conn.execute(query)
-
-        query = "INSERT INTO CocktailRecipe (recipeId, cocktailId)" \
-                " VALUES (%s, %s)" % (max_recipe_id, max_id)
-        conn.execute(query)
-
-    if table == "User":
-        json_dict = json.loads(parse.unquote(new_input))
-        query = "INSERT INTO User (userId, firstName, lastName, emailId, password, trOpen, trCon, trex, trAg, trNe)" \
-                " VALUES (%s, %s, %s, %s, %s, 0, 0, 0, 0, 0)" % (
-                max_id, '"' + json_dict['firstName'] + '"', '"' + json_dict['lastName'] + '"',
-                '"' + json_dict['emailId'] + '"', '"' + json_dict['password'] + '"')
-
-        print('User query: %s' % query)
-        conn.execute(query)
-
-    response = {'status': 'success', 'message': 'Record added successfully'}
-    return response
+# @app.route('/add_old/<table>/<new_input>', methods=['GET'])
+# def add(table, new_input):
+#     conn = eng.connect()
+#
+#     max_recipe_id = ""
+#
+#     # find maximum
+#     if table == "Movie":
+#         max_id_query = 'SELECT MAX(tconst) as max FROM Movie'
+#     if table == "Cocktails":
+#         max_id_query = 'SELECT MAX(cocktailId) as max FROM CocktailName'
+#         max_recipe_id_query = 'SELECT MAX(recipeId) as max FROM CocktailRecipe'
+#
+#         result, message = query_data(max_recipe_id_query, conn, 'df')
+#         max_recipe_id = result['max'][0] + 1
+#
+#     if table == "User":
+#         max_id_query = 'SELECT MAX(userId) as max FROM User'
+#
+#     result, message = query_data(max_id_query, conn, 'df')
+#     max_id = result['max'][0] + 1
+#
+#     # insert new value
+#     if table == "Movie":
+#         query = "INSERT INTO %s (tconst, title)" \
+#                 " VALUES (%s , '%s')" % (table, max_id, parse.unquote(new_input))
+#         conn.execute(query)
+#
+#     if table == "Cocktails":
+#         query = "INSERT INTO CocktailName (cocktailId, cocktailName)" \
+#                 " VALUES (%s, '%s')" % (max_id, parse.unquote(new_input))
+#         conn.execute(query)
+#
+#         query = "INSERT INTO CocktailRecipe (recipeId, cocktailId)" \
+#                 " VALUES (%s, %s)" % (max_recipe_id, max_id)
+#         conn.execute(query)
+#
+#     if table == "User":
+#         json_dict = json.loads(parse.unquote(new_input))
+#         query = "INSERT INTO User (userId, firstName, lastName, emailId, password, trOpen, trCon, trex, trAg, trNe)" \
+#                 " VALUES (%s, %s, %s, %s, %s, 0, 0, 0, 0, 0)" % (
+#                 max_id, '"' + json_dict['firstName'] + '"', '"' + json_dict['lastName'] + '"',
+#                 '"' + json_dict['emailId'] + '"', '"' + json_dict['password'] + '"')
+#
+#         print('User query: %s' % query)
+#         conn.execute(query)
+#
+#     response = {'status': 'success', 'message': 'Record added successfully'}
+#     return response
 
 
 @app.route('/add/<table>/<new_input>', methods=['GET'])

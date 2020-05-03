@@ -120,7 +120,7 @@ def test_signup():
 
     max_id_query = 'SELECT MAX(userId) as max FROM User'
     result = remote_test_read_query(max_id_query)
-    # result = query_data(max_id_query, conn, 'df')
+    # result, message = query_data(max_id_query, conn, 'df')
     max_id = result['max'][0] + 1
     new_input = '%7B%22firstName%22:%22Mjghga%22,%22lastName%22:%22Arbnbora%22,%22emailId%22:%22mari2@illinois.edu%22,%22password%22:%22password%22%7D'
     json_dict = json.loads(parse.unquote(new_input))
