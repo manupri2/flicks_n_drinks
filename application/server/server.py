@@ -172,7 +172,7 @@ def insert(table, new_input):
     conn.execute(query)
 
     response = {'status': 'success', 'message': 'Record added successfully'}
-    return response
+    return jsonify(response)
 
 
 @app.route('/edit/<table>/<item_id>/<title>', methods=['GET'])

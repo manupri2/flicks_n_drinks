@@ -141,20 +141,22 @@ def test_basic_api():
 
 
 def new_add():
-    table = "Movie"
-    json_dict = {'title': "THIS IS WILLS TEST TITLE 2",
-                 'year': 2020}
-    query = build_insert_query(table, json_dict)
-    df, code = api_query(query)
-    print(query)
-
-    # table = "User"
-    # json_dict = {'firstName': 'Billy',
-    #              'lastName': 'Fresco',
-    #              'emailId': 'frescoFresh@billy.com',
-    #              'password': 'test'}
+    # table = "Movie"
+    # json_dict = {'title': "THIS IS WILLS TEST TITLE 2",
+    #              'year': 2020}
     # query = build_insert_query(table, json_dict)
     # df, code = api_query(query)
+    # print(query)
+
+    table = "add/User"
+    json_dict = {'firstName': 'Billy',
+                 'lastName': 'Fresco',
+                 'emailId': 'frescoFresh2@billy.com',
+                 'password': 'test'}
+    # query = build_insert_query(table, json_dict)
+    # df, code = api_query(query)
+
+    json_api_query(table, json_dict)
     # print(query)
 
 
