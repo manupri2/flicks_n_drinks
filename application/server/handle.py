@@ -132,18 +132,19 @@ def query_data(query, conn, return_type):
     # result = (1, 2, 3,) or result = ((1, 3), (4, 5),)
     result_data = [dict(zip(tuple(q_data.keys()), i)) for i in q_data.cursor]
 
-    if return_type == 'json':
-        if query:
-            message = "No results found"
-        else:
-            message = "Query empty"
+    if query:
+        message = "No results found"
+    else:
+        message = "Query empty"
 
-        if result_data:
-            message = "Results found"
+    if result_data:
+        message = "Results found"
+
+    if return_type == 'json':
         return jsonify({'data': result_data, 'status': message})
 
     if return_type == 'df':
-        return pd.DataFrame(result_data)
+        return pd.DataFrame(result_data), message
 
 
 def build_genres_query(tconst_list):
@@ -208,6 +209,19 @@ def json_to_cs_str(json_dict):
 
     return key_str, val_str
 
+
+def personalized_movie_search(table, json_dict, model, conn):
+    user_id = json_dict.pop("userId")
+    query = build_read_query_from_view(table[:-1], json_dict)
+    result_df, message = query_data(query, conn, 'df')
+
+    if not result_df.empty:
+        feat_dict = {"userId": user_id, "tConst": list(result_df["tConst"].values)}
+        compat_df = handle_mtnn_api(feat_dict, model, conn)
+        result_df["personalRating"] = compat_df["personalRating"]
+
+    json_rec = result_df.to_dict(orient="records")
+    return jsonify({'data': json_rec, 'status': message})
 
 
 if __name__ == '__main__':

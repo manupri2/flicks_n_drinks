@@ -85,14 +85,25 @@ def read(table, json_uri):
     conn = eng.connect()
     if request.method == 'GET':
         json_dict = json.loads(parse.unquote(json_uri))
-
+        result = jsonify({'status': "Table not recognized"})
         query = ""
-        if table == "Movies" or table == "Cocktails":
+
+        if table == "Movies":
+            if "userId" in json_dict.keys():
+                result = personalized_movie_search(table[:-1], json_dict, mt_model, conn)
+            else:
+                query = build_read_query_from_view(table[:-1], json_dict)
+                result = query_data(query, conn, 'json')
+
+        if table == "Cocktails":
             query = build_read_query_from_view(table[:-1], json_dict)
+            result = query_data(query, conn, 'json')
+
         if table == "User":
             query = build_user_query(json_dict)
+            result = query_data(query, conn, 'json')
 
-        return query_data(query, conn, 'json')
+        return result
 
 
 @app.route('/delete/<table>/<item_id>', methods=['GET'])

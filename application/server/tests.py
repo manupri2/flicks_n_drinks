@@ -27,17 +27,23 @@ def test_mtnn_api_functions():
 
 
 def test_mtnn_api_real():
-    test_dict = {'userId': 0, 'tConst': []}
-    test_res = run_json_api_test("MTNN", test_dict)
-
-    test_dict = {'userId': [1], 'tConst': []}
-    test_res = run_json_api_test("MTNN", test_dict)
-
-    test_dict = {'userId': [0], 'tConst': [24, 28, 31]}
-    test_res = run_json_api_test("MTNN", test_dict)
+    # test_dict = {'userId': 0, 'tConst': []}
+    # test_res = run_json_api_test("MTNN", test_dict)
+    #
+    # test_dict = {'userId': [1], 'tConst': []}
+    # test_res = run_json_api_test("MTNN", test_dict)
+    #
+    # test_dict = {'userId': [0], 'tConst': [24, 28, 31]}
+    # test_res = run_json_api_test("MTNN", test_dict)
 
     test_dict = {'userId': [0, 1], 'tConst': [24, 28, 31]}
     test_res = run_json_api_test("MTNN", test_dict)
+    json_str = test_res.to_json(orient="records")
+    json_rec = test_res.to_dict(orient="records")
+
+    print(json_str)
+    print(json_rec)
+    print(type(json_rec))
 
 
 def mtnn_run_test(json_dict, model):
@@ -148,7 +154,7 @@ def new_add():
     # df, code = api_query(query)
     # print(query)
 
-    table = "add/User"
+    api = "add/User"
     json_dict = {'firstName': 'Billy',
                  'lastName': 'Fresco',
                  'emailId': 'frescoFresh2@billy.com',
@@ -156,11 +162,11 @@ def new_add():
     # query = build_insert_query(table, json_dict)
     # df, code = api_query(query)
 
-    json_api_query(table, json_dict)
+    json_api_query(api, json_dict)
     # print(query)
 
 
 if __name__ == "__main__":
-    new_add()
+    test_mtnn_api_real()
 
 
