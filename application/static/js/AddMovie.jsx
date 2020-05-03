@@ -31,7 +31,10 @@ class AddMovie extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.onFormSubmit(this.state);
+    var state_copy = this.state;
+    delete state_copy['tconst'];
+
+    this.props.onFormSubmit(state_copy);
     this.setState(this.initialState);
   }
 
