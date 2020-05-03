@@ -211,7 +211,7 @@ def json_to_cs_str(json_dict):
 
 def personalized_movie_search(table, json_dict, model, conn):
     user_id = json_dict.pop("userId")
-    query = build_read_query_from_view(table[:-1], json_dict)
+    query = build_read_query_from_view(table, json_dict)
     result_df, message = query_data(query, conn, 'df')
 
     if not result_df.empty:
