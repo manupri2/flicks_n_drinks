@@ -97,7 +97,8 @@ def test_movie_read_api():
     remote_test_read_query(query)
 
     api = "read/" + table
-    run_json_api_test(api, json_dict)
+    res = run_json_api_test(api, json_dict)
+    print(res.columns)
 
     json_dict["userId"] = 1
     run_json_api_test(api, json_dict)
