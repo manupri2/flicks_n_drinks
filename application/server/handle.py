@@ -167,6 +167,38 @@ def handle_mtnn_api(json_dict, model, conn):
     return result
 
 
+def build_insert_query(table, json_dict):
+    key_str, val_str = json_to_cs_str(json_dict)
+
+    query = "INSERT INTO %s (%s)" \
+            " VALUES (%s)" % (table, key_str, val_str)
+
+    return query
+
+
+def json_to_cs_str(json_dict):
+    key_str = ""
+    val_str = ""
+    count = 0
+    for k, v in json_dict.items():
+        if count > 0:
+            key_str += ", "
+            val_str += ", "
+
+        if isinstance(v, str):
+            v = "'" + v + "'"
+        else:
+            v = repr(v)
+
+        key_str += k
+        val_str += v
+
+        count += 1
+
+    return key_str, val_str
+
+
+
 if __name__ == '__main__':
     print("Test with sql_api.py or tests.py")
 

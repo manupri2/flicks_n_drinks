@@ -140,7 +140,25 @@ def test_basic_api():
     run_json_api_test("BasicDF", json_dict)
 
 
+def new_add():
+    table = "Movie"
+    json_dict = {'title': "THIS IS WILLS TEST TITLE 2",
+                 'year': 2020}
+    query = build_insert_query(table, json_dict)
+    df, code = api_query(query)
+    print(query)
+
+    # table = "User"
+    # json_dict = {'firstName': 'Billy',
+    #              'lastName': 'Fresco',
+    #              'emailId': 'frescoFresh@billy.com',
+    #              'password': 'test'}
+    # query = build_insert_query(table, json_dict)
+    # df, code = api_query(query)
+    # print(query)
+
+
 if __name__ == "__main__":
-    test_cocktail_read_api()
+    new_add()
 
 

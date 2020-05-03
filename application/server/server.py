@@ -3,6 +3,7 @@ from flask import Flask, request, render_template, Response
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 import json
+from flask import jsonify
 
 if __name__ == "__main__":
     from MovieTraitNetwork import *
@@ -112,7 +113,7 @@ def delete(table, item_id):
         return result
 
 
-@app.route('/add/<table>/<new_input>', methods=['GET'])
+@app.route('/add_old/<table>/<new_input>', methods=['GET'])
 def add(table, new_input):
     conn = eng.connect()
 
@@ -163,6 +164,17 @@ def add(table, new_input):
     return response
 
 
+@app.route('/add/<table>/<new_input>', methods=['GET'])
+def insert(table, new_input):
+    conn = eng.connect()
+
+    query = build_insert_query(table, new_input)
+    conn.execute(query)
+
+    response = {'status': 'success', 'message': 'Record added successfully'}
+    return response
+
+
 @app.route('/edit/<table>/<item_id>/<title>', methods=['GET'])
 def edit(table, item_id, title):
     conn = eng.connect()
@@ -179,7 +191,7 @@ def edit(table, item_id, title):
         
     conn.execute(query)
     response = {'status': 'success', 'message': 'Product edit successfully'}
-    return jsonify(response)
+    return response
 
 
 if __name__ == "__main__":
