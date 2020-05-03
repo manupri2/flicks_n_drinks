@@ -52,12 +52,12 @@ class CRUDApp extends Component {
   onFormSubmit(data) {
     var db = this.state.database.slice(0, -1);
     var apiUrl = 'http://cs411ccsquad.web.illinois.edu/';
-
+    var data_json_uri = encodeURI(JSON.stringify(data));
 
     if(this.state.isEditItem && this.state.database == "Movies"){
       apiUrl += "edit/" + db + "/" + data.tconst.toString() + "/" + data.title;
     } else if (!this.state.isEditItem && this.state.database == "Movies") {
-      apiUrl += "add/" + db + "/" + data.title;
+      apiUrl += "add/" + db + "/" + data_json_uri;
 
     } else if (this.state.isEditItem && this.state.database == "Cocktails") {
       apiUrl += "edit/" + db + "/" + data.recipeId.toString() + "/" + data.cocktailName;
