@@ -3,6 +3,7 @@ import {Button, Container, Col, Form, Jumbotron} from 'react-bootstrap';
 import "../dist/signup-page.css"
 import ReactDOM from "react-dom";
 import LoginApp from "./LoginApp";
+import CRUDApp from "./CRUDApp";
 
 
 class SignupApp extends Component {
@@ -46,15 +47,15 @@ class SignupApp extends Component {
             fetch(apiUrl)
                 .then((response) => {
                     if (!response.ok) {
-                        throw new Error('Network response was not ok');
+                        alert('User already Exists!!!!!');
                     }
                     return response.json();
                 })
                 .then((result) => {
                         console.log("Result!!!!!!!");
                         if (result.status === 'success'){
-                            ReactDOM.unmountComponentAtNode(document.getElementById('signup'));
-                            ReactDOM.render(<LoginApp />, document.getElementById('signup'));
+                            ReactDOM.unmountComponentAtNode(document.getElementById('root'));
+                            ReactDOM.render(<LoginApp />, document.getElementById('root'));
                         }
                         else
                             alert('SignUp Unsuccessful!!!!!');
@@ -66,11 +67,8 @@ class SignupApp extends Component {
                 .catch((error)=> { 
                     console.log(error)
                  });
-
-
         }
         this.setState(this.state);
-
     }
 
     render() {

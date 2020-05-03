@@ -3,7 +3,7 @@ import {Container, Jumbotron, Alert, Form, Button, FormGroup} from 'react-bootst
 import {PlusCircle} from 'react-bootstrap-icons';
 import ReactDOM from 'react-dom';
 import "../dist/login-page.css"
-import CRUDApp from './CRUDApp';
+import CRUDApp from './userApp';
 
 class LoginApp extends Component {
     constructor(props) {
@@ -51,8 +51,11 @@ class LoginApp extends Component {
                 .then((result) => {
                         console.log("Result!!!!!!!");
                         if (result.status === 'Results found'){
-                            ReactDOM.unmountComponentAtNode(document.getElementById('login'));
-                            ReactDOM.render(<CRUDApp />, document.getElementById('login'));
+
+                           // set a central elemts with
+
+                            ReactDOM.unmountComponentAtNode(document.getElementById('root'));
+                            ReactDOM.render(<CRUDApp />, document.getElementById('root'));
                         }
                         else
                             alert('Invalid User');
@@ -64,11 +67,8 @@ class LoginApp extends Component {
                 .catch((error)=> { 
                     console.log(error)
                  });
-
-
         }
         this.setState(this.state);
-
     }
 
 

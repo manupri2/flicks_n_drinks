@@ -173,11 +173,11 @@ class userApp extends Component {
     
     return(
       <div>
-        <Button onClick={() => this.openEditModal()}>Submit Change</Button>
+        <Button color='primary' onClick={() => this.openEditModal()}>Submit Change</Button>
         <Modal visible={this.state.editPersonalityPopup} width="800" height="400" effect="fadeInUp" onClickAway={() => this.closeEditModal()}>
             <h2>&nbsp;&nbsp;{this.state.editPersonalityResult.message}</h2>
             <br/><br/><br/><br/><br/>
-            &nbsp;&nbsp;<Button onClick={() => this.closeEditModal()}> Close </Button>
+            &nbsp;&nbsp;<Button color='primary' onClick={() => this.closeEditModal()}> Close </Button>
         </Modal>              
       </div>
     )
@@ -220,7 +220,7 @@ class userApp extends Component {
     return (
     
     <div>
-    <Button onClick={() => this.openAddFriendModal()}> Add Friend </Button>
+    <Button color="primary "onClick={() => this.openAddFriendModal()}> Add Friend </Button>
     <Modal visible={this.state.addFriendPopup} width="800" height="400" effect="fadeInUp" onClickAway={() => this.closeAddFriendModal()}>
         <div>
             <h1>&nbsp;Adding Friend to Chart</h1>
@@ -252,8 +252,8 @@ class userApp extends Component {
               <Row>&nbsp;</Row>
               <Row>&nbsp;</Row>
             <Row>
-            &nbsp;<Button onClick={() => this.submitAddFriend()}> Add </Button>
-            &nbsp;<Button onClick={() => this.closeAddFriendModal()}> Close </Button>
+            &nbsp;<Button color="primary" onClick={() => this.submitAddFriend()}> Add </Button>
+            &nbsp;<Button color="primary" onClick={() => this.closeAddFriendModal()}> Close </Button>
             </Row>
             </Container>
         </div>
@@ -329,7 +329,7 @@ class userApp extends Component {
     return (
     
     <div>
-    <Button onClick={() => this.openDeleteFriendModal()}> Delete Friend from Chart</Button>
+    <Button color="primary" onClick={() => this.openDeleteFriendModal()}> Delete Friend from Chart</Button>
     <Modal visible={this.state.deleteFriendPopup} width="800" height="800" effect="fadeInUp" onClickAway={() => this.closeDeleteFriendModal()}>
         <div>
             <h1>&nbsp;Delete Friend from Chart</h1>
@@ -348,7 +348,7 @@ class userApp extends Component {
                   <td>{u.firstName}</td>
                   <td>{u.lastName}</td>
                   <td>                    
-                     <Button disabled={Boolean(u.isMaster)} onClick = {()=>this.submitDeleteFriend(u.userRank)}>Delete</Button> 
+                     <Button color="primary" disabled={Boolean(u.isMaster)} onClick = {()=>this.submitDeleteFriend(u.userRank)}>Delete</Button>
                   </td>
                 </tr>
               ))}
@@ -356,7 +356,7 @@ class userApp extends Component {
           </Table>
           
             <Row>
-            &nbsp;<Button onClick={() => this.closeDeleteFriendModal()}> Close </Button>
+            &nbsp;<Button color="primary" onClick={() => this.closeDeleteFriendModal()}> Close </Button>
             </Row>
             </Container>
         </div>
@@ -396,16 +396,16 @@ class userApp extends Component {
 
     <Container>
       <br/><br/><br/>
-      
-    
+
+
       <Row>
         <Col>&nbsp;</Col>
         <Col><h2> Hi, {this.state.user[0].firstName} {this.state.user[0].lastName} </h2></Col>
         <Col>&nbsp;</Col>
       </Row>
-        
+
       <Row><br/><br/><br/></Row>
-        
+
       <Row>
         <Col sm={3}>
 
@@ -425,7 +425,7 @@ class userApp extends Component {
           <Row><input type = "range" value= {this.state.user[0].data[4]} onChange={(e) => {this.handleChange_Neuroticism(e)}}></input></Row>
           <Row>&nbsp;</Row>
           <Row>{this.submitPersonalityChange()}</Row>
-        
+
         </Col>
 
         <Col sm={9}>
@@ -433,7 +433,7 @@ class userApp extends Component {
           <Row>{this.showChart()}</Row>
 
           <Row> <Col></Col>{this.addFriendPopup()} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {this.deleteFriendPopup()}<Col></Col></Row>
-          
+
         </Col>
 
       </Row>
