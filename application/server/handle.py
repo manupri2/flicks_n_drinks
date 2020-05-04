@@ -46,12 +46,11 @@ def build_where(filter_strs, relationship="AND"):
     return where_str
 
 
-def build_read_query_from_view(view, json_dict):
-    query = "SELECT *\n" \
-            "FROM %sSummary\n" % view
+def build_general_read_query(table, json_dict, filter_rel):
+    query = "SELECT * FROM %s\n" % table
 
     filter_str = build_filters(json_dict)
-    where_clause_str = build_where(filter_str, relationship="AND")
+    where_clause_str = build_where(filter_str, relationship=filter_rel)
     query += where_clause_str
     query += "LIMIT 100\n"
     return query
@@ -110,10 +109,17 @@ def build_user_query(json_dict):
 
         where_str = build_where(user_filters, relationship="OR")
     else:
+        filter_dict = {}
+
         user_email = "'" + json_dict['emailId'] + "'"
-        user_filters = build_filters({'emailId': {'value': user_email, 'operator': "="}})
+        filter_dict['emailId'] = {'value': user_email, 'operator': "="}
+        # user_filters = build_filters({'emailId': {'value': user_email, 'operator': "="}})
+
         user_password = "'" + json_dict['password'] + "'"
-        user_filters = build_filters({'password': {'value': user_password, 'operator': "="}})
+        filter_dict['password'] = {'value': user_password, 'operator': "="}
+        # user_filters = build_filters({'password': {'value': user_password, 'operator': "="}})
+
+        user_filters = build_filters(filter_dict)
         where_str = build_where(user_filters, relationship="AND")
 
     query += where_str
@@ -125,18 +131,19 @@ def query_data(query, conn, return_type):
     # result = (1, 2, 3,) or result = ((1, 3), (4, 5),)
     result_data = [dict(zip(tuple(q_data.keys()), i)) for i in q_data.cursor]
 
-    if return_type == 'json':
-        if query:
-            message = "No results found"
-        else:
-            message = "Query empty"
+    if query:
+        message = "No results found"
+    else:
+        message = "Query empty"
 
-        if result_data:
-            message = "Results found"
+    if result_data:
+        message = "Results found"
+
+    if return_type == 'json':
         return jsonify({'data': result_data, 'status': message})
 
     if return_type == 'df':
-        return pd.DataFrame(result_data)
+        return pd.DataFrame(result_data), message
 
 
 def build_genres_query(tconst_list):
@@ -163,8 +170,8 @@ def handle_mtnn_api(json_dict, model, conn):
     tconst_list = json_dict.pop('tConst')
     genre_query = build_genres_query(tconst_list)
 
-    user_info_df = query_data(build_user_query(json_dict), conn, 'df')
-    genre_df = query_data(genre_query, conn, 'df')
+    user_info_df, message = query_data(build_user_query(json_dict), conn, 'df')
+    genre_df, message = query_data(genre_query, conn, 'df')
 
     result = calc_genre_compat(user_info_df, tconst_list, genre_df, model)
 
@@ -196,11 +203,52 @@ def json_to_cs_str(json_dict):
 
         key_str += k
         val_str += v
-
         count += 1
 
     return key_str, val_str
 
+
+def personalized_movie_search(table, json_dict, model, conn):
+    user_id = json_dict.pop("userId")
+    query = build_general_read_query(table, json_dict, "AND")
+    result_df, message = query_data(query, conn, 'df')
+
+    if not result_df.empty:
+        feat_dict = {"userId": user_id, "tConst": list(result_df["tConst"].values)}
+        compat_df = handle_mtnn_api(feat_dict, model, conn)
+        result_df["personalRating"] = compat_df["personalRating"]
+
+    json_rec = result_df.to_dict(orient="records")
+    return jsonify({'data': json_rec, 'status': message})
+
+
+def preformat_filter_dict(json_dict, operator):
+    filter_dict = {}
+
+    for key, val in json_dict.items():
+        filter_dict[key] = {'value': val, 'operator': operator}
+
+    return filter_dict
+
+
+def handle_vote(vote_table, vote_col, json_dict, conn):
+    match_filters = preformat_filter_dict(json_dict, "=")
+    new_val_filter = {vote_col: match_filters.pop(vote_col)}
+
+    read_query = build_general_read_query(vote_table, match_filters, "AND")
+    check_df, message = query_data(read_query, conn, 'df')
+    # check_df, message = sql_api.api_query(read_query)
+
+    if check_df.empty:
+        query = build_insert_query(vote_table, json_dict)
+    else:
+        filter_str = build_filters(match_filters)
+        where_clause_str = build_where(filter_str, relationship="AND")
+        query = "UPDATE %s SET %s \n" % (vote_table, build_filters(new_val_filter)[0])
+        query += where_clause_str
+
+    # check_df, message = sql_api.api_query(query)
+    conn.execute(query)
 
 
 if __name__ == '__main__':

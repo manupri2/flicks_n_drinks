@@ -27,17 +27,23 @@ def test_mtnn_api_functions():
 
 
 def test_mtnn_api_real():
-    test_dict = {'userId': 0, 'tConst': []}
-    test_res = run_json_api_test("MTNN", test_dict)
-
-    test_dict = {'userId': [1], 'tConst': []}
-    test_res = run_json_api_test("MTNN", test_dict)
-
-    test_dict = {'userId': [0], 'tConst': [24, 28, 31]}
-    test_res = run_json_api_test("MTNN", test_dict)
+    # test_dict = {'userId': 0, 'tConst': []}
+    # test_res = run_json_api_test("MTNN", test_dict)
+    #
+    # test_dict = {'userId': [1], 'tConst': []}
+    # test_res = run_json_api_test("MTNN", test_dict)
+    #
+    # test_dict = {'userId': [0], 'tConst': [24, 28, 31]}
+    # test_res = run_json_api_test("MTNN", test_dict)
 
     test_dict = {'userId': [0, 1], 'tConst': [24, 28, 31]}
     test_res = run_json_api_test("MTNN", test_dict)
+    json_str = test_res.to_json(orient="records")
+    json_rec = test_res.to_dict(orient="records")
+
+    print(json_str)
+    print(json_rec)
+    print(type(json_rec))
 
 
 def mtnn_run_test(json_dict, model):
@@ -85,13 +91,22 @@ def test_movie_read_api():
     json_dict = {'title': {'value': 'ca', 'operator': 'LIKE'},
                  'year': {'value': '2005', 'operator': '='},
                  'rating': {'value': '', 'operator': '>='}}
-    # query = build_movie_query(json_dict)
-    # remote_test_read_query(query)
-
-    # json_dict = {}
     table = "Movies"
-    query = build_read_query_from_view(table[:-1], json_dict)
+
+    # run test on the query used in API
+    query = build_general_read_query(table[:-1], json_dict, "AND")
     remote_test_read_query(query)
+
+    # run test on actual API without "userId"
+    api = "read/" + table
+    res = run_json_api_test(api, json_dict)
+    print(res.columns)
+
+    # run test on actual API with "userId"
+    json_dict["userId"] = 1
+    res = run_json_api_test(api, json_dict)
+    print(res.columns)
+    print(res.loc[:, ["rating", "personalRating"]])
 
 
 def test_cocktail_read_api():
@@ -106,7 +121,7 @@ def test_cocktail_read_api():
     # remote_test_read_query(query)
 
     table = "Cocktails"
-    query = build_read_query_from_view(table[:-1], json_dict)
+    query = build_general_read_query(table[:-1], json_dict, "AND")
     remote_test_read_query(query)
 
 
@@ -114,7 +129,7 @@ def test_signup():
 
     max_id_query = 'SELECT MAX(userId) as max FROM User'
     result = remote_test_read_query(max_id_query)
-    # result = query_data(max_id_query, conn, 'df')
+    # result, message = query_data(max_id_query, conn, 'df')
     max_id = result['max'][0] + 1
     new_input = '%7B%22firstName%22:%22Mjghga%22,%22lastName%22:%22Arbnbora%22,%22emailId%22:%22mari2@illinois.edu%22,%22password%22:%22password%22%7D'
     json_dict = json.loads(parse.unquote(new_input))
@@ -141,26 +156,50 @@ def test_basic_api():
 
 
 def new_add():
-    # table = "Movie"
-    # json_dict = {'title': "THIS IS WILLS TEST TITLE 2",
-    #              'year': 2020}
-    # query = build_insert_query(table, json_dict)
-    # df, code = api_query(query)
-    # print(query)
+    api = "add/Movie"
+    json_dict = {'title': "Bulldog Heaven Tres Perros",
+                 'year': -2020}
+    json_api_query(api, json_dict)
 
-    table = "add/User"
-    json_dict = {'firstName': 'Billy',
-                 'lastName': 'Fresco',
-                 'emailId': 'frescoFresh2@billy.com',
-                 'password': 'test'}
-    # query = build_insert_query(table, json_dict)
-    # df, code = api_query(query)
+    # api = "add/User"
+    # json_dict = {'firstName': 'Billy',
+    #              'lastName': 'Fresco',
+    #              'emailId': 'frescoFresh2@billy.com',
+    #              'password': 'test'}
+    #
+    # json_api_query(api, json_dict)
 
-    json_api_query(table, json_dict)
-    # print(query)
+
+def test_vote_print_state(json_dict, vote_table, vote_col, state):
+    match_filters = preformat_filter_dict(json_dict, "=")
+    new_val_filter = {vote_col: match_filters.pop(vote_col)}
+
+    user_filter = {"userId": match_filters["userId"]}
+    mov_filter = {"tConst": match_filters["tConst"]}
+    check_mov_query = build_general_read_query("Movie", mov_filter, "AND")
+    check_vote_query = build_general_read_query(vote_table, user_filter, "AND")
+
+    check_df, message = api_query(check_mov_query)
+    print("\nState: %s" % state)
+    print(check_df.loc[:, ['tConst', 'rating', 'votes']])
+    check_df, message = api_query(check_vote_query)
+    print(check_df)
+    print()
+
+
+def test_vote():
+    vote_table = "FavoriteMovie"
+    vote_col = "ratesMovie"
+    json_dict = {"userId": 1, "tConst": 40, "ratesMovie": 10}
+    print(json_dict)
+
+    test_vote_print_state(json_dict, vote_table, vote_col, "Before")
+    # handle_vote(vote_table, vote_col, json_dict, "conn")
+    json_api_query("vote/Movie", json_dict)
+    test_vote_print_state(json_dict, vote_table, vote_col, "After")
 
 
 if __name__ == "__main__":
-    new_add()
+    test_movie_read_api()
 
 

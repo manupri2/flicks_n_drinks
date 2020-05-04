@@ -51,8 +51,8 @@ def crud_app():
 def basic_api():
     conn = eng.connect()
     if request.method == 'GET':
-        test_q = query_data("SELECT * FROM User", conn, 'df')
-        test_q2 = query_data("SELECT * FROM CocktailRecipe", conn, 'df')
+        test_q, message = query_data("SELECT * FROM User", conn, 'df')
+        test_q2, message = query_data("SELECT * FROM CocktailRecipe", conn, 'df')
         test_df['compat'] = see_mtnn(test_df, mt_model)
         return Response(test_df.to_json(orient="records"), mimetype='application/json')
 
@@ -85,14 +85,27 @@ def read(table, json_uri):
     conn = eng.connect()
     if request.method == 'GET':
         json_dict = json.loads(parse.unquote(json_uri))
-
+        result = jsonify({'status': "Table not recognized"})
         query = ""
-        if table == "Movies" or table == "Cocktails":
-            query = build_read_query_from_view(table[:-1], json_dict)
+
+        if table == "Movies":
+            if "userId" in json_dict.keys():
+                result = personalized_movie_search(table[:-1], json_dict, mt_model, conn)
+            else:
+                q_table = table[:-1] + "Summary"
+                query = build_general_read_query(q_table, json_dict, "AND")
+                result = query_data(query, conn, 'json')
+
+        if table == "Cocktails":
+            q_table = table[:-1] + "Summary"
+            query = build_general_read_query(q_table, json_dict, "AND")
+            result = query_data(query, conn, 'json')
+
         if table == "User":
             query = build_user_query(json_dict)
+            result = query_data(query, conn, 'json')
 
-        return query_data(query, conn, 'json')
+        return result
 
 
 @app.route('/delete/<table>/<item_id>', methods=['GET'])
@@ -113,55 +126,55 @@ def delete(table, item_id):
         return result
 
 
-@app.route('/add_old/<table>/<new_input>', methods=['GET'])
-def add(table, new_input):
-    conn = eng.connect()
-
-    max_recipe_id = ""
-
-    # find maximum
-    if table == "Movie":
-        max_id_query = 'SELECT MAX(tconst) as max FROM Movie'
-    if table == "Cocktails":
-        max_id_query = 'SELECT MAX(cocktailId) as max FROM CocktailName'
-        max_recipe_id_query = 'SELECT MAX(recipeId) as max FROM CocktailRecipe'
-
-        result = query_data(max_recipe_id_query, conn, 'df')
-        max_recipe_id = result['max'][0] + 1
-
-    if table == "User":
-        max_id_query = 'SELECT MAX(userId) as max FROM User'
-
-    result = query_data(max_id_query, conn, 'df')
-    max_id = result['max'][0] + 1
-
-    # insert new value
-    if table == "Movie":
-        query = "INSERT INTO %s (tconst, title)" \
-                " VALUES (%s , '%s')" % (table, max_id, parse.unquote(new_input))
-        conn.execute(query)
-
-    if table == "Cocktails":
-        query = "INSERT INTO CocktailName (cocktailId, cocktailName)" \
-                " VALUES (%s, '%s')" % (max_id, parse.unquote(new_input))
-        conn.execute(query)
-
-        query = "INSERT INTO CocktailRecipe (recipeId, cocktailId)" \
-                " VALUES (%s, %s)" % (max_recipe_id, max_id)
-        conn.execute(query)
-
-    if table == "User":
-        json_dict = json.loads(parse.unquote(new_input))
-        query = "INSERT INTO User (userId, firstName, lastName, emailId, password, trOpen, trCon, trex, trAg, trNe)" \
-                " VALUES (%s, %s, %s, %s, %s, 0, 0, 0, 0, 0)" % (
-                max_id, '"' + json_dict['firstName'] + '"', '"' + json_dict['lastName'] + '"',
-                '"' + json_dict['emailId'] + '"', '"' + json_dict['password'] + '"')
-
-        print('User query: %s' % query)
-        conn.execute(query)
-
-    response = {'status': 'success', 'message': 'Record added successfully'}
-    return response
+# @app.route('/add_old/<table>/<new_input>', methods=['GET'])
+# def add(table, new_input):
+#     conn = eng.connect()
+#
+#     max_recipe_id = ""
+#
+#     # find maximum
+#     if table == "Movie":
+#         max_id_query = 'SELECT MAX(tconst) as max FROM Movie'
+#     if table == "Cocktails":
+#         max_id_query = 'SELECT MAX(cocktailId) as max FROM CocktailName'
+#         max_recipe_id_query = 'SELECT MAX(recipeId) as max FROM CocktailRecipe'
+#
+#         result, message = query_data(max_recipe_id_query, conn, 'df')
+#         max_recipe_id = result['max'][0] + 1
+#
+#     if table == "User":
+#         max_id_query = 'SELECT MAX(userId) as max FROM User'
+#
+#     result, message = query_data(max_id_query, conn, 'df')
+#     max_id = result['max'][0] + 1
+#
+#     # insert new value
+#     if table == "Movie":
+#         query = "INSERT INTO %s (tconst, title)" \
+#                 " VALUES (%s , '%s')" % (table, max_id, parse.unquote(new_input))
+#         conn.execute(query)
+#
+#     if table == "Cocktails":
+#         query = "INSERT INTO CocktailName (cocktailId, cocktailName)" \
+#                 " VALUES (%s, '%s')" % (max_id, parse.unquote(new_input))
+#         conn.execute(query)
+#
+#         query = "INSERT INTO CocktailRecipe (recipeId, cocktailId)" \
+#                 " VALUES (%s, %s)" % (max_recipe_id, max_id)
+#         conn.execute(query)
+#
+#     if table == "User":
+#         json_dict = json.loads(parse.unquote(new_input))
+#         query = "INSERT INTO User (userId, firstName, lastName, emailId, password, trOpen, trCon, trex, trAg, trNe)" \
+#                 " VALUES (%s, %s, %s, %s, %s, 0, 0, 0, 0, 0)" % (
+#                 max_id, '"' + json_dict['firstName'] + '"', '"' + json_dict['lastName'] + '"',
+#                 '"' + json_dict['emailId'] + '"', '"' + json_dict['password'] + '"')
+#
+#         print('User query: %s' % query)
+#         conn.execute(query)
+#
+#     response = {'status': 'success', 'message': 'Record added successfully'}
+#     return response
 
 
 @app.route('/add/<table>/<new_input>', methods=['GET'])
@@ -190,6 +203,20 @@ def edit(table, item_id, title):
     
         
     conn.execute(query)
+    response = {'status': 'success', 'message': 'Product edit successfully'}
+    return response
+
+
+@app.route('/vote/<table>/<json_uri>', methods=['GET'])
+def vote(table, json_uri):
+    conn = eng.connect()
+    json_dict = json.loads(parse.unquote(json_uri))
+
+    if table == "Movie":
+        vote_table = "FavoriteMovie"
+        vote_col = "ratesMovie"
+        handle_vote(vote_table, vote_col, json_dict, conn)
+
     response = {'status': 'success', 'message': 'Product edit successfully'}
     return response
 

@@ -68,6 +68,7 @@ def remote_test_read_query(test_query):
     print("//////////////////////////////////////////////////////////////////////////////////////////////////////////")
     return df
 
+
 def run_json_api_test(api, json_dict):
     # test_json = json.dumps(json_dict)
     # json_uri = parse.quote(test_json)
@@ -75,7 +76,7 @@ def run_json_api_test(api, json_dict):
     print("JSON Input:")
     print(json_dict)
     resp_json, code = json_api_query(api, json_dict)
-    result_df = pd.DataFrame(resp_json)
+    result_df = pd.DataFrame(resp_json["data"])
     print("\nResults:")
     print(result_df)
     print("/////////////////////////////////////////////////////////////////////////////////////////////////////////")
