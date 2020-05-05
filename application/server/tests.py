@@ -216,7 +216,7 @@ def test_cocktail_print_state(json_dict, state):
 
 def test_cocktail_add():
     json_dict = {
-                  'cocktailName': "Wilburforce Whiskey6",
+                  'cocktailName': "Wilburforce Whiskey",
                   'bartender': "Wilbur",
                   'location': "Chicago",
                   'glasswareName': "Billys Chalace"
@@ -226,7 +226,8 @@ def test_cocktail_add():
     match_dict.pop('cocktailName')
 
     test_cocktail_print_state(match_dict, "Before")
-    handle_add_recipe(json_dict, "conn")
+    # handle_add_recipe(json_dict, "conn")
+    json_api_query("add/Cocktail", json_dict)
     test_cocktail_print_state(match_dict, "After")
 
 
