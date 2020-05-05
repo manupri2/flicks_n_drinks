@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Container, Button, Alert, Form, ButtonGroup } from 'react-bootstrap';
+import { Container, Button, Nav, NavLink, Alert, Form, ButtonGroup } from 'react-bootstrap';
 import { PlusCircle } from 'react-bootstrap-icons';
 import MovieList from './MovieList';
 import MovieQueryForm from './MovieQueryForm';
@@ -226,6 +226,11 @@ class CRUDApp extends Component {
 
     return (
       <div>
+        <Nav className="justify-content-end" activeKey="">
+              <Nav.Item>
+                  <Nav.Link href="/home.html">Logout</Nav.Link>
+              </Nav.Item>
+        </Nav>
         <ButtonGroup aria-label="Select database">
           <Button variant="secondary" onClick={() => this.changeDB("Movies")}>Movies</Button>
           <Button variant="secondary" onClick={() => this.changeDB("Cocktails")}>Cocktails</Button>
