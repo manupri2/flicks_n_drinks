@@ -199,7 +199,39 @@ def test_vote():
     test_vote_print_state(json_dict, vote_table, vote_col, "After")
 
 
+def test_cocktail_print_state(json_dict, state):
+    match_filters = preformat_filter_dict(json_dict, "=")
+
+    check_query = build_general_read_query("CocktailSummary", match_filters, "AND")
+
+    check_df, message = api_query(check_query)
+    print("\nState: %s" % state)
+    print(message)
+    if check_df.empty:
+        print(check_df)
+    else:
+        print(check_df.loc[:, ['cocktailName', 'bartender', 'location']])
+    print()
+
+
+def test_cocktail_add():
+    json_dict = {
+                  'cocktailName': "Wilburforce Whiskey",
+                  'bartender': "Wilbur",
+                  'location': "Chicago",
+                  'glasswareName': "Billys Chalace"
+                 }
+    match_dict = json_dict.copy()
+    match_dict.pop('glasswareName')
+    match_dict.pop('cocktailName')
+
+    test_cocktail_print_state(match_dict, "Before")
+    # handle_add_recipe(json_dict, "conn")
+    json_api_query("add/Cocktail", json_dict)
+    test_cocktail_print_state(match_dict, "After")
+
+
 if __name__ == "__main__":
-    test_movie_read_api()
+    test_cocktail_add()
 
 
