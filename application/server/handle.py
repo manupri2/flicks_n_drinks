@@ -19,7 +19,12 @@ def build_filters(filter_dict):
 
         if isinstance(filter_val, str) and filter_val:
             if operator == 'LIKE':
-                filter_val = "'%%" + filter_val + "%%'"
+                # filter_val = "'%%" + filter_val + "%%'"
+                filter_val = "%%" + filter_val + "%%"
+
+            if not ((filter_val[0] == "'" or filter_val[0] == '"') and (filter_val[-1] == "'" or filter_val[-1] == '"')):
+                filter_val = repr(filter_val)
+
             filter_strs.append(filterX + " " + operator + " " + filter_val)
 
         if isinstance(filter_val, int):
@@ -113,11 +118,9 @@ def build_user_query(json_dict):
 
         user_email = "'" + json_dict['emailId'] + "'"
         filter_dict['emailId'] = {'value': user_email, 'operator': "="}
-        # user_filters = build_filters({'emailId': {'value': user_email, 'operator': "="}})
 
         user_password = "'" + json_dict['password'] + "'"
         filter_dict['password'] = {'value': user_password, 'operator': "="}
-        # user_filters = build_filters({'password': {'value': user_password, 'operator': "="}})
 
         user_filters = build_filters(filter_dict)
         where_str = build_where(user_filters, relationship="AND")
@@ -129,7 +132,10 @@ def build_user_query(json_dict):
 def query_data(query, conn, return_type):
     q_data = conn.execute(query)
     # result = (1, 2, 3,) or result = ((1, 3), (4, 5),)
-    result_data = [dict(zip(tuple(q_data.keys()), i)) for i in q_data.cursor]
+    try:
+        result_data = [dict(zip(tuple(q_data.keys()), i)) for i in q_data.cursor]
+    except TypeError:
+        result_data = []
 
     if query:
         message = "No results found"
@@ -191,13 +197,16 @@ def json_to_cs_str(json_dict):
     key_str = ""
     val_str = ""
     count = 0
+
     for k, v in json_dict.items():
         if count > 0:
             key_str += ", "
             val_str += ", "
 
         if isinstance(v, str):
-            v = "'" + v + "'"
+            if not ((v[0] == "'" or v[0] == '"') and (v[-1] == "'" or v[-1] == '"')):
+                # v = "'" + v + "'"
+                v = repr(v)
         else:
             v = repr(v)
 
@@ -249,6 +258,49 @@ def handle_vote(vote_table, vote_col, json_dict, conn):
 
     # check_df, message = sql_api.api_query(query)
     conn.execute(query)
+
+
+def check_then_insert(table, check_dict, id_col, conn):
+    filter_dict = preformat_filter_dict(check_dict, "=")
+    check_query = build_general_read_query(table, filter_dict, "AND")
+    # print(check_query)
+    check_df, message = query_data(check_query, conn, 'df')
+    # check_df, message = sql_api.api_query(check_query)
+
+    if check_df.empty:
+        print("Value not found, inserting new tuple into %s." % table)
+        insert_query = build_insert_query(table, check_dict)
+        print(insert_query)
+        # check_df, message = sql_api.api_query(insert_query)
+        conn.execute(insert_query)
+
+        # check_df, message = sql_api.api_query(check_query)
+        check_df, message = query_data(check_query, conn, 'df')
+
+    else:
+        print("Value exists, not inserting new tuple into %s." % table)
+    # print(check_df)
+    return check_df[id_col][0]
+
+
+def handle_add_recipe(json_dict, conn):
+    checks = {"CocktailName": {"checkCol": "cocktailName", "idCol":  "cocktailId"},
+              "Glassware": {"checkCol": "glasswareName", "idCol":  "glasswareId"}}
+
+    for table_name, check_info in checks.items():
+        check_col = check_info["checkCol"]
+        id_col = check_info["idCol"]
+
+        if check_col in json_dict.keys():
+            check_val = "'" + json_dict.pop(check_col) + "'"
+            check_id = check_then_insert(table_name, {check_col: check_val}, id_col, conn)
+            json_dict[id_col] = check_id
+
+    insert_query = build_insert_query("CocktailRecipe", json_dict)
+    # print(insert_query)
+    # check_df, message = sql_api.api_query(insert_query)
+    # print(message)
+    conn.execute(insert_query)
 
 
 if __name__ == '__main__':
