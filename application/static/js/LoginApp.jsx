@@ -52,10 +52,8 @@ class LoginApp extends Component {
                         console.log("Result!!!!!!!");
                         if (result.status === 'Results found'){
 
-                           // set a central elemts with
-
                             ReactDOM.unmountComponentAtNode(document.getElementById('root'));
-                            ReactDOM.render(<CRUDApp />, document.getElementById('root'));
+                            ReactDOM.render(<CRUDApp userDetails={result.data[0]}/>, document.getElementById('root'));
                         }
                         else
                             alert('Invalid User');
