@@ -181,10 +181,9 @@ def delete(table, item_id):
 def insert(table, new_input):
     conn = eng.connect()
     json_dict = json.loads(parse.unquote(new_input))
-    print(json_dict)
-    print(type(json_dict))
+
     if table == "Cocktail":
-        handle_add_recipe(table, json_dict)
+        handle_add_recipe(json_dict, conn)
     else:
         query = build_insert_query(table, json_dict)
         conn.execute(query)
