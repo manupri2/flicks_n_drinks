@@ -228,7 +228,7 @@ class CRUDApp extends Component {
       <div>
         <Nav className="justify-content-end" activeKey="">
               <Nav.Item>
-                  <Nav.Link href="/login">Logout</Nav.Link>
+                  <Nav.Link href="/">Logout</Nav.Link>
               </Nav.Item>
         </Nav>
         <ButtonGroup aria-label="Select database">
