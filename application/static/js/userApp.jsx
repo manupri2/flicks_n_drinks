@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
 import Chart from "react-apexcharts";
-import {Table, Container, Row, Col, Button} from 'reactstrap';
+import {Table, Container, Row, Col, Button, Nav, Navbar} from 'react-bootstrap';
 import Modal from 'react-awesome-modal';
+import ReactDOM from 'react-dom';
 
-class userApp extends Component {
+import CRUDApp from './CRUDApp';
+
+
+class UserApp extends Component {
     constructor(props) {
         super(props);
 
@@ -37,18 +41,6 @@ class userApp extends Component {
         this.state = {
 
             user: [defaultUser,
-                {
-                    userId: 1,
-                    firstName: 'Barney',
-                    lastName: 'Stinson',
-                    openness: 100,
-                    agreeableness: 20,
-                    neuroticism: 80,
-                    extroversion: 90,
-                    conscience: 10,
-                    isMaster: 0,
-                    userRank: 1
-                }
             ],
 
             chart: {
@@ -100,7 +92,6 @@ class userApp extends Component {
 
     }
 
-
     showChart() {
 
         const newSeries = []
@@ -123,7 +114,6 @@ class userApp extends Component {
             />
         )
     }
-
 
     handleChange_Openness(e) {
         const input = e.target.value
@@ -249,7 +239,6 @@ class userApp extends Component {
             return {user}
         });
     }
-
 
     submitPersonalityChange() {
 
@@ -390,7 +379,6 @@ class userApp extends Component {
 
     }
 
-
     submitAddFriend() {
         var api_url = 'http://cs411ccsquad.web.illinois.edu/api/';
 
@@ -429,7 +417,6 @@ class userApp extends Component {
             )
 
     }
-
 
     deleteFriendPopup() {
         return (
@@ -498,70 +485,93 @@ class userApp extends Component {
         })
     }
 
+    navtoCRUDAMovies(){
+        ReactDOM.unmountComponentAtNode(document.getElementById('root'));     
+        ReactDOM.render(<CRUDApp usertoCURD = {{userId:this.state.user[0].userId, dataBase:"Movies"}}/>, document.getElementById('root'));
+    }
+
+    navtoCRUDACocktails(){
+        ReactDOM.unmountComponentAtNode(document.getElementById('root'));     
+        ReactDOM.render(<CRUDApp usertoCURD = {{userId:this.state.user[0].userId, dataBase:"Cocktails"}}/>, document.getElementById('root'));
+    }
+
     render() {
 
         return (
 
+            <div>
+            <Navbar bg="dark" variant="dark">
+                <Navbar.Brand href="">Flicks n Drinks</Navbar.Brand>
+                    <Nav className="mr-auto">
+                        <Button variant="dark"> My profile </Button>
+                        <Button variant="dark"  onClick={() => this.navtoCRUDAMovies()}> Movies </Button>
+                        <Button variant="dark"  onClick={() => this.navtoCRUDACocktails()}> Cocktails </Button>
+                    </Nav>  
+                    <Nav className="justify-content-end" activeKey="">
+                        <Nav.Item>
+                            <Nav.Link href="/login">Logout</Nav.Link>
+                        </Nav.Item>
+                    </Nav>
+            </Navbar>
 
-            <Container>
-                <br/><br/><br/>
+                <Container>
+                    <Row><br/><br/><br/></Row>
 
+                    <Row>
+                        <Col>&nbsp;</Col>
+                        <Col><h2> Hi, {this.state.user[0].firstName} {this.state.user[0].lastName} </h2></Col>
+                        <Col>&nbsp;</Col>
+                    </Row>
 
-                <Row>
-                    <Col>&nbsp;</Col>
-                    <Col><h2> Hi, {this.state.user[0].firstName} {this.state.user[0].lastName} </h2></Col>
-                    <Col>&nbsp;</Col>
-                </Row>
+                    <Row><br/><br/><br/></Row>
 
-                <Row><br/><br/><br/></Row>
+                    <Row>
+                        <Col sm={3}>
 
-                <Row>
-                    <Col sm={3}>
+                            <Row><h6>Openness: {this.state.user[0].openness}</h6></Row>
+                            <Row><input type="range" value={this.state.user[0].openness} onChange={(e) => {
+                                this.handleChange_Openness(e)
+                            }}></input></Row>
+                            <Row>&nbsp;</Row>
+                            <Row><h6>Conscientiousness:{this.state.user[0].conscience}</h6></Row>
+                            <Row><input type="range" value={this.state.user[0].conscience} onChange={(e) => {
+                                this.handleChange_Conscientiousness(e)
+                            }}></input></Row>
+                            <Row>&nbsp;</Row>
+                            <Row><h6>Extroversion: {this.state.user[0].extroversion}</h6></Row>
+                            <Row><input type="range" value={this.state.user[0].extroversion} onChange={(e) => {
+                                this.handleChange_Extroversion(e)
+                            }}></input></Row>
+                            <Row>&nbsp;</Row>
+                            <Row><h6>Agreeableness: {this.state.user[0].agreeableness}</h6></Row>
+                            <Row><input type="range" value={this.state.user[0].agreeableness} onChange={(e) => {
+                                this.handleChange_Agreeableness(e)
+                            }}></input></Row>
+                            <Row>&nbsp;</Row>
+                            <Row><h6>Neuroticism: {this.state.user[0].neuroticism}</h6></Row>
+                            <Row><input type="range" value={this.state.user[0].neuroticism} onChange={(e) => {
+                                this.handleChange_Neuroticism(e)
+                            }}></input></Row>
+                            <Row>&nbsp;</Row>
+                            <Row>{this.submitPersonalityChange()}</Row>
 
-                        <Row><h6>Openness: {this.state.user[0].openness}</h6></Row>
-                        <Row><input type="range" value={this.state.user[0].openness} onChange={(e) => {
-                            this.handleChange_Openness(e)
-                        }}></input></Row>
-                        <Row>&nbsp;</Row>
-                        <Row><h6>Conscientiousness:{this.state.user[0].conscience}</h6></Row>
-                        <Row><input type="range" value={this.state.user[0].conscience} onChange={(e) => {
-                            this.handleChange_Conscientiousness(e)
-                        }}></input></Row>
-                        <Row>&nbsp;</Row>
-                        <Row><h6>Extroversion: {this.state.user[0].extroversion}</h6></Row>
-                        <Row><input type="range" value={this.state.user[0].extroversion} onChange={(e) => {
-                            this.handleChange_Extroversion(e)
-                        }}></input></Row>
-                        <Row>&nbsp;</Row>
-                        <Row><h6>Agreeableness: {this.state.user[0].agreeableness}</h6></Row>
-                        <Row><input type="range" value={this.state.user[0].agreeableness} onChange={(e) => {
-                            this.handleChange_Agreeableness(e)
-                        }}></input></Row>
-                        <Row>&nbsp;</Row>
-                        <Row><h6>Neuroticism: {this.state.user[0].neuroticism}</h6></Row>
-                        <Row><input type="range" value={this.state.user[0].neuroticism} onChange={(e) => {
-                            this.handleChange_Neuroticism(e)
-                        }}></input></Row>
-                        <Row>&nbsp;</Row>
-                        <Row>{this.submitPersonalityChange()}</Row>
+                        </Col>
 
-                    </Col>
+                        <Col sm={9}>
 
-                    <Col sm={9}>
+                            <Row>{this.showChart()}</Row>
 
-                        <Row>{this.showChart()}</Row>
+                            <Row>
+                                <Col></Col>{this.addFriendPopup()} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {this.deleteFriendPopup()}<Col></Col></Row>
 
-                        <Row>
-                            <Col></Col>{this.addFriendPopup()} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {this.deleteFriendPopup()}<Col></Col></Row>
+                        </Col>
 
-                    </Col>
+                    </Row>
 
-                </Row>
-
-            </Container>
-
+                </Container>
+            </div>
         );
     }
 }
 
-export default userApp;
+export default UserApp;

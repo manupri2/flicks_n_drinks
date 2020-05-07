@@ -38,6 +38,13 @@ class CocktailQueryForm extends React.Component {
 
           return(
               <Form onSubmit={this.handleSubmit}>
+                
+                <Row>
+                  <Button className="h-25" variant="success" type="submit">Query Cocktails</Button>
+                </Row>
+
+                <Row><br/><br/><br/></Row>
+                
                   <Row>
                       <Col>
                           <Form.Row>
@@ -54,7 +61,7 @@ class CocktailQueryForm extends React.Component {
                                 ))}
                           </Form.Row>
                       </Col>
-                      <Button className="h-25" variant="success" type="submit">Query Cocktails</Button>
+                      
                   </Row>
               </Form>
           )
