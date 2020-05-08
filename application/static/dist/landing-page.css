@@ -2,6 +2,7 @@ body {
   width: 1200px;
   height:600px;
   background-image: url(https://www.angelsagainstabuse.org/wp-content/uploads/2018/11/blue-moving-flowing-abstract-waves-on-white-background-blurred-smooth-graphic-motion-design-video-animation-1920x1080_vhhueydte__F0000.png);
+  background-repeat: repeat;
 }
 .nav {
   padding: 2%;
