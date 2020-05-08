@@ -486,13 +486,32 @@ class UserApp extends Component {
     }
 
     navtoCRUDAMovies(){
+        
+        var usertoCURD = {
+            'userId': this.state.user[0].userId,
+            'firstName': this.state.user[0].firstName,
+            'lastName': this.state.user[0].lastName,
+            'openness': this.state.user[0].openness,
+            'agreeableness': this.state.user[0].agreeableness,
+            'neuroticism': this.state.user[0].neuroticism,
+            'extroversion': this.state.user[0].extroversion,
+            'conscience': this.state.user[0].conscience,
+            'isMaster': 1,
+            'userRank': 0,
+            'database':"Movies"
+
+        };
+
         ReactDOM.unmountComponentAtNode(document.getElementById('root'));     
-        ReactDOM.render(<CRUDApp usertoCURD = {{userId:this.state.user[0].userId, dataBase:"Movies"}}/>, document.getElementById('root'));
+        ReactDOM.render(<CRUDApp  userId={this.state.user[0].userId} />, document.getElementById('root'));
+        
+
+        
     }
 
     navtoCRUDACocktails(){
         ReactDOM.unmountComponentAtNode(document.getElementById('root'));     
-        ReactDOM.render(<CRUDApp usertoCURD = {{userId:this.state.user[0].userId, dataBase:"Cocktails"}}/>, document.getElementById('root'));
+        ReactDOM.render(<CRUDApp userId = {-1*this.state.user[0].userId}/>, document.getElementById('root'));
     }
 
     render() {
