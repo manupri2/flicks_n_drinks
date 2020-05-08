@@ -1,6 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
-require('../css/fullstack.css');
 
 
 function QueryResults(props){
