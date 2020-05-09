@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Button, Container, Col, Form, Jumbotron} from 'react-bootstrap';
 import ReactDOM from "react-dom";
 import LoginApp from "./LoginApp";
+import "../dist/signup-page.css"
 import CRUDApp from "./CRUDApp";
 
 
