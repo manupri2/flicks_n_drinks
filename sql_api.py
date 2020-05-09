@@ -76,7 +76,7 @@ def run_json_api_test(api, json_dict):
     print("JSON Input:")
     print(json_dict)
     resp_json, code = json_api_query(api, json_dict)
-    result_df = pd.DataFrame(resp_json["data"])
+    result_df = pd.DataFrame(resp_json['data'])
     print("\nResults:")
     print(result_df)
     print("/////////////////////////////////////////////////////////////////////////////////////////////////////////")
