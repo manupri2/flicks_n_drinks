@@ -106,7 +106,9 @@ def test_movie_read_api():
     json_dict["userId"] = 1
     res = run_json_api_test(api, json_dict)
     print(res.columns)
-    print(res.loc[:, ["rating", "personalRating", "crew", "genre"]])
+    # print(res)
+    print(res.loc[:, ["personalRating", "crew"]])
+    print(res.loc[:, ["personalRating", "genres"]])
 
 
 def test_cocktail_read_api():
@@ -251,6 +253,10 @@ def test_cocktail_add():
 
 
 if __name__ == "__main__":
-    test_movie_read_api()
+    # test_movie_read_api()
+
+    vote_filt_dict = {"userId": {'value': 1, 'operator': '='}}
+    votes_query = build_general_read_query("FavoriteMovie", vote_filt_dict, "AND", columns=['tConst', 'ratesMovie'])
+    remote_test_read_query(votes_query)
 
 

@@ -241,7 +241,18 @@ def personalized_movie_search(table, json_dict, model, conn):
     query = build_general_read_query(table, json_dict, "AND")
     result_df, message = query_data(query, conn, 'df')
 
+    vote_filt_dict = {"userId": {'value': user_id, 'operator': '='}}
+    votes_query = build_general_read_query("FavoriteMovie", vote_filt_dict, "AND", columns=['tConst', 'ratesMovie'])
+    votes_df, message = query_data(votes_query, conn, 'df')
+
     if not result_df.empty:
+        if not votes_df.empty:
+            # join votes to the result dataframe
+            votes_df.set_index('tConst', inplace=True)
+            result_df = result_df.join(votes_df, on='tConst', how='inner')
+        else:
+            result_df['ratesMovie'] = np.nan
+
         feat_dict = {"userId": user_id, "tConst": list(result_df["tconst"].values)}
         compat_df = handle_mtnn_api(feat_dict, model, conn)
         result_df["personalRating"] = compat_df["personalRating"]

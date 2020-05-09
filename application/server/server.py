@@ -92,6 +92,11 @@ def read(table, json_uri):
             q_table = table[:-1] + "Summary"
 
             if "userId" in json_dict.keys():
+                #  expects JSON in the following format
+                # json_dict = {'userId': 1,
+                #              'title': {'value': 'ca', 'operator': 'LIKE'},
+                #              'year': {'value': '2005', 'operator': '='},
+                #              'rating': {'value': '', 'operator': '>='}}
                 result = personalized_movie_search(q_table, json_dict, mt_model, conn)
             else:
                 query = build_general_read_query(q_table, json_dict, "AND")
