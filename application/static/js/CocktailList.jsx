@@ -33,6 +33,7 @@ class CocktailList extends React.Component {
                 <th>Ingredients</th>
                 <th>Bartender</th>
                 <th>Location</th>
+                <th>Glassware</th>
                 <th>Rating</th>
                 <th>Edit/Delete</th>
               </tr>
@@ -44,6 +45,7 @@ class CocktailList extends React.Component {
                   <td>{cocktail.ingredients}</td>
                   <td>{cocktail.bartender}</td>
                   <td>{cocktail.location}</td>
+                  <td>{cocktail.glasswareName}</td>
                   <td>{cocktail.rating}</td>
                   <td>
                     <Button variant="info" onClick={() => this.props.editItem(cocktail.recipeId)}>Edit</Button>
