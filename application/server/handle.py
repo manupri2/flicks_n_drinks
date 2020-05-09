@@ -51,13 +51,32 @@ def build_where(filter_strs, relationship="AND"):
     return where_str
 
 
-def build_general_read_query(table, json_dict, filter_rel):
-    query = "SELECT * FROM %s\n" % table
+def build_col_str(columns):
+    count = 0
+    col_str = ""
+
+    for col in columns:
+        if count > 0:
+            col_str += ", "
+        col_str += col
+        count += 1
+
+    return col_str
+
+
+def build_general_read_query(table, json_dict, filter_rel, columns=None):
+    if columns is None:
+        columns = []
+    if columns:
+        col_str = build_col_str(columns)
+        query = "SELECT %s FROM %s\n" % (col_str, table)
+    else:
+        query = "SELECT * FROM %s\n" % table
 
     filter_str = build_filters(json_dict)
     where_clause_str = build_where(filter_str, relationship=filter_rel)
     query += where_clause_str
-    query += "LIMIT 100\n"
+    query += "LIMIT 100"
     return query
 
 # def build_cocktail_query(json_dict):
@@ -204,7 +223,7 @@ def json_to_cs_str(json_dict):
             val_str += ", "
 
         if isinstance(v, str):
-            if not ((v[0] == "'" or v[0] == '"') and (v[-1] == "'" or v[-1] == '"')):
+            if not (v[0] == '@' or ((v[0] == "'" or v[0] == '"') and (v[-1] == "'" or v[-1] == '"'))):
                 # v = "'" + v + "'"
                 v = repr(v)
         else:
@@ -301,6 +320,51 @@ def handle_add_recipe(json_dict, conn):
     # check_df, message = sql_api.api_query(insert_query)
     # print(message)
     conn.execute(insert_query)
+
+
+def build_check_then_insert_query(table, check_dict, id_col, var_name):
+    filter_dict = preformat_filter_dict(check_dict, "=")
+    var_name = "@" + var_name
+
+    check_query = build_general_read_query(table, filter_dict, "AND")
+    insert_query = build_insert_query(table, check_dict)
+    sel_query = build_general_read_query(table, filter_dict, "AND", columns=[id_col])
+
+    compound_str = "\tIF NOT EXISTS (%s) THEN\n" \
+                   "\t\t%s;\n"\
+                   "\tEND IF;\n" \
+                   "\tSET %s = (%s);\n" % (check_query, insert_query, var_name, sel_query)
+
+    return compound_str
+
+
+def build_add_recipe_compound(json_dict):
+    checks = {"CocktailName": {"checkCol": "cocktailName", "idCol":  "cocktailId"},
+              "Glassware": {"checkCol": "glasswareName", "idCol":  "glasswareId"}}
+
+    check_str_list = []
+    base_name = "var"
+    count = 1
+    for table_name, check_info in checks.items():
+        check_col = check_info["checkCol"]
+        id_col = check_info["idCol"]
+
+        if check_col in json_dict.keys():
+            check_val = "'" + json_dict.pop(check_col) + "'"
+            var_name = base_name + repr(count)
+            check_str_list.append(build_check_then_insert_query(table_name, {check_col: check_val}, id_col, var_name))
+            json_dict[id_col] = "@" + var_name
+            count += 1
+
+    insert_query = build_insert_query("CocktailRecipe", json_dict)
+    compound_str = ""
+    # compound_str = "BEGIN\n"
+    for check_str in check_str_list:
+        compound_str += check_str
+    compound_str += insert_query + ";"
+    # compound_str += "\nEND;"
+    # print(compound_str)
+    return compound_str
 
 
 if __name__ == '__main__':
