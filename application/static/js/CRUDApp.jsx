@@ -261,7 +261,7 @@ class CRUDApp extends Component {
                     </Nav>  
                     <Nav className="justify-content-end" activeKey="">
                         <Nav.Item>
-                            <Nav.Link href="/login">Logout</Nav.Link>
+                            <Nav.Link href="/flicks_n_drinks">Logout</Nav.Link>
                         </Nav.Item>
                     </Nav>
             </Navbar>
