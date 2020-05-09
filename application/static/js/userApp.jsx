@@ -621,6 +621,9 @@ class UserApp extends Component {
                             }}></input></Row>
                             <Row>&nbsp;</Row>
                             <Row>{this.submitPersonalityChange()}</Row>
+                            <Row>&nbsp;</Row>
+                            <Row>&nbsp;</Row>
+                            <Row>{<TopGenres genres={this.state.topGenres}/>}</Row>
 
                         </Col>
 
@@ -629,9 +632,6 @@ class UserApp extends Component {
                             <Row>
                                 <Col>
                                     {this.showChart()}
-                                </Col>
-                                <Col>
-                                    {<TopGenres genres={this.state.topGenres}/>}
                                 </Col>
                             </Row>
 
