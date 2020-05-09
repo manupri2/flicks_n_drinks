@@ -86,26 +86,18 @@ class CRUDApp extends Component {
 
   editItem = item_id => {
 
-        //const apiUrl = 'http://localhost/dev/tcxapp/reactapi/getProduct';
-        //const formData = new FormData();
-        //formData.append('tconst', tconst);
         var filter_info = Object.assign({}, this.state.filters);
 
         if(this.state.database == "Movies"){
-            filter_info['Movie.tconst'] = {value: item_id.toString(), operator: '=', label: ""};
+            filter_info['tConst'] = {value: item_id, operator: '=', label: ""};
         } else {
-            filter_info['CocktailRecipe.recipeId'] = {value: item_id.toString(), operator: '=', label: ""};
+            filter_info['recipeId'] = {value: item_id, operator: '=', label: ""};
         }
 
         var api_url = 'http://cs411ccsquad.web.illinois.edu/read/';
         var db = this.state.database
         var filters = encodeURI(JSON.stringify(filter_info));
         api_url += db + "/" + filters;
-
-        //const options = {
-        //  method: 'POST',
-         // body: formData
-        //
 
         fetch(api_url)
           .then(res => res.json())

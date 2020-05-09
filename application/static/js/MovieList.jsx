@@ -39,15 +39,15 @@ class MovieList extends React.Component {
             </thead>
             <tbody>
               {movies.map(movie => (
-                <tr key={movie.tconst}>
+                <tr key={movie.tConst}>
                   <td>{movie.title}</td>
                   <td>{movie.year}</td>
                   <td>{movie.rating}</td>
                   <td>{movie.crew}</td>
                   <td>{movie.genres}</td>
                   <td>
-                    <Button variant="info" onClick={() => this.props.editItem(movie.tconst)}>Edit</Button>
-                    &nbsp;<Button variant="danger" onClick={() => this.props.deleteItem(movie.tconst)}>Delete</Button>
+                    <Button variant="info" onClick={() => this.props.editItem(movie.tConst)}>Edit</Button>
+                    &nbsp;<Button variant="danger" onClick={() => this.props.deleteItem(movie.tConst)}>Delete</Button>
                   </td>
                 </tr>
               ))}
