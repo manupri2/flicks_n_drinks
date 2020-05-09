@@ -31,7 +31,7 @@ def build_filters(filter_dict):
 
             filter_strs.append(filterX + " " + operator + " " + filter_val)
 
-        if isinstance(filter_val, int):
+        else:
             filter_strs.append(filterX + " " + operator + " " + repr(filter_val))
 
     return filter_strs
