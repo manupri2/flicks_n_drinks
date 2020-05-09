@@ -220,17 +220,15 @@ def edit_old(table, item_id, title):
 def edit(table, json_uri):
     conn = eng.connect()
     json_dict = json.loads(parse.unquote(json_uri))
-    query = ""
 
     if table == "Movie":
         # query = "UPDATE Movie SET title = '%s', year = %s WHERE (tConst = %s)" % (json_dict['title'], json_dict['year'], json_dict['tConst'])
         query = build_update_query(table, json_dict, 'tConst')
+        conn.execute(query)
+
     elif table == "Cocktail":
-        query = ""
+        handle_update_recipe(json_dict, conn)
 
-        # query = "UPDATE CocktailName SET cocktailName = '%s' WHERE (cocktailId = %s)" % (parse.unquote(title), item_id)
-
-    conn.execute(query)
     response = {'status': 'success', 'message': 'Product edit successfully'}
     return response
 

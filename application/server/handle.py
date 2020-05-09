@@ -391,9 +391,8 @@ def handle_update_recipe(json_dict, conn):
             json_dict[id_col] = check_id
 
     # builds INSERT query to insert new CocktailRecipe
-    insert_query = build_insert_query("CocktailRecipe", json_dict)
-    conn.execute(insert_query)
-
+    update_query = build_update_query("CocktailRecipe", json_dict, "recipeId")
+    conn.execute(update_query)
 
 # def build_check_then_insert_query(table, check_dict, id_col, var_name):
 #     filter_dict = preformat_filter_dict(check_dict, "=")
