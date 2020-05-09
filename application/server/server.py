@@ -7,19 +7,20 @@ from flask import jsonify
 
 if __name__ == "__main__":
     from MovieTraitNetwork import *
+    from SQLAdmin import *
     from handle import *
 else:
     from application.server.MovieTraitNetwork import *
+    from application.server.SQLAdmin import *
     from application.server.handle import *
 
-
+# initialize neural network model
 mt_model, test_df = load_model()
 
 app = Flask(__name__, static_folder="../static/dist", template_folder="../static")
 CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://cs411ccsquad_admin:password;uiuc@localhost/cs411ccsquad_FlicksNDrinks'
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:oscarhuang1212@localhost/MP1'
-
 db = SQLAlchemy(app)
 eng = db.engine
 
@@ -46,19 +47,14 @@ def crud_app():
 
 
 # ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-# API routes
-@app.route('/BasicDF', methods=['GET'])
-def basic_api():
-    conn = eng.connect()
-    if request.method == 'GET':
-        test_q, message = query_data("SELECT * FROM User", conn, 'df')
-        test_q2, message = query_data("SELECT * FROM CocktailRecipe", conn, 'df')
-        test_df['compat'] = see_mtnn(test_df, mt_model)
-        return Response(test_df.to_json(orient="records"), mimetype='application/json')
-
-
+# Utility API routes
 @app.route('/api/<query_uri>', methods=['GET'])
 def api_sql(query_uri):
+    """
+    This API will execute any query passed in the route
+    :param query_uri: URI encoded SQL query
+    :return: JSON of query results
+    """
     conn = eng.connect()
     if request.method == 'GET':
         query = parse.unquote(query_uri)
@@ -79,24 +75,19 @@ def movie_trait_network(json_uri):
             result_df = handle_mtnn_api(json_dict, mt_model, conn)
         return Response(result_df.to_json(orient="records"), mimetype='application/json')
 
-
+# ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# WebApp API routes (CRUD)
 @app.route('/read/<table>/<json_uri>', methods=['GET'])
 def read(table, json_uri):
     conn = eng.connect()
     if request.method == 'GET':
         json_dict = json.loads(parse.unquote(json_uri))
         result = jsonify({'status': "Table not recognized"})
-        query = ""
 
         if table == "Movies":
             q_table = table[:-1] + "Summary"
 
             if "userId" in json_dict.keys():
-                #  expects JSON in the following format
-                # json_dict = {'userId': 1,
-                #              'title': {'value': 'ca', 'operator': 'LIKE'},
-                #              'year': {'value': '2005', 'operator': '='},
-                #              'rating': {'value': '', 'operator': '>='}}
                 result = personalized_movie_search(q_table, json_dict, mt_model, conn)
             else:
                 query = build_general_read_query(q_table, json_dict, "AND")
@@ -132,57 +123,6 @@ def delete(table, item_id):
         return result
 
 
-# @app.route('/add_old/<table>/<new_input>', methods=['GET'])
-# def add(table, new_input):
-#     conn = eng.connect()
-#
-#     max_recipe_id = ""
-#
-#     # find maximum
-#     if table == "Movie":
-#         max_id_query = 'SELECT MAX(tconst) as max FROM Movie'
-#     if table == "Cocktails":
-#         max_id_query = 'SELECT MAX(cocktailId) as max FROM CocktailName'
-#         max_recipe_id_query = 'SELECT MAX(recipeId) as max FROM CocktailRecipe'
-#
-#         result, message = query_data(max_recipe_id_query, conn, 'df')
-#         max_recipe_id = result['max'][0] + 1
-#
-#     if table == "User":
-#         max_id_query = 'SELECT MAX(userId) as max FROM User'
-#
-#     result, message = query_data(max_id_query, conn, 'df')
-#     max_id = result['max'][0] + 1
-#
-#     # insert new value
-#     if table == "Movie":
-#         query = "INSERT INTO %s (tconst, title)" \
-#                 " VALUES (%s , '%s')" % (table, max_id, parse.unquote(new_input))
-#         conn.execute(query)
-#
-#     if table == "Cocktails":
-#         query = "INSERT INTO CocktailName (cocktailId, cocktailName)" \
-#                 " VALUES (%s, '%s')" % (max_id, parse.unquote(new_input))
-#         conn.execute(query)
-#
-#         query = "INSERT INTO CocktailRecipe (recipeId, cocktailId)" \
-#                 " VALUES (%s, %s)" % (max_recipe_id, max_id)
-#         conn.execute(query)
-#
-#     if table == "User":
-#         json_dict = json.loads(parse.unquote(new_input))
-#         query = "INSERT INTO User (userId, firstName, lastName, emailId, password, trOpen, trCon, trex, trAg, trNe)" \
-#                 " VALUES (%s, %s, %s, %s, %s, 0, 0, 0, 0, 0)" % (
-#                 max_id, '"' + json_dict['firstName'] + '"', '"' + json_dict['lastName'] + '"',
-#                 '"' + json_dict['emailId'] + '"', '"' + json_dict['password'] + '"')
-#
-#         print('User query: %s' % query)
-#         conn.execute(query)
-#
-#     response = {'status': 'success', 'message': 'Record added successfully'}
-#     return response
-
-
 @app.route('/add/<table>/<new_input>', methods=['GET'])
 def insert(table, new_input):
     conn = eng.connect()
@@ -202,16 +142,11 @@ def insert(table, new_input):
 def edit_old(table, item_id, title):
     conn = eng.connect()
 
-    query = ""
-    # if table == "Movie":
-    #     query = "UPDATE Movie SET title = '%s' WHERE (tconst = %s)" % (parse.unquote(title), item_id)
-    # elif table == "Cocktail":
-    #     query = "UPDATE CocktailName SET cocktailName = '%s' WHERE (cocktailId = %s)" % (parse.unquote(title), item_id)
     if table == "User":
         trs = title.split(':')
         query = "UPDATE User SET trOpen = '%s',trCon = '%s',trex = '%s',trAg = '%s',trNe = '%s' WHERE (userId = %s)" % (trs[0],trs[1],trs[2],trs[3],trs[4], item_id)
+        conn.execute(query)
 
-    conn.execute(query)
     response = {'status': 'success', 'message': 'Product edit successfully'}
     return response
 
