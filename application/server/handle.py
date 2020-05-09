@@ -1,151 +1,9 @@
 from application.server.MovieTraitNetwork import *
+from application.server.SQLAdmin import *
 # from MovieTraitNetwork import *
 from flask import jsonify
 import pandas as pd
 # import sql_api
-
-
-def build_filters(filter_dict):
-    """
-    This function takes a dictionary of filters where each filter stores a dictionary containing the filter value and
-    SQL operator to be used on the filter.
-    :param filter_dict: dictionary of filters { filterX: { value: "filterX_value", operator: "filterX_operator" }, ...}
-    :return: list of filters formatted for SQL WHERE clause
-    """
-    filter_strs = []
-    for (filterX, options) in filter_dict.items():
-        filter_val = options['value']
-        operator = options['operator']
-
-        if isinstance(filter_val, str) and filter_val:
-            if operator == 'LIKE':
-                # filter_val = "'%%" + filter_val + "%%'"
-                filter_val = "%%" + filter_val + "%%"
-
-            if not ((filter_val[0] == "'" or filter_val[0] == '"') and (filter_val[-1] == "'" or filter_val[-1] == '"')):
-                filter_val = repr(filter_val)
-
-            filter_strs.append(filterX + " " + operator + " " + filter_val)
-
-        if not isinstance(filter_val, str):
-            filter_strs.append(filterX + " " + operator + " " + repr(filter_val))
-
-    return filter_strs
-
-
-def build_where(filter_strs, relationship="AND"):
-    """
-    This function builds the WHERE clause string from a list of filters' strings which have been preformmated for the
-    SQL WHERE clause.
-    :param filter_strs: list of preformatted filter strings ["location LIKE %%Los Angeles%%", "rating >= 5"]
-    :param relationship: str "AND", "OR"
-    :return: complete, formatted WHERE clause string to be concatenated into SQL query
-    """
-    where_str = ""
-    if filter_strs:
-        where_str += "WHERE " + filter_strs[0] + "\n"
-
-        if len(filter_strs) > 1:
-            for f in filter_strs[1:]:
-                where_str += " " + relationship + " " + f + "\n"
-    return where_str
-
-
-def build_col_str(columns):
-    count = 0
-    col_str = ""
-
-    for col in columns:
-        if count > 0:
-            col_str += ", "
-        col_str += col
-        count += 1
-
-    return col_str
-
-
-def build_general_read_query(table, json_dict, filter_rel, columns=None):
-    if columns is None:
-        columns = []
-    if columns:
-        col_str = build_col_str(columns)
-        query = "SELECT %s FROM %s\n" % (col_str, table)
-    else:
-        query = "SELECT * FROM %s\n" % table
-
-    filter_str = build_filters(json_dict)
-    where_clause_str = build_where(filter_str, relationship=filter_rel)
-    query += where_clause_str
-    query += "LIMIT 100"
-    return query
-
-# def build_cocktail_query(json_dict):
-#     query = "SELECT CocktailRecipe.recipeId, CocktailRecipe.bartender, CocktailRecipe.location,\n" \
-#             " CocktailRecipe.rating, CocktailName.cocktailName,\n" \
-#             " GROUP_CONCAT(DISTINCT Ingredient.ingredientName ORDER BY Ingredient.ingredientName DESC) AS ingredients\n" \
-#             "FROM CocktailRecipe\n" \
-#             " LEFT OUTER JOIN Composition ON CocktailRecipe.recipeId = Composition.recipeId\n" \
-#             " LEFT OUTER JOIN Ingredient ON Composition.ingredientId = Ingredient.ingredientId\n" \
-#             " LEFT OUTER JOIN CocktailName ON CocktailRecipe.cocktailId = CocktailName.cocktailId\n"
-#
-#     filter_str = build_filters(json_dict)
-#     where_clause_str = build_where(filter_str, relationship="AND")
-#     query += where_clause_str
-#     query += "GROUP BY CocktailRecipe.recipeId\n" \
-#              "LIMIT 100\n"
-#     return query
-#
-#
-# def build_movie_query(json_dict):
-#     query = "SELECT Movie.tconst, Movie.title, Movie.year, Movie.rating,\n" \
-#             " GROUP_CONCAT(DISTINCT Genre.genreName ORDER BY Genre.genreName DESC) AS genres,\n" \
-#             " GROUP_CONCAT(DISTINCT People.name ORDER BY People.name DESC) AS crew\n" \
-#             "FROM Movie\n" \
-#             " LEFT JOIN MovieCategory ON Movie.tconst = MovieCategory.tconst\n" \
-#             " LEFT JOIN Genre ON MovieCategory.genreId = Genre.genreId\n" \
-#             " LEFT JOIN Crew ON Movie.tconst = Crew.tconst\n" \
-#             " LEFT JOIN People ON Crew.nconst = People.nconst\n"
-#
-#     filter_str = build_filters(json_dict)
-#     where_clause_str = build_where(filter_str, relationship="AND")
-#     query += where_clause_str
-#     query += "GROUP BY Movie.tconst\n" \
-#              "LIMIT 100\n"
-#     return query
-
-
-def build_user_query(json_dict):
-    query = "SELECT userId, firstName, lastName, emailId, trOpen, trCon, trEx, trAg, trNe\n" \
-            "FROM User\n"
-
-    if 'userId' in json_dict.keys():
-        user_ids = json_dict['userId']
-
-        # if searching for multiple users, 'user_ids' should be a list of the userId's
-        # if searching for a single user, 'user_ids' can be int or int nested in a list
-        # this code will convert user_ids to list if it is not
-        if not isinstance(user_ids, list):
-            user_ids = [user_ids]
-
-        user_filters = []
-        for uid in user_ids:
-            user_filters += build_filters({'userId': {'value': uid, 'operator': "="}})
-
-        where_str = build_where(user_filters, relationship="OR")
-    else:
-        filter_dict = {}
-
-        user_email = "'" + json_dict['emailId'] + "'"
-        filter_dict['emailId'] = {'value': user_email, 'operator': "="}
-
-        user_password = "'" + json_dict['password'] + "'"
-        filter_dict['password'] = {'value': user_password, 'operator': "="}
-
-        user_filters = build_filters(filter_dict)
-        where_str = build_where(user_filters, relationship="AND")
-
-    query += where_str
-    return query
 
 
 def query_data(query, conn, return_type):
@@ -171,115 +29,36 @@ def query_data(query, conn, return_type):
         return pd.DataFrame(result_data), message
 
 
-def build_genres_query(tconst_list):
-    if tconst_list:
-        query = "SELECT MovieCategory.tConst, Movie.rating, Genre.genreName\n" \
-                "FROM Genre\n" \
-                " LEFT JOIN MovieCategory ON Genre.genreId = MovieCategory.genreId\n" \
-                " LEFT JOIN Movie ON MovieCategory.tConst = Movie.tConst\n"
-
-        filter_str = []
-        for tconst in tconst_list:
-            filter_str.append("MovieCategory.tConst = %d" % tconst)
-
-        where_str = build_where(filter_str, relationship="OR")
-        query += where_str
-    else:
-        query = "SELECT Genre.genreName\n" \
-                "FROM Genre"
-
-    return query
-
-
-def handle_mtnn_api(json_dict, model, conn):
-    tconst_list = json_dict.pop('tConst')
-    genre_query = build_genres_query(tconst_list)
-
-    user_info_df, message = query_data(build_user_query(json_dict), conn, 'df')
-    genre_df, message = query_data(genre_query, conn, 'df')
-
-    result = calc_genre_compat(user_info_df, tconst_list, genre_df, model)
-
-    return result
-
-
-def build_insert_query(table, json_dict):
-    key_str, val_str = json_to_cs_str(json_dict)
-
-    query = "INSERT INTO %s (%s)" \
-            " VALUES (%s)" % (table, key_str, val_str)
-
-    return query
-
-
-def build_update_query(table, json_dict, match_col):
-    formatted_dict = preformat_filter_dict(json_dict, "=")
-    print(formatted_dict)
-    match_val = {match_col: formatted_dict.pop(match_col)}
-    print(formatted_dict)
-    new_val_list = build_filters(formatted_dict)
-    print(new_val_list)
-    match_val_list = build_filters(match_val)
-
-    new_val_str = ""
-    count = 0
-    for val in new_val_list:
-        if count > 0:
-            new_val_str += ", "
-        new_val_str += val
-        count += 1
-
-    print(new_val_str)
-    query = "UPDATE %s SET %s" \
-            " WHERE (%s)" % (table, new_val_str, match_val_list[0])
-
-    return query
-
-
-def json_to_cs_str(json_dict):
-    key_str = ""
-    val_str = ""
-    count = 0
-
-    for k, v in json_dict.items():
-        if count > 0:
-            key_str += ", "
-            val_str += ", "
-
-        if isinstance(v, str):
-            if not (v[0] == '@' or ((v[0] == "'" or v[0] == '"') and (v[-1] == "'" or v[-1] == '"'))):
-                # v = "'" + v + "'"
-                v = repr(v)
-        else:
-            v = repr(v)
-
-        key_str += k
-        val_str += v
-        count += 1
-
-    return key_str, val_str
-
-
 def personalized_movie_search(table, json_dict, model, conn):
+    """ Returns JSON of movie query results for a specified user with added columns for "personalRating" and "ratesMovie"
+
+    :param table: "MovieSummary"
+    :param json_dict: { userId: (int), filterX: { value: "filterX_value", operator: "filterX_operator" }, ...}
+    :param model: Neural Network Model connecting personality traits to genres
+    :param conn:
+    :return: JSON of movie query results with added columns for "personalRating" and "ratesMovie"
+    """
     user_id = json_dict.pop("userId")
+
+    # SELECT FROM MovieSummary WHERE filters...  to grab top 100 Movies within filter conditions
     query = build_general_read_query(table, json_dict, "AND")
     result_df, message = query_data(query, conn, 'df')
-    print(result_df)
 
+    # SELECT FROM FavoriteMovie WHERE filters...   to grab user's votes on all movies
     vote_filt_dict = {"userId": {'value': user_id, 'operator': '='}}
     votes_query = build_general_read_query("FavoriteMovie", vote_filt_dict, "AND", columns=['tConst', 'ratesMovie'])
     votes_df, message = query_data(votes_query, conn, 'df')
-    print(votes_df)
 
     if not result_df.empty:
         if not votes_df.empty:
-            # join votes to the result dataframe
+            # join user's votes to the result dataframe; if user has not voted on a movie, value set to np.nan
             votes_df.set_index('tConst', inplace=True)
             result_df = result_df.join(votes_df, on='tConst', lsuffix='', rsuffix='_copy')
-            print(result_df)
         else:
+            # if user has not voted on any movie, set all vote values to np.nan
             result_df['ratesMovie'] = np.nan
 
+        # read from neural network to get the user's personalRating (recommendation)
         feat_dict = {"userId": user_id, "tConst": list(result_df["tConst"].values)}
         compat_df = handle_mtnn_api(feat_dict, model, conn)
         result_df["personalRating"] = compat_df["personalRating"]
@@ -288,44 +67,82 @@ def personalized_movie_search(table, json_dict, model, conn):
     return jsonify({'data': json_rec, 'status': message})
 
 
-def preformat_filter_dict(json_dict, operator):
-    filter_dict = {}
+def handle_mtnn_api(json_dict, model, conn):
+    """
+    if 'tConst' empty, returns compatibilities for top 5 most compatible genres
+    if 'tConst' non-empty, calculates personalized ratings for movies in 'tConst'
 
-    for key, val in json_dict.items():
-        filter_dict[key] = {'value': val, 'operator': operator}
+    :param json_dict: {'userId':[int, ...], 'tConst': [int, int, ...]}
+    :param model: neural network model
+    :param conn:
+    :return:
+    """
+    tconst_list = json_dict.pop('tConst')
 
-    return filter_dict
+    # SELECT user's information (i.e. personality trait values)
+    user_info_df, message = query_data(build_user_query(json_dict), conn, 'df')
+
+    # SELECT tConst, rating, and genreNames for movies in tConst_list
+    genre_query = build_genres_query(tconst_list)
+    genre_df, message = query_data(genre_query, conn, 'df')
+
+    # calculate the user's compatability with each movie; ultimately joins 'user_info_df' and 'genre_df'
+    # and adds new column for 'personalRating'
+    result = calc_genre_compat(user_info_df, tconst_list, genre_df, model)
+
+    return result
 
 
 def handle_vote(vote_table, vote_col, json_dict, conn):
+    """ First SELECTs to check to see if the user has already voted on this item
+            - if so then it updates the vote
+            - if not then it inserts a new vote
+
+    :param vote_table: (str) (i.e. FavoriteMovie, FavoriteCocktail, FavoritePair)
+    :param vote_col: (str) (i.e. ratesMovie, ...)
+    :param json_dict: {col_name1: value1, ...}
+    """
+    # used in SELECT query
     match_filters = preformat_filter_dict(json_dict, "=")
+
+    # stores value of the new vote to be placed
     new_val_filter = {vote_col: match_filters.pop(vote_col)}
 
+    # SELECT...WHERE userId = ..., tConst/cocktailId = ...
     read_query = build_general_read_query(vote_table, match_filters, "AND")
     check_df, message = query_data(read_query, conn, 'df')
-    # check_df, message = sql_api.api_query(read_query)
 
     if check_df.empty:
+        # if user has not already placed a vote on this movie INSERT a new vote
         query = build_insert_query(vote_table, json_dict)
     else:
+        # if user has already placed a vote on this movie UPDATE the value of the vote to the new vote
         filter_str = build_filters(match_filters)
         where_clause_str = build_where(filter_str, relationship="AND")
         query = "UPDATE %s SET %s \n" % (vote_table, build_filters(new_val_filter)[0])
         query += where_clause_str
 
-    # check_df, message = sql_api.api_query(query)
     conn.execute(query)
 
 
 def check_then_insert(table, check_dict, id_col, conn):
+    """ This function checks to see if the new values exist already:
+            - if the value exists SELECTs the value's corresponding id
+            - if the value does not exist it INSERTs the new value and then SELECTs the new id
+    :return: (int) id value
 
+    :param table: (str) name of table to check (i.e. CocktailName)
+    :param check_dict: {check_col: new_value}, check_col - name of column to check in table to check (i.e. "cocktailName")
+    :param id_col: (str) name of id column in table to check (i.e. "cocktailId")
+    :param conn: database connection
+    """
     # format filters for use in build_general_read_query
     filter_dict = preformat_filter_dict(check_dict, "=")
 
-    # build the SELECT query that will check to see if cocktailName/glasswareName exist; return full SQL results
+    # build the SELECT query that will check to see if cocktailName/glasswareName exist
     check_query = build_general_read_query(table, filter_dict, "AND")
 
-    # query_data function executes check_query and returns results as a pandas dataframe
+    # execute check_query and return results as a pandas dataframe
     check_df, message = query_data(check_query, conn, 'df')
 
     if check_df.empty:
@@ -334,7 +151,7 @@ def check_then_insert(table, check_dict, id_col, conn):
         insert_query = build_insert_query(table, check_dict)
         conn.execute(insert_query)
 
-        # query_data function executes check_query and returns results as a pandas dataframe
+        # execute check_query and return results as a pandas dataframe
         check_df, message = query_data(check_query, conn, 'df')
 
     else:
@@ -345,6 +162,17 @@ def check_then_insert(table, check_dict, id_col, conn):
 
 
 def handle_recipe_action(json_dict, conn, action):
+    """This function uses Python logic to perform a Compound Statement:
+            - loops through the SQL tables in the "checks" dictionary to check if the new values exist already
+                - if the value exists in "checkCol" it SELECTs the value's corresponding id
+                - if the value does not exist in "checkCol" it INSERTs the new value and then SELECTs the new id
+            - those id values are used in the final_query to "CocktailRecipe" whether it is INSERT or UPDATE
+
+    :param json_dict: {column_name1: new_val1, ....}
+    :param conn: database connection
+    :param action: (str) either "insert" or "update" to determine final_query at the end
+    """
+
     checks = {"CocktailName": {"checkCol": "cocktailName", "idCol":  "cocktailId"},
               "Glassware": {"checkCol": "glasswareName", "idCol":  "glasswareId"}}
 
@@ -358,9 +186,7 @@ def handle_recipe_action(json_dict, conn, action):
             # pops from json_dict as cocktailName/glasswareName do not exist in CocktailRecipe table attributes
             check_val = "'" + json_dict.pop(check_col) + "'"
 
-            # checks if value exists
-            #    - if so, returns id
-            #    - if not, inserts the new value into its respective table and then returns the id of new tuple
+            # checks if value exists; if so -> returns id, if not -> inserts the new value then returns id
             check_id = check_then_insert(table_name, {check_col: check_val}, id_col, conn)
 
             # inserts id value into json_dict as cocktailId/glasswareId do exist in CocktailRecipe table attributes
@@ -370,6 +196,7 @@ def handle_recipe_action(json_dict, conn, action):
     if action == "insert":
         # builds INSERT query to insert new CocktailRecipe
         final_query = build_insert_query("CocktailRecipe", json_dict)
+
     if action == "update":
         # builds UPDATE query to update CocktailRecipe
         json_dict.pop("ingredients")
@@ -377,79 +204,6 @@ def handle_recipe_action(json_dict, conn, action):
         final_query = build_update_query("CocktailRecipe", json_dict, "recipeId")
 
     conn.execute(final_query)
-
-
-# def handle_update_recipe(json_dict, conn):
-#     checks = {"CocktailName": {"checkCol": "cocktailName", "idCol":  "cocktailId"},
-#               "Glassware": {"checkCol": "glasswareName", "idCol":  "glasswareId"}}
-#
-#     # loop through all tables where we need to ensure values already exist due to foreign key constraints
-#     for table_name, check_info in checks.items():
-#         check_col = check_info["checkCol"]
-#         id_col = check_info["idCol"]
-#
-#         if check_col in json_dict.keys():
-#             # grabs cocktailName/glasswareName (for use in check_then_insert())
-#             # pops from json_dict as cocktailName/glasswareName do not exist in CocktailRecipe table attributes
-#             check_val = "'" + json_dict.pop(check_col) + "'"
-#
-#             # checks if value exists
-#             #    - if so, returns id
-#             #    - if not, inserts the new value into its respective table and then returns the id of new tuple
-#             check_id = check_then_insert(table_name, {check_col: check_val}, id_col, conn)
-#
-#             # inserts id value into json_dict as cocktailId/glasswareId do exist in CocktailRecipe table attributes
-#             json_dict[id_col] = check_id
-#
-#     # builds INSERT query to insert new CocktailRecipe
-#     json_dict.pop("ingredients")
-#     json_dict.pop("rating")
-#     update_query = build_update_query("CocktailRecipe", json_dict, "recipeId")
-#     conn.execute(update_query)
-
-# def build_check_then_insert_query(table, check_dict, id_col, var_name):
-#     filter_dict = preformat_filter_dict(check_dict, "=")
-#     var_name = "@" + var_name
-#
-#     check_query = build_general_read_query(table, filter_dict, "AND")
-#     insert_query = build_insert_query(table, check_dict)
-#     sel_query = build_general_read_query(table, filter_dict, "AND", columns=[id_col])
-#
-#     compound_str = "\tIF NOT EXISTS (%s) THEN\n" \
-#                    "\t\t%s;\n"\
-#                    "\tEND IF;\n" \
-#                    "\tSET %s = (%s);\n" % (check_query, insert_query, var_name, sel_query)
-#
-#     return compound_str
-#
-#
-# def build_add_recipe_compound(json_dict):
-#     checks = {"CocktailName": {"checkCol": "cocktailName", "idCol":  "cocktailId"},
-#               "Glassware": {"checkCol": "glasswareName", "idCol":  "glasswareId"}}
-#
-#     check_str_list = []
-#     base_name = "var"
-#     count = 1
-#     for table_name, check_info in checks.items():
-#         check_col = check_info["checkCol"]
-#         id_col = check_info["idCol"]
-#
-#         if check_col in json_dict.keys():
-#             check_val = "'" + json_dict.pop(check_col) + "'"
-#             var_name = base_name + repr(count)
-#             check_str_list.append(build_check_then_insert_query(table_name, {check_col: check_val}, id_col, var_name))
-#             json_dict[id_col] = "@" + var_name
-#             count += 1
-#
-#     insert_query = build_insert_query("CocktailRecipe", json_dict)
-#     compound_str = ""
-#     # compound_str = "BEGIN\n"
-#     for check_str in check_str_list:
-#         compound_str += check_str
-#     compound_str += insert_query + ";"
-#     # compound_str += "\nEND;"
-#     # print(compound_str)
-#     return compound_str
 
 
 if __name__ == '__main__':
