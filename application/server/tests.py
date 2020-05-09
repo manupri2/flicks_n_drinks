@@ -36,7 +36,7 @@ def test_mtnn_api_real():
     # test_dict = {'userId': [0], 'tConst': [24, 28, 31]}
     # test_res = run_json_api_test("MTNN", test_dict)
 
-    test_dict = {'userId': [0, 1], 'tConst': [24, 28, 31]}
+    test_dict = {'userId': [0, 1], 'tConst': []}
     test_res = run_json_api_test("MTNN", test_dict)
     json_str = test_res.to_json(orient="records")
     json_rec = test_res.to_dict(orient="records")
@@ -106,7 +106,7 @@ def test_movie_read_api():
     json_dict["userId"] = 1
     res = run_json_api_test(api, json_dict)
     print(res.columns)
-    print(res.loc[:, ["rating", "personalRating"]])
+    print(res.loc[:, ["rating", "personalRating", "crew", "genre"]])
 
 
 def test_cocktail_read_api():
@@ -251,6 +251,6 @@ def test_cocktail_add():
 
 
 if __name__ == "__main__":
-    test_cocktail_add()
+    test_movie_read_api()
 
 

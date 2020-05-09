@@ -89,10 +89,11 @@ def read(table, json_uri):
         query = ""
 
         if table == "Movies":
+            q_table = table[:-1] + "Summary"
+
             if "userId" in json_dict.keys():
-                result = personalized_movie_search(table[:-1], json_dict, mt_model, conn)
+                result = personalized_movie_search(q_table, json_dict, mt_model, conn)
             else:
-                q_table = table[:-1] + "Summary"
                 query = build_general_read_query(q_table, json_dict, "AND")
                 result = query_data(query, conn, 'json')
 

@@ -3,8 +3,8 @@ import Chart from "react-apexcharts";
 import {Table, Container, Row, Col, Button, Nav, Navbar} from 'react-bootstrap';
 import Modal from 'react-awesome-modal';
 import ReactDOM from 'react-dom';
-
 import CRUDApp from './CRUDApp';
+import TopGenres from './TopGenres';
 
 
 class UserApp extends Component {
@@ -13,7 +13,7 @@ class UserApp extends Component {
 
         let defaultUser =
             this.props.userDetails == null ? {
-                    userId: 0,
+                    userId: 2,
                     firstName: 'Oscar',
                     lastName: 'Huang',
                     openness: 80,
@@ -42,7 +42,8 @@ class UserApp extends Component {
 
             user: [defaultUser,
             ],
-
+            genresLoaded: false,
+            topGenres: [],
             chart: {
                 options: {
                     title: {
@@ -85,6 +86,7 @@ class UserApp extends Component {
         this.handleChange_Agreeableness = this.handleChange_Agreeableness.bind(this)
         this.handleChange_Neuroticism = this.handleChange_Neuroticism.bind(this)
 
+        this.getTopGenres = this.getTopGenres.bind(this)
         this.submitPersonalityChange = this.submitPersonalityChange.bind(this)
         // this.addFriend= this.addFriend.bind(this)
         // this.deleteFriend= this.deleteFriend.bind(this)
@@ -277,7 +279,9 @@ class UserApp extends Component {
             .then(res => res.json())
             .then(
                 (result) => {
-                    this.setState({editPersonalityResult: result})
+                    this.setState({editPersonalityResult: result,
+                                    genresLoaded: false
+                                  })
                 },
                 (error) => {
                     this.setState({error})
@@ -293,6 +297,50 @@ class UserApp extends Component {
             editPersonalityPopup: false
         });
     }
+
+
+   getTopGenres() {
+                  var api_url = 'http://cs411ccsquad.web.illinois.edu/MTNN/';
+                  var filts = JSON.stringify({'userId': this.state.user[0].userId, 'tConst': []});
+                  var filters = encodeURI(filts);
+
+                  api_url += filters;
+
+                if(!this.state.genresLoaded){
+                fetch(api_url)
+                    .then(res => res.json())
+                    .then(
+                                (result) => {
+                                        var temp = "";
+                                        var newGenres = [];
+
+                                        for (var i = 0; i < result.length; i++) {
+                                            temp = result[i].genreName;
+                                            newGenres.push(temp);
+                                        }
+
+                                        this.setState({
+                                            genresLoaded: true,
+                                            topGenres: newGenres,
+                                        });
+                                },
+                                (error) => {
+                                            this.setState({
+                                                genresLoaded: true,
+                                                topGenres: []
+                                            });
+                                }
+                    )
+                }
+    }
+
+
+
+
+
+
+
+
 
     addFriendPopup() {
 
@@ -515,7 +563,7 @@ class UserApp extends Component {
     }
 
     render() {
-
+        this.getTopGenres();
         return (
 
             <div>
@@ -578,10 +626,18 @@ class UserApp extends Component {
 
                         <Col sm={9}>
 
-                            <Row>{this.showChart()}</Row>
+                            <Row>
+                                <Col>
+                                    {this.showChart()}
+                                </Col>
+                                <Col>
+                                    {<TopGenres genres={this.state.topGenres}/>}
+                                </Col>
+                            </Row>
 
                             <Row>
-                                <Col></Col>{this.addFriendPopup()} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {this.deleteFriendPopup()}<Col></Col></Row>
+                                <Col></Col>{this.addFriendPopup()} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {this.deleteFriendPopup()}<Col></Col>
+                            </Row>
 
                         </Col>
 
