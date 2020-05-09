@@ -63,18 +63,23 @@ class CRUDApp extends Component {
     var data_json_uri = encodeURI(JSON.stringify(data));
     console.log(JSON.stringify(data))
 
-    if(this.state.isEditItem && this.state.database == "Movies"){
-      //apiUrl += "edit/" + db + "/" + data.tconst.toString() + "/" + data.title;
+    if(this.state.isEditItem){
       apiUrl += "edit/" + db + "/" + data_json_uri;
-    } else if (!this.state.isEditItem && this.state.database == "Movies") {
-      apiUrl += "add/" + db + "/" + data_json_uri;
-
-    } else if (this.state.isEditItem && this.state.database == "Cocktails") {
-     // apiUrl += "edit/" + db + "/" + data.recipeId.toString() + "/" + data.cocktailName;
-     apiUrl += "edit/" + db + "/" + data_json_uri;
-    } else if (!this.state.isEditItem && this.state.database == "Cocktails") {
+    } else {
       apiUrl += "add/" + db + "/" + data_json_uri;
     }
+ //   if(this.state.isEditItem && this.state.database == "Movies"){
+      ////apiUrl += "edit/" + db + "/" + data.tconst.toString() + "/" + data.title;
+ //     apiUrl += "edit/" + db + "/" + data_json_uri;
+  //  } else if (!this.state.isEditItem && this.state.database == "Movies") {
+  //    apiUrl += "add/" + db + "/" + data_json_uri;
+
+  //  } else if (this.state.isEditItem && this.state.database == "Cocktails") {
+     //// apiUrl += "edit/" + db + "/" + data.recipeId.toString() + "/" + data.cocktailName;
+  //   apiUrl += "edit/" + db + "/" + data_json_uri;
+ //   } else if (!this.state.isEditItem && this.state.database == "Cocktails") {
+  //    apiUrl += "add/" + db + "/" + data_json_uri;
+  //  }
 
     fetch(apiUrl);
     this.setState({
@@ -113,13 +118,10 @@ class CRUDApp extends Component {
               this.setState({error});
             }
           )
-      }
+  }
 
 
   changeDB(new_db) {
-
-        console.log(new_db);
-
         this.setState(state => ({
                                   isAddItem: false,
                                   error: null,
@@ -164,46 +166,15 @@ class CRUDApp extends Component {
 
 
   deleteItem(item_id) {
-    // const {movies} = this.state;
-
     const apiUrl = 'http://cs411ccsquad.web.illinois.edu/delete/' + this.state.database.slice(0, -1) + '/' + item_id.toString();
-    // console.log(apiUrl)
-
-    // const formData = new FormData();
-    // formData.append('tconst', tconst);
-
-    // const options = {
-    //   method: 'GET',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({product_id:tconst})
-    // }
-
     fetch(apiUrl);
-
     this.setState(state => ({
                           error: null,
                           isLoaded: false,
                           items: [],
                     }));
-    // const arrayCopy = this.props.info.items.filter((row) => row.tconst != tconst);
-    // this.setState({movies:arrayCopy});
-
-
-
-    // fetch(apiUrl, options)
-    //   .then(res => res.json())
-    //   .then(
-    //     (result) => {
-    //       this.setState({
-    //         response: result,
-    //         movies: movies.filter(movie => movie.tconst !== tconst)
-    //       });
-    //     },
-    //     (error) => {
-    //       this.setState({ error });
-    //     }
-    //   )
   }
+
 
   navtoUserPage(){
     var apiUrl = 'http://cs411ccsquad.web.illinois.edu/read/User/';
@@ -219,9 +190,7 @@ class CRUDApp extends Component {
           return response.json();
         })
         .then((result) => {
-                console.log("Result!!!!!!!");
                 if (result.status === 'Results found'){
-
                     ReactDOM.unmountComponentAtNode(document.getElementById('root'));
                     ReactDOM.render(<UserApp userDetails={result.data[0]}/>, document.getElementById('root'));
                 }
@@ -235,7 +204,8 @@ class CRUDApp extends Component {
 
     ReactDOM.unmountComponentAtNode(document.getElementById('root'));     
     ReactDOM.render(<UserApp />, document.getElementById('root'));
-}
+  }
+
 
   render() {
     let itemForm;
@@ -247,7 +217,6 @@ class CRUDApp extends Component {
         }
     }
 
-    
     this.searchItems();
 
     return (
@@ -267,13 +236,10 @@ class CRUDApp extends Component {
             </Navbar>
 
         <Container>
-          
-
           <Row><br/><br/><br/></Row>
-
           <Row>
-          {this.state.response.status === 'success' && <div><br /><Alert variant="info">{this.state.response.message}</Alert></div>}
-          {!this.state.isAddItem && <div class="text-right pr-0"><Button variant="primary" onClick={() => this.onCreate()}>Add {this.state.database.slice(0, -1)} <PlusCircle /></Button><br /><br /></div>}
+              {this.state.response.status === 'success' && <div><br /><Alert variant="info">{this.state.response.message}</Alert></div>}
+              {!this.state.isAddItem && <div class="text-right pr-0"><Button variant="primary" onClick={() => this.onCreate()}>Add {this.state.database.slice(0, -1)} <PlusCircle /></Button><br /><br /></div>}
           </Row>
           
           {!this.state.isAddItem && this.state.database == "Movies" && <MovieQueryForm updateFilters={this.updateFilters}/>}  
