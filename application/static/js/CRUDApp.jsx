@@ -228,9 +228,9 @@ class CRUDApp extends Component {
                         <Button variant="dark"  onClick={() => this.changeDB("Movies")}> Movies </Button>
                         <Button variant="dark"  onClick={() => this.changeDB("Cocktails")}> Cocktails </Button>
                     </Nav>  
-                    <Nav className="justify-content-end" activeKey="">
+                    <Nav className="justify-content-end">
                         <Nav.Item>
-                            <Nav.Link href="flicks_n_drinks">Logout</Nav.Link>
+                            <Nav.Link href="#flicks_n_drinks">Logout</Nav.Link>
                         </Nav.Item>
                     </Nav>
             </Navbar>
