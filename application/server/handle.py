@@ -389,8 +389,10 @@ def handle_update_recipe(json_dict, conn):
 
             # inserts id value into json_dict as cocktailId/glasswareId do exist in CocktailRecipe table attributes
             json_dict[id_col] = check_id
+            print("idCol: %s        idVal: %s" % (id_col, check_id))
 
     # builds INSERT query to insert new CocktailRecipe
+    print(json_dict)
     update_query = build_update_query("CocktailRecipe", json_dict, "recipeId")
     print(update_query)
     conn.execute(update_query)
