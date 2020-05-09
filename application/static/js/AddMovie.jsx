@@ -11,7 +11,11 @@ class AddMovie extends React.Component {
     }
 
     if(props.item){
-      this.state = props.item
+      this.state = {
+                      tConst: props.item.tConst,
+                      title: props.item.title,
+                      year: props.item.year
+                    }
     } else {
       this.state = this.initialState;
     }
