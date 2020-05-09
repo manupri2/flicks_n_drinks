@@ -3,7 +3,8 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const config = {
-	entry: {
+	entry:
+	{
 		"CRUDPage":__dirname + '/js/CRUDPage.jsx',
 		"navigation":__dirname + '/js/navigation.jsx',
 		"loginPage":__dirname + '/js/loginPage.jsx',
@@ -22,7 +23,7 @@ const config = {
 		rules:[
 		{
 			test:/\.jsx?/,
-			exclude: /node_mocules/,
+			exclude: /(node_modules|bower_components)/,
 			loader:'babel-loader',
 			options:{
 				presets:[

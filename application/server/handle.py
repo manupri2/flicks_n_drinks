@@ -280,25 +280,29 @@ def handle_vote(vote_table, vote_col, json_dict, conn):
 
 
 def check_then_insert(table, check_dict, id_col, conn):
+
+    # format filters for use in build_general_read_query
     filter_dict = preformat_filter_dict(check_dict, "=")
+
+    # build the SELECT query that will check to see if cocktailName/glasswareName exist; return full SQL results
     check_query = build_general_read_query(table, filter_dict, "AND")
-    # print(check_query)
+
+    # query_data function executes check_query and returns results as a pandas dataframe
     check_df, message = query_data(check_query, conn, 'df')
-    # check_df, message = sql_api.api_query(check_query)
 
     if check_df.empty:
         print("Value not found, inserting new tuple into %s." % table)
+        # builds INSERT query to insert new cocktailName/glasswareName
         insert_query = build_insert_query(table, check_dict)
-        print(insert_query)
-        # check_df, message = sql_api.api_query(insert_query)
         conn.execute(insert_query)
 
-        # check_df, message = sql_api.api_query(check_query)
+        # query_data function executes check_query and returns results as a pandas dataframe
         check_df, message = query_data(check_query, conn, 'df')
 
     else:
         print("Value exists, not inserting new tuple into %s." % table)
-    # print(check_df)
+
+    # grabs and returns id value (integer) from results
     return check_df[id_col][0]
 
 
@@ -306,65 +310,72 @@ def handle_add_recipe(json_dict, conn):
     checks = {"CocktailName": {"checkCol": "cocktailName", "idCol":  "cocktailId"},
               "Glassware": {"checkCol": "glasswareName", "idCol":  "glasswareId"}}
 
+    # loop through all tables where we need to ensure values already exist due to foreign key constraints
     for table_name, check_info in checks.items():
         check_col = check_info["checkCol"]
         id_col = check_info["idCol"]
 
         if check_col in json_dict.keys():
+            # grabs cocktailName/glasswareName (for use in check_then_insert())
+            # pops from json_dict as cocktailName/glasswareName do not exist in CocktailRecipe table attributes
             check_val = "'" + json_dict.pop(check_col) + "'"
+
+            # checks if value exists
+            #    - if so, returns id
+            #    - if not, inserts the new value into its respective table and then returns the id of new tuple
             check_id = check_then_insert(table_name, {check_col: check_val}, id_col, conn)
+
+            # inserts id value into json_dict as cocktailId/glasswareId do exist in CocktailRecipe table attributes
             json_dict[id_col] = check_id
 
+    # builds INSERT query to insert new CocktailRecipe
     insert_query = build_insert_query("CocktailRecipe", json_dict)
-    # print(insert_query)
-    # check_df, message = sql_api.api_query(insert_query)
-    # print(message)
     conn.execute(insert_query)
 
 
-def build_check_then_insert_query(table, check_dict, id_col, var_name):
-    filter_dict = preformat_filter_dict(check_dict, "=")
-    var_name = "@" + var_name
-
-    check_query = build_general_read_query(table, filter_dict, "AND")
-    insert_query = build_insert_query(table, check_dict)
-    sel_query = build_general_read_query(table, filter_dict, "AND", columns=[id_col])
-
-    compound_str = "\tIF NOT EXISTS (%s) THEN\n" \
-                   "\t\t%s;\n"\
-                   "\tEND IF;\n" \
-                   "\tSET %s = (%s);\n" % (check_query, insert_query, var_name, sel_query)
-
-    return compound_str
-
-
-def build_add_recipe_compound(json_dict):
-    checks = {"CocktailName": {"checkCol": "cocktailName", "idCol":  "cocktailId"},
-              "Glassware": {"checkCol": "glasswareName", "idCol":  "glasswareId"}}
-
-    check_str_list = []
-    base_name = "var"
-    count = 1
-    for table_name, check_info in checks.items():
-        check_col = check_info["checkCol"]
-        id_col = check_info["idCol"]
-
-        if check_col in json_dict.keys():
-            check_val = "'" + json_dict.pop(check_col) + "'"
-            var_name = base_name + repr(count)
-            check_str_list.append(build_check_then_insert_query(table_name, {check_col: check_val}, id_col, var_name))
-            json_dict[id_col] = "@" + var_name
-            count += 1
-
-    insert_query = build_insert_query("CocktailRecipe", json_dict)
-    compound_str = ""
-    # compound_str = "BEGIN\n"
-    for check_str in check_str_list:
-        compound_str += check_str
-    compound_str += insert_query + ";"
-    # compound_str += "\nEND;"
-    # print(compound_str)
-    return compound_str
+# def build_check_then_insert_query(table, check_dict, id_col, var_name):
+#     filter_dict = preformat_filter_dict(check_dict, "=")
+#     var_name = "@" + var_name
+#
+#     check_query = build_general_read_query(table, filter_dict, "AND")
+#     insert_query = build_insert_query(table, check_dict)
+#     sel_query = build_general_read_query(table, filter_dict, "AND", columns=[id_col])
+#
+#     compound_str = "\tIF NOT EXISTS (%s) THEN\n" \
+#                    "\t\t%s;\n"\
+#                    "\tEND IF;\n" \
+#                    "\tSET %s = (%s);\n" % (check_query, insert_query, var_name, sel_query)
+#
+#     return compound_str
+#
+#
+# def build_add_recipe_compound(json_dict):
+#     checks = {"CocktailName": {"checkCol": "cocktailName", "idCol":  "cocktailId"},
+#               "Glassware": {"checkCol": "glasswareName", "idCol":  "glasswareId"}}
+#
+#     check_str_list = []
+#     base_name = "var"
+#     count = 1
+#     for table_name, check_info in checks.items():
+#         check_col = check_info["checkCol"]
+#         id_col = check_info["idCol"]
+#
+#         if check_col in json_dict.keys():
+#             check_val = "'" + json_dict.pop(check_col) + "'"
+#             var_name = base_name + repr(count)
+#             check_str_list.append(build_check_then_insert_query(table_name, {check_col: check_val}, id_col, var_name))
+#             json_dict[id_col] = "@" + var_name
+#             count += 1
+#
+#     insert_query = build_insert_query("CocktailRecipe", json_dict)
+#     compound_str = ""
+#     # compound_str = "BEGIN\n"
+#     for check_str in check_str_list:
+#         compound_str += check_str
+#     compound_str += insert_query + ";"
+#     # compound_str += "\nEND;"
+#     # print(compound_str)
+#     return compound_str
 
 
 if __name__ == '__main__':
