@@ -5,7 +5,7 @@ class AddMovie extends React.Component {
   constructor(props) {
     super(props);
     this.initialState = {
-      tconst: '',
+      tConst: '',
       title: 'Test',
       year: '',
     }
@@ -32,17 +32,19 @@ class AddMovie extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    var state_copy = this.state;
-    delete state_copy['tconst'];
+    //var state_copy = this.state;
+    //delete state_copy['tConst'];
+    //this.props.onFormSubmit(state_copy);
+    //this.setState(this.initialState);
 
-    this.props.onFormSubmit(state_copy);
+    this.props.onFormSubmit(this.state);
     this.setState(this.initialState);
   }
 
   render() {
 
     let pageTitle;
-    if(this.state.tconst>=0) {
+    if(this.state.tConst>=0) {
       pageTitle = <h2>Edit Movie</h2>
     } else {
       pageTitle = <h2>Add Movie</h2>
@@ -76,7 +78,7 @@ class AddMovie extends React.Component {
               </Form.Group>
               </Form.Row>
               <Form.Group>
-                <Form.Control type="hidden" name="tconst" value={this.state.tconst} />
+                <Form.Control type="hidden" name="tConst" value={this.state.tConst} />
                 <Button variant="success" type="submit">Save</Button>
               </Form.Group>
             </Form>

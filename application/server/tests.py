@@ -89,18 +89,18 @@ def test_user_read_api():
 
 def test_movie_read_api():
     json_dict = {'title': {'value': 'chinese', 'operator': 'LIKE'},
-                 'year': {'value': '', 'operator': '='},
+                 'year': {'value': '2000', 'operator': '='},
                  'rating': {'value': '', 'operator': '>='}}
     table = "Movies"
 
     # run test on the query used in API
-    query = build_general_read_query(table[:-1], json_dict, "AND")
-    remote_test_read_query(query)
+    # query = build_general_read_query(table[:-1], json_dict, "AND")
+    # remote_test_read_query(query)
 
     # run test on actual API without "userId"
     api = "read/" + table
-    res = run_json_api_test(api, json_dict)
-    print(res.columns)
+    # res = run_json_api_test(api, json_dict)
+    # print(res.columns)
 
     # run test on actual API with "userId"
     json_dict["userId"] = 1

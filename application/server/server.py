@@ -199,17 +199,34 @@ def insert(table, new_input):
 
 
 @app.route('/edit/<table>/<item_id>/<title>', methods=['GET'])
-def edit(table, item_id, title):
+def edit_old(table, item_id, title):
     conn = eng.connect()
 
     query = ""
-    if table == "Movie":
-        query = "UPDATE Movie SET title = '%s' WHERE (tconst = %s)" % (parse.unquote(title), item_id)
-    elif table == "Cocktail":
-        query = "UPDATE CocktailName SET cocktailName = '%s' WHERE (cocktailId = %s)" % (parse.unquote(title), item_id)
-    elif table == "User":
+    # if table == "Movie":
+    #     query = "UPDATE Movie SET title = '%s' WHERE (tconst = %s)" % (parse.unquote(title), item_id)
+    # elif table == "Cocktail":
+    #     query = "UPDATE CocktailName SET cocktailName = '%s' WHERE (cocktailId = %s)" % (parse.unquote(title), item_id)
+    if table == "User":
         trs = title.split(':')
         query = "UPDATE User SET trOpen = '%s',trCon = '%s',trex = '%s',trAg = '%s',trNe = '%s' WHERE (userId = %s)" % (trs[0],trs[1],trs[2],trs[3],trs[4], item_id)
+
+    conn.execute(query)
+    response = {'status': 'success', 'message': 'Product edit successfully'}
+    return response
+
+
+@app.route('/edit/<table>/<json_uri>', methods=['GET'])
+def edit(table, json_uri):
+    conn = eng.connect()
+    json_dict = json.loads(parse.unquote(json_uri))
+    query = ""
+
+    if table == "Movie":
+        query = "UPDATE Movie SET title = '%s', year = %s WHERE (tConst = %s)" % (json_dict['title'], json_dict['year'], json_dict['tConst'])
+    elif table == "Cocktail":
+        query = ""
+        # query = "UPDATE CocktailName SET cocktailName = '%s' WHERE (cocktailId = %s)" % (parse.unquote(title), item_id)
 
     conn.execute(query)
     response = {'status': 'success', 'message': 'Product edit successfully'}

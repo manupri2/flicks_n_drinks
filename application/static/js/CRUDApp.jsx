@@ -61,27 +61,20 @@ class CRUDApp extends Component {
     var db = this.state.database.slice(0, -1);
     var apiUrl = 'http://cs411ccsquad.web.illinois.edu/';
     var data_json_uri = encodeURI(JSON.stringify(data));
+    console.log(JSON.stringify(data))
 
     if(this.state.isEditItem && this.state.database == "Movies"){
-      apiUrl += "edit/" + db + "/" + data.tconst.toString() + "/" + data.title;
+      //apiUrl += "edit/" + db + "/" + data.tconst.toString() + "/" + data.title;
+      apiUrl += "edit/" + db + "/" + data_json_uri;
     } else if (!this.state.isEditItem && this.state.database == "Movies") {
       apiUrl += "add/" + db + "/" + data_json_uri;
 
     } else if (this.state.isEditItem && this.state.database == "Cocktails") {
-      apiUrl += "edit/" + db + "/" + data.recipeId.toString() + "/" + data.cocktailName;
+     // apiUrl += "edit/" + db + "/" + data.recipeId.toString() + "/" + data.cocktailName;
+     apiUrl += "edit/" + db + "/" + data_json_uri;
     } else if (!this.state.isEditItem && this.state.database == "Cocktails") {
       apiUrl += "add/" + db + "/" + data_json_uri;
     }
-
-
-    //const myHeaders = new Headers();
-    //myHeaders.append('Content-Type', 'application/json');
-
-    //const options = {
-     // method: 'POST',
-     // body: JSON.stringify(data),
-     // myHeaders
-    //
 
     fetch(apiUrl);
     this.setState({
