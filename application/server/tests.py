@@ -88,8 +88,8 @@ def test_user_read_api():
 
 
 def test_movie_read_api():
-    json_dict = {'title': {'value': 'ca', 'operator': 'LIKE'},
-                 'year': {'value': '2005', 'operator': '='},
+    json_dict = {'title': {'value': 'chinese', 'operator': 'LIKE'},
+                 'year': {'value': '', 'operator': '='},
                  'rating': {'value': '', 'operator': '>='}}
     table = "Movies"
 
@@ -109,6 +109,7 @@ def test_movie_read_api():
     # print(res)
     print(res.loc[:, ["personalRating", "crew"]])
     print(res.loc[:, ["personalRating", "genres"]])
+    print(res.loc[:, ["personalRating", "ratesMovie"]])
 
 
 def test_cocktail_read_api():

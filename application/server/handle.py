@@ -251,7 +251,7 @@ def personalized_movie_search(table, json_dict, model, conn):
         if not votes_df.empty:
             # join votes to the result dataframe
             votes_df.set_index('tConst', inplace=True)
-            result_df = result_df.join(votes_df, lsuffix='', rsuffix='_copy')
+            result_df = result_df.join(votes_df, on='tConst', lsuffix='', rsuffix='_copy')
             print(result_df)
         else:
             result_df['ratesMovie'] = np.nan
