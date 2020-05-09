@@ -161,7 +161,7 @@ def test_basic_api():
 def new_add():
     api = "add/Movie"
     json_dict = {'title': "Bulldog Heaven Tres Perros",
-                 'year': -2020}
+                 'year': 2020}
     json_api_query(api, json_dict)
 
     # api = "add/User"
@@ -253,8 +253,17 @@ def test_cocktail_add():
     test_cocktail_print_state(match_dict, disp_col, "After")
 
 
+def test_edit_movie():
+    json_dict = {'tConst': 0,
+                'title': 'NewTitle',
+                 'year': 2020}
+    table = "Movie"
+    query = build_update_query(table, json_dict, 'tConst')
+    print(query)
+
+
 if __name__ == "__main__":
-    test_movie_read_api()
+    test_edit_movie()
 
     # vote_filt_dict = {"userId": {'value': 1, 'operator': '='}}
     # votes_query = build_general_read_query("FavoriteMovie", vote_filt_dict, "AND", columns=['tConst', 'ratesMovie'])

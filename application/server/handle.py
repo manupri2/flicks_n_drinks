@@ -212,6 +212,27 @@ def build_insert_query(table, json_dict):
     return query
 
 
+def build_update_query(table, json_dict, match_col):
+    formatted_dict = preformat_filter_dict(json_dict, "=")
+    match_val = {match_col: formatted_dict.pop(match_col)}
+
+    new_val_list = build_filters(formatted_dict)
+    match_val_list = build_filters(match_val)
+
+    new_val_str = ""
+    count = 0
+    for val in new_val_list:
+        if count > 0:
+            new_val_str += ", "
+        new_val_str += val
+        count += 1
+
+    query = "UPDATE %s SET %s" \
+            " WHERE (%s)" % (table, new_val_str, match_val_list[0])
+
+    return query
+
+
 def json_to_cs_str(json_dict):
     key_str = ""
     val_str = ""
@@ -346,6 +367,32 @@ def handle_add_recipe(json_dict, conn):
     insert_query = build_insert_query("CocktailRecipe", json_dict)
     conn.execute(insert_query)
 
+
+def handle_update_recipe(json_dict, conn):
+    checks = {"CocktailName": {"checkCol": "cocktailName", "idCol":  "cocktailId"},
+              "Glassware": {"checkCol": "glasswareName", "idCol":  "glasswareId"}}
+
+    # loop through all tables where we need to ensure values already exist due to foreign key constraints
+    for table_name, check_info in checks.items():
+        check_col = check_info["checkCol"]
+        id_col = check_info["idCol"]
+
+        if check_col in json_dict.keys():
+            # grabs cocktailName/glasswareName (for use in check_then_insert())
+            # pops from json_dict as cocktailName/glasswareName do not exist in CocktailRecipe table attributes
+            check_val = "'" + json_dict.pop(check_col) + "'"
+
+            # checks if value exists
+            #    - if so, returns id
+            #    - if not, inserts the new value into its respective table and then returns the id of new tuple
+            check_id = check_then_insert(table_name, {check_col: check_val}, id_col, conn)
+
+            # inserts id value into json_dict as cocktailId/glasswareId do exist in CocktailRecipe table attributes
+            json_dict[id_col] = check_id
+
+    # builds INSERT query to insert new CocktailRecipe
+    insert_query = build_insert_query("CocktailRecipe", json_dict)
+    conn.execute(insert_query)
 
 
 # def build_check_then_insert_query(table, check_dict, id_col, var_name):

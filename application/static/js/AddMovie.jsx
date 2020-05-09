@@ -7,7 +7,7 @@ class AddMovie extends React.Component {
     this.initialState = {
       tConst: '',
       title: 'Test',
-      year: '',
+      year: 0,
     }
 
     if(props.item){
@@ -22,10 +22,18 @@ class AddMovie extends React.Component {
 
   handleChange(event) {
     const name = event.target.name;
-    const value = event.target.value;
-    
+    var value = event.target.value;
+    let new_value;
+
+    if(name == "year"){
+        new_value = parseInt(value, 10);
+    } else {
+        new_value = value;
+    }
+
+    var value = event.target.value;
     this.setState({
-      [name]: value
+      [name]: new_value
     })
 
   }

@@ -223,9 +223,11 @@ def edit(table, json_uri):
     query = ""
 
     if table == "Movie":
-        query = "UPDATE Movie SET title = '%s', year = %s WHERE (tConst = %s)" % (json_dict['title'], json_dict['year'], json_dict['tConst'])
+        # query = "UPDATE Movie SET title = '%s', year = %s WHERE (tConst = %s)" % (json_dict['title'], json_dict['year'], json_dict['tConst'])
+        query = build_update_query(table, json_dict, 'tConst')
     elif table == "Cocktail":
         query = ""
+
         # query = "UPDATE CocktailName SET cocktailName = '%s' WHERE (cocktailId = %s)" % (parse.unquote(title), item_id)
 
     conn.execute(query)
