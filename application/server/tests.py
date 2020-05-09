@@ -199,36 +199,55 @@ def test_vote():
     test_vote_print_state(json_dict, vote_table, vote_col, "After")
 
 
-def test_cocktail_print_state(json_dict, state):
+def test_cocktail_print_state(json_dict, cols, state):
+    # cols = list(json_dict.keys())
+
     match_filters = preformat_filter_dict(json_dict, "=")
 
     check_query = build_general_read_query("CocktailSummary", match_filters, "AND")
-
+    # print(check_query)
     check_df, message = api_query(check_query)
     print("\nState: %s" % state)
     print(message)
     if check_df.empty:
         print(check_df)
     else:
-        print(check_df.loc[:, ['cocktailName', 'bartender', 'location']])
+        print(check_df.loc[:, cols])
     print()
 
 
 def test_cocktail_add():
     json_dict = {
-                  'cocktailName': "Wilburforce Whiskey",
-                  'bartender': "Wilbur",
+                  'cocktailName': "New Cocktail Name",
+                  'bartender': "Billy Joe",
                   'location': "Chicago",
-                  'glasswareName': "Billys Chalace"
+                  'glasswareName': "Beer Mug"
                  }
+    disp_col = list(json_dict.keys())
     match_dict = json_dict.copy()
     match_dict.pop('glasswareName')
     match_dict.pop('cocktailName')
+    keys, vals = json_to_cs_str(json_dict)
 
-    test_cocktail_print_state(match_dict, "Before")
-    # handle_add_recipe(json_dict, "conn")
-    json_api_query("add/Cocktail", json_dict)
-    test_cocktail_print_state(match_dict, "After")
+
+    test_cocktail_print_state(match_dict, disp_col, "Before")
+    # json_api_query("add/Cocktail", json_dict)
+    # remote_test_read_query(build_add_recipe_compound(json_dict))
+    # prep_query = "PREPARE "
+    test_query = "CALL AddCocktailProcedure(%s);" % vals
+    # test_query = "EXECUTE PreparedCocktail USING %s;" % vals
+    # test_query = """
+    #                 SET @v1 = 'WilbucoCHEEEyyahhhTHISITBOI';
+    #                 SET @v2 = 'Wilbur';
+    #                 SET @v3 = 'Chicago';
+    #                 SET @v4 = 'Billys ChalaceBOII';
+    #
+    #                 PREPARE s FROM 'CALL AddCocktailProcedure(?, ?, ?, ?)';
+    #                 EXECUTE s USING @v1, @v2, @v3, @v4;
+    #
+    #             """
+    remote_test_read_query(test_query)
+    test_cocktail_print_state(match_dict, disp_col, "After")
 
 
 if __name__ == "__main__":
