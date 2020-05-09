@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Chart from "react-apexcharts";
-import {Table, Container, Row, Col, Button, Nav, Navbar} from 'react-bootstrap';
+import {Table, Container, Row, Col, Button, Nav, Navbar, OverlayTrigger, Popover} from 'react-bootstrap';
 import Modal from 'react-awesome-modal';
 import ReactDOM from 'react-dom';
 import CRUDApp from './CRUDApp';
@@ -594,7 +594,41 @@ class UserApp extends Component {
 
                     <Row>
                         <Col sm={3}>
-
+                            <Row>
+                                <OverlayTrigger trigger="click" placement="right" overlay={
+                                    <Popover id="popover-basic">
+                                        <Popover.Title as="h3">Personality Traits</Popover.Title>
+                                        <Popover.Content>
+                                            <strong>Openness</strong><br />
+                                            A <strong>High</strong> value means that you are very creative, try new things and tackle new challenges.<br/>
+                                            A <strong>Low</strong> value means that you are not so creative, don't try new things and don't like new challenges.<br/>
+                                            <br />
+                                            <strong>Conscientiousness</strong><br />
+                                            A <strong>High</strong> value means that you like setting schedules, prioritize work and pay attention to detail.<br/>
+                                            A <strong>Low</strong> value means that you do not enjoy setting schedules, don't prioritize work and are not so attentive.<br/>
+                                            <br />
+                                            <strong>Extraversion</strong><br />
+                                            A <strong>High</strong> value means that you are very gregarious, energetic and straight forward.<br/>
+                                            A <strong>Low</strong> value means that you are shy, less energetic and enjoy being alone.<br/>
+                                            <br />
+                                            <strong>Agreeableness</strong><br />
+                                            A <strong>High</strong> value means that you are helpful, caring and empathetic towards people.<br/>
+                                            A <strong>Low</strong> value means that you are disinterested and not concerned for other people.<br/>
+                                            <br />
+                                            <strong>Neuroticism</strong><br />
+                                            A <strong>High</strong> value means that you get anxious or upset easily and experience dramatic mood swings.<br/>
+                                            A <strong>Low</strong> value means that you remain calm and composed in difficult situations.<br/>
+                                        </Popover.Content>
+                                    </Popover>
+                                }>
+                                    <Button variant="dark">Personality Traits - Click Me!</Button>
+                                </OverlayTrigger>
+                            </Row>
+                            <Row>&nbsp;</Row>
+                            <Row>
+                                <a href="https://www.truity.com/view/tests/big-five-personality">Take Personality Test</a>
+                            </Row>
+                            <Row>&nbsp;</Row>
                             <Row><h6>Openness: {this.state.user[0].openness}</h6></Row>
                             <Row><input type="range" value={this.state.user[0].openness} onChange={(e) => {
                                 this.handleChange_Openness(e)

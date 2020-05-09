@@ -31,12 +31,12 @@ def home():
 	return render_template("./pages/home.html")
 
 
-@app.route("/login")
+@app.route("/flicks_n_drinks")
 def login():
 	return render_template("./pages/loginPage.html")
 
 
-@app.route("/signup")
+@app.route("/flicks_n_drinks_new_user")
 def signup():
 	return render_template("./pages/signupPage.html")
 
