@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Container, Button, Alert, Form, ButtonGroup } from 'react-bootstrap';
+import { Container, Button, Nav, NavLink, Navbar,  Alert, Form, ButtonGroup, Row } from 'react-bootstrap';
 import { PlusCircle } from 'react-bootstrap-icons';
 import MovieList from './MovieList';
 import MovieQueryForm from './MovieQueryForm';
@@ -7,6 +7,10 @@ import CocktailList from './CocktailList';
 import CocktailQueryForm from './CocktailQueryForm';
 import AddMovie from './AddMovie';
 import AddCocktail from './AddCocktail';
+
+import UserApp from './userApp';
+import ReactDOM from 'react-dom';
+
 
 // just some scrap code i want to keep around as i think it may be useful
 // can put put it inside "componentDidMount()" for a component class and it will run this.test_Query() every 5000 ms
@@ -17,12 +21,16 @@ import AddCocktail from './AddCocktail';
 class CRUDApp extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+
+      // let user = this.props.usertoCRUD;
+
+        this.state = {
+          userId:this.props.userId>0?this.props.userId:-1*this.props.userId,
           isAddItem: false,
           error: null,
           isLoaded: true,
           response: {},
-          database: "Movies",
+          database: this.props.userId>0?"Movies":"Cocktails",
           items: [],
           deleted_item: {},
           curr_item: {},
@@ -212,6 +220,38 @@ class CRUDApp extends Component {
     //   )
   }
 
+  navtoUserPage(){
+    var apiUrl = 'http://cs411ccsquad.web.illinois.edu/read/User/';
+    var body = encodeURI(JSON.stringify({
+      'userId': this.state.userId,
+    }));
+    apiUrl += body;
+    fetch(apiUrl)
+        .then((response) => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((result) => {
+                console.log("Result!!!!!!!");
+                if (result.status === 'Results found'){
+
+                    ReactDOM.unmountComponentAtNode(document.getElementById('root'));
+                    ReactDOM.render(<UserApp userDetails={result.data[0]}/>, document.getElementById('root'));
+                }
+                else
+                    alert('Invalid User');
+            },
+            (error) => {
+                console.log("Error!!!!!!!!!");
+                console.log(error);
+            });
+
+    ReactDOM.unmountComponentAtNode(document.getElementById('root'));     
+    ReactDOM.render(<UserApp />, document.getElementById('root'));
+}
+
   render() {
     let itemForm;
     if(this.state.isAddItem || this.state.isEditItem) {
@@ -222,20 +262,49 @@ class CRUDApp extends Component {
         }
     }
 
+    
     this.searchItems();
 
     return (
       <div>
+            <Navbar bg="dark" variant="dark">   
+                <Navbar.Brand href="">Flicks n Drinks</Navbar.Brand>
+                    <Nav className="mr-auto">
+                        <Button variant="dark"  onClick={() => this.navtoUserPage()} > My profile </Button>
+                        <Button variant="dark"  onClick={() => this.changeDB("Movies")}> Movies </Button>
+                        <Button variant="dark"  onClick={() => this.changeDB("Cocktails")}> Cocktails </Button>
+                    </Nav>  
+                    <Nav className="justify-content-end" activeKey="">
+                        <Nav.Item>
+                            <Nav.Link href="/login">Logout</Nav.Link>
+                        </Nav.Item>
+                    </Nav>
+            </Navbar>
+
+          
+
+{/* 
+        <Nav className="justify-content-end" activeKey="">
+              <Nav.Item>
+                  <Nav.Link href="/login">Logout</Nav.Link>
+              </Nav.Item>
+        </Nav>
         <ButtonGroup aria-label="Select database">
           <Button variant="secondary" onClick={() => this.changeDB("Movies")}>Movies</Button>
           <Button variant="secondary" onClick={() => this.changeDB("Cocktails")}>Cocktails</Button>
-        </ButtonGroup>
+        </ButtonGroup> */}
 
         <Container>
+          
+
+          <Row><br/><br/><br/></Row>
+
+          <Row>
           {this.state.response.status === 'success' && <div><br /><Alert variant="info">{this.state.response.message}</Alert></div>}
           {!this.state.isAddItem && <div class="text-right pr-0"><Button variant="primary" onClick={() => this.onCreate()}>Add {this.state.database.slice(0, -1)} <PlusCircle /></Button><br /><br /></div>}
-
-          {!this.state.isAddItem && this.state.database == "Movies" && <MovieQueryForm updateFilters={this.updateFilters}/>}
+          </Row>
+          
+          {!this.state.isAddItem && this.state.database == "Movies" && <MovieQueryForm updateFilters={this.updateFilters}/>}  
           {!this.state.isAddItem && this.state.database == "Movies" && <MovieList editItem={this.editItem} deleteItem={this.deleteItem} info={this.state}/>}
           {!this.state.isAddItem && this.state.database == "Cocktails" && <CocktailQueryForm updateFilters={this.updateFilters}/>}
           {!this.state.isAddItem && this.state.database == "Cocktails" && <CocktailList editItem={this.editItem} deleteItem={this.deleteItem} info={this.state}/>}

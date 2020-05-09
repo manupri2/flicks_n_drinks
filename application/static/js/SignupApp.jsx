@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Button, Container, Col, Form, Jumbotron} from 'react-bootstrap';
-import "../dist/signup-page.css"
 import ReactDOM from "react-dom";
 import LoginApp from "./LoginApp";
 import CRUDApp from "./CRUDApp";

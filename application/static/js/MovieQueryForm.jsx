@@ -37,6 +37,11 @@ class MovieQueryForm extends React.Component {
 
           return(
               <Form onSubmit={this.handleSubmit}>
+              <Row>
+              <Button className="h-25" variant="success" type="submit">Query Movies</Button>
+              </Row>
+
+              <Row><br/><br/><br/></Row>
 
                   <Row>
                       <Col>
@@ -55,7 +60,7 @@ class MovieQueryForm extends React.Component {
                           </Form.Row>
                       </Col>
 
-                       <Button className="h-25" variant="success" type="submit">Query Movies</Button>
+                       
 
                   </Row>
 
