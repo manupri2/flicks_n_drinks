@@ -237,7 +237,7 @@ class UserApp extends Component {
                     agreeableness: u.agreeableness,
                     neuroticism: data
                 }
-            })
+            });
             return {user}
         });
     }
@@ -452,11 +452,11 @@ class UserApp extends Component {
                         'neuroticism': result.data[0].trNe,
                         isMaster: 0,
                         'userRank': this.state.nextUserRank
-                    }
+                    };
                     this.setState({nextUserRank: this.state.nextUserRank + 1});
 
-                    old_user.push(result)
-                    console.log(this.state.user)
+                    old_user.push(result);
+                    console.log(this.state.user);
                     this.forceUpdate()
                 },
                 (error) => {
