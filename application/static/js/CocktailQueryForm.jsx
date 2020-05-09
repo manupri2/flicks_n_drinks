@@ -8,7 +8,7 @@ class CocktailQueryForm extends React.Component {
         super(props);
         this.state = {
           cocktailName: {value: '', operator: 'LIKE', label: "Cocktail Name"} ,
-          ingredientName: {value: '', operator: 'LIKE', label: "Ingedients"},
+          ingredientName: {value: '', operator: 'LIKE', label: "Ingredients"},
           bartender: {value: '', operator: 'LIKE', label: "Bartender"},
           location: {value: '', operator: 'LIKE', label: "Location"},
           rating: {value: '', operator: '>=', label: "Rating"}

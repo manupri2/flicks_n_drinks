@@ -67,7 +67,7 @@ class CRUDApp extends Component {
     } else if (this.state.isEditItem && this.state.database == "Cocktails") {
       apiUrl += "edit/" + db + "/" + data.recipeId.toString() + "/" + data.cocktailName;
     } else if (!this.state.isEditItem && this.state.database == "Cocktails") {
-      apiUrl += "add/" + db + "/" + data.cocktailName;
+      apiUrl += "add/" + db + "/" + data_json_uri;
     }
 
 

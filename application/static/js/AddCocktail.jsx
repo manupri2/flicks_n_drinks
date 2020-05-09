@@ -7,6 +7,9 @@ class AddCocktail extends React.Component {
     this.initialState = {
       recipeId: '',
       cocktailName: 'Test',
+      bartender: '',
+      location: '',
+      glasswareName: ''
     }
 
     if(props.item){
@@ -50,15 +53,47 @@ class AddCocktail extends React.Component {
         <Row>
           <Col sm={6}>
             <Form onSubmit={this.handleSubmit}>
-              <Form.Group controlId="cocktailName">
-                <Form.Label>Cocktail Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="cocktailName"
-                  value={this.state.cocktailName}
-                  onChange={this.handleChange}
-                  placeholder=""/>
-              </Form.Group>
+              <Form.Row>
+                <Form.Group as={Col} controlId="cocktailName">
+                  <Form.Label>Cocktail Name</Form.Label>
+                  <Form.Control
+                    required
+                    type="text"
+                    name="cocktailName"
+                    value={this.state.cocktailName}
+                    onChange={this.handleChange}
+                    placeholder=""/>
+                </Form.Group>
+                <Form.Group as={Col} controlId="bartender">
+                  <Form.Label>Bartender</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="bartender"
+                    value={this.state.bartender}
+                    onChange={this.handleChange}
+                    placeholder=""/>
+                </Form.Group>
+              </Form.Row>
+              <Form.Row>
+                <Form.Group as={Col}  controlId="location">
+                  <Form.Label>Location</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="location"
+                    value={this.state.location}
+                    onChange={this.handleChange}
+                    placeholder=""/>
+                </Form.Group>
+                <Form.Group as={Col}  controlId="glasswareName">
+                  <Form.Label>Glassware Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="glasswareName"
+                    value={this.state.glasswareName}
+                    onChange={this.handleChange}
+                    placeholder=""/>
+                </Form.Group>
+              </Form.Row>
               <Form.Group>
                 <Form.Control type="hidden" name="recipeId" value={this.state.recipeId} />
                 <Button variant="success" type="submit">Save</Button>
