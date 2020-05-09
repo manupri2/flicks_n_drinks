@@ -253,10 +253,10 @@ def test_cocktail_add():
 
 
 if __name__ == "__main__":
-    # test_movie_read_api()
+    test_movie_read_api()
 
-    vote_filt_dict = {"userId": {'value': 1, 'operator': '='}}
-    votes_query = build_general_read_query("FavoriteMovie", vote_filt_dict, "AND", columns=['tConst', 'ratesMovie'])
-    remote_test_read_query(votes_query)
+    # vote_filt_dict = {"userId": {'value': 1, 'operator': '='}}
+    # votes_query = build_general_read_query("FavoriteMovie", vote_filt_dict, "AND", columns=['tConst', 'ratesMovie'])
+    # remote_test_read_query(votes_query)
 
 

@@ -253,7 +253,7 @@ def personalized_movie_search(table, json_dict, model, conn):
         else:
             result_df['ratesMovie'] = np.nan
 
-        feat_dict = {"userId": user_id, "tConst": list(result_df["tconst"].values)}
+        feat_dict = {"userId": user_id, "tConst": list(result_df["tConst"].values)}
         compat_df = handle_mtnn_api(feat_dict, model, conn)
         result_df["personalRating"] = compat_df["personalRating"]
 
