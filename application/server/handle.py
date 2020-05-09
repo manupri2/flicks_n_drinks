@@ -17,6 +17,10 @@ def build_filters(filter_dict):
         filter_val = options['value']
         operator = options['operator']
 
+        print("Filter: %s" % filterX)
+        print("Value: %s" % filter_val)
+        print(type(filter_val))
+
         if isinstance(filter_val, str) and filter_val:
             if operator == 'LIKE':
                 # filter_val = "'%%" + filter_val + "%%'"
