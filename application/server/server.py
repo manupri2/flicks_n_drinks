@@ -32,12 +32,12 @@ def home():
 
 
 @app.route("/flicks_n_drinks")
-def login():
+def flicks_n_drinks():
 	return render_template("./pages/loginPage.html")
 
 
 @app.route("/flicks_n_drinks_new_user")
-def signup():
+def flicks_n_drinks_new_user():
 	return render_template("./pages/signupPage.html")
 
 
