@@ -214,9 +214,11 @@ def build_insert_query(table, json_dict):
 
 def build_update_query(table, json_dict, match_col):
     formatted_dict = preformat_filter_dict(json_dict, "=")
+    print(formatted_dict)
     match_val = {match_col: formatted_dict.pop(match_col)}
 
     new_val_list = build_filters(formatted_dict)
+    print(new_val_list)
     match_val_list = build_filters(match_val)
 
     new_val_str = ""
@@ -227,6 +229,7 @@ def build_update_query(table, json_dict, match_col):
         new_val_str += val
         count += 1
 
+    print(new_val_str)
     query = "UPDATE %s SET %s" \
             " WHERE (%s)" % (table, new_val_str, match_val_list[0])
 
