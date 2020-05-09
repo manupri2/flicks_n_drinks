@@ -189,7 +189,7 @@ def insert(table, new_input):
     json_dict = json.loads(parse.unquote(new_input))
 
     if table == "Cocktail":
-        handle_add_recipe(json_dict, conn)
+        handle_recipe_action(json_dict, conn, "insert")
     else:
         query = build_insert_query(table, json_dict)
         conn.execute(query)
@@ -222,12 +222,10 @@ def edit(table, json_uri):
     json_dict = json.loads(parse.unquote(json_uri))
 
     if table == "Movie":
-        # query = "UPDATE Movie SET title = '%s', year = %s WHERE (tConst = %s)" % (json_dict['title'], json_dict['year'], json_dict['tConst'])
         query = build_update_query(table, json_dict, 'tConst')
         conn.execute(query)
-
     elif table == "Cocktail":
-        handle_update_recipe(json_dict, conn)
+        handle_recipe_action(json_dict, conn, "update")
 
     response = {'status': 'success', 'message': 'Product edit successfully'}
     return response

@@ -17,10 +17,6 @@ def build_filters(filter_dict):
         filter_val = options['value']
         operator = options['operator']
 
-        print("Filter: %s" % filterX)
-        print("Value: %s" % filter_val)
-        print(type(filter_val))
-
         if isinstance(filter_val, str) and filter_val:
             if operator == 'LIKE':
                 # filter_val = "'%%" + filter_val + "%%'"
@@ -348,7 +344,7 @@ def check_then_insert(table, check_dict, id_col, conn):
     return check_df[id_col][0]
 
 
-def handle_add_recipe(json_dict, conn):
+def handle_recipe_action(json_dict, conn, action):
     checks = {"CocktailName": {"checkCol": "cocktailName", "idCol":  "cocktailId"},
               "Glassware": {"checkCol": "glasswareName", "idCol":  "glasswareId"}}
 
@@ -370,42 +366,46 @@ def handle_add_recipe(json_dict, conn):
             # inserts id value into json_dict as cocktailId/glasswareId do exist in CocktailRecipe table attributes
             json_dict[id_col] = check_id
 
-    # builds INSERT query to insert new CocktailRecipe
-    insert_query = build_insert_query("CocktailRecipe", json_dict)
-    conn.execute(insert_query)
+    final_query = ""
+    if action == "insert":
+        # builds INSERT query to insert new CocktailRecipe
+        final_query = build_insert_query("CocktailRecipe", json_dict)
+    if action == "update":
+        # builds UPDATE query to update CocktailRecipe
+        json_dict.pop("ingredients")
+        json_dict.pop("rating")
+        final_query = build_update_query("CocktailRecipe", json_dict, "recipeId")
+
+    conn.execute(final_query)
 
 
-def handle_update_recipe(json_dict, conn):
-    checks = {"CocktailName": {"checkCol": "cocktailName", "idCol":  "cocktailId"},
-              "Glassware": {"checkCol": "glasswareName", "idCol":  "glasswareId"}}
-
-    # loop through all tables where we need to ensure values already exist due to foreign key constraints
-    for table_name, check_info in checks.items():
-        check_col = check_info["checkCol"]
-        id_col = check_info["idCol"]
-
-        if check_col in json_dict.keys():
-            # grabs cocktailName/glasswareName (for use in check_then_insert())
-            # pops from json_dict as cocktailName/glasswareName do not exist in CocktailRecipe table attributes
-            check_val = "'" + json_dict.pop(check_col) + "'"
-
-            # checks if value exists
-            #    - if so, returns id
-            #    - if not, inserts the new value into its respective table and then returns the id of new tuple
-            check_id = check_then_insert(table_name, {check_col: check_val}, id_col, conn)
-
-            # inserts id value into json_dict as cocktailId/glasswareId do exist in CocktailRecipe table attributes
-            json_dict[id_col] = check_id
-            print("idCol: %s        idVal: %s" % (id_col, check_id))
-
-    # builds INSERT query to insert new CocktailRecipe
-    print(json_dict)
-    json_dict.pop("ingredients")
-    json_dict.pop("rating")
-    print(json_dict)
-    update_query = build_update_query("CocktailRecipe", json_dict, "recipeId")
-    print(update_query)
-    conn.execute(update_query)
+# def handle_update_recipe(json_dict, conn):
+#     checks = {"CocktailName": {"checkCol": "cocktailName", "idCol":  "cocktailId"},
+#               "Glassware": {"checkCol": "glasswareName", "idCol":  "glasswareId"}}
+#
+#     # loop through all tables where we need to ensure values already exist due to foreign key constraints
+#     for table_name, check_info in checks.items():
+#         check_col = check_info["checkCol"]
+#         id_col = check_info["idCol"]
+#
+#         if check_col in json_dict.keys():
+#             # grabs cocktailName/glasswareName (for use in check_then_insert())
+#             # pops from json_dict as cocktailName/glasswareName do not exist in CocktailRecipe table attributes
+#             check_val = "'" + json_dict.pop(check_col) + "'"
+#
+#             # checks if value exists
+#             #    - if so, returns id
+#             #    - if not, inserts the new value into its respective table and then returns the id of new tuple
+#             check_id = check_then_insert(table_name, {check_col: check_val}, id_col, conn)
+#
+#             # inserts id value into json_dict as cocktailId/glasswareId do exist in CocktailRecipe table attributes
+#             json_dict[id_col] = check_id
+#
+#     # builds INSERT query to insert new CocktailRecipe
+#     json_dict.pop("ingredients")
+#     json_dict.pop("rating")
+#     update_query = build_update_query("CocktailRecipe", json_dict, "recipeId")
+#     conn.execute(update_query)
 
 # def build_check_then_insert_query(table, check_dict, id_col, var_name):
 #     filter_dict = preformat_filter_dict(check_dict, "=")
