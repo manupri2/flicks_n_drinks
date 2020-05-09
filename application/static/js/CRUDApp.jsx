@@ -261,23 +261,10 @@ class CRUDApp extends Component {
                     </Nav>  
                     <Nav className="justify-content-end" activeKey="">
                         <Nav.Item>
-                            <Nav.Link href="/flicks_n_drinks">Logout</Nav.Link>
+                            <Nav.Link href="flicks_n_drinks">Logout</Nav.Link>
                         </Nav.Item>
                     </Nav>
             </Navbar>
-
-          
-
-{/* 
-        <Nav className="justify-content-end" activeKey="">
-              <Nav.Item>
-                  <Nav.Link href="/login">Logout</Nav.Link>
-              </Nav.Item>
-        </Nav>
-        <ButtonGroup aria-label="Select database">
-          <Button variant="secondary" onClick={() => this.changeDB("Movies")}>Movies</Button>
-          <Button variant="secondary" onClick={() => this.changeDB("Cocktails")}>Cocktails</Button>
-        </ButtonGroup> */}
 
         <Container>
           
