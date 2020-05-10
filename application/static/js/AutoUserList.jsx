@@ -1,8 +1,15 @@
 import React from 'react';
 import { Table, Button, Alert, Spinner } from 'react-bootstrap';
 
+class AutoUserList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        response: {}
+    }
+  }
 
-   submitAddFriend(add_user_id) {
+  submitAddFriend(add_user_id) {
         var api_url = 'http://cs411ccsquad.web.illinois.edu/read/User/';
         var filters = {userId: add_user_id};
         var filter_uri = encodeURI(JSON.stringify(filters));
@@ -35,11 +42,10 @@ import { Table, Button, Alert, Spinner } from 'react-bootstrap';
                     this.setState({error})
                 }
             )
-    }
-
+  }
 
 // need to add state.addSearch.autoCompleteLoaded
-   addFriendChange(event) {
+  addFriendChange(event) {
         const name = event.target.name;
         const value = event.target.value;
 
@@ -55,8 +61,7 @@ import { Table, Button, Alert, Spinner } from 'react-bootstrap';
 
             return state
         })
-    }
-
+  }
 
 // need to add state.addSearch.displayUsers
   searchAutoComplete() {
@@ -92,16 +97,6 @@ import { Table, Button, Alert, Spinner } from 'react-bootstrap';
             }
   }
 
-
-class AutoUserList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-        response: {}
-    }
-  }
-
-
 // set props for 'users=this.state.addSearch.displayUsers' and 'submitAddFriend=this.props.submitAddFriend'
   render() {
     const users = this.props.users;
@@ -133,7 +128,6 @@ class AutoUserList extends React.Component {
         </div>
       )
     }
-  }
 }
 
 export default AutoUserList;

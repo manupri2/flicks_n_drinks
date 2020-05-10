@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import CRUDApp from './CRUDApp';
 import TopGenres from './TopGenres';
 
+import AutoUserList from './AutoUserList'
 
 class UserApp extends Component {
     constructor(props) {
@@ -51,8 +52,9 @@ class UserApp extends Component {
             deleteFriendPopup: false,
             editPersonalityPopup: false,
             editPersonalityResult: '',
-            addSearch: {firstName: '', lastName: '', email: ''},
+            addSearch: {firstName: '', lastName: '', email: '', autoCompleteLoaded:'', displayUsers:[]},
             nextUserRank: 2
+            
         }
         
         // this.showChart = this.showChart.bind(this)
@@ -61,11 +63,12 @@ class UserApp extends Component {
         // this.handleChange_Extroversion = this.handleChange_Extroversion.bind(this)
         // this.handleChange_Agreeableness = this.handleChange_Agreeableness.bind(this)
         // this.handleChange_Neuroticism = this.handleChange_Neuroticism.bind(this)
-
         // this.getTopGenres = this.getTopGenres.bind(this)
         // this.submitPersonalityChange = this.submitPersonalityChange.bind(this)
         // this.addFriend= this.addFriend.bind(this)
         // this.deleteFriend= this.deleteFriend.bind(this)
+
+        this.submitAddFriendAuto = this.submitAddFriendAuto.bind(this)
 
 
     }
@@ -217,7 +220,9 @@ class UserApp extends Component {
 
 
     addFriendPopup() {
-
+        
+        var users = this.state.addSearch.displayUsers
+        // var submitAddFriend = this.props.submitAddFriend
         return (
 
             <div>
@@ -226,8 +231,12 @@ class UserApp extends Component {
                        onClickAway={() => this.closeAddFriendModal()}>
                     <div>
                         <h1>&nbsp;Adding Friend to Chart</h1>
+                        &nbsp;<Button color="primary" onClick={() => this.searchAutoComplete()}> Search </Button>
+                        &nbsp;<Button color="primary" onClick={() => this.closeAddFriendModal()}> Close </Button>
                         <Container>
                             <Row>&nbsp;</Row>
+                            
+                                
                             <Row>&nbsp;</Row>
                             <Row>
                                 <Col sm={4}>
@@ -249,17 +258,42 @@ class UserApp extends Component {
                                 <Col sm={4}>
                                     <Row>&nbsp;<h4>Email</h4></Row>
                                     <Row>
-                                        &nbsp;<input type="text" name={'email'} placeholder="email"
+                                        &nbsp;<input type="text" name={'emailId'} placeholder="email"
                                                      onChange={() => this.addFriendChange(event)}/>
                                     </Row>
                                 </Col>
                             </Row>
+                            <div>
+            <Table>
+              <thead>
+                <tr>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Email</th>
+                  <th> </th>
+                </tr>
+              </thead>
+              <tbody>
+                {users.map(user => (
+                  <tr key={user.userId}>
+                    <td>{user.firstName}</td>
+                    <td>{user.lastName}</td>
+                    <td>{user.emailId}</td>
+                    <td>
+                      <Button variant="info" onClick={() => this.submitAddFriendAuto(user.userId)}>Add</Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </div>
+                            
                             <Row>&nbsp;</Row>
                             <Row>&nbsp;</Row>
                             <Row>
-                                &nbsp;<Button color="primary" onClick={() => this.submitAddFriend()}> Add </Button>
+                                {/* &nbsp;<Button color="primary" onClick={() => this.searchAutoComplete()}> Search </Button>
                                 &nbsp;<Button color="primary"
-                                              onClick={() => this.closeAddFriendModal()}> Close </Button>
+                                              onClick={() => this.closeAddFriendModal()}> Close </Button> */}
                             </Row>
                         </Container>
                     </div>
@@ -269,8 +303,8 @@ class UserApp extends Component {
         )
     }
 
+    
     openAddFriendModal() {
-
 
         this.setState({
             addFriendPopup: true
@@ -284,6 +318,24 @@ class UserApp extends Component {
         });
     }
 
+    // addFriendChange(event) {
+    //     const name = event.target.name;
+    //     const value = event.target.value;
+
+    //     this.setState(state => {
+    //         if (name == "firstName")
+    //             state.addSearch.firstName = value
+    //         else if (name == "lastName")
+    //             state.addSearch.lastName = value
+    //         else (name == "email")
+    //         state.addSearch.email = value
+
+    //         return state
+    //     })
+
+    // }
+    
+    // need to add state.addSearch.autoCompleteLoaded
     addFriendChange(event) {
         const name = event.target.name;
         const value = event.target.value;
@@ -293,12 +345,52 @@ class UserApp extends Component {
                 state.addSearch.firstName = value
             else if (name == "lastName")
                 state.addSearch.lastName = value
-            else (name == "email")
-            state.addSearch.email = value
+            else if (name == "emailId")
+                state.addSearch.email = value
+
+            state.addSearch.autoCompleteLoaded = false;
 
             return state
         })
+    }
 
+    searchAutoComplete() {
+        var api_url = 'http://cs411ccsquad.web.illinois.edu/read/UserAuto/';
+        var filters = {
+                        userId: this.state.user[0].userId,
+                        firstName: this.state.addSearch.firstName,
+                        lastName: this.state.addSearch.lastName,
+                        emailId: this.state.addSearch.email
+                        }
+        var filter_uri = encodeURI(JSON.stringify(filters));
+        
+        api_url += filter_uri;
+        
+        console.log(api_url);
+        console.log(JSON.stringify(filters));
+
+
+        if(!this.state.addSearch.autoCompleteLoaded){
+            fetch(api_url)
+                .then(res => res.json())
+                .then(
+                    (result) => {
+                                    console.log(result);
+                                    this.setState(state => {
+                                    state.addSearch.autoCompleteLoaded = true;
+                                    state.addSearch.displayUsers = result.data;
+                                    return state
+                                    })
+                                },
+                    (error) => {
+                                    this.setState(state => {
+                                    state.addSearch.autoCompleteLoaded = true;
+                                    state.addSearch.displayUsers = [];
+                                    return state
+                                });
+                    }
+                )
+        }
     }
 
     submitAddFriend() {
@@ -308,7 +400,9 @@ class UserApp extends Component {
         var lastName = this.state.addSearch.lastName
         var email = this.state.addSearch.email
         var filters = "select * from User where firstName = '" + firstName + "' and lastName = '" + lastName + "' and emailId = '" + email + "'"
+        
         api_url = api_url + filters
+        // console.log(api_url)
 
         fetch(api_url)
             .then(res => res.json())
@@ -339,6 +433,40 @@ class UserApp extends Component {
 
     }
 
+    submitAddFriendAuto(add_user_id){
+        var api_url = 'http://cs411ccsquad.web.illinois.edu/read/User/';
+        var filters = {userId: add_user_id};
+        var filter_uri = encodeURI(JSON.stringify(filters));
+        api_url += filter_uri;
+
+        fetch(api_url)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    let old_user = this.state.user
+                    var result = {
+                        'userId': result.data[0].userId,
+                        'firstName': result.data[0].firstName,
+                        'lastName': result.data[0].lastName,
+                        'trOpen': result.data[0].trOpen,
+                        'trCon': result.data[0].trCon,
+                        'trEx': result.data[0].trEx,
+                        'trAg': result.data[0].trAg,
+                        'trNe': result.data[0].trNe,
+                        isMaster: 0,
+                        'userRank': this.state.nextUserRank
+                    };
+                    this.setState({nextUserRank: this.state.nextUserRank + 1});
+
+                    old_user.push(result);
+                    console.log(this.state.user);
+                    this.forceUpdate()
+                },
+                (error) => {
+                    this.setState({error})
+                }
+            )
+    }
     deleteFriendPopup() {
         return (
 
