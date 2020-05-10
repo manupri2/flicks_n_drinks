@@ -138,6 +138,8 @@ def insert(table, new_input):
     if table == "Cocktail":
         if "userId" in json_dict.keys():
             json_dict.pop("userId")
+        if "recipeId" in json_dict.keys():
+            json_dict.pop("recipeId")
         handle_recipe_action(json_dict, conn, "insert")
 
     if table == "Movie":
