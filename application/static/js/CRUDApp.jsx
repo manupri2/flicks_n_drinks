@@ -22,15 +22,13 @@ class CRUDApp extends Component {
   constructor(props) {
     super(props);
 
-      // let user = this.props.usertoCRUD;
-
         this.state = {
-          userId:this.props.userId>0?this.props.userId:-1*this.props.userId,
+          user:this.props.usertoCURD,
           isAddItem: false,
           error: null,
           isLoaded: true,
           response: {},
-          database: this.props.userId>0?"Movies":"Cocktails",
+          database: this.props.usertoCURD.database? "Cocktails":"Movies",
           items: [],
           deleted_item: {},
           curr_item: {},
@@ -177,33 +175,34 @@ class CRUDApp extends Component {
 
 
   navtoUserPage(){
-    var apiUrl = 'http://cs411ccsquad.web.illinois.edu/read/User/';
-    var body = encodeURI(JSON.stringify({
-      'userId': this.state.userId,
-    }));
-    apiUrl += body;
-    fetch(apiUrl)
-        .then((response) => {
-          if (!response.ok) {
-              throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        .then((result) => {
-                if (result.status === 'Results found'){
-                    ReactDOM.unmountComponentAtNode(document.getElementById('root'));
-                    ReactDOM.render(<UserApp userDetails={result.data[0]}/>, document.getElementById('root'));
-                }
-                else
-                    alert('Invalid User');
-            },
-            (error) => {
-                console.log("Error!!!!!!!!!");
-                console.log(error);
-            });
+    // var apiUrl = 'http://cs411ccsquad.web.illinois.edu/read/User/';
+    // var body = encodeURI(JSON.stringify({
+    //   'userId': this.state.userId,
+    // }));
+    // apiUrl += body;
+    // fetch(apiUrl)
+    //     .then((response) => {
+    //       if (!response.ok) {
+    //           throw new Error('Network response was not ok');
+    //       }
+    //       return response.json();
+    //     })
+    //     .then((result) => {
+    //             if (result.status === 'Results found'){
+    //                 ReactDOM.unmountComponentAtNode(document.getElementById('root'));
+    //                 ReactDOM.render(<UserApp userDetails={result.data[0]}/>, document.getElementById('root'));
+    //             }
+    //             else
+    //                 alert('Invalid User');
+    //         },
+    //         (error) => {
+    //             console.log("Error!!!!!!!!!");
+    //             console.log(error);
+    //         });
 
+    console.log(this.state.user)    
     ReactDOM.unmountComponentAtNode(document.getElementById('root'));     
-    ReactDOM.render(<UserApp />, document.getElementById('root'));
+    ReactDOM.render(<UserApp userDetails ={this.state.user}/>, document.getElementById('root'));
   }
 
 
@@ -237,6 +236,12 @@ class CRUDApp extends Component {
 
         <Container>
           <Row><br/><br/><br/></Row>
+
+          <Row>
+
+          </Row>
+
+
           <Row>
               {this.state.response.status === 'success' && <div><br /><Alert variant="info">{this.state.response.message}</Alert></div>}
               {!this.state.isAddItem && <div class="text-right pr-0"><Button variant="primary" onClick={() => this.onCreate()}>Add {this.state.database.slice(0, -1)} <PlusCircle /></Button><br /><br /></div>}

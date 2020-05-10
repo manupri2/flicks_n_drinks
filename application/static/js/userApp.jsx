@@ -11,32 +11,8 @@ class UserApp extends Component {
     constructor(props) {
         super(props);
 
-        let defaultUser =
-            this.props.userDetails == null ? {
-                    userId: 2,
-                    firstName: 'Oscar',
-                    lastName: 'Huang',
-                    openness: 80,
-                    agreeableness: 40,
-                    neuroticism: 100,
-                    extroversion: 30,
-                    conscience: 50,
-                    isMaster: 1,
-                    userRank: 0
-                } :
-
-                {
-                    userId: this.props.userDetails.userId,
-                    firstName: this.props.userDetails.firstName,
-                    lastName: this.props.userDetails.lastName,
-                    openness: this.props.userDetails.trOpen,
-                    agreeableness: this.props.userDetails.trAg,
-                    neuroticism: this.props.userDetails.trNe,
-                    extroversion: this.props.userDetails.trEx,
-                    conscience: this.props.userDetails.trCon,
-                    isMaster: 1,
-                    userRank: 0
-                };
+        let defaultUser = this.props.userDetails
+        defaultUser["isMaster"]=1
 
         this.state = {
 
@@ -78,16 +54,16 @@ class UserApp extends Component {
             addSearch: {firstName: '', lastName: '', email: ''},
             nextUserRank: 2
         }
+        
+        // this.showChart = this.showChart.bind(this)
+        // this.handleChange_Openness = this.handleChange_Openness.bind(this)
+        // this.handleChange_Conscientiousness = this.handleChange_Conscientiousness.bind(this)
+        // this.handleChange_Extroversion = this.handleChange_Extroversion.bind(this)
+        // this.handleChange_Agreeableness = this.handleChange_Agreeableness.bind(this)
+        // this.handleChange_Neuroticism = this.handleChange_Neuroticism.bind(this)
 
-        this.showChart = this.showChart.bind(this)
-        this.handleChange_Openness = this.handleChange_Openness.bind(this)
-        this.handleChange_Conscientiousness = this.handleChange_Conscientiousness.bind(this)
-        this.handleChange_Extroversion = this.handleChange_Extroversion.bind(this)
-        this.handleChange_Agreeableness = this.handleChange_Agreeableness.bind(this)
-        this.handleChange_Neuroticism = this.handleChange_Neuroticism.bind(this)
-
-        this.getTopGenres = this.getTopGenres.bind(this)
-        this.submitPersonalityChange = this.submitPersonalityChange.bind(this)
+        // this.getTopGenres = this.getTopGenres.bind(this)
+        // this.submitPersonalityChange = this.submitPersonalityChange.bind(this)
         // this.addFriend= this.addFriend.bind(this)
         // this.deleteFriend= this.deleteFriend.bind(this)
 
@@ -98,7 +74,7 @@ class UserApp extends Component {
 
         const newSeries = []
         this.state.user.map((u) => {
-            const tr_list = [u.openness, u.conscience, u.extroversion, u.agreeableness, u.neuroticism];
+            const tr_list = [u.trOpen, u.trCon, u.trEx, u.trAg, u.trNe];
             const data = tr_list.map((tr) => {
                 return tr
             });
@@ -119,127 +95,33 @@ class UserApp extends Component {
 
     handleChange_Openness(e) {
         const input = e.target.value
+        this.state.user[0]["trOpen"] = parseInt(input)
+        this.forceUpdate()
 
-        this.setState(state => {
-            const user = state.user.map((u) => {
-                let data = u.openness
-                if (u.isMaster == 1)
-                    data = input
-                return {
-                    userId: u.userId,
-                    firstName: u.firstName,
-                    lastName: u.lastName,
-                    isMaster: u.isMaster,
-                    userRank: u.userRank,
-                    openness: data,
-                    conscience: u.conscience,
-                    extroversion: u.extroversion,
-                    agreeableness: u.agreeableness,
-                    neuroticism: u.neuroticism
-                }
-            })
-            return {user}
-        });
     }
 
     handleChange_Conscientiousness(e) {
         const input = e.target.value
-
-        this.setState(state => {
-            const user = state.user.map((u) => {
-                let data = u.conscience
-                if (u.isMaster == 1)
-                    data = input
-                return {
-                    userId: u.userId,
-                    firstName: u.firstName,
-                    lastName: u.lastName,
-                    isMaster: u.isMaster,
-                    userRank: u.userRank,
-                    openness: u.openness,
-                    conscience: data,
-                    extroversion: u.extroversion,
-                    agreeableness: u.agreeableness,
-                    neuroticism: u.neuroticism
-                }
-            })
-            return {user}
-        });
+        this.state.user[0]["trCon"] = parseInt(input)
+        this.forceUpdate()
     }
 
     handleChange_Extroversion(e) {
         const input = e.target.value
-
-        this.setState(state => {
-            const user = state.user.map((u) => {
-                let data = u.extroversion
-                if (u.isMaster == 1)
-                    data = input
-                return {
-                    userId: u.userId,
-                    firstName: u.firstName,
-                    lastName: u.lastName,
-                    isMaster: u.isMaster,
-                    userRank: u.userRank,
-                    openness: u.openness,
-                    conscience: u.conscience,
-                    extroversion: data,
-                    agreeableness: u.agreeableness,
-                    neuroticism: u.neuroticism
-                }
-            })
-            return {user}
-        });
+        this.state.user[0]["trEx"] = parseInt(input)
+        this.forceUpdate()
     }
 
     handleChange_Agreeableness(e) {
         const input = e.target.value
-
-        this.setState(state => {
-            const user = state.user.map((u) => {
-                let data = u.agreeableness
-                if (u.isMaster == 1)
-                    data = input
-                return {
-                    userId: u.userId,
-                    firstName: u.firstName,
-                    lastName: u.lastName,
-                    isMaster: u.isMaster,
-                    userRank: u.userRank,
-                    openness: u.openness,
-                    conscience: u.conscience,
-                    extroversion: u.extroversion,
-                    agreeableness: data,
-                    neuroticism: u.neuroticism
-                }
-            })
-            return {user}
-        });
+        this.state.user[0]["trAg"] = parseInt(input)
+        this.forceUpdate()
     }
 
     handleChange_Neuroticism(e) {
         const input = e.target.value
-
-        this.setState(state => {
-            const user = state.user.map((u) => {
-                let data = u.neuroticism
-                if (u.isMaster == 1)
-                    data = input
-                return {
-                    userId: u.userId,
-                    firstName: u.firstName,
-                    lastName: u.lastName,
-                    isMaster: u.isMaster,
-                    userRank: u.userRank,
-                    openness: u.openness,
-                    conscience: u.conscience,
-                    extroversion: u.extroversion,
-                    agreeableness: u.agreeableness,
-                    neuroticism: data
-                }
-            });
-            return {user}
-        });
+        this.state.user[0]["trNe"] = parseInt(input)
+        this.forceUpdate()
     }
 
     submitPersonalityChange() {
@@ -265,11 +147,11 @@ class UserApp extends Component {
 
         var api_url = 'http://cs411ccsquad.web.illinois.edu/edit/User/';
         api_url += this.state.user[0].userId + '/'
-        let open = this.state.user[0].openness;
-        let con = this.state.user[0].conscience;
-        let ext = this.state.user[0].extroversion;
-        let agr = this.state.user[0].agreeableness;
-        let neu = this.state.user[0].neuroticism;
+        let open = this.state.user[0].trOpen;
+        let con = this.state.user[0].trCon;
+        let ext = this.state.user[0].trEx;
+        let agr = this.state.user[0].trAg;
+        let neu = this.state.user[0].trNe;
         const traits = [open, con, ext, agr, neu]
         for (const [index, value] of traits.entries()) {
             api_url += value + ":"
@@ -288,7 +170,6 @@ class UserApp extends Component {
                 }
             )
 
-        console.log(this.state.editPersonalityResult)
 
     }
 
@@ -333,13 +214,6 @@ class UserApp extends Component {
                     )
                 }
     }
-
-
-
-
-
-
-
 
 
     addFriendPopup() {
@@ -456,7 +330,6 @@ class UserApp extends Component {
                     this.setState({nextUserRank: this.state.nextUserRank + 1});
 
                     old_user.push(result);
-                    console.log(this.state.user);
                     this.forceUpdate()
                 },
                 (error) => {
@@ -535,31 +408,21 @@ class UserApp extends Component {
 
     navtoCRUDAMovies(){
         
-        var usertoCURD = {
-            'userId': this.state.user[0].userId,
-            'firstName': this.state.user[0].firstName,
-            'lastName': this.state.user[0].lastName,
-            'openness': this.state.user[0].openness,
-            'agreeableness': this.state.user[0].agreeableness,
-            'neuroticism': this.state.user[0].neuroticism,
-            'extroversion': this.state.user[0].extroversion,
-            'conscience': this.state.user[0].conscience,
-            'isMaster': 1,
-            'userRank': 0,
-            'database':"Movies"
-
-        };
-
+        var usertoCURD = Object.assign({}, this.state.user[0]);
+        usertoCURD["database"] = 0;
+        
         ReactDOM.unmountComponentAtNode(document.getElementById('root'));     
-        ReactDOM.render(<CRUDApp  userId={this.state.user[0].userId} />, document.getElementById('root'));
-        
-
-        
+        ReactDOM.render(<CRUDApp  usertoCURD = {usertoCURD}/>, document.getElementById('root'));
+                
     }
 
     navtoCRUDACocktails(){
+
+        var usertoCURD = Object.assign({}, this.state.user[0]);
+        usertoCURD["database"] = 1;
+        
         ReactDOM.unmountComponentAtNode(document.getElementById('root'));     
-        ReactDOM.render(<CRUDApp userId = {-1*this.state.user[0].userId}/>, document.getElementById('root'));
+        ReactDOM.render(<CRUDApp usertoCURD = {usertoCURD}/>, document.getElementById('root'));
     }
 
     render() {
@@ -571,7 +434,7 @@ class UserApp extends Component {
                 <Navbar.Brand href="">Flicks n Drinks</Navbar.Brand>
                     <Nav className="mr-auto">
                         <Button variant="dark"> My profile </Button>
-                        <Button variant="dark"  onClick={() => this.navtoCRUDAMovies()}> Movies </Button>
+                        <Button variant="dark"   onClick={() => this.navtoCRUDAMovies()}> Movies</Button>
                         <Button variant="dark"  onClick={() => this.navtoCRUDACocktails()}> Cocktails </Button>
                     </Nav>  
                     <Nav className="justify-content-end" activeKey="">
@@ -580,6 +443,13 @@ class UserApp extends Component {
                         </Nav.Item>
                     </Nav>
             </Navbar>
+
+
+
+
+
+
+
 
                 <Container>
                     <Row><br/><br/><br/></Row>
@@ -629,28 +499,28 @@ class UserApp extends Component {
                                 <a href="https://www.truity.com/view/tests/big-five-personality">Take Personality Test</a>
                             </Row>
                             <Row>&nbsp;</Row>
-                            <Row><h6>Openness: {this.state.user[0].openness}</h6></Row>
-                            <Row><input type="range" value={this.state.user[0].openness} onChange={(e) => {
+                            <Row><h6>Openness: {this.state.user[0].trOpen}</h6></Row>
+                            <Row><input type="range" value={this.state.user[0].trOpen} onChange={(e) => {
                                 this.handleChange_Openness(e)
                             }}></input></Row>
                             <Row>&nbsp;</Row>
-                            <Row><h6>Conscientiousness:{this.state.user[0].conscience}</h6></Row>
-                            <Row><input type="range" value={this.state.user[0].conscience} onChange={(e) => {
+                            <Row><h6>Conscientiousness:{this.state.user[0].trCon}</h6></Row>
+                            <Row><input type="range" value={this.state.user[0].trCon} onChange={(e) => {
                                 this.handleChange_Conscientiousness(e)
                             }}></input></Row>
                             <Row>&nbsp;</Row>
-                            <Row><h6>Extroversion: {this.state.user[0].extroversion}</h6></Row>
-                            <Row><input type="range" value={this.state.user[0].extroversion} onChange={(e) => {
+                            <Row><h6>Extroversion: {this.state.user[0].trEx}</h6></Row>
+                            <Row><input type="range" value={this.state.user[0].trEx} onChange={(e) => {
                                 this.handleChange_Extroversion(e)
                             }}></input></Row>
                             <Row>&nbsp;</Row>
-                            <Row><h6>Agreeableness: {this.state.user[0].agreeableness}</h6></Row>
-                            <Row><input type="range" value={this.state.user[0].agreeableness} onChange={(e) => {
+                            <Row><h6>Agreeableness: {this.state.user[0].trAg}</h6></Row>
+                            <Row><input type="range" value={this.state.user[0].trAg} onChange={(e) => {
                                 this.handleChange_Agreeableness(e)
                             }}></input></Row>
                             <Row>&nbsp;</Row>
-                            <Row><h6>Neuroticism: {this.state.user[0].neuroticism}</h6></Row>
-                            <Row><input type="range" value={this.state.user[0].neuroticism} onChange={(e) => {
+                            <Row><h6>Neuroticism: {this.state.user[0].trNe}</h6></Row>
+                            <Row><input type="range" value={this.state.user[0].trNe} onChange={(e) => {
                                 this.handleChange_Neuroticism(e)
                             }}></input></Row>
                             <Row>&nbsp;</Row>
