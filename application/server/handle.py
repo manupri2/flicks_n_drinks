@@ -214,6 +214,7 @@ def handle_recipe_action(json_dict, conn, action):
     final_query = ""
     if action == "insert":
         # builds INSERT query to insert new CocktailRecipe
+        print(json_dict)
         final_query = build_insert_query("CocktailRecipe", json_dict)
 
     if action == "update":
