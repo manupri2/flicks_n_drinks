@@ -48,7 +48,7 @@ class AddCocktail extends React.Component {
                   recipeId: this.state.recipeId,
                   cocktailName: this.state.cocktailName,
                   bartender: this.state.bartender,
-                  location: this.state.bartender,
+                  location: this.state.location,
                   glasswareName: this.state.glasswareName
                 }
 
