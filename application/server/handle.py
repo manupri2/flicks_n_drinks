@@ -98,6 +98,10 @@ def handle_mtnn_api(json_dict, model, conn):
     # and adds new column for 'personalRating'
     result = calc_genre_compat(user_info_df, tconst_list, genre_df, model)
 
+    idx = pd.IndexSlice
+    mask = pd.isnull(result['personalRating'])
+    result.loc[idx[mask], 'personalRating'] = None
+
     return result
 
 
