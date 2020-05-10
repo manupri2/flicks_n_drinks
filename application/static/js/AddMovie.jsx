@@ -59,7 +59,7 @@ class AddMovie extends React.Component {
                       tConst: this.state.tConst,
                       title: this.state.title,
                       year: this.state.year,
-                      genre: this.state.genre
+                      genre: parseInt(this.state.genre, 10)
                     }
 
     this.props.onFormSubmit(submit_data);

@@ -214,25 +214,84 @@ def handle_recipe_action(json_dict, conn, action):
     conn.execute(final_query)
 
 
+def check_then_insert_movie(table, check_dict, id_col, conn):
+    """ This function checks to see if the new values exist already:
+            - if the value exists SELECTs the value's corresponding id
+            - if the value does not exist it INSERTs the new value and then SELECTs the new id
+    :return: (int) id value
+
+    :param table: (str) name of table to check (i.e. CocktailName)
+    :param check_dict: {check_col: new_value}, check_col - name of column to check in table to check (i.e. "cocktailName")
+    :param id_col: (str) name of id column in table to check (i.e. "cocktailId")
+    :param conn: database connection
+    """
+    # format filters for use in build_general_read_query
+    filter_dict = preformat_filter_dict(check_dict, "=")
+
+    # build the SELECT query that will check to see if cocktailName/glasswareName exist
+    check_query = build_general_read_query(table, filter_dict, "AND")
+
+    # execute check_query and return results as a pandas dataframe
+    check_df, message = query_data(check_query, conn, 'df')
+
+    if check_df.empty:
+        print("Value not found, inserting new tuple into %s." % table)
+        # builds INSERT query to insert new cocktailName/glasswareName
+        insert_query = build_insert_query(table, check_dict)
+        conn.execute(insert_query)
+
+        # execute check_query and return results as a pandas dataframe
+        check_df, message = query_data(check_query, conn, 'df')
+
+    else:
+        print("Value exists, not inserting new tuple into %s." % table)
+
+    # grabs and returns id value (integer) from results
+    return check_df[id_col][0]
+
+
 def handle_add_movie(json_dict, conn):
     """ This function expects the following input to perform two INSERT actions
     json_dict = {
-                  tConst: (int),
                   title: (str),
                   year: (int),
                   genre: (int)
                 }
     """
-    genre_val = json_dict.pop("genre")
+    checks = {"Movie": {"checkCol": ["title", "year"], "idCol":  "tConst"}}
+    final_dict = {"genreId": json_dict.pop("genre")}
 
-    # INSERT everything but genre into Movie
-    movie_query = build_insert_query("Movie", json_dict)
-    print(movie_query)
-    conn.execute(movie_query)
+    # loop through all tables where we need to ensure values already exist due to foreign key constraints
+    for table_name, check_info in checks.items():
+        check_cols = check_info["checkCol"]
+        id_col = check_info["idCol"]
+
+        if check_col in json_dict.keys():
+            # grabs cocktailName/glasswareName (for use in check_then_insert())
+            # pops from json_dict as cocktailName/glasswareName do not exist in CocktailRecipe table attributes
+            check_dict = {}
+            for col in check_cols:
+                check_val = json_dict.pop(col)
+                # check_val = "'" + json_dict.pop(check_col) + "'"
+
+
+            # checks if value exists; if so -> returns id, if not -> inserts the new value then returns id
+            check_id = check_then_insert(table_name, {check_col: check_val}, id_col, conn)
+
+            # inserts id value into json_dict as cocktailId/glasswareId do exist in CocktailRecipe table attributes
+            final_dict[id_col] = check_id
+
+    # # INSERT everything but genre into Movie
+    # movie_query = build_insert_query("Movie", json_dict)
+    # print(movie_query)
+    # conn.execute(movie_query)
+    #
+    # # SELECT new tConst
+    # filter_dict = preformat_filter_dict(json_dict, "=")
 
     # INSERT tConst and genre into MovieCategory to relate movie to genre
-    genre_dict = {'tConst': json_dict["tConst"], "genreId": genre_val}
-    genre_query = build_insert_query("MovieCategory", genre_dict)
+    # genre_dict = {'tConst': new_tconst, "genreId": genre_val}
+    genre_query = build_insert_query("MovieCategory", final_dict)
     print(genre_query)
     conn.execute(genre_query)
 
