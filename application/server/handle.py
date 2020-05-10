@@ -63,6 +63,10 @@ def personalized_movie_search(table, json_dict, model, conn):
         compat_df = handle_mtnn_api(feat_dict, model, conn)
         result_df["personalRating"] = compat_df["personalRating"]
 
+        idx = pd.IndexSlice
+        mask = result_df['ratesMovie'] == np.nan
+        result_df.loc[idx[mask], 'ratesMovie'] = 0
+
     json_rec = result_df.to_dict(orient="records")
     return jsonify({'data': json_rec, 'status': message})
 

@@ -23,7 +23,7 @@ class CRUDApp extends Component {
     super(props);
 
         this.state = {
-          user:this.props.usertoCURD,
+          user: this.props.usertoCURD,
           isAddItem: false,
           error: null,
           isLoaded: true,
@@ -134,17 +134,38 @@ class CRUDApp extends Component {
   }
 
 
+  rateMovie = (item_id, rating) => {
+    var api_url = 'http://cs411ccsquad.web.illinois.edu/vote/';
+    var db = this.state.database.slice(0, -1)
+
+    var filter_info = {userId: this.state.user.userId, tConst: item_id, ratesMovie: rating};
+    var filters = encodeURI(JSON.stringify(filter_info));
+
+    api_url += db + "/" + filters;
+    console.log(JSON.stringify(filter_info));
+    fetch(api_url);
+  }
+
+
   searchItems() {
             var api_url = 'http://cs411ccsquad.web.illinois.edu/read/';
-            var db = this.state.database
-            var filters = encodeURI(JSON.stringify(this.state.filters));
-            api_url += db + "/" + filters;
+            var db = this.state.database;
+            var filters = Object.assign({}, this.state.filters);
+            filters["userId"] = this.state.user.userId;
+
+            var filters_str = encodeURI(JSON.stringify(filters));
+            api_url += db + "/" + filters_str;
+
+            console.log(api_url)
+            console.log(JSON.stringify(filters))
 
             if(!this.state.isLoaded){
                 fetch(api_url)
                     .then(res => res.json())
                     .then(
                         (result) => {
+                            console.log("Yayy!!!");
+                            console.log(result.data);
                             this.setState({
                                 isLoaded: true,
                                 items: result.data,
@@ -152,6 +173,7 @@ class CRUDApp extends Component {
                             });
                         },
                         (error) => {
+                            console.log("Nooooo!!!");
                             this.setState({
                                 isLoaded: true,
                                 error
@@ -200,7 +222,7 @@ class CRUDApp extends Component {
     //             console.log(error);
     //         });
 
-    console.log(this.state.user)    
+    console.log(this.state.user)
     ReactDOM.unmountComponentAtNode(document.getElementById('root'));     
     ReactDOM.render(<UserApp userDetails ={this.state.user}/>, document.getElementById('root'));
   }
@@ -248,7 +270,7 @@ class CRUDApp extends Component {
           </Row>
           
           {!this.state.isAddItem && this.state.database == "Movies" && <MovieQueryForm updateFilters={this.updateFilters}/>}  
-          {!this.state.isAddItem && this.state.database == "Movies" && <MovieList editItem={this.editItem} deleteItem={this.deleteItem} info={this.state}/>}
+          {!this.state.isAddItem && this.state.database == "Movies" && <MovieList editItem={this.editItem} deleteItem={this.deleteItem} rateMovie={this.rateMovie} info={this.state}/>}
           {!this.state.isAddItem && this.state.database == "Cocktails" && <CocktailQueryForm updateFilters={this.updateFilters}/>}
           {!this.state.isAddItem && this.state.database == "Cocktails" && <CocktailList editItem={this.editItem} deleteItem={this.deleteItem} info={this.state}/>}
 

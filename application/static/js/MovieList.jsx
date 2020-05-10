@@ -6,17 +6,16 @@ class MovieList extends React.Component {
     super(props);
     this.state = {
         response: {},
-        value: 0
     } 
     // const [value, setValue] = useState([1,3])
-    this.handleChange = this.handleChange.bind(this);
+  //  this.handleChange = this.handleChange.bind(this);
   }
 
-   handleChange () {
-    this.setState({
-       const: [value, setValue] = useState([1,3])
-     });
-   }
+ //  handleChange (event) {
+ //   this.setState({
+//       const: [value, setValue] = useState([1,3])
+ //    });
+ //  }
 
   render() {
     const error = this.props.info.error;
@@ -57,8 +56,8 @@ class MovieList extends React.Component {
                   <td>{movie.personalRating}</td>
                   <td>{movie.crew}</td>
                   <td>{movie.genres}</td>
-                  <td>  
-                  <ToggleButtonGroup type="radio" value={value} name="options" onChange={this.handleChange}>
+                  <td>
+                  <ToggleButtonGroup type="radio" value={movie.ratesMovie} name="options">
                     <ToggleButton value={1} onClick={() => this.props.rateMovie(movie.tConst, 1)}>1</ToggleButton>
                     <ToggleButton value={2} onClick={() => this.props.rateMovie(movie.tConst, 2)}>2</ToggleButton>
                     <ToggleButton value={3} onClick={() => this.props.rateMovie(movie.tConst, 3)}>3</ToggleButton>
