@@ -267,6 +267,10 @@ def test_user_autocomplete():
     query = build_user_autocomplete(json_dict)
     remote_test_read_query(query)
 
+    json_dict = {'userId': 1, 'firstName': 'o', 'lastName': 'hu', 'emailId': ''}
+    api = "read/UserAuto"
+    run_json_api_test(api, json_dict)
+
 
 if __name__ == "__main__":
     test_user_autocomplete()
