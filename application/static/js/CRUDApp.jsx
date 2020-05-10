@@ -63,6 +63,7 @@ class CRUDApp extends Component {
       delete data["isAdd"];
     }
 
+    console.log(JSON.stringify(data))
     
     if(this.state.isEditItem){
       apiUrl += "edit/" + db + "/" + data_json_uri;
