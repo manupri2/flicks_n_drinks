@@ -56,12 +56,16 @@ class CRUDApp extends Component {
   }
 
   onFormSubmit(data) {
+    
+    if(data.isAdd){
+      delete data["isAdd"];
+      data.genre = parseInt(data.genre);
+    }
+    
     var db = this.state.database.slice(0, -1);
     var apiUrl = 'http://cs411ccsquad.web.illinois.edu/';
     var data_json_uri = encodeURI(JSON.stringify(data));
-    if(data.isAdd){
-      delete data["isAdd"];
-    }
+    
 
     console.log(JSON.stringify(data))
     
