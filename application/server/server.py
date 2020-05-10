@@ -136,9 +136,13 @@ def insert(table, new_input):
     json_dict = json.loads(parse.unquote(new_input))
 
     if table == "Cocktail":
+        if "userId" in json_dict.keys():
+            json_dict.pop("userId")
         handle_recipe_action(json_dict, conn, "insert")
+
     if table == "Movie":
         handle_add_movie(json_dict, conn, "insert")
+
     else:
         query = build_insert_query(table, json_dict)
         conn.execute(query)
@@ -173,6 +177,8 @@ def edit(table, json_uri):
         conn.execute(query)
 
     elif table == "Cocktail":
+        if "userId" in json_dict.keys():
+            json_dict.pop("userId")
         handle_recipe_action(json_dict, conn, "update")
 
     response = {'status': 'success', 'message': 'Product edit successfully'}

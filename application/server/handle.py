@@ -218,8 +218,10 @@ def handle_recipe_action(json_dict, conn, action):
 
     if action == "update":
         # builds UPDATE query to update CocktailRecipe
-        json_dict.pop("ingredients")
-        json_dict.pop("rating")
+        if "ingredients" in json_dict.keys():
+            json_dict.pop("ingredients")
+        if "rating" in json_dict.keys():
+            json_dict.pop("rating")
         final_query = build_update_query("CocktailRecipe", json_dict, "recipeId")
 
     conn.execute(final_query)
