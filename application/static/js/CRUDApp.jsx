@@ -59,13 +59,18 @@ class CRUDApp extends Component {
     var db = this.state.database.slice(0, -1);
     var apiUrl = 'http://cs411ccsquad.web.illinois.edu/';
     var data_json_uri = encodeURI(JSON.stringify(data));
-    console.log(JSON.stringify(data))
+    if(data.isAdd){
+      delete data["isAdd"];
+    }
 
+    
     if(this.state.isEditItem){
       apiUrl += "edit/" + db + "/" + data_json_uri;
     } else {
       apiUrl += "add/" + db + "/" + data_json_uri;
     }
+
+    
  //   if(this.state.isEditItem && this.state.database == "Movies"){
       ////apiUrl += "edit/" + db + "/" + data.tconst.toString() + "/" + data.title;
  //     apiUrl += "edit/" + db + "/" + data_json_uri;
@@ -78,7 +83,7 @@ class CRUDApp extends Component {
  //   } else if (!this.state.isEditItem && this.state.database == "Cocktails") {
   //    apiUrl += "add/" + db + "/" + data_json_uri;
   //  }
-
+ 
     fetch(apiUrl);
     this.setState({
           isAddItem: false,
@@ -209,6 +214,8 @@ class CRUDApp extends Component {
   render() {
     let itemForm;
     if(this.state.isAddItem || this.state.isEditItem) {
+      var item = Object.assign({}, this.onFormSubmit);
+      item["isAdd"] = 1;
         if(this.state.database == "Movies") {
             itemForm = <AddMovie onFormSubmit={this.onFormSubmit} item={this.state.curr_item} />
         } else {
