@@ -55,7 +55,14 @@ class AddMovie extends React.Component {
     //this.props.onFormSubmit(state_copy);
     //this.setState(this.initialState);
 
-    this.props.onFormSubmit(this.state);
+    var submit_data = {
+                      tConst: this.state.tConst,
+                      title: this.state.title,
+                      year: this.state.year,
+                      genre: this.state.genre
+                    }
+
+    this.props.onFormSubmit(submit_data);
     this.setState(this.initialState);
   }
 
