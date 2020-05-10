@@ -144,6 +144,10 @@ class CRUDApp extends Component {
     api_url += db + "/" + filters;
     console.log(JSON.stringify(filter_info));
     fetch(api_url);
+    this.setState({
+                    isLoaded: false,
+                    error: null
+                });
   }
 
 

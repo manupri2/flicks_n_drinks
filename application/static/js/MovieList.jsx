@@ -61,6 +61,13 @@ class MovieList extends React.Component {
                     <ToggleButton value={1} onClick={() => this.props.rateMovie(movie.tConst, 1)}>1</ToggleButton>
                     <ToggleButton value={2} onClick={() => this.props.rateMovie(movie.tConst, 2)}>2</ToggleButton>
                     <ToggleButton value={3} onClick={() => this.props.rateMovie(movie.tConst, 3)}>3</ToggleButton>
+                    <ToggleButton value={4} onClick={() => this.props.rateMovie(movie.tConst, 4)}>4</ToggleButton>
+                    <ToggleButton value={5} onClick={() => this.props.rateMovie(movie.tConst, 5)}>5</ToggleButton>
+                    <ToggleButton value={6} onClick={() => this.props.rateMovie(movie.tConst, 6)}>6</ToggleButton>
+                    <ToggleButton value={7} onClick={() => this.props.rateMovie(movie.tConst, 7)}>7</ToggleButton>
+                    <ToggleButton value={8} onClick={() => this.props.rateMovie(movie.tConst, 8)}>8</ToggleButton>
+                    <ToggleButton value={9} onClick={() => this.props.rateMovie(movie.tConst, 9)}>9</ToggleButton>
+                    <ToggleButton value={10} onClick={() => this.props.rateMovie(movie.tConst, 10)}>10</ToggleButton>
                   </ToggleButtonGroup>
                   </td>
                   <td>

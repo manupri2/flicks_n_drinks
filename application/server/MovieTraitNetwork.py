@@ -76,6 +76,7 @@ def build_features_df(user_df, tconst_list, genre_df):
             feats_df = pd.concat([feats_df, temp])
 
         # join 'genreName' and movie 'rating' on 'tConst'
+        print(genre_df)
         genre_df.set_index('tConst', inplace=True)
         feats_df = feats_df.join(genre_df, on='tConst', how='inner')
     else:

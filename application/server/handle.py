@@ -43,11 +43,13 @@ def personalized_movie_search(table, json_dict, model, conn):
     # SELECT FROM MovieSummary WHERE filters...  to grab top 100 Movies within filter conditions
     query = build_general_read_query(table, json_dict, "AND")
     result_df, message = query_data(query, conn, 'df')
+    print(result_df)
 
     # SELECT FROM FavoriteMovie WHERE filters...   to grab user's votes on all movies
     vote_filt_dict = {"userId": {'value': user_id, 'operator': '='}}
     votes_query = build_general_read_query("FavoriteMovie", vote_filt_dict, "AND", columns=['tConst', 'ratesMovie'])
     votes_df, message = query_data(votes_query, conn, 'df')
+    print(votes_df)
 
     if not result_df.empty:
         if not votes_df.empty:
