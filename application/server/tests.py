@@ -274,11 +274,12 @@ def test_user_autocomplete():
 
 def test_add_movie():
     json_dict = {'tConst': 0,
-                 'title': 'NewTitle',
-                 'year': 2020,
                  'genre': 2}
 
-    handle_add_movie(json_dict, "test")
+    # handle_add_movie(json_dict, "test")
+
+    genre_query = build_insert_query("MovieCategory", json_dict)
+    print(genre_query)
 
 if __name__ == "__main__":
     test_add_movie()

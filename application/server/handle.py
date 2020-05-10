@@ -261,7 +261,7 @@ def handle_add_movie(json_dict, conn, action):
 
     # INSERT tConst and genre into MovieCategory to relate movie to genre
     # genre_dict = {'tConst': new_tconst, "genreId": genre_val}
-    if action == "insert" and not preexist:
+    if action == "insert":
         genre_query = build_insert_query("MovieCategory", final_dict)
         print(genre_query)
         conn.execute(genre_query)
