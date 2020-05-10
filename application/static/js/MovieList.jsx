@@ -1,13 +1,22 @@
-import React from 'react';
-import { Table, Button, Alert, Spinner } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Table, Button, ToggleButton, ToggleButtonGroup, Alert, Spinner } from 'react-bootstrap';
 
 class MovieList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        response: {}
-    }
+        response: {},
+        value: 0
+    } 
+    // const [value, setValue] = useState([1,3])
+    this.handleChange = this.handleChange.bind(this);
   }
+
+   handleChange () {
+    this.setState({
+       const: [value, setValue] = useState([1,3])
+     });
+   }
 
   render() {
     const error = this.props.info.error;
@@ -32,8 +41,10 @@ class MovieList extends React.Component {
                 <th>Title</th>
                 <th>Year</th>
                 <th>Rating</th>
+                <th>Personal Rating</th>
                 <th>Crew</th>
                 <th>Genres</th>
+                <th>Vote</th>
                 <th>Edit/Delete</th>
               </tr>
             </thead>
@@ -43,8 +54,16 @@ class MovieList extends React.Component {
                   <td>{movie.title}</td>
                   <td>{movie.year}</td>
                   <td>{movie.rating}</td>
+                  <td>{movie.personalRating}</td>
                   <td>{movie.crew}</td>
                   <td>{movie.genres}</td>
+                  <td>  
+                  <ToggleButtonGroup type="radio" value={value} name="options" onChange={this.handleChange}>
+                    <ToggleButton value={1} onClick={() => this.props.rateMovie(movie.tConst, 1)}>1</ToggleButton>
+                    <ToggleButton value={2} onClick={() => this.props.rateMovie(movie.tConst, 2)}>2</ToggleButton>
+                    <ToggleButton value={3} onClick={() => this.props.rateMovie(movie.tConst, 3)}>3</ToggleButton>
+                  </ToggleButtonGroup>
+                  </td>
                   <td>
                     <Button variant="info" onClick={() => this.props.editItem(movie.tConst)}>Edit</Button>
                     &nbsp;<Button variant="danger" onClick={() => this.props.deleteItem(movie.tConst)}>Delete</Button>

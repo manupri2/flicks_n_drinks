@@ -167,6 +167,27 @@ def build_update_query(table, json_dict, match_col):
     return query
 
 
+def build_user_autocomplete(json_dict):
+    """
+    Expects JSON: {userId: int, firstName: str_val, lastName: str_val, emailId: str_val}
+    """
+    # userId filter gets "!=" operator
+    user_id = {'userId': json_dict.pop('userId')}
+    user_filter_dict = preformat_filter_dict(user_id, "!=")
+    user_filter = build_filters(user_filter_dict)
+
+    # firstName, lastName, emailId filters get LIKE operator
+    filter_dict = preformat_filter_dict(json_dict, "LIKE")
+    filter_list = build_filters(filter_dict)
+
+    # concatenate filters with AND relationship
+    filter_list += user_filter
+    where_str = build_where(filter_list, relationship="AND")
+
+    query = "SELECT * FROM User " + where_str
+    return query
+
+
 def json_to_cs_str(json_dict):
     key_str = ""
     val_str = ""
