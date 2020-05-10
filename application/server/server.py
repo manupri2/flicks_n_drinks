@@ -135,7 +135,7 @@ def insert(table, new_input):
     if table == "Cocktail":
         handle_recipe_action(json_dict, conn, "insert")
     if table == "Movie":
-        handle_add_movie(json_dict, conn)
+        handle_add_movie(json_dict, conn, "insert")
     else:
         query = build_insert_query(table, json_dict)
         conn.execute(query)

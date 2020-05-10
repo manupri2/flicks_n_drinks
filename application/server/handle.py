@@ -133,7 +133,7 @@ def handle_vote(vote_table, vote_col, json_dict, conn):
     conn.execute(query)
 
 
-def check_then_insert(table, check_dict, id_col, conn):
+def check_then_insert(table, check_dict, id_col, conn, action="insert"):
     """ This function checks to see if the new values exist already:
             - if the value exists SELECTs the value's corresponding id
             - if the value does not exist it INSERTs the new value and then SELECTs the new id
@@ -147,6 +147,7 @@ def check_then_insert(table, check_dict, id_col, conn):
     # format filters for use in build_general_read_query
     filter_dict = preformat_filter_dict(check_dict, "=")
     preexisting = False
+    final_id = None
 
     # build the SELECT query that will check to see if cocktailName/glasswareName exist
     check_query = build_general_read_query(table, filter_dict, "AND")
@@ -154,7 +155,7 @@ def check_then_insert(table, check_dict, id_col, conn):
     # execute check_query and return results as a pandas dataframe
     check_df, message = query_data(check_query, conn, 'df')
 
-    if check_df.empty:
+    if check_df.empty and action == "insert":
         print("Value not found, inserting new tuple into %s." % table)
         # builds INSERT query to insert new cocktailName/glasswareName
         insert_query = build_insert_query(table, check_dict)
@@ -162,12 +163,15 @@ def check_then_insert(table, check_dict, id_col, conn):
 
         # execute check_query and return results as a pandas dataframe
         check_df, message = query_data(check_query, conn, 'df')
-    else:
+        final_id = check_df[id_col][0]
+
+    if (not check_df.empty) and action == "insert":
         print("Value exists, not inserting new tuple into %s." % table)
         preexisting = True
+        final_id = check_df[id_col][0]
 
     # grabs and returns id value (integer) from results, as well as if the return id is result of preexisting tuple
-    return check_df[id_col][0], preexisting
+    return final_id, preexisting
 
 
 def handle_recipe_action(json_dict, conn, action):
@@ -215,7 +219,7 @@ def handle_recipe_action(json_dict, conn, action):
     conn.execute(final_query)
 
 
-def handle_add_movie(json_dict, conn):
+def handle_add_movie(json_dict, conn, action):
     """ This function expects the following input to perform two INSERT actions
     json_dict = {
                   title: (str),
@@ -226,23 +230,26 @@ def handle_add_movie(json_dict, conn):
     checks = {"Movie": {"checkCol": ["title", "year"], "idCol":  "tConst"}}
     final_dict = {"genreId": json_dict.pop("genre")}
     preexist = False
+    check_dict = {}
 
     # loop through all tables/columns where we need to ensure values already exist due to foreign key constraints
     for table_name, check_info in checks.items():
         check_cols = check_info["checkCol"]
         id_col = check_info["idCol"]
 
-        check_dict = {}
         for col in check_cols:
             if col in json_dict.keys():
                 check_dict[col] = json_dict.pop(col)
 
         # checks if values exists; if so -> returns id, if not -> inserts the new value then returns id
-        check_id, pre = check_then_insert(table_name, check_dict, id_col, conn)
+        new_id, pre = check_then_insert(table_name, check_dict, id_col, conn, action)
         preexist = preexist or pre
-        
+
         # inserts id value into json_dict as cocktailId/glasswareId do exist in CocktailRecipe table attributes
-        final_dict[id_col] = check_id
+        if action == "insert":
+            final_dict[id_col] = new_id
+        else:
+            final_dict[id_col] = json_dict[id_col]
 
     # # INSERT everything but genre into Movie
     # movie_query = build_insert_query("Movie", json_dict)
@@ -254,10 +261,25 @@ def handle_add_movie(json_dict, conn):
 
     # INSERT tConst and genre into MovieCategory to relate movie to genre
     # genre_dict = {'tConst': new_tconst, "genreId": genre_val}
-    if not preexist:
+    if action == "insert" and not preexist:
         genre_query = build_insert_query("MovieCategory", final_dict)
         print(genre_query)
         conn.execute(genre_query)
+
+    # if action == "update" and not preexist:
+    #     movie_dict = check_dict
+    #     movie_dict["tConst"] = final_dict["tConst"]
+    #     movie_query = build_update_query("Movie", movie_dict, "tConst")
+    #     print(movie_query)
+    #
+    #
+    #
+    #     genre_query = build_update_query("MovieCategory", final_dict, "tConst")
+    #     print(genre_query)
+    #     conn.execute(genre_query)
+    #     executed = True
+
+    # return "Action '%s' executed: %s; Value was pre-existing: %s" % (action, executed, preexist)
 
 
 if __name__ == '__main__':
