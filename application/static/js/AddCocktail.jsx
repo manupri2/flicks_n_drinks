@@ -6,17 +6,26 @@ class AddCocktail extends React.Component {
     super(props);
     this.initialState = {
       recipeId: '',
-      cocktailName: 'Test',
+      cocktailName: '',
       bartender: '',
       location: '',
-      glasswareName: ''
+      glasswareName: '',
+      isAdd: props.isAdd
     }
 
-    if(props.item){
-      this.state = props.item
-    } else {
+    if(props.isAdd){
       this.state = this.initialState;
+    } else {
+      this.state = {
+                      recipeId: props.item.recipeId,
+                      cocktailName: props.item.cocktailName,
+                      bartender: props.item.bartender,
+                      location: props.item.location,
+                      glasswareName: props.item.glasswareName,
+                      isAdd: false
+                    };
     }
+
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,14 +43,23 @@ class AddCocktail extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.onFormSubmit(this.state);
+
+    var submit_data = {
+                  recipeId: this.state.recipeId,
+                  cocktailName: this.state.cocktailName,
+                  bartender: this.state.bartender,
+                  location: this.state.bartender,
+                  glasswareName: this.state.glasswareName
+                }
+
+    this.props.onFormSubmit(submit_data);
     this.setState(this.initialState);
   }
 
   render() {
 
     let pageTitle;
-    if(this.state.recipeId>=0) {
+    if(!this.state.isAdd) {
       pageTitle = <h2>Edit Cocktail</h2>
     } else {
       pageTitle = <h2>Add Cocktail</h2>

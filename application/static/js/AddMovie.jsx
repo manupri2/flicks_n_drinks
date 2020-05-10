@@ -6,12 +6,12 @@ class AddMovie extends React.Component {
     super(props);
     this.initialState = {
       tConst: '',
-      title: 'Test',
+      title: '',
       year: 0,
       genre: 1,
       isAdd: props.isAdd
     }
-//jQuery.isEmptyObject({})
+
     if(props.isAdd){
       this.state = this.initialState;
     } else {
@@ -34,7 +34,12 @@ class AddMovie extends React.Component {
     let new_value;
     
     if(name == "year"){
-        new_value = parseInt(value, 10);
+        if(value == ""){
+            new_value = 0;
+        } else {
+            new_value = parseInt(value, 10);
+        }
+
     } else if (name == "title"){
         new_value = value;
     } else {

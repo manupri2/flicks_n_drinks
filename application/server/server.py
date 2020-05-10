@@ -95,6 +95,9 @@ def read(table, json_uri):
 
         if table == "Cocktails":
             q_table = table[:-1] + "Summary"
+            if "userId" in json_dict.keys():
+                json_dict.pop("userId")
+
             query = build_general_read_query(q_table, json_dict, "AND")
             result = query_data(query, conn, 'json')
 
