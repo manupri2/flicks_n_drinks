@@ -72,7 +72,7 @@ def personalized_movie_search(table, json_dict, model, conn):
 
         print(result_df.loc[:, ['crew', 'personalRating']])
         mask = pd.isnull(result_df['personalRating'])
-        result_df.loc[idx[mask], 'personalRating'] = None
+        result_df.loc[idx[mask], 'personalRating'] = 0
         print(result_df.loc[:, ['crew', 'personalRating']])
 
     json_rec = result_df.to_dict(orient="records")
