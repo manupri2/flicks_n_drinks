@@ -68,7 +68,7 @@ class AddMovie extends React.Component {
 
 
   showGenre(){
-   // if (this.state.isAdd) {
+  if (this.state.isAdd) {
       return(
       <Form.Group as={Col} controlId="genre">
       <Form.Label>Genre</Form.Label>
@@ -104,7 +104,7 @@ class AddMovie extends React.Component {
         <option value = {24}>Adult</option>
       </Form.Control>
     </Form.Group>)
-  //  }
+    }
 
   }
 
