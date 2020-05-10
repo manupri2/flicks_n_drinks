@@ -70,6 +70,9 @@ def personalized_movie_search(table, json_dict, model, conn):
         mask = pd.isnull(result_df['ratesMovie'])
         result_df.loc[idx[mask], 'ratesMovie'] = 0
 
+        mask = pd.isnull(result_df['personalRating'])
+        result_df.loc[idx[mask], 'personalRating'] = None
+
     json_rec = result_df.to_dict(orient="records")
     return jsonify({'data': json_rec, 'status': message})
 
@@ -98,10 +101,6 @@ def handle_mtnn_api(json_dict, model, conn):
     # calculate the user's compatability with each movie; ultimately joins 'user_info_df' and 'genre_df'
     # and adds new column for 'personalRating'
     result = calc_genre_compat(user_info_df, tconst_list, genre_df, model)
-
-    idx = pd.IndexSlice
-    mask = pd.isnull(result['personalRating'])
-    result.loc[idx[mask], 'personalRating'] = None
 
     return result
 
