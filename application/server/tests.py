@@ -262,11 +262,13 @@ def test_edit_movie():
     print(query)
 
 
-if __name__ == "__main__":
-    test_movie_read_api()
+def test_user_autocomplete():
+    json_dict = {'userId': 1, 'firstName': 'o', 'lastName': 'hu', 'emailId': ''}
+    query = build_user_autocomplete(json_dict)
+    remote_test_read_query(query)
 
-    # vote_filt_dict = {"userId": {'value': 1, 'operator': '='}}
-    # votes_query = build_general_read_query("FavoriteMovie", vote_filt_dict, "AND", columns=['tConst', 'ratesMovie'])
-    # remote_test_read_query(votes_query)
+
+if __name__ == "__main__":
+    test_user_autocomplete()
 
 

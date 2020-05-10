@@ -102,6 +102,10 @@ def read(table, json_uri):
             query = build_user_query(json_dict)
             result = query_data(query, conn, 'json')
 
+        if table == "UserAuto":
+            query = build_user_autocomplete(json_dict)
+            result = query_data(query, conn, 'json')
+
         return result
 
 
