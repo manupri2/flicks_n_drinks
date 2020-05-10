@@ -91,7 +91,6 @@ class UserApp extends Component {
                 type="radar"
                 width="800px"
                 height="600px"
-
             />
         )
     }
@@ -227,7 +226,7 @@ class UserApp extends Component {
 
             <div>
                 <Button color="primary " onClick={() => this.openAddFriendModal()}> Add Friend </Button>
-                <Modal visible={this.state.addFriendPopup} width="800" height="400" effect="fadeInUp"
+                <Modal visible={this.state.addFriendPopup} width="800" height="800" effect="fadeInUp"
                        onClickAway={() => this.closeAddFriendModal()}>
                     <div>
                         <h1>&nbsp;Adding Friend to Chart</h1>
@@ -302,7 +301,6 @@ class UserApp extends Component {
 
         )
     }
-
     
     openAddFriendModal() {
 
@@ -467,6 +465,7 @@ class UserApp extends Component {
                 }
             )
     }
+
     deleteFriendPopup() {
         return (
 
