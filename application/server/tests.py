@@ -272,7 +272,15 @@ def test_user_autocomplete():
     run_json_api_test(api, json_dict)
 
 
+def test_add_movie():
+    json_dict = {'tConst': 0,
+                 'title': 'NewTitle',
+                 'year': 2020,
+                 'genre': 2}
+
+    handle_add_movie(json_dict, "test")
+
 if __name__ == "__main__":
-    test_movie_read_api()
+    test_add_movie()
 
 

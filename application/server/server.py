@@ -131,12 +131,13 @@ def delete(table, item_id):
 def insert(table, new_input):
     conn = eng.connect()
     json_dict = json.loads(parse.unquote(new_input))
-    print(json_dict)
+
     if table == "Cocktail":
         handle_recipe_action(json_dict, conn, "insert")
+    if table == "Movie":
+        handle_add_movie(json_dict, conn)
     else:
         query = build_insert_query(table, json_dict)
-        print(query)
         conn.execute(query)
 
     response = {'status': 'success', 'message': 'Record added successfully'}

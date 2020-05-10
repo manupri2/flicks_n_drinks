@@ -214,6 +214,29 @@ def handle_recipe_action(json_dict, conn, action):
     conn.execute(final_query)
 
 
+def handle_add_movie(json_dict, conn):
+    """ This function expects the following input to perform two INSERT actions
+    json_dict = {
+                  tConst: (int),
+                  title: (str),
+                  year: (int),
+                  genre: (int)
+                }
+    """
+    genre_val = json_dict.pop("genre")
+
+    # INSERT everything but genre into Movie
+    movie_query = build_insert_query("Movie", json_dict)
+    print(movie_query)
+    conn.execute(movie_query)
+
+    # INSERT tConst and genre into MovieCategory to relate movie to genre
+    genre_dict = {'tConst': json_dict["tConst"], "genreId": genre_val}
+    genre_query = build_insert_query("MovieCategory", genre_dict)
+    print(genre_query)
+    conn.execute(genre_query)
+
+
 if __name__ == '__main__':
     print("Test with sql_api.py or tests.py")
 
