@@ -44,7 +44,8 @@ class CRUDApp extends Component {
   }
 
   onCreate() {
-    this.setState({ isAddItem: true });
+    this.setState({ isAddItem: true,
+                    isEditItem: false });
   }
 
   updateFilters(new_filters) {
@@ -57,16 +58,14 @@ class CRUDApp extends Component {
 
   onFormSubmit(data) {
     
-    if(data.isAdd){
-      delete data["isAdd"];
-      data.genre = parseInt(data.genre);
-    }
+//    if(data.isAdd){
+//      delete data["isAdd"];
+   //   data.genre = parseInt(data.genre);
+   // }
     
     var db = this.state.database.slice(0, -1);
     var apiUrl = 'http://cs411ccsquad.web.illinois.edu/';
     var data_json_uri = encodeURI(JSON.stringify(data));
-    
-
     console.log(JSON.stringify(data))
     
     if(this.state.isEditItem){
@@ -93,7 +92,8 @@ class CRUDApp extends Component {
     this.setState({
           isAddItem: false,
           isEditItem: false,
-          isLoaded: false
+          isLoaded: false,
+          curr_item: {}
         })
   }
 
@@ -119,7 +119,7 @@ class CRUDApp extends Component {
               this.setState({
                 curr_item: result.data[0],
                 isEditItem: true,
-                isAddItem: true
+                isAddItem: false
               });
             },
             (error) => {
@@ -211,31 +211,6 @@ class CRUDApp extends Component {
 
 
   navtoUserPage(){
-    // var apiUrl = 'http://cs411ccsquad.web.illinois.edu/read/User/';
-    // var body = encodeURI(JSON.stringify({
-    //   'userId': this.state.userId,
-    // }));
-    // apiUrl += body;
-    // fetch(apiUrl)
-    //     .then((response) => {
-    //       if (!response.ok) {
-    //           throw new Error('Network response was not ok');
-    //       }
-    //       return response.json();
-    //     })
-    //     .then((result) => {
-    //             if (result.status === 'Results found'){
-    //                 ReactDOM.unmountComponentAtNode(document.getElementById('root'));
-    //                 ReactDOM.render(<UserApp userDetails={result.data[0]}/>, document.getElementById('root'));
-    //             }
-    //             else
-    //                 alert('Invalid User');
-    //         },
-    //         (error) => {
-    //             console.log("Error!!!!!!!!!");
-    //             console.log(error);
-    //         });
-
     console.log(this.state.user)
     ReactDOM.unmountComponentAtNode(document.getElementById('root'));     
     ReactDOM.render(<UserApp userDetails ={this.state.user}/>, document.getElementById('root'));
@@ -248,9 +223,9 @@ class CRUDApp extends Component {
       var item = Object.assign({}, this.onFormSubmit);
       item["isAdd"] = 1;
         if(this.state.database == "Movies") {
-            itemForm = <AddMovie onFormSubmit={this.onFormSubmit} item={this.state.curr_item} />
+            itemForm = <AddMovie onFormSubmit={this.onFormSubmit} item={this.state.curr_item}  isAdd={this.state.isAddItem}/>
         } else {
-            itemForm = <AddCocktail onFormSubmit={this.onFormSubmit} item={this.state.curr_item} />
+            itemForm = <AddCocktail onFormSubmit={this.onFormSubmit} item={this.state.curr_item} isAdd={this.state.isAddItem}/>
         }
     }
 
@@ -282,13 +257,13 @@ class CRUDApp extends Component {
 
           <Row>
               {this.state.response.status === 'success' && <div><br /><Alert variant="info">{this.state.response.message}</Alert></div>}
-              {!this.state.isAddItem && <div class="text-right pr-0"><Button variant="primary" onClick={() => this.onCreate()}>Add {this.state.database.slice(0, -1)} <PlusCircle /></Button><br /><br /></div>}
+              {!this.state.isAddItem && !this.state.isEditItem && <div class="text-right pr-0"><Button variant="primary" onClick={() => this.onCreate()}>Add {this.state.database.slice(0, -1)} <PlusCircle /></Button><br /><br /></div>}
           </Row>
           
-          {!this.state.isAddItem && this.state.database == "Movies" && <MovieQueryForm updateFilters={this.updateFilters}/>}  
-          {!this.state.isAddItem && this.state.database == "Movies" && <MovieList editItem={this.editItem} deleteItem={this.deleteItem} rateMovie={this.rateMovie} info={this.state}/>}
-          {!this.state.isAddItem && this.state.database == "Cocktails" && <CocktailQueryForm updateFilters={this.updateFilters}/>}
-          {!this.state.isAddItem && this.state.database == "Cocktails" && <CocktailList editItem={this.editItem} deleteItem={this.deleteItem} info={this.state}/>}
+          {!this.state.isAddItem && !this.state.isEditItem && this.state.database == "Movies" && <MovieQueryForm updateFilters={this.updateFilters}/>}
+          {!this.state.isAddItem && !this.state.isEditItem && this.state.database == "Movies" && <MovieList editItem={this.editItem} deleteItem={this.deleteItem} rateMovie={this.rateMovie} info={this.state}/>}
+          {!this.state.isAddItem && !this.state.isEditItem && this.state.database == "Cocktails" && <CocktailQueryForm updateFilters={this.updateFilters}/>}
+          {!this.state.isAddItem && !this.state.isEditItem && this.state.database == "Cocktails" && <CocktailList editItem={this.editItem} deleteItem={this.deleteItem} info={this.state}/>}
 
           {itemForm}
           {this.state.error && <div>Error: {this.state.error.message}</div>}

@@ -163,8 +163,12 @@ def edit(table, json_uri):
     json_dict = json.loads(parse.unquote(json_uri))
 
     if table == "Movie":
-        query = build_update_query(table, json_dict, 'tConst')
+        update_dict = {"tConst": json_dict["tConst"],
+                       "title": json_dict["title"],
+                        "year": json_dict["year"]}
+        query = build_update_query(table, update_dict, 'tConst')
         conn.execute(query)
+
     elif table == "Cocktail":
         handle_recipe_action(json_dict, conn, "update")
 

@@ -8,20 +8,20 @@ class AddMovie extends React.Component {
       tConst: '',
       title: 'Test',
       year: 0,
-      genre: -1,
-      isAdd:0
+      genre: 1,
+      isAdd: props.isAdd
     }
-
-    if(props.item){
+//jQuery.isEmptyObject({})
+    if(props.isAdd){
+      this.state = this.initialState;
+    } else {
       this.state = {
                       tConst: props.item.tConst,
                       title: props.item.title,
                       year: props.item.year,
-                      genre: -1,
-                      isAdd: 1
+                      genre: 1,
+                      isAdd: false
                     }
-    } else {
-      this.state = this.initialState;
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -111,7 +111,7 @@ class AddMovie extends React.Component {
   render() {
 
     let pageTitle;
-    if(this.state.tConst>=0) {
+    if(!this.state.isAdd) {
       pageTitle = <h2>Edit Movie</h2>
     } else {
       pageTitle = <h2>Add Movie</h2>
@@ -151,7 +151,7 @@ class AddMovie extends React.Component {
               </Form.Row>
               <Form.Group>
                 <Form.Control type="hidden" name="tConst" value={this.state.tConst} />
-                <Button variant="success" type="submit" disabled = {(this.state.genre)<0}>Save</Button>
+                <Button variant="success" type="submit" >Save</Button>
                 
               </Form.Group>
             </Form>
