@@ -72,10 +72,20 @@ class SignupApp extends Component {
     }
 
     render() {
+        const signupFormStyle = {
+              width: "420px",
+              height: "480px",
+              position: "relative",
+              margin: "5% auto",
+              backgroundColor: "#fff",
+              padding: "5px",
+              overflow: "hidden",
+              border: "2px solid #000"
+        };
         return(
             <div>
                 <Container>
-                    <Form onSubmit={this.handleSubmit}>
+                    <Form style={signupFormStyle} onSubmit={this.handleSubmit}>
                         <h2 className="text-center">Sign Up</h2>
                         <Form.Group size="lg" controlId="formFirstName">
                             <Form.Label>First Name</Form.Label>
