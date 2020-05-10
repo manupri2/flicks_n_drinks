@@ -70,8 +70,10 @@ def personalized_movie_search(table, json_dict, model, conn):
         mask = pd.isnull(result_df['ratesMovie'])
         result_df.loc[idx[mask], 'ratesMovie'] = 0
 
+        print(result_df)
         mask = pd.isnull(result_df['personalRating'])
         result_df.loc[idx[mask], 'personalRating'] = None
+        print(result_df)
 
     json_rec = result_df.to_dict(orient="records")
     return jsonify({'data': json_rec, 'status': message})
