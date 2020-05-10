@@ -43,11 +43,13 @@ def personalized_movie_search(table, json_dict, model, conn):
     # SELECT FROM MovieSummary WHERE filters...  to grab top 100 Movies within filter conditions
     query = build_general_read_query(table, json_dict, "AND")
     result_df, message = query_data(query, conn, 'df')
+    # print(result_df)
 
     # SELECT FROM FavoriteMovie WHERE filters...   to grab user's votes on all movies
     vote_filt_dict = {"userId": {'value': user_id, 'operator': '='}}
     votes_query = build_general_read_query("FavoriteMovie", vote_filt_dict, "AND", columns=['tConst', 'ratesMovie'])
     votes_df, message = query_data(votes_query, conn, 'df')
+    # print(votes_df)
 
     if not result_df.empty:
         if not votes_df.empty:
@@ -62,6 +64,11 @@ def personalized_movie_search(table, json_dict, model, conn):
         feat_dict = {"userId": user_id, "tConst": list(result_df["tConst"].values)}
         compat_df = handle_mtnn_api(feat_dict, model, conn)
         result_df["personalRating"] = compat_df["personalRating"]
+
+        idx = pd.IndexSlice
+        mask = pd.isnull(result_df['ratesMovie'])
+        # print(mask)
+        result_df.loc[idx[mask], 'ratesMovie'] = 0
 
     json_rec = result_df.to_dict(orient="records")
     return jsonify({'data': json_rec, 'status': message})
@@ -84,7 +91,9 @@ def handle_mtnn_api(json_dict, model, conn):
 
     # SELECT tConst, rating, and genreNames for movies in tConst_list
     genre_query = build_genres_query(tconst_list)
+    print(genre_query)
     genre_df, message = query_data(genre_query, conn, 'df')
+    print(genre_df)
 
     # calculate the user's compatability with each movie; ultimately joins 'user_info_df' and 'genre_df'
     # and adds new column for 'personalRating'
