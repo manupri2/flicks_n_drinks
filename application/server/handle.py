@@ -67,7 +67,6 @@ def personalized_movie_search(table, json_dict, model, conn):
 
         idx = pd.IndexSlice
         mask = pd.isnull(result_df['ratesMovie'])
-        # print(mask)
         result_df.loc[idx[mask], 'ratesMovie'] = 0
 
     json_rec = result_df.to_dict(orient="records")
