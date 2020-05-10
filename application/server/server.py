@@ -86,7 +86,6 @@ def read(table, json_uri):
 
         if table == "Movies":
             q_table = table[:-1] + "Summary"
-
             if "userId" in json_dict.keys():
                 result = personalized_movie_search(q_table, json_dict, mt_model, conn)
             else:
@@ -97,7 +96,6 @@ def read(table, json_uri):
             q_table = table[:-1] + "Summary"
             if "userId" in json_dict.keys():
                 json_dict.pop("userId")
-
             query = build_general_read_query(q_table, json_dict, "AND")
             result = query_data(query, conn, 'json')
 
@@ -154,7 +152,7 @@ def insert(table, new_input):
 
 
 @app.route('/edit/<table>/<item_id>/<title>', methods=['GET'])
-def edit_old(table, item_id, title):
+def edit_user(table, item_id, title):
     conn = eng.connect()
 
     if table == "User":
