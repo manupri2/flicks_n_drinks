@@ -52,8 +52,8 @@ class MovieList extends React.Component {
                 <tr key={movie.tConst}>
                   <td>{movie.title}</td>
                   <td>{movie.year}</td>
-                  <td>{movie.rating}</td>
-                  <td>{movie.personalRating}</td>
+                  <td>{Number((movie.rating).toFixed(1))}</td>
+                  <td>{Number((movie.personalRating).toFixed(1))}</td>
                   <td>{movie.crew}</td>
                   <td>{movie.genres}</td>
                   <td>
