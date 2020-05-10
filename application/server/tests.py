@@ -88,7 +88,7 @@ def test_user_read_api():
 
 
 def test_movie_read_api():
-    json_dict = {'title': {'value': 'chinese', 'operator': 'LIKE'},
+    json_dict = {'title': {'value': '', 'operator': 'LIKE'},
                  'year': {'value': '2000', 'operator': '='},
                  'rating': {'value': '', 'operator': '>='}}
     table = "Movies"
@@ -273,6 +273,6 @@ def test_user_autocomplete():
 
 
 if __name__ == "__main__":
-    test_user_autocomplete()
+    test_movie_read_api()
 
 
